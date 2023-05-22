@@ -1,5 +1,8 @@
 package net.minecraft.client.entity;
 
+import appu26j.Apple;
+import appu26j.events.entity.EventAttack;
+import appu26j.events.entity.EventTick;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.MovingSoundMinecartRiding;
 import net.minecraft.client.audio.PositionedSoundRecord;
@@ -169,6 +172,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
     {	
         if (this.worldObj.isBlockLoaded(new BlockPos(this.posX, 0.0D, this.posZ)))
         {
+            Apple.CLIENT.getEventBus().post(new EventTick());
             super.onUpdate();
 
             if (this.isRiding())
@@ -304,6 +308,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
     public void swingItem()
     {
         super.swingItem();
+        Apple.CLIENT.getEventBus().post(new EventAttack());
         this.sendQueue.addToSendQueue(new C0APacketAnimation());
     }
 

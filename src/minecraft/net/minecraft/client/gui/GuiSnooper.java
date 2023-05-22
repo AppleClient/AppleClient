@@ -44,7 +44,7 @@ public class GuiSnooper extends GuiScreen
         this.field_146607_r = (String[])list.toArray(new String[list.size()]);
         this.field_146604_g.clear();
         this.field_146609_h.clear();
-        this.buttonList.add(this.field_146605_t = new GuiButton(1, this.width / 2 - 152, this.height - 30, 150, 20, this.game_settings_2.getKeyBinding(GameSettings.Options.SNOOPER_ENABLED)));
+        this.buttonList.add(this.field_146605_t = new GuiButton(1, this.width / 2 - 152, this.height - 30, 150, 20, this.game_settings_2.getKeyBindingBooleanOff(GameSettings.Options.SNOOPER_ENABLED), false));
         this.buttonList.add(new GuiButton(2, this.width / 2 + 2, this.height - 30, 150, 20, I18n.format("gui.done", new Object[0])));
         boolean flag = this.mc.getIntegratedServer() != null && this.mc.getIntegratedServer().getPlayerUsageSnooper() != null;
 
@@ -87,12 +87,6 @@ public class GuiSnooper extends GuiScreen
                 this.game_settings_2.saveOptions();
                 this.game_settings_2.saveOptions();
                 this.mc.displayGuiScreen(this.field_146608_a);
-            }
-
-            if (button.id == 1)
-            {
-                this.game_settings_2.setOptionValue(GameSettings.Options.SNOOPER_ENABLED, 1);
-                this.field_146605_t.displayString = this.game_settings_2.getKeyBinding(GameSettings.Options.SNOOPER_ENABLED);
             }
         }
     }

@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.Callable;
+
+import appu26j.Apple;
+import appu26j.mods.visuals.DamageTilt;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFence;
 import net.minecraft.block.BlockFenceGate;
@@ -12,6 +15,7 @@ import net.minecraft.block.BlockWall;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockPattern;
+import net.minecraft.client.Minecraft;
 import net.minecraft.command.CommandResultStats;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.crash.CrashReport;
@@ -2089,6 +2093,23 @@ public abstract class Entity implements ICommandSender
      */
     public void setVelocity(double x, double y, double z)
     {
+        EntityPlayer entityPlayer = Minecraft.getMinecraft().thePlayer;
+        
+        if (entityPlayer != null && this.equals(entityPlayer))
+        {
+            DamageTilt damageTilt = (DamageTilt) Apple.CLIENT.getModsManager().getMod("Damage Tilt");
+            
+            if (damageTilt.isEnabled())
+            {
+                float attackedAtYaw = (float) (Math.atan2(this.motionZ - z, this.motionX - x) * (180D / Math.PI) - (double) this.rotationYaw);
+                
+                if (Float.isFinite(attackedAtYaw))
+                {
+                    ((EntityPlayer) this).attackedAtYaw = attackedAtYaw;
+                }
+            }
+        }
+        
         this.motionX = x;
         this.motionY = y;
         this.motionZ = z;

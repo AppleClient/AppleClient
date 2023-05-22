@@ -50,14 +50,6 @@ public class VersionCheckThread extends Thread
                 {
                     String s1 = astring[0].trim();
                     Config.dbg("Version found: " + s1);
-
-                    if (Config.compareRelease(s1, "M5") <= 0)
-                    {
-                        return;
-                    }
-
-                    Config.setNewRelease(s1);
-                    return;
                 }
             }
             finally

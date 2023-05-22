@@ -2600,6 +2600,7 @@ public class Shaders
         }
     }
 
+    @SuppressWarnings("resource")
     private static int createVertShader(Program program, String filename)
     {
         int i = ARBShaderObjects.glCreateShaderObjectARB(ARBVertexShader.GL_VERTEX_SHADER_ARB);
@@ -2704,6 +2705,7 @@ public class Shaders
         }
     }
 
+    @SuppressWarnings("resource")
     private static int createGeomShader(Program program, String filename)
     {
         int i = ARBShaderObjects.glCreateShaderObjectARB(36313);
@@ -2803,6 +2805,7 @@ public class Shaders
         }
     }
 
+    @SuppressWarnings("resource")
     private static int createFragShader(Program program, String filename)
     {
         int i = ARBShaderObjects.glCreateShaderObjectARB(ARBFragmentShader.GL_FRAGMENT_SHADER_ARB);
@@ -3414,6 +3417,8 @@ public class Shaders
                         setProgramUniform1i(uniform_shadowcolor0, 13);
                         setProgramUniform1i(uniform_shadowcolor1, 14);
                         setProgramUniform1i(uniform_noisetex, 15);
+                default:
+                    break;
                 }
 
                 ItemStack itemstack = mc.thePlayer != null ? mc.thePlayer.getHeldItem() : null;

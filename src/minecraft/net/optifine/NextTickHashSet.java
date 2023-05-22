@@ -52,25 +52,17 @@ public class NextTickHashSet extends TreeSet
         else
         {
             NextTickListEntry nextticklistentry = (NextTickListEntry)obj;
+            Set set = this.getSubSet(nextticklistentry, true);
+            boolean flag = set.add(nextticklistentry);
+            boolean flag1 = super.add(obj);
 
-            if (nextticklistentry == null)
+            if (flag != flag1)
             {
-                return false;
+                throw new IllegalStateException("Added: " + flag + ", addedParent: " + flag1);
             }
             else
             {
-                Set set = this.getSubSet(nextticklistentry, true);
-                boolean flag = set.add(nextticklistentry);
-                boolean flag1 = super.add(obj);
-
-                if (flag != flag1)
-                {
-                    throw new IllegalStateException("Added: " + flag + ", addedParent: " + flag1);
-                }
-                else
-                {
-                    return flag1;
-                }
+                return flag1;
             }
         }
     }

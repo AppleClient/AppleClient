@@ -1,7 +1,11 @@
 package net.minecraft.client.renderer.entity.layers;
 
-import com.google.common.collect.Maps;
 import java.util.Map;
+
+import com.google.common.collect.Maps;
+
+import appu26j.Apple;
+import appu26j.mods.visuals.Visuals;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RendererLivingEntity;
@@ -46,7 +50,8 @@ public abstract class LayerArmorBase<T extends ModelBase> implements LayerRender
 
     public boolean shouldCombineTextures()
     {
-        return false;
+        Visuals visuals = (Visuals) Apple.CLIENT.getModsManager().getMod("1.7 Visuals");
+        return visuals.isEnabled() && visuals.getSetting("1.7 Armor Damage Tint").getCheckBoxValue();
     }
 
     private void renderLayer(EntityLivingBase entitylivingbaseIn, float p_177182_2_, float p_177182_3_, float partialTicks, float p_177182_5_, float p_177182_6_, float p_177182_7_, float scale, int armorSlot)

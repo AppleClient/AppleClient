@@ -25,6 +25,9 @@ import net.optifine.entity.model.IEntityRenderer;
 import net.optifine.shaders.Shaders;
 import org.lwjgl.opengl.GL11;
 
+import appu26j.Apple;
+import appu26j.mods.visuals.NameTags;
+
 public abstract class Render<T extends Entity> implements IEntityRenderer
 {
     private static final ResourceLocation shadowTextures = new ResourceLocation("textures/misc/shadow.png");
@@ -365,6 +368,8 @@ public abstract class Render<T extends Entity> implements IEntityRenderer
 
         if (d0 <= (double)(maxDistance * maxDistance))
         {
+            NameTags nameTags = (NameTags) Apple.CLIENT.getModsManager().getMod("Name Tags");
+            boolean renderWithTextShadow = nameTags.isEnabled() && nameTags.getSetting("Text Shadow").getCheckBoxValue();
             FontRenderer fontrenderer = this.getFontRendererFromRenderManager();
             float f = 1.6F;
             float f1 = 0.016666668F * f;
@@ -397,10 +402,30 @@ public abstract class Render<T extends Entity> implements IEntityRenderer
             worldrenderer.pos((double)(j + 1), (double)(-1 + i), 0.0D).color(0.0F, 0.0F, 0.0F, 0.25F).endVertex();
             tessellator.draw();
             GlStateManager.enableTexture2D();
-            fontrenderer.drawString(str, -fontrenderer.getStringWidth(str) / 2, i, 553648127);
+            
+            if (renderWithTextShadow)
+            {
+                fontrenderer.drawStringWithShadow(str, -fontrenderer.getStringWidth(str) / 2, i, 553648127);
+            }
+            
+            else
+            {
+                fontrenderer.drawString(str, -fontrenderer.getStringWidth(str) / 2, i, 553648127);
+            }
+            
             GlStateManager.enableDepth();
             GlStateManager.depthMask(true);
-            fontrenderer.drawString(str, -fontrenderer.getStringWidth(str) / 2, i, -1);
+            
+            if (renderWithTextShadow)
+            {
+                fontrenderer.drawStringWithShadow(str, -fontrenderer.getStringWidth(str) / 2, i, -1);
+            }
+            
+            else
+            {
+                fontrenderer.drawString(str, -fontrenderer.getStringWidth(str) / 2, i, -1);
+            }
+            
             GlStateManager.enableLighting();
             GlStateManager.disableBlend();
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);

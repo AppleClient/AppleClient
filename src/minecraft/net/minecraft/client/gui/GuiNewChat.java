@@ -1,16 +1,21 @@
 package net.minecraft.client.gui;
 
-import com.google.common.collect.Lists;
 import java.util.Iterator;
 import java.util.List;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import com.google.common.collect.Lists;
+
+import appu26j.Apple;
+import appu26j.mods.visuals.Chat;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.util.MathHelper;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class GuiNewChat extends Gui
 {
@@ -77,12 +82,23 @@ public class GuiNewChat extends Gui
 
                             if (l1 > 3)
                             {
+                                Chat chat = (Chat) Apple.CLIENT.getModsManager().getMod("MC Chat");
                                 int i2 = 0;
                                 int j2 = -i1 * 9;
                                 drawRect(i2, j2 - 9, i2 + l + 4, j2, l1 / 2 << 24);
                                 String s = chatline.getChatComponent().getFormattedText();
                                 GlStateManager.enableBlend();
-                                this.mc.fontRendererObj.drawStringWithShadow(s, (float)i2, (float)(j2 - 8), 16777215 + (l1 << 24));
+                                
+                                if (chat.isEnabled() && !chat.getSetting("Text Shadow").getCheckBoxValue())
+                                {
+                                    this.mc.fontRendererObj.drawString(s, (float)i2, (float)(j2 - 8), 16777215 + (l1 << 24));
+                                }
+                                
+                                else
+                                {
+                                    this.mc.fontRendererObj.drawStringWithShadow(s, (float)i2, (float)(j2 - 8), 16777215 + (l1 << 24));
+                                }
+                                
                                 GlStateManager.disableAlpha();
                                 GlStateManager.disableBlend();
                             }
@@ -159,7 +175,10 @@ public class GuiNewChat extends Gui
             this.drawnChatLines.add(0, new ChatLine(updateCounter, ichatcomponent, chatLineId));
         }
 
-        while (this.drawnChatLines.size() > 100)
+        Chat chat = (Chat) Apple.CLIENT.getModsManager().getMod("MC Chat");
+        int j = (chat.isEnabled() && chat.getSetting("Infinite History").getCheckBoxValue()) ? Integer.MAX_VALUE : 100;
+        
+        while (this.drawnChatLines.size() > j)
         {
             this.drawnChatLines.remove(this.drawnChatLines.size() - 1);
         }
@@ -168,7 +187,7 @@ public class GuiNewChat extends Gui
         {
             this.chatLines.add(0, new ChatLine(updateCounter, chatComponent, chatLineId));
 
-            while (this.chatLines.size() > 100)
+            while (this.chatLines.size() > j)
             {
                 this.chatLines.remove(this.chatLines.size() - 1);
             }

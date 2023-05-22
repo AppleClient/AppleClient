@@ -1,5 +1,10 @@
 package net.minecraft.client.renderer;
 
+import org.lwjgl.opengl.GL11;
+
+import appu26j.Apple;
+import appu26j.mods.multiplayer.Cooldown;
+import appu26j.mods.visuals.Visuals;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -19,6 +24,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemFishingRod;
 import net.minecraft.item.ItemMap;
 import net.minecraft.item.ItemStack;
 import net.minecraft.src.Config;
@@ -30,7 +37,6 @@ import net.minecraft.world.storage.MapData;
 import net.optifine.DynamicLights;
 import net.optifine.reflect.Reflector;
 import net.optifine.shaders.Shaders;
-import org.lwjgl.opengl.GL11;
 
 public class ItemRenderer
 {
@@ -304,17 +310,51 @@ public class ItemRenderer
     /**
      * Performs transformations prior to the rendering of a held item in first person.
      */
-    private void transformFirstPersonItem(float equipProgress, float swingProgress)
+    private void transformFirstPersonItem(float equipProgress, float swingProgress, float partialTicks)
     {
-        GlStateManager.translate(0.56F, -0.52F, -0.71999997F);
-        GlStateManager.translate(0.0F, equipProgress * -0.6F, 0.0F);
-        GlStateManager.rotate(45.0F, 0.0F, 1.0F, 0.0F);
-        float f = MathHelper.sin(swingProgress * swingProgress * (float)Math.PI);
-        float f1 = MathHelper.sin(MathHelper.sqrt_float(swingProgress) * (float)Math.PI);
-        GlStateManager.rotate(f * -20.0F, 0.0F, 1.0F, 0.0F);
-        GlStateManager.rotate(f1 * -20.0F, 0.0F, 0.0F, 1.0F);
-        GlStateManager.rotate(f1 * -80.0F, 1.0F, 0.0F, 0.0F);
-        GlStateManager.scale(0.4F, 0.4F, 0.4F);
+        Visuals visuals = (Visuals) Apple.CLIENT.getModsManager().getMod("1.7 Visuals");
+        Cooldown cooldown = (Cooldown) Apple.CLIENT.getModsManager().getMod("1.9 Cooldown");
+        float y = cooldown.isEnabled() && cooldown.getMaximumAttackTicksLimit() != 4 ? (-0.52F + (-0.58F * (cooldown.getMaximumAttackTicksLimit() - cooldown.getAttackTicks(partialTicks)) / cooldown.getMaximumAttackTicksLimit())) > -0.52F ? -0.52F : (-0.52F + (-0.98F * (cooldown.getMaximumAttackTicksLimit() - cooldown.getAttackTicks(partialTicks)) / cooldown.getMaximumAttackTicksLimit())) : -0.52F;
+        
+        if (visuals.isEnabled() && visuals.getSetting("1.7 Item Position").getCheckBoxValue())
+        {
+            if (this.itemToRender.getItem() instanceof ItemFishingRod)
+            {
+                GlStateManager.translate(0.54F, y, -0.9999997F);
+            }
+            
+            else if (!(this.itemToRender.getItem() instanceof ItemBlock))
+            {
+                GlStateManager.translate(0.535F, y, -0.71999997F);
+            }
+            
+            else
+            {
+                GlStateManager.translate(0.56F, y, -0.71999997F);
+            }
+            
+            GlStateManager.translate(0.0F, equipProgress * -0.6F, 0.0F);
+            GlStateManager.rotate(this.itemToRender.getItem() instanceof ItemBlock ? 45.0F : 50.0F, 0.0F, 1.0F, 0.0F);
+            float f = MathHelper.sin(swingProgress * swingProgress * (float)Math.PI);
+            float f1 = MathHelper.sin(MathHelper.sqrt_float(swingProgress) * (float)Math.PI);
+            GlStateManager.rotate(f * -20.0F, 0.0F, 1.0F, 0.0F);
+            GlStateManager.rotate(f1 * -20.0F, 0.0F, 0.0F, 1.0F);
+            GlStateManager.rotate(f1 * -80.0F, 1.0F, 0.0F, 0.0F);
+            GlStateManager.scale(0.4F, this.itemToRender.getItem() instanceof ItemBlock ? 0.4F : 0.3925F, this.itemToRender.getItem() instanceof ItemBlock ? 0.4F : 0.3925F);
+        }
+        
+        else
+        {
+            GlStateManager.translate(0.56F, y, -0.71999997F);
+            GlStateManager.translate(0.0F, equipProgress * -0.6F, 0.0F);
+            GlStateManager.rotate(45.0F, 0.0F, 1.0F, 0.0F);
+            float f = MathHelper.sin(swingProgress * swingProgress * (float)Math.PI);
+            float f1 = MathHelper.sin(MathHelper.sqrt_float(swingProgress) * (float)Math.PI);
+            GlStateManager.rotate(f * -20.0F, 0.0F, 1.0F, 0.0F);
+            GlStateManager.rotate(f1 * -20.0F, 0.0F, 0.0F, 1.0F);
+            GlStateManager.rotate(f1 * -80.0F, 1.0F, 0.0F, 0.0F);
+            GlStateManager.scale(0.4F, 0.4F, 0.4F);
+        }
     }
 
     /**
@@ -354,7 +394,8 @@ public class ItemRenderer
      */
     private void doBlockTransformations()
     {
-        GlStateManager.translate(-0.5F, 0.2F, 0.0F);
+        Visuals visuals = (Visuals) Apple.CLIENT.getModsManager().getMod("1.7 Visuals");
+        GlStateManager.translate(-0.5F, visuals.isEnabled() && visuals.getSetting("1.7 Sword Block").getCheckBoxValue() ? 0.4F : 0.2F, 0.0F);
         GlStateManager.rotate(30.0F, 0.0F, 1.0F, 0.0F);
         GlStateManager.rotate(-80.0F, 1.0F, 0.0F, 0.0F);
         GlStateManager.rotate(60.0F, 0.0F, 1.0F, 0.0F);
@@ -377,6 +418,8 @@ public class ItemRenderer
             this.rotateWithPlayerRotations((EntityPlayerSP)abstractclientplayer, partialTicks);
             GlStateManager.enableRescaleNormal();
             GlStateManager.pushMatrix();
+            Visuals visuals = (Visuals) Apple.CLIENT.getModsManager().getMod("1.7 Visuals");
+            float f4 = visuals.isEnabled() && visuals.getSetting("1.7 Block Hit").getCheckBoxValue() ? f1 : 0.0F;
 
             if (this.itemToRender != null)
             {
@@ -391,29 +434,29 @@ public class ItemRenderer
                     switch (enumaction)
                     {
                         case NONE:
-                            this.transformFirstPersonItem(f, 0.0F);
+                            this.transformFirstPersonItem(f, 0.0F, partialTicks);
                             break;
 
                         case EAT:
                         case DRINK:
                             this.performDrinking(abstractclientplayer, partialTicks);
-                            this.transformFirstPersonItem(f, 0.0F);
+                            this.transformFirstPersonItem(f, f4, partialTicks);
                             break;
 
                         case BLOCK:
-                            this.transformFirstPersonItem(f, 0.0F);
+                            this.transformFirstPersonItem(f, f4, partialTicks);
                             this.doBlockTransformations();
                             break;
 
                         case BOW:
-                            this.transformFirstPersonItem(f, 0.0F);
+                            this.transformFirstPersonItem(f, f4, partialTicks);
                             this.doBowTransformations(partialTicks, abstractclientplayer);
                     }
                 }
                 else
                 {
                     this.doItemUsedTransformations(f1);
-                    this.transformFirstPersonItem(f, f1);
+                    this.transformFirstPersonItem(f, f1, partialTicks);
                 }
 
                 this.renderItem(abstractclientplayer, this.itemToRender, ItemCameraTransforms.TransformType.FIRST_PERSON);

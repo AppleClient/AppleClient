@@ -1,8 +1,6 @@
 package net.minecraft.client.gui;
 
-import com.google.common.base.Splitter;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
+import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.datatransfer.ClipboardOwner;
 import java.awt.datatransfer.DataFlavor;
@@ -15,6 +13,20 @@ import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
+
+import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.input.Mouse;
+
+import com.google.common.base.Splitter;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
+
+import appu26j.fontrenderer.FixedFontRenderer;
+import appu26j.gui.ClickGUI;
+import appu26j.interfaces.GUIInterface;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.stream.GuiTwitchUserMode;
 import net.minecraft.client.renderer.GlStateManager;
@@ -37,14 +49,9 @@ import net.minecraft.stats.StatList;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IChatComponent;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.lwjgl.input.Keyboard;
-import org.lwjgl.input.Mouse;
 import tv.twitch.chat.ChatUserInfo;
 
-public abstract class GuiScreen extends Gui implements GuiYesNoCallback
+public abstract class GuiScreen extends Gui implements GuiYesNoCallback, GUIInterface
 {
     private static final Logger LOGGER = LogManager.getLogger();
     private static final Set<String> PROTOCOLS = Sets.newHashSet(new String[] {"http", "https"});
@@ -747,6 +754,22 @@ public abstract class GuiScreen extends Gui implements GuiYesNoCallback
     }
 
     /**
+     * Returns true if either windows ctrl key is down or if either mac meta key is down
+     */
+    public static boolean isPlusKeyDown()
+    {
+        return Keyboard.isKeyDown(13);
+    }
+
+    /**
+     * Returns true if either windows ctrl key is down or if either mac meta key is down
+     */
+    public static boolean isMinusKeyDown()
+    {
+        return Keyboard.isKeyDown(12);
+    }
+
+    /**
      * Returns true if either shift key is down
      */
     public static boolean isShiftKeyDown()
@@ -791,5 +814,53 @@ public abstract class GuiScreen extends Gui implements GuiYesNoCallback
     public void onResize(Minecraft mcIn, int w, int h)
     {
         this.setWorldAndResolution(mcIn, w, h);
+    }
+    
+    public void drawString(String text, float x, float y, int color)
+    {
+        if (this instanceof ClickGUI)
+        {
+            this.drawString(text, x, y, 8, color);
+            return;
+        }
+        
+        this.mc.fontRendererObj.drawString(text, x, y, color);
+    }
+
+    public void drawString(String text, float x, float y, float size, int color)
+    {
+        FixedFontRenderer.drawString(text, x, y, size, color);
+    }
+    
+    public void drawStringWithShadow(String text, float x, float y, int color)
+    {
+        this.mc.fontRendererObj.drawStringWithShadow(text, x, y, color);
+    }
+
+    public void drawStringWithShadow(String text, float x, float y, float size, int color)
+    {
+        FixedFontRenderer.drawStringWithShadow(text, x, y, size, color);
+    }
+    
+    public float getStringWidth(String text)
+    {
+        return this.getStringWidth(text, 8);
+    }
+    
+    public float getStringWidth(String text, float size)
+    {
+        return FixedFontRenderer.getStringWidth(text, size);
+    }
+    
+    public void drawStringAlpha(String text, float x, float y, int color, int alpha)
+    {
+        Color temp = new Color(color, true);
+        this.drawString(text, x, y, new Color(temp.getRed(), temp.getGreen(), temp.getBlue(), alpha).getRGB());
+    }
+    
+    public void drawStringAlpha(String text, float x, float y, float size, int color, int alpha)
+    {
+        Color temp = new Color(color, true);
+        this.drawString(text, x, y, size, new Color(temp.getRed(), temp.getGreen(), temp.getBlue(), alpha).getRGB());
     }
 }

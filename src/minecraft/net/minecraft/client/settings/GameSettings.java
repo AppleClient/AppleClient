@@ -861,6 +861,26 @@ public class GameSettings
     }
 
     /**
+     * Gets a key binding.
+     *  
+     * @param settingOption The KeyBinding is generated from this option
+     */
+    public String getKeyBindingBooleanOff(GameSettings.Options settingOption)
+    {
+        String s = this.getKeyBindingOF(settingOption);
+
+        if (s != null)
+        {
+            return s;
+        }
+        else
+        {
+            String s1 = I18n.format(settingOption.getEnumString(), new Object[0]) + ": ";
+            return s1 + I18n.format("options.off", new Object[0]);
+        }
+    }
+
+    /**
      * Loads the options from the options file. It appears that this has replaced the previous 'loadOptions'
      */
     public void loadOptions()
@@ -2117,11 +2137,6 @@ public class GameSettings
     private String getKeyBindingOF(GameSettings.Options p_getKeyBindingOF_1_)
     {
         String s = I18n.format(p_getKeyBindingOF_1_.getEnumString(), new Object[0]) + ": ";
-
-        if (s == null)
-        {
-            s = p_getKeyBindingOF_1_.getEnumString();
-        }
 
         if (p_getKeyBindingOF_1_ == GameSettings.Options.RENDER_DISTANCE)
         {

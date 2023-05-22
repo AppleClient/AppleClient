@@ -1,10 +1,16 @@
 package net.minecraft.client.gui;
 
+import java.awt.Color;
+import java.util.Comparator;
+import java.util.List;
+
 import com.google.common.collect.ComparisonChain;
 import com.google.common.collect.Ordering;
 import com.mojang.authlib.GameProfile;
-import java.util.Comparator;
-import java.util.List;
+
+import appu26j.Apple;
+import appu26j.fontrenderer.FixedFontRenderer;
+import appu26j.mods.visuals.PingIndicator;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.network.NetHandlerPlayClient;
 import net.minecraft.client.network.NetworkPlayerInfo;
@@ -267,7 +273,29 @@ public class GuiPlayerTabOverlay extends Gui
         }
 
         this.zLevel += 100.0F;
-        this.drawTexturedModalRect(p_175245_2_ + p_175245_1_ - 11, p_175245_3_, 0 + i * 10, 176 + j * 8, 10, 8);
+        PingIndicator pingIndicator = (PingIndicator) Apple.CLIENT.getModsManager().getMod("Ping Indicator");
+        
+        if (pingIndicator.isEnabled())
+        {
+            int[] colors = pingIndicator.getSetting("Text Color (RGB)").getColors();
+            int color = new Color(colors[0], colors[1], colors[2]).getRGB();
+            
+            if (pingIndicator.getSetting("Text Shadow").getCheckBoxValue())
+            {
+                FixedFontRenderer.drawStringWithShadow(String.valueOf(networkPlayerInfoIn.getResponseTime()), p_175245_2_ + p_175245_1_ - 1 - FixedFontRenderer.getStringWidth(String.valueOf(networkPlayerInfoIn.getResponseTime()), 4), p_175245_3_ + 2, 4, color);
+            }
+            
+            else
+            {
+                FixedFontRenderer.drawString(String.valueOf(networkPlayerInfoIn.getResponseTime()), p_175245_2_ + p_175245_1_ - 1 - FixedFontRenderer.getStringWidth(String.valueOf(networkPlayerInfoIn.getResponseTime()), 4), p_175245_3_ + 2, 4, color);
+            }
+        }
+        
+        else
+        {
+            this.drawTexturedModalRect(p_175245_2_ + p_175245_1_ - 11, p_175245_3_, 0 + i * 10, 176 + j * 8, 10, 8);
+        }
+        
         this.zLevel -= 100.0F;
     }
 

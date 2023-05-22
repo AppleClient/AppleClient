@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="appu26j.fontrenderer.FixedFontRenderer"/>
+    <fullyQualifiedTypeName name="appu26j.gui.ClickGUI"/>
+    <fullyQualifiedTypeName name="appu26j.interfaces.GUIInterface"/>
+    <fullyQualifiedTypeName name="appu26j.events.entity.EventTick"/>
+    <fullyQualifiedTypeName name="appu26j.events.entity.EventAttack"/>
+    <fullyQualifiedTypeName name="appu26j.events.mc.EventKey"/>
+    <fullyQualifiedTypeName name="appu26j.events.mc.EventWorldChange"/>
+    <fullyQualifiedTypeName name="appu26j.events.network.EventPacketReceive"/>
+    <fullyQualifiedTypeName name="appu26j.gui.DragGUI"/>
+    <fullyQualifiedTypeName name="appu26j.mods.Mod"/>
+    <fullyQualifiedTypeName name="appu26j.mods.visuals.Chat"/>
+    <fullyQualifiedTypeName name="net.minecraft.item.ItemBlock"/>
+    <fullyQualifiedTypeName name="java.awt.Color"/>
+    <fullyQualifiedTypeName name="appu26j.Apple"/>
+</qualifiedTypeNameHistroy>

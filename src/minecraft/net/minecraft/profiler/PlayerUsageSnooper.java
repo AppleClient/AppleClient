@@ -20,7 +20,6 @@ public class PlayerUsageSnooper
     private final String uniqueID = UUID.randomUUID().toString();
 
     /** URL of the server to send the report to */
-    private final URL serverUrl;
     private final IPlayerUsage playerStatsCollector;
 
     /** set to fire the snooperThread every 15 mins */
@@ -34,15 +33,6 @@ public class PlayerUsageSnooper
 
     public PlayerUsageSnooper(String side, IPlayerUsage playerStatCollector, long startTime)
     {
-        try
-        {
-            this.serverUrl = new URL("http://snoop.minecraft.net/" + side + "?version=" + 2);
-        }
-        catch (MalformedURLException var6)
-        {
-            throw new IllegalArgumentException();
-        }
-
         this.playerStatsCollector = playerStatCollector;
         this.minecraftStartTimeMilis = startTime;
     }
@@ -56,31 +46,6 @@ public class PlayerUsageSnooper
         {
             this.isRunning = true;
             this.addOSData();
-            this.threadTrigger.schedule(new TimerTask()
-            {
-                public void run()
-                {
-                    if (PlayerUsageSnooper.this.playerStatsCollector.isSnooperEnabled())
-                    {
-                        Map<String, Object> map;
-
-                        synchronized (PlayerUsageSnooper.this.syncLock)
-                        {
-                            map = Maps.<String, Object>newHashMap(PlayerUsageSnooper.this.clientStats);
-
-                            if (PlayerUsageSnooper.this.selfCounter == 0)
-                            {
-                                map.putAll(PlayerUsageSnooper.this.snooperStats);
-                            }
-
-                            map.put("snooper_count", Integer.valueOf(PlayerUsageSnooper.this.selfCounter++));
-                            map.put("snooper_token", PlayerUsageSnooper.this.uniqueID);
-                        }
-
-                        HttpUtil.postMap(PlayerUsageSnooper.this.serverUrl, map, true);
-                    }
-                }
-            }, 0L, 900000L);
         }
     }
 

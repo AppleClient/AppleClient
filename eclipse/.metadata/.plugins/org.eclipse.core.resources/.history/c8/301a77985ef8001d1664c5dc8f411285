@@ -1,0 +1,88 @@
+package appu26j.mods.visuals;
+
+import com.google.common.eventbus.Subscribe;
+
+import appu26j.events.entity.EventTick;
+import appu26j.events.network.EventPacketReceive;
+import appu26j.interfaces.ModInterface;
+import appu26j.mods.Category;
+import appu26j.mods.Mod;
+import appu26j.settings.Setting;
+import net.minecraft.network.play.server.S03PacketTimeUpdate;
+
+@ModInterface(name = "Time Changer", description = "Allows you to change the time.", category = Category.VISUALS)
+public class TimeChanger extends Mod
+{
+	private float previousRainStrength = 101101101;
+	
+	public TimeChanger()
+	{
+		this.addSetting(new Setting("Time", this, 1000, 1000, 24000, 500));
+		this.addSetting(new Setting("Weather", this, "Default", "Default", "Sunny", "Rainy", "Snowy"));
+	}
+	
+	@Override
+	public void onEnable()
+	{
+		super.onEnable();
+		
+		if (this.mc.theWorld != null)
+		{
+			this.previousRainStrength = this.mc.theWorld.getRainStrength(1.0F);
+		}
+	}
+	
+	@Subscribe
+	public void onTick(EventTick e)
+	{
+		if (this.previousRainStrength == 101101101)
+		{
+			this.previousRainStrength = this.mc.theWorld.getRainStrength(1.0F);
+		}
+		
+		long worldTime = (long) this.getSetting("Time").getSliderValue();
+		this.mc.theWorld.setWorldTime(worldTime);
+		
+		switch (this.getSetting("Weather").getModeValue())
+		{
+			case "Sunny":
+			{
+				this.mc.theWorld.setRainStrength(0.0F);
+				break;
+			}
+			
+			case "Snowy":
+			case "Rainy":
+			{
+				this.mc.theWorld.setRainStrength(1.0F);
+				break;
+			}
+			
+			case "Default":
+			{
+				this.mc.theWorld.setRainStrength(this.previousRainStrength);
+				break;
+			}
+		}
+	}
+	
+	@Subscribe
+	public void onPacketReceive(EventPacketReceive e)
+	{
+		if (e.getPacket() instanceof S03PacketTimeUpdate)
+		{
+			e.setCancelled(true);
+		}
+	}
+	
+	@Override
+	public void onDisable()
+	{
+		super.onDisable();
+		
+		if (!this.getSetting("Weather").getModeValue().equals("Default"))
+		{
+			this.mc.theWorld.setRainStrength(this.previousRainStrength);
+		}
+	}
+}

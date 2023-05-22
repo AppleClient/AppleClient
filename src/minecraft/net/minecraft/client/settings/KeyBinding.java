@@ -89,6 +89,11 @@ public class KeyBinding implements Comparable<KeyBinding>
         return this.pressed;
     }
 
+    public void setPressed(boolean pressed)
+    {
+        this.setKeyBindState(this.keyCode, pressed);
+    }
+
     public String getKeyCategory()
     {
         return this.keyCategory;

@@ -1,5 +1,7 @@
 package net.minecraft.client.multiplayer;
 
+import appu26j.Apple;
+import appu26j.events.entity.EventAttack;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

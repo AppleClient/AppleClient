@@ -1,8 +1,18 @@
 package net.minecraft.client.renderer.entity;
 
-import com.google.common.collect.Lists;
+import java.awt.Color;
 import java.nio.FloatBuffer;
 import java.util.List;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.lwjgl.opengl.GL11;
+
+import com.google.common.collect.Lists;
+
+import appu26j.Apple;
+import appu26j.mods.visuals.DamageTint;
+import appu26j.mods.visuals.NameTags;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.gui.FontRenderer;
@@ -28,9 +38,6 @@ import net.optifine.EmissiveTextures;
 import net.optifine.entity.model.CustomEntityModels;
 import net.optifine.reflect.Reflector;
 import net.optifine.shaders.Shaders;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.lwjgl.opengl.GL11;
 
 public abstract class RendererLivingEntity<T extends EntityLivingBase> extends Render<T>
 {
@@ -428,18 +435,42 @@ public abstract class RendererLivingEntity<T extends EntityLivingBase> extends R
             }
             else
             {
-                float f1 = (float)(i >> 24 & 255) / 255.0F;
-                float f2 = (float)(i >> 16 & 255) / 255.0F;
-                float f3 = (float)(i >> 8 & 255) / 255.0F;
-                float f4 = (float)(i & 255) / 255.0F;
-                this.brightnessBuffer.put(f2);
-                this.brightnessBuffer.put(f3);
-                this.brightnessBuffer.put(f4);
-                this.brightnessBuffer.put(1.0F - f1);
-
-                if (Config.isShaders())
+                DamageTint damageTint = (DamageTint) Apple.CLIENT.getModsManager().getMod("Damage Tint");
+                
+                if (damageTint.isEnabled())
                 {
-                    Shaders.setEntityColor(f2, f3, f4, 1.0F - f1);
+                    int[] colors = damageTint.getSetting("Hit Color (RGB)").getColors();
+                    int color = new Color(colors[0], colors[1], colors[2]).getRGB();
+                    float f1 = (float)(color >> 24 & 255) / 255.0F;
+                    float f2 = (float)(color >> 16 & 255) / 255.0F;
+                    float f3 = (float)(color >> 8 & 255) / 255.0F;
+                    float f4 = (float)(i & 255) / 255.0F;
+                    this.brightnessBuffer.put(f2);
+                    this.brightnessBuffer.put(f3);
+                    this.brightnessBuffer.put(f4);
+                    this.brightnessBuffer.put(1.0F - f1);
+
+                    if (Config.isShaders())
+                    {
+                        Shaders.setEntityColor(f2, f3, f4, 1.0F - f1);
+                    }
+                }
+                
+                else
+                {
+                    float f1 = (float)(i >> 24 & 255) / 255.0F;
+                    float f2 = (float)(i >> 16 & 255) / 255.0F;
+                    float f3 = (float)(i >> 8 & 255) / 255.0F;
+                    float f4 = (float)(i & 255) / 255.0F;
+                    this.brightnessBuffer.put(f2);
+                    this.brightnessBuffer.put(f3);
+                    this.brightnessBuffer.put(f4);
+                    this.brightnessBuffer.put(1.0F - f1);
+
+                    if (Config.isShaders())
+                    {
+                        Shaders.setEntityColor(f2, f3, f4, 1.0F - f1);
+                    }
                 }
             }
 
@@ -643,6 +674,8 @@ public abstract class RendererLivingEntity<T extends EntityLivingBase> extends R
 
                     if (entity.isSneaking())
                     {
+                        NameTags nameTags = (NameTags) Apple.CLIENT.getModsManager().getMod("Name Tags");
+                        boolean renderWithTextShadow = nameTags.isEnabled() && nameTags.getSetting("Text Shadow").getCheckBoxValue();
                         FontRenderer fontrenderer = this.getFontRendererFromRenderManager();
                         GlStateManager.pushMatrix();
                         GlStateManager.translate((float)x, (float)y + entity.height + 0.5F - (entity.isChild() ? entity.height / 2.0F : 0.0F), (float)z);
@@ -667,7 +700,17 @@ public abstract class RendererLivingEntity<T extends EntityLivingBase> extends R
                         tessellator.draw();
                         GlStateManager.enableTexture2D();
                         GlStateManager.depthMask(true);
-                        fontrenderer.drawString(s, -fontrenderer.getStringWidth(s) / 2, 0, 553648127);
+                        
+                        if (renderWithTextShadow)
+                        {
+                            fontrenderer.drawStringWithShadow(s, -fontrenderer.getStringWidth(s) / 2, 0, 553648127);
+                        }
+                        
+                        else
+                        {
+                            fontrenderer.drawString(s, -fontrenderer.getStringWidth(s) / 2, 0, 553648127);
+                        }
+                        
                         GlStateManager.enableLighting();
                         GlStateManager.disableBlend();
                         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);

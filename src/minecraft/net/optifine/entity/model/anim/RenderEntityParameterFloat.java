@@ -125,6 +125,8 @@ public enum RenderEntityParameterFloat implements IExpressionFloat
 
                             case SWING_PROGRESS:
                                 return entitylivingbase.getSwingProgress(rendererlivingentity.renderPartialTicks);
+                        default:
+                            break;
                         }
                 }
             }

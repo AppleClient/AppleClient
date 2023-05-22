@@ -1,8 +1,5 @@
 package net.minecraft.client.renderer;
 
-import com.google.common.base.Predicate;
-import com.google.common.base.Predicates;
-import com.google.gson.JsonSyntaxException;
 import java.io.IOException;
 import java.nio.FloatBuffer;
 import java.util.Calendar;
@@ -10,6 +7,27 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.Callable;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.input.Mouse;
+import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL12;
+import org.lwjgl.opengl.GLContext;
+import org.lwjgl.util.glu.Project;
+
+import com.google.common.base.Predicate;
+import com.google.common.base.Predicates;
+import com.google.gson.JsonSyntaxException;
+
+import appu26j.Apple;
+import appu26j.mods.visuals.BetterZoom;
+import appu26j.mods.visuals.HurtCamera;
+import appu26j.mods.visuals.NoBobbing;
+import appu26j.mods.visuals.Visuals;
+import appu26j.utils.SneakUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBed;
 import net.minecraft.block.material.Material;
@@ -87,15 +105,6 @@ import net.optifine.shaders.ShadersRender;
 import net.optifine.util.MemoryMonitor;
 import net.optifine.util.TextureUtils;
 import net.optifine.util.TimedEvent;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.lwjgl.input.Keyboard;
-import org.lwjgl.input.Mouse;
-import org.lwjgl.opengl.Display;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
-import org.lwjgl.opengl.GLContext;
-import org.lwjgl.util.glu.Project;
 
 public class EntityRenderer implements IResourceManagerReloadListener
 {
@@ -610,6 +619,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
         }
         else
         {
+            BetterZoom betterZoom = (BetterZoom) Apple.CLIENT.getModsManager().getMod("Better Zoom");
             Entity entity = this.mc.getRenderViewEntity();
             float f = 70.0F;
 
@@ -637,13 +647,26 @@ public class EntityRenderer implements IResourceManagerReloadListener
                 {
                     Config.zoomMode = true;
                     Config.zoomSmoothCamera = this.mc.gameSettings.smoothCamera;
-                    this.mc.gameSettings.smoothCamera = true;
+                    
+                    if (!(betterZoom.isEnabled() && !betterZoom.getSetting("Smooth Zoom").getCheckBoxValue()))
+                    {
+                        this.mc.gameSettings.smoothCamera = true;
+                    }
+                    
                     this.mc.renderGlobal.displayListEntitiesDirty = true;
                 }
 
                 if (Config.zoomMode)
                 {
-                    f /= 4.0F;
+                    if (betterZoom.isEnabled())
+                    {
+                        f /= (4.0F * (betterZoom.getSetting("Zoom Factor (in %)").getSliderValue() / 100)) < 1 ? 1 : (4.0F * (betterZoom.getSetting("Zoom Factor (in %)").getSliderValue() / 100));
+                    }
+                    
+                    else
+                    {
+                        f /= 4.0F;
+                    }
                 }
             }
             else if (Config.zoomMode)
@@ -674,6 +697,13 @@ public class EntityRenderer implements IResourceManagerReloadListener
 
     private void hurtCameraEffect(float partialTicks)
     {
+        HurtCamera hurtCamera = (HurtCamera) Apple.CLIENT.getModsManager().getMod("Hurt Camera");
+        
+        if (hurtCamera.isEnabled())
+        {
+            return;
+        }
+        
         if (this.mc.getRenderViewEntity() instanceof EntityLivingBase)
         {
             EntityLivingBase entitylivingbase = (EntityLivingBase)this.mc.getRenderViewEntity();
@@ -723,8 +753,9 @@ public class EntityRenderer implements IResourceManagerReloadListener
      */
     private void orientCamera(float partialTicks)
     {
+        Visuals visuals = (Visuals) Apple.CLIENT.getModsManager().getMod("1.7 Visuals");
         Entity entity = this.mc.getRenderViewEntity();
-        float f = entity.getEyeHeight();
+        float f = visuals.isEnabled() && visuals.getSetting("1.7 Sneak").getCheckBoxValue() ? SneakUtil.INSTANCE.getEyeHeight(partialTicks) : entity.getEyeHeight();
         double d0 = entity.prevPosX + (entity.posX - entity.prevPosX) * (double)partialTicks;
         double d1 = entity.prevPosY + (entity.posY - entity.prevPosY) * (double)partialTicks + (double)f;
         double d2 = entity.prevPosZ + (entity.posZ - entity.prevPosZ) * (double)partialTicks;
@@ -910,8 +941,9 @@ public class EntityRenderer implements IResourceManagerReloadListener
         }
 
         this.hurtCameraEffect(partialTicks);
+        NoBobbing noBobbing = (NoBobbing) Apple.CLIENT.getModsManager().getMod("No Bobbing");
 
-        if (this.mc.gameSettings.viewBobbing)
+        if (this.mc.gameSettings.viewBobbing && !noBobbing.isEnabled())
         {
             this.setupViewBobbing(partialTicks);
         }
@@ -1483,6 +1515,8 @@ public class EntityRenderer implements IResourceManagerReloadListener
 
     private void renderWorldDirections(float partialTicks)
     {
+        Visuals visuals = (Visuals) Apple.CLIENT.getModsManager().getMod("1.7 Visuals");
+        
         if (this.mc.gameSettings.showDebugInfo && !this.mc.gameSettings.hideGUI && !this.mc.thePlayer.hasReducedDebug() && !this.mc.gameSettings.reducedDebugInfo)
         {
             Entity entity = this.mc.getRenderViewEntity();
@@ -1495,7 +1529,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
             GlStateManager.matrixMode(5888);
             GlStateManager.loadIdentity();
             this.orientCamera(partialTicks);
-            GlStateManager.translate(0.0F, entity.getEyeHeight(), 0.0F);
+            GlStateManager.translate(0.0F, visuals.isEnabled() && visuals.getSetting("1.7 Sneak").getCheckBoxValue() ? SneakUtil.INSTANCE.getEyeHeight(partialTicks) : entity.getEyeHeight(), 0.0F);
             RenderGlobal.drawOutlinedBoundingBox(new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.005D, 1.0E-4D, 1.0E-4D), 255, 0, 0, 255);
             RenderGlobal.drawOutlinedBoundingBox(new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0E-4D, 1.0E-4D, 0.005D), 0, 0, 255, 255);
             RenderGlobal.drawOutlinedBoundingBox(new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0E-4D, 0.0033D, 1.0E-4D), 0, 255, 0, 255);
@@ -1638,8 +1672,9 @@ public class EntityRenderer implements IResourceManagerReloadListener
 
         this.setupFog(0, partialTicks);
         GlStateManager.shadeModel(7425);
+        Visuals visuals = (Visuals) Apple.CLIENT.getModsManager().getMod("1.7 Visuals");
 
-        if (entity.posY + (double)entity.getEyeHeight() < 128.0D + (double)(this.mc.gameSettings.ofCloudsHeight * 128.0F))
+        if (entity.posY + (double)(visuals.isEnabled() && visuals.getSetting("1.7 Sneak").getCheckBoxValue() ? SneakUtil.INSTANCE.getEyeHeight(partialTicks) : entity.getEyeHeight()) < 128.0D + (double)(this.mc.gameSettings.ofCloudsHeight * 128.0F))
         {
             this.renderCloudsCheck(renderglobal, partialTicks, pass);
         }
@@ -1884,7 +1919,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
         GlStateManager.disableBlend();
         GlStateManager.disableFog();
 
-        if (entity.posY + (double)entity.getEyeHeight() >= 128.0D + (double)(this.mc.gameSettings.ofCloudsHeight * 128.0F))
+        if (entity.posY + (double)(visuals.isEnabled() && visuals.getSetting("1.7 Sneak").getCheckBoxValue() ? SneakUtil.INSTANCE.getEyeHeight(partialTicks) : entity.getEyeHeight()) >= 128.0D + (double)(this.mc.gameSettings.ofCloudsHeight * 128.0F))
         {
             this.mc.mcProfiler.endStartSection("aboveClouds");
             this.renderCloudsCheck(renderglobal, partialTicks, pass);

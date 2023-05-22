@@ -20,6 +20,7 @@ import org.lwjgl.util.glu.Project;
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 
+import appu26j.Apple;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -278,7 +279,7 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
         }
         else
         {
-            this.buttonList.add(this.realmsButton = new GuiButton(14, this.width / 2 - 100, p_73969_1_ + p_73969_2_ * 2, I18n.format("menu.online", new Object[0])));
+            this.buttonList.add(this.realmsButton = new GuiButton(14, this.width / 2 - 100, p_73969_1_ + p_73969_2_ * 2, "Play Hypixel"));
         }
     }
 
@@ -604,42 +605,17 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
             k1 = custompanoramaproperties.getOverlay2Bottom();
         }
 
-        if (l != 0 || i1 != 0)
-        {
-            this.drawGradientRect(0, 0, this.width, this.height, l, i1);
-        }
-
         if (j1 != 0 || k1 != 0)
         {
             this.drawGradientRect(0, 0, this.width, this.height, j1, k1);
         }
 
-        this.mc.getTextureManager().bindTexture(minecraftTitleTextures);
+        int m = this.height / 4 + 48;
+        int n = this.width / 2;
+        this.mc.getTextureManager().bindTexture(new ResourceLocation("icons/icon_16x16.png"));
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-
-        if ((double)this.updateCounter < 1.0E-4D)
-        {
-            this.drawTexturedModalRect(j + 0, k + 0, 0, 0, 99, 44);
-            this.drawTexturedModalRect(j + 99, k + 0, 129, 0, 27, 44);
-            this.drawTexturedModalRect(j + 99 + 26, k + 0, 126, 0, 3, 44);
-            this.drawTexturedModalRect(j + 99 + 26 + 3, k + 0, 99, 0, 26, 44);
-            this.drawTexturedModalRect(j + 155, k + 0, 0, 45, 155, 44);
-        }
-        else
-        {
-            this.drawTexturedModalRect(j + 0, k + 0, 0, 0, 155, 44);
-            this.drawTexturedModalRect(j + 155, k + 0, 0, 45, 155, 44);
-        }
-
-        GlStateManager.pushMatrix();
-        GlStateManager.translate((float)(this.width / 2 + 90), 70.0F, 0.0F);
-        GlStateManager.rotate(-20.0F, 0.0F, 0.0F, 1.0F);
-        float f = 1.8F - MathHelper.abs(MathHelper.sin((float)(Minecraft.getSystemTime() % 1000L) / 1000.0F * (float)Math.PI * 2.0F) * 0.1F);
-        f = f * 100.0F / (float)(this.fontRendererObj.getStringWidth(this.splashText) + 32);
-        GlStateManager.scale(f, f, f);
-        this.drawCenteredString(this.fontRendererObj, this.splashText, 0, -8, -256);
-        GlStateManager.popMatrix();
-        String s = "Minecraft 1.8.9";
+        this.drawModalRectWithCustomSizedTexture(n - 64, m - 130, 0, 0, 128, 128, 128, 128);
+        String s = Apple.TITLE;
 
         if (this.mc.isDemo())
         {
@@ -671,7 +647,7 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
             this.drawString(this.fontRendererObj, s, 2, this.height - 10, -1);
         }
 
-        String s2 = "Copyright Mojang AB. Do not distribute!";
+        String s2 = Apple.CLIENT.getVersionChecker().isUpToDate() ? "You are on the latest version" : "You are on an outdated version";
         this.drawString(this.fontRendererObj, s2, this.width - this.fontRendererObj.getStringWidth(s2) - 2, this.height - 10, -1);
 
         if (this.openGLWarning1 != null && this.openGLWarning1.length() > 0)
