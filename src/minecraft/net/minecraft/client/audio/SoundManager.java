@@ -55,6 +55,7 @@ public class SoundManager
     /** A counter for how long the sound manager has been running */
     private int playTime = 0;
     private final Map<String, ISound> playingSounds = HashBiMap.<String, ISound>create();
+    private final Map<String, ISound> pausedSounds = HashBiMap.<String, ISound>create();
     private final Map<ISound, String> invPlayingSounds;
     private Map<ISound, SoundPoolEntry> playingSoundPoolEntries;
     private final Multimap<SoundCategory, String> categorySounds;
@@ -437,6 +438,7 @@ public class SoundManager
         for (String s : this.playingSounds.keySet())
         {
             logger.debug(LOG_MARKER, "Pausing channel {}", new Object[] {s});
+            this.pausedSounds.put(s, this.playingSounds.get(s));
             this.sndSystem.pause(s);
         }
     }
@@ -446,11 +448,13 @@ public class SoundManager
      */
     public void resumeAllSounds()
     {
-        for (String s : this.playingSounds.keySet())
+        for (String s : this.pausedSounds.keySet())
         {
             logger.debug(LOG_MARKER, "Resuming channel {}", new Object[] {s});
             this.sndSystem.play(s);
         }
+        
+        this.pausedSounds.clear();
     }
 
     /**

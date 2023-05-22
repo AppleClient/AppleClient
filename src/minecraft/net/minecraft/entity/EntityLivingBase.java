@@ -1353,6 +1353,18 @@ public abstract class EntityLivingBase extends Entity
         }
     }
 
+    /**
+     * Swings the item the player is holding.
+     */
+    public void swingItemSilently()
+    {
+        if (!this.isSwingInProgress || this.swingProgressInt >= this.getArmSwingAnimationEnd() / 2 || this.swingProgressInt < 0)
+        {
+            this.swingProgressInt = -1;
+            this.isSwingInProgress = true;
+        }
+    }
+
     public void handleStatusUpdate(byte id)
     {
         if (id == 2)
@@ -2170,16 +2182,7 @@ public abstract class EntityLivingBase extends Entity
      */
     public Vec3 getLook(float partialTicks)
     {
-        if (partialTicks == 1.0F)
-        {
-            return this.getVectorForRotation(this.rotationPitch, this.rotationYawHead);
-        }
-        else
-        {
-            float f = this.prevRotationPitch + (this.rotationPitch - this.prevRotationPitch) * partialTicks;
-            float f1 = this.prevRotationYawHead + (this.rotationYawHead - this.prevRotationYawHead) * partialTicks;
-            return this.getVectorForRotation(f, f1);
-        }
+        return this.getVectorForRotation(this.rotationPitch, this.rotationYaw);
     }
 
     /**

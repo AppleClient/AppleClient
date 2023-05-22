@@ -22,6 +22,8 @@ import com.google.common.collect.Lists;
 
 import appu26j.Apple;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.GuiConnecting;
+import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
@@ -326,7 +328,8 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
 
         if (button.id == 14 && this.realmsButton.visible)
         {
-            this.switchToRealms();
+            ServerData serverData = new ServerData("Hypixel", "hypixel.net", false);
+            this.mc.displayGuiScreen(new GuiConnecting(this, this.mc, serverData));
         }
 
         if (button.id == 4)

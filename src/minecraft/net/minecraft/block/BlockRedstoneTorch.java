@@ -1,10 +1,12 @@
 package net.minecraft.block;
 
+import java.util.List;
+import java.util.Random;
+import java.util.WeakHashMap;
+
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
@@ -17,7 +19,7 @@ import net.minecraft.world.World;
 
 public class BlockRedstoneTorch extends BlockTorch
 {
-    private static Map<World, List<BlockRedstoneTorch.Toggle>> toggles = Maps.<World, List<BlockRedstoneTorch.Toggle>>newHashMap();
+    private static WeakHashMap<World, List<BlockRedstoneTorch.Toggle>> toggles = new WeakHashMap<World, List<BlockRedstoneTorch.Toggle>>();
     private final boolean isOn;
 
     private boolean isBurnedOut(World worldIn, BlockPos pos, boolean turnOff)

@@ -610,10 +610,14 @@ public class BlockModelRenderer
             float f1 = BlockModelRenderer.fixAoLightValue(blockAccessIn.getBlockState(blockpos2).getBlock().getAmbientOcclusionLightValue());
             float f2 = BlockModelRenderer.fixAoLightValue(blockAccessIn.getBlockState(blockpos3).getBlock().getAmbientOcclusionLightValue());
             float f3 = BlockModelRenderer.fixAoLightValue(blockAccessIn.getBlockState(blockpos4).getBlock().getAmbientOcclusionLightValue());
-            boolean flag = blockAccessIn.getBlockState(blockpos1.offset(facingIn)).getBlock().isTranslucent();
-            boolean flag1 = blockAccessIn.getBlockState(blockpos2.offset(facingIn)).getBlock().isTranslucent();
-            boolean flag2 = blockAccessIn.getBlockState(blockpos3.offset(facingIn)).getBlock().isTranslucent();
-            boolean flag3 = blockAccessIn.getBlockState(blockpos4.offset(facingIn)).getBlock().isTranslucent();
+            Block block1 = blockAccessIn.getBlockState(blockpos1.offset(facingIn)).getBlock();
+            Block block2 = blockAccessIn.getBlockState(blockpos2.offset(facingIn)).getBlock();
+            Block block3 = blockAccessIn.getBlockState(blockpos3.offset(facingIn)).getBlock();
+            Block block4 = blockAccessIn.getBlockState(blockpos4.offset(facingIn)).getBlock();
+            boolean flag = !block1.isVisuallyOpaque() || block1.getLightOpacity() == 0;
+            boolean flag1 = !block2.isVisuallyOpaque() || block2.getLightOpacity() == 0;
+            boolean flag2 = !block3.isVisuallyOpaque() || block3.getLightOpacity() == 0;
+            boolean flag3 = !block4.isVisuallyOpaque() || block4.getLightOpacity() == 0;
             float f4;
             int i1;
 

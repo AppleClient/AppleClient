@@ -59,6 +59,7 @@ import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
 import appu26j.Apple;
 import appu26j.events.mc.EventKey;
 import appu26j.events.mc.EventWorldChange;
+import appu26j.mods.visuals.Visuals;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.audio.MusicTicker;
@@ -1499,26 +1500,44 @@ public class Minecraft implements IThreadListener, IPlayerUsage
 
     private void sendClickBlockToController(boolean leftClick)
     {
+        Visuals visuals = (Visuals) Apple.CLIENT.getModsManager().getMod("1.7 Visuals");
+        
         if (!leftClick)
         {
             this.leftClickCounter = 0;
         }
 
-        if (this.leftClickCounter <= 0 && !this.thePlayer.isUsingItem())
+        if (this.leftClickCounter <= 0)
         {
-            if (leftClick && this.objectMouseOver != null && this.objectMouseOver.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
+            if (!this.thePlayer.isUsingItem())
             {
-                BlockPos blockpos = this.objectMouseOver.getBlockPos();
-
-                if (this.theWorld.getBlockState(blockpos).getBlock().getMaterial() != Material.air && this.playerController.onPlayerDamageBlock(blockpos, this.objectMouseOver.sideHit))
+                if (leftClick && this.objectMouseOver != null && this.objectMouseOver.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
                 {
-                    this.effectRenderer.addBlockHitEffects(blockpos, this.objectMouseOver.sideHit);
-                    this.thePlayer.swingItem();
+                    BlockPos blockpos = this.objectMouseOver.getBlockPos();
+
+                    if (this.theWorld.getBlockState(blockpos).getBlock().getMaterial() != Material.air && this.playerController.onPlayerDamageBlock(blockpos, this.objectMouseOver.sideHit))
+                    {
+                        this.effectRenderer.addBlockHitEffects(blockpos, this.objectMouseOver.sideHit);
+                        this.thePlayer.swingItem();
+                    }
+                }
+                else
+                {
+                    this.playerController.resetBlockRemoving();
                 }
             }
-            else
+            else if (visuals.isEnabled() && visuals.getSetting("1.7 Block Hit").getCheckBoxValue())
             {
-                this.playerController.resetBlockRemoving();
+                if (leftClick && this.objectMouseOver != null && this.objectMouseOver.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
+                {
+                    BlockPos blockpos = this.objectMouseOver.getBlockPos();
+
+                    if (this.theWorld.getBlockState(blockpos).getBlock().getMaterial() != Material.air)
+                    {
+                        this.effectRenderer.addBlockHitEffects(blockpos, this.objectMouseOver.sideHit);
+                        this.thePlayer.swingItemSilently();
+                    }
+                }
             }
         }
     }
@@ -1532,11 +1551,6 @@ public class Minecraft implements IThreadListener, IPlayerUsage
             if (this.objectMouseOver == null)
             {
                 logger.error("Null returned as \'hitResult\', this shouldn\'t happen!");
-
-                if (this.playerController.isNotCreative())
-                {
-                    this.leftClickCounter = 10;
-                }
             }
             else
             {
@@ -1555,18 +1569,12 @@ public class Minecraft implements IThreadListener, IPlayerUsage
                             break;
                         }
 
-                    case MISS:
                     default:
-                        if (this.playerController.isNotCreative())
-                        {
-                            this.leftClickCounter = 10;
-                        }
+                        break;
                 }
             }
         }
     }
-
-    @SuppressWarnings("incomplete-switch")
 
     /**
      * Called when user clicked he's mouse right button (place)
@@ -1626,6 +1634,9 @@ public class Minecraft implements IThreadListener, IPlayerUsage
                                 this.entityRenderer.itemRenderer.resetEquippedProgress();
                             }
                         }
+                        
+                        default:
+                            break;
                 }
             }
 
@@ -3330,5 +3341,13 @@ public class Minecraft implements IThreadListener, IPlayerUsage
     public DefaultResourcePack getDefaultResourcePack()
     {
         return this.mcDefaultResourcePack;
+    }
+
+    /**
+     * Returns true if this GUI should pause the game when it is displayed in single-player
+     */
+    public boolean doesGuiPauseGame()
+    {
+        return false;
     }
 }

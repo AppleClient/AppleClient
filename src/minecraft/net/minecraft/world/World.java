@@ -3701,7 +3701,7 @@ public abstract class World implements IBlockAccess
      */
     public double getHorizon()
     {
-        return this.worldInfo.getTerrainType() == WorldType.FLAT ? 0.0D : 63.0D;
+        return 0.0D;
     }
 
     /**

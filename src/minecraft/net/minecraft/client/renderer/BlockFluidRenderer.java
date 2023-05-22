@@ -77,7 +77,7 @@ public class BlockFluidRenderer
                 double d0 = (double)blockPosIn.getX();
                 double d1 = (double)blockPosIn.getY();
                 double d2 = (double)blockPosIn.getZ();
-                float f11 = 0.001F;
+                float f11 = 0.0F;
 
                 if (flag)
                 {

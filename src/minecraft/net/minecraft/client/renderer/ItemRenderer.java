@@ -444,6 +444,11 @@ public class ItemRenderer
                             break;
 
                         case BLOCK:
+                            if (this.mc.thePlayer.isSwingInProgress)
+                            {
+                                f = 0;
+                            }
+
                             this.transformFirstPersonItem(f, f4, partialTicks);
                             this.doBlockTransformations();
                             break;

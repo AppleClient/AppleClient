@@ -16,7 +16,7 @@ ao:1
 renderClouds:true
 resourcePacks:["1.14 Textures"]
 incompatibleResourcePacks:[]
-lastServer:
+lastServer:blocksmc.com
 lang:en_US
 chatVisibility:0
 chatColors:true
