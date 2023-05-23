@@ -1,11 +1,7 @@
 package appu26j;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.net.URL;
-import java.nio.channels.Channels;
-import java.nio.channels.FileChannel;
-import java.nio.channels.ReadableByteChannel;
 
 import org.apache.commons.io.FileUtils;
 
@@ -18,7 +14,13 @@ public class BuiltInResourcePackDownloader
 		try
 		{
 			File packZip = new File("resourcepacks", "1.14 Textures.zip");
+            File serverResourcePacks = new File("server-resource-packs");
 			File pack = new File("resourcepacks", "1.14 Textures");
+			
+			if (!serverResourcePacks.exists())
+			{
+			    serverResourcePacks.mkdirs();
+			}
 			
 			if (pack.exists())
 			{
