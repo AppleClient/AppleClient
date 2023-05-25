@@ -56,7 +56,7 @@ allowBlockAlternatives:true
 reducedDebugInfo:false
 useNativeTransport:true
 entityShadows:true
-realmsNotifications:true
+realmsNotifications:false
 key_key.attack:-100
 key_key.use:-99
 key_key.forward:17

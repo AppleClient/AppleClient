@@ -58,7 +58,7 @@ ofEmissiveTextures:true
 ofLazyChunkLoading:true
 ofRenderRegions:true
 ofSmartAnimations:true
-ofDynamicFov:true
+ofDynamicFov:false
 ofAlternateBlocks:true
 ofDynamicLights:3
 ofScreenshotSize:1

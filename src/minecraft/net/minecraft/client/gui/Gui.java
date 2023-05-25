@@ -32,6 +32,21 @@ public class Gui
     }
 
     /**
+     * Draw a 1 pixel wide horizontal line. Args: x1, x2, y, color
+     */
+    protected void drawHorizontalLine(float startX, float endX, float y, int color)
+    {
+        if (endX < startX)
+        {
+            float i = startX;
+            startX = endX;
+            endX = i;
+        }
+
+        drawRect(startX, y, endX + 1, y + 1, color);
+    }
+
+    /**
      * Draw a 1 pixel wide vertical line. Args : x, y1, y2, color
      */
     protected void drawVerticalLine(int x, int startY, int endY, int color)
@@ -39,6 +54,21 @@ public class Gui
         if (endY < startY)
         {
             int i = startY;
+            startY = endY;
+            endY = i;
+        }
+
+        drawRect(x, startY + 1, x + 1, endY, color);
+    }
+
+    /**
+     * Draw a 1 pixel wide vertical line. Args : x, y1, y2, color
+     */
+    protected void drawVerticalLine(float x, float startY, float endY, int color)
+    {
+        if (endY < startY)
+        {
+            float i = startY;
             startY = endY;
             endY = i;
         }
@@ -83,6 +113,17 @@ public class Gui
         tessellator.draw();
         GlStateManager.enableTexture2D();
         GlStateManager.disableBlend();
+    }
+
+    /**
+     * Draws a solid color rectangle with the specified coordinates and color (ARGB format). Args: x1, y1, x2, y2, color
+     */
+    public static void drawOutlineRect(float left, float top, float right, float bottom, int color)
+    {
+        drawRect(left, top, left + 1, bottom, color);
+        drawRect(left + 1, top, right - 1, top + 1, color);
+        drawRect(right - 1, top, right, bottom, color);
+        drawRect(left + 1, bottom, right - 1, bottom - 1, color);
     }
 
     /**
