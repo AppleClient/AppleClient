@@ -12,6 +12,8 @@
     <fullyQualifiedTypeName name="appu26j.mods.Mod"/>
     <fullyQualifiedTypeName name="appu26j.mods.visuals.Chat"/>
     <fullyQualifiedTypeName name="net.minecraft.item.ItemBlock"/>
+    <fullyQualifiedTypeName name="net.minecraft.client.multiplayer.ServerList"/>
+    <fullyQualifiedTypeName name="appu26j.utils.ServerUtil"/>
     <fullyQualifiedTypeName name="java.awt.Color"/>
     <fullyQualifiedTypeName name="appu26j.Apple"/>
 </qualifiedTypeNameHistroy>

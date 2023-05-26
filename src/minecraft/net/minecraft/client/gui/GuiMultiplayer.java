@@ -2,6 +2,9 @@ package net.minecraft.client.gui;
 
 import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
+
+import appu26j.utils.ServerUtil;
+
 import java.io.IOException;
 import java.util.List;
 import net.minecraft.client.multiplayer.GuiConnecting;
@@ -367,6 +370,11 @@ public class GuiMultiplayer extends GuiScreen implements GuiYesNoCallback
      */
     public void drawScreen(int mouseX, int mouseY, float partialTicks)
     {
+        if (this.savedServerList.servers.isEmpty())
+        {
+            ServerUtil.setFavouriteServer("hypixel.net");
+        }
+        
         this.hoveringText = null;
         this.drawDefaultBackground();
         this.serverListSelector.drawScreen(mouseX, mouseY, partialTicks);

@@ -74,7 +74,7 @@ public class ServerSelectionList extends GuiListExtended
 
         for (int i = 0; i < p_148195_1_.countServers(); ++i)
         {
-            this.serverListInternet.add(new ServerListEntryNormal(this.owner, p_148195_1_.getServerData(i)));
+            this.serverListInternet.add(new ServerListEntryNormal(this.owner, p_148195_1_.getServerData(i), p_148195_1_));
         }
     }
 

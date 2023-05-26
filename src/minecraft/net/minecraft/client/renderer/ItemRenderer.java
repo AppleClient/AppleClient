@@ -107,7 +107,7 @@ public class ItemRenderer
      *  
      * @param angleY The angle for the rotation arround Y
      */
-    private void rotateArroundXAndY(float angle, float angleY)
+    private void rotateAroundXAndY(float angle, float angleY)
     {
         GlStateManager.pushMatrix();
         GlStateManager.rotate(angle, 1.0F, 0.0F, 0.0F);
@@ -413,7 +413,7 @@ public class ItemRenderer
             float f1 = abstractclientplayer.getSwingProgress(partialTicks);
             float f2 = abstractclientplayer.prevRotationPitch + (abstractclientplayer.rotationPitch - abstractclientplayer.prevRotationPitch) * partialTicks;
             float f3 = abstractclientplayer.prevRotationYaw + (abstractclientplayer.rotationYaw - abstractclientplayer.prevRotationYaw) * partialTicks;
-            this.rotateArroundXAndY(f2, f3);
+            this.rotateAroundXAndY(f2, f3);
             this.setLightMapFromPlayer(abstractclientplayer);
             this.rotateWithPlayerRotations((EntityPlayerSP)abstractclientplayer, partialTicks);
             GlStateManager.enableRescaleNormal();

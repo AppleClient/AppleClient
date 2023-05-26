@@ -15,5 +15,6 @@ public class Visuals extends Mod
 		this.addSetting(new Setting("1.7 Armor Damage Tint", this, true));
 		this.addSetting(new Setting("1.7 Sword Block", this, true));
 		this.addSetting(new Setting("1.7 Sneak", this, true));
+        this.addSetting(new Setting("1.7 Debug Hitbox", this, true));
 	}
 }

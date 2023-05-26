@@ -6,29 +6,29 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="drawScre"/>
+		<item key="selection" value="Block"/>
 		<list key="findhistory">
+			<item value="block"/>
+			<item value="renderDebug"/>
+			<item value="renderItemmo"/>
+			<item value="renderItem"/>
+			<item value="leftClickCounter"/>
+			<item value="clickM"/>
+			<item value="Minecraft"/>
+			<item value="serverut"/>
+			<item value="drawSc"/>
 			<item value="drawScre"/>
+			<item value="init"/>
+			<item value="singlePLA"/>
+			<item value="guiButt"/>
+			<item value="scoreboard"/>
 			<item value="loadWOr"/>
-			<item value="System.gc("/>
-			<item value="System.gc"/>
-			<item value="c"/>
-			<item value="System.g"/>
-			<item value="getBlockSta"/>
-			<item value="S"/>
-			<item value="getBlock"/>
-			<item value="pause"/>
-			<item value="getHori"/>
-			<item value="height"/>
-			<item value="blockpos"/>
-			<item value="skyHe"/>
-			<item value="sky"/>
 		</list>
 		<list key="replacehistory">
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="545"/>
+		<item key="DIALOG_X_ORIGIN" value="648"/>
 		<item key="DIALOG_Y_ORIGIN" value="150"/>
 		<item key="DIALOG_WIDTH" value="318"/>
 		<item key="DIALOG_HEIGHT" value="354"/>

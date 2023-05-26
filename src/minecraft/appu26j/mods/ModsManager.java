@@ -48,6 +48,7 @@ public class ModsManager
 		this.mods.add(new BetterZoom());
 		this.mods.add(new ArmorStatus());
 		this.mods.sort(Comparator.comparing(Mod::getName));
+		this.getMod("Score Board").setEnabled(true);
 		return this;
 	}
 	

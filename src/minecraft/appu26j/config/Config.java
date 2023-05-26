@@ -120,6 +120,14 @@ public class Config
 						mod.setEnabled(true);
 					}
 					
+					else
+					{
+					    if (mod.isEnabled())
+					    {
+					        mod.setEnabled(false);
+					    }
+					}
+					
 					for (Setting setting : mod.getSettings())
 					{
 						try

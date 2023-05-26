@@ -2,6 +2,9 @@ package net.minecraft.client.renderer.entity;
 
 import java.util.List;
 import java.util.concurrent.Callable;
+
+import appu26j.Apple;
+import appu26j.mods.visuals.Visuals;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirt;
 import net.minecraft.block.BlockDoublePlant;
@@ -375,7 +378,7 @@ public class RenderItem implements IResourceManagerReloadListener
         if (stack != null)
         {
             IBakedModel ibakedmodel = this.itemModelMesher.getItemModel(stack);
-            this.renderItemModelTransform(stack, ibakedmodel, cameraTransformType);
+            this.renderItemModelTransform(stack, ibakedmodel, cameraTransformType, null);
         }
     }
 
@@ -424,12 +427,12 @@ public class RenderItem implements IResourceManagerReloadListener
                 }
             }
 
-            this.renderItemModelTransform(stack, ibakedmodel, cameraTransformType);
+            this.renderItemModelTransform(stack, ibakedmodel, cameraTransformType, entityToRenderFor);
             this.modelLocation = null;
         }
     }
 
-    protected void renderItemModelTransform(ItemStack stack, IBakedModel model, ItemCameraTransforms.TransformType cameraTransformType)
+    protected void renderItemModelTransform(ItemStack stack, IBakedModel model, ItemCameraTransforms.TransformType cameraTransformType, EntityLivingBase entityToRenderFor)
     {
         this.textureManager.bindTexture(TextureMap.locationBlocksTexture);
         this.textureManager.getTexture(TextureMap.locationBlocksTexture).setBlurMipmap(false, false);
@@ -452,6 +455,18 @@ public class RenderItem implements IResourceManagerReloadListener
             if (this.isThereOneNegativeScale(itemcameratransforms.getTransform(cameraTransformType)))
             {
                 GlStateManager.cullFace(1028);
+            }
+        }
+        
+        Visuals visuals = (Visuals) Apple.CLIENT.getModsManager().getMod("1.7 Visuals");
+        
+        if (visuals.isEnabled() && visuals.getSetting("1.7 Sword Block").getCheckBoxValue() && entityToRenderFor != null && entityToRenderFor instanceof EntityPlayer && ((EntityPlayer) entityToRenderFor).isBlocking())
+        {
+            if (!(entityToRenderFor.equals(Minecraft.getMinecraft().thePlayer) && Minecraft.getMinecraft().gameSettings.thirdPersonView == 0))
+            {
+                GlStateManager.translate(-0.15F, -0.2F, 0);
+                GlStateManager.rotate(70, 1, 0, 0);
+                GlStateManager.translate(0.119F, 0.2F, -0.024F);
             }
         }
 

@@ -1,0 +1,44 @@
+package appu26j.utils;
+
+import appu26j.interfaces.MinecraftInterface;
+
+public class ServerUtil implements MinecraftInterface
+{
+	public static boolean isPlayerOnHypixel()
+	{
+		if (mc.getCurrentServerData() == null)
+		{
+			return false;
+		}
+		
+		String IP = mc.getCurrentServerData().serverIP;
+		return IP.toLowerCase().endsWith("hypixel.net") || IP.toLowerCase().endsWith("hypixel.io");
+	}
+	
+	public static String getServerName(String IP)
+	{
+	    String[] servers = new String[]
+	    {
+	            "hypixel.net: Hypixel",
+	            "hypixel.io: Hypixel",
+	            "bedwarspractice.club: BW Practice",
+                "herobrine.org: Herobrine",
+                "blocksmc.com: BlocksMC"
+	    };
+	    
+	    for (String server : servers)
+	    {
+	        String serverIP = server.split(": ")[0];
+            String serverName = server.split(": ")[1];
+            
+            if (IP.toLowerCase().endsWith(serverIP))
+            {
+                return serverName;
+            }
+	    }
+	    
+	    String finalIP = IP.substring(0, IP.lastIndexOf("."));
+	    
+	    return finalIP.contains(".") ? finalIP.substring(IP.indexOf(".") + 1) : finalIP;
+	}
+}

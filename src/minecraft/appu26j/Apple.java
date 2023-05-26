@@ -20,7 +20,7 @@ public enum Apple implements MinecraftInterface
 	CLIENT;
 	
 	public static final File DEFAULT_DIRECTORY = new File(System.getProperty("user.home"), "appleclient"), CONFIG = new File(DEFAULT_DIRECTORY, "config.json");;
-	public static final String VERSION = "1.82", TITLE = "Apple Client " + VERSION;
+	public static final String VERSION = "1.84", TITLE = "Apple Client " + VERSION;
 	private AppleClientVersionChecker appleClientVersionChecker;
 	private SettingsManager settingsManager;
 	private ModsManager modsManager;
@@ -40,8 +40,8 @@ public enum Apple implements MinecraftInterface
 	{
 		this.appleClientVersionChecker = new AppleClientVersionChecker();
 		this.settingsManager = new SettingsManager().initialize();
+        this.eventBus = new EventBus("Apple Client Event Bus");
 		this.modsManager = new ModsManager().initialize();
-		this.eventBus = new EventBus("Apple Client");
 		this.dragGUI = new DragGUI();
 		this.config = new Config();
 		
