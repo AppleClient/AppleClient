@@ -13,8 +13,10 @@ import appu26j.Apple;
 import appu26j.gui.DragGUI;
 import appu26j.mods.Mod;
 import appu26j.mods.multiplayer.Cooldown;
+import appu26j.mods.visuals.BossBar;
 import appu26j.mods.visuals.CrossHair;
 import appu26j.mods.visuals.NoPumpkin;
+import club.marshadow.ColorUtil;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
@@ -367,11 +369,16 @@ public class GuiIngame extends Gui
                 int j2 = i2 << 24 & -16777216;
                 this.getFontRenderer().drawString(this.displayedTitle, (float)(-this.getFontRenderer().getStringWidth(this.displayedTitle) / 2), -10.0F, 16777215 | j2, true);
                 GlStateManager.popMatrix();
-                GlStateManager.pushMatrix();
-                GlStateManager.scale(2.0F, 2.0F, 2.0F);
-                this.getFontRenderer().drawString(this.displayedSubTitle, (float)(-this.getFontRenderer().getStringWidth(this.displayedSubTitle) / 2), 5.0F, 16777215 | j2, true);
-                GlStateManager.popMatrix();
-                GlStateManager.disableBlend();
+                
+                if (!(cooldown.isEnabled() && cooldown.getSetting("Hide subtitle (Fake cooldown by servers)").getCheckBoxValue()))
+                {
+                    GlStateManager.pushMatrix();
+                    GlStateManager.scale(2.0F, 2.0F, 2.0F);
+                    this.getFontRenderer().drawString(this.displayedSubTitle, (float)(-this.getFontRenderer().getStringWidth(this.displayedSubTitle) / 2), 5.0F, 16777215 | j2, true);
+                    GlStateManager.popMatrix();
+                    GlStateManager.disableBlend();
+                }
+                
                 GlStateManager.popMatrix();
             }
 
@@ -669,8 +676,64 @@ public class GuiIngame extends Gui
                 
                 if (scoreboardMod.getSetting("Text Shadow").getCheckBoxValue())
                 {
-                    this.getFontRenderer().drawStringWithShadow(s1, l1, k, 553648127);
-                    this.getFontRenderer().drawStringWithShadow(s2, l - this.getFontRenderer().getStringWidth(s2), k, 553648127);
+                    String text = scoreboardMod.getSetting("Footer Text").getTextBoxValue();
+                    String colorCode = "";
+                    
+                    if (j == 1 && !text.equals("Default"))
+                    {
+                        if (s1.contains("§"))
+                        {
+                            colorCode = s1.substring(0, 2);
+                        }
+                        
+                        if (scoreboardMod.getSetting("Rainbow Footer Text").getCheckBoxValue())
+                        {
+                            char[] charactersToStrip = "0123456789abcdefklmnor".toCharArray();
+                            
+                            for (char character : charactersToStrip)
+                            {
+                                text = text.replace("&" + character, "").replace("§" + character, "");
+                            }
+                            
+                            s1 = text;
+                        }
+                        
+                        else
+                        {
+                            text = text.replace("&", "§");
+                            s1 = colorCode + text;
+                        }
+                    }
+                    
+                    if (j == 1)
+                    {   
+                        if (scoreboardMod.getSetting("Rainbow Footer Text").getCheckBoxValue())
+                        {
+                            char[] charactersToStrip = "0123456789abcdefklmnor".toCharArray();
+                            
+                            for (char character : charactersToStrip)
+                            {
+                                s1 = s1.replace("§" + character, "");
+                            }
+                            
+                            this.getFontRenderer().drawStringWithShadow(s1, l1, k, ColorUtil.getRainbowColor());
+                        }
+                        
+                        else
+                        {
+                            this.getFontRenderer().drawStringWithShadow(s1, l1, k, 553648127);
+                        }
+                    }
+                    
+                    else
+                    {
+                        this.getFontRenderer().drawStringWithShadow(s1, l1, k, 553648127);
+                    }
+                    
+                    if (!scoreboardMod.getSetting("Hide Numbers").getCheckBoxValue())
+                    {
+                        this.getFontRenderer().drawStringWithShadow(s2, l - this.getFontRenderer().getStringWidth(s2), k, 553648127);
+                    }
 
                     if (j == collection.size())
                     {
@@ -683,8 +746,64 @@ public class GuiIngame extends Gui
                 
                 else
                 {
-                    this.getFontRenderer().drawString(s1, l1, k, 553648127);
-                    this.getFontRenderer().drawString(s2, l - this.getFontRenderer().getStringWidth(s2), k, 553648127);
+                    String text = scoreboardMod.getSetting("Footer Text").getTextBoxValue();
+                    String colorCode = "";
+                    
+                    if (j == 1 && !text.equals("Default"))
+                    {
+                        if (s1.contains("§"))
+                        {
+                            colorCode = s1.substring(0, 2);
+                        }
+                        
+                        if (scoreboardMod.getSetting("Rainbow Footer Text").getCheckBoxValue())
+                        {
+                            char[] charactersToStrip = "0123456789abcdefklmnor".toCharArray();
+                            
+                            for (char character : charactersToStrip)
+                            {
+                                text = text.replace("&" + character, "").replace("§" + character, "");
+                            }
+                            
+                            s1 = text;
+                        }
+                        
+                        else
+                        {
+                            text = text.replace("&", "§");
+                            s1 = colorCode + text;
+                        }
+                    }
+                    
+                    if (j == 1)
+                    {   
+                        if (scoreboardMod.getSetting("Rainbow Footer Text").getCheckBoxValue())
+                        {
+                            char[] charactersToStrip = "0123456789abcdefklmnor".toCharArray();
+                            
+                            for (char character : charactersToStrip)
+                            {
+                                s1 = s1.replace("§" + character, "");
+                            }
+                            
+                            this.getFontRenderer().drawString(s1, l1, k, ColorUtil.getRainbowColor());
+                        }
+                        
+                        else
+                        {
+                            this.getFontRenderer().drawString(s1, l1, k, 553648127);
+                        }
+                    }
+                    
+                    else
+                    {
+                        this.getFontRenderer().drawString(s1, l1, k, 553648127);
+                    }
+                    
+                    if (!scoreboardMod.getSetting("Hide Numbers").getCheckBoxValue())
+                    {
+                        this.getFontRenderer().drawString(s2, l - this.getFontRenderer().getStringWidth(s2), k, 553648127);
+                    }
 
                     if (j == collection.size())
                     {
@@ -992,7 +1111,9 @@ public class GuiIngame extends Gui
      */
     private void renderBossHealth()
     {
-        if (BossStatus.bossName != null && BossStatus.statusBarTime > 0)
+        BossBar bossBar = (BossBar) Apple.CLIENT.getModsManager().getMod("Boss Bar");
+        
+        if (BossStatus.bossName != null && BossStatus.statusBarTime > 0 && bossBar.isEnabled())
         {
             --BossStatus.statusBarTime;
             FontRenderer fontrenderer = this.mc.fontRendererObj;

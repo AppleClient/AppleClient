@@ -57,6 +57,7 @@ import com.mojang.authlib.properties.PropertyMap;
 import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
 
 import appu26j.Apple;
+import appu26j.DiscordRP;
 import appu26j.events.mc.EventKey;
 import appu26j.events.mc.EventWorldChange;
 import appu26j.mods.visuals.Visuals;
@@ -386,7 +387,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
         this.sessionService = (new YggdrasilAuthenticationService(gameConfig.userInfo.proxy, UUID.randomUUID().toString())).createMinecraftSessionService();
         this.session = gameConfig.userInfo.session;
         logger.info("Setting user: " + this.session.getUsername());
-        logger.info("(Session ID is " + this.session.getSessionID() + ")");
+        logger.info("(Session ID is " + this.session.getCensoredSessionID() + ")");
         this.isDemo = gameConfig.gameInfo.isDemo;
         this.displayWidth = gameConfig.displayInfo.width > 0 ? gameConfig.displayInfo.width : 1;
         this.displayHeight = gameConfig.displayInfo.height > 0 ? gameConfig.displayInfo.height : 1;
@@ -606,6 +607,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
             this.gameSettings.saveOptions();
         }
 
+        DiscordRP.update("Playing Apple Client");
         this.renderGlobal.makeEntityOutlineShader();
     }
 
@@ -633,6 +635,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
 
     private void createDisplay() throws LWJGLException
     {
+        DiscordRP.start();
         Display.setResizable(true);
         Display.setTitle(Apple.TITLE);
 
@@ -1061,6 +1064,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
     {
         try
         {
+            DiscordRP.shutdown();
             Apple.CLIENT.shutdown();
             this.stream.shutdownStream();
             logger.info("AppleClient shutting down...");
@@ -1854,6 +1858,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
 
             while (Mouse.next())
             {
+                this.entityRenderer.handleMouseInput();
                 int i = Mouse.getEventButton();
                 KeyBinding.setKeyBindState(i - 100, Mouse.getEventButtonState());
 

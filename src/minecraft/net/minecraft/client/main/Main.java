@@ -5,8 +5,6 @@ import com.google.gson.GsonBuilder;
 import com.mojang.authlib.properties.PropertyMap;
 import com.mojang.authlib.properties.PropertyMap.Serializer;
 
-import appu26j.utils.ServerUtil;
-
 import java.io.File;
 import java.net.Authenticator;
 import java.net.InetSocketAddress;

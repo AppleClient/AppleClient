@@ -1,0 +1,86 @@
+---- Minecraft Crash Report ----
+// I bet Cylons wouldn't have this problem.
+
+Time: 5/27/23 4:49 PM
+Description: Unexpected error
+
+java.lang.NullPointerException: Unexpected error
+	at net.minecraft.client.gui.GuiIngame.renderScoreboard(GuiIngame.java:690)
+	at net.minecraft.client.gui.GuiIngame.renderGameOverlay(GuiIngame.java:399)
+	at net.minecraft.client.renderer.EntityRenderer.updateCameraAndRender(EntityRenderer.java:1390)
+	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1156)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:435)
+	at net.minecraft.client.main.Main.main(Main.java:116)
+	at Start.main(Start.java:16)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Stacktrace:
+	at net.minecraft.client.gui.GuiIngame.renderScoreboard(GuiIngame.java:690)
+	at net.minecraft.client.gui.GuiIngame.renderGameOverlay(GuiIngame.java:399)
+
+-- Affected level --
+Details:
+	Level name: MpServer
+	All players: 1 total; [EntityPlayerSP['AppleClient'/229171298, l='MpServer', x=-243.59, y=11.00, z=-268.52]]
+	Chunk stats: MultiplayerChunkCache: 441, 441
+	Level seed: 0
+	Level generator: ID 00 - default, ver 1. Features enabled: false
+	Level generator options: 
+	Level spawn location: -162.00,21.00,-171.00 - World: (-162,21,-171), Chunk: (at 14,1,5 in -11,-11; contains blocks -176,0,-176 to -161,255,-161), Region: (-1,-1; contains chunks -32,-32 to -1,-1, blocks -512,0,-512 to -1,255,-1)
+	Level time: 4993 game time, 14001 day time
+	Level dimension: 0
+	Level storage version: 0x00000 - Unknown?
+	Level weather: Rain time: 0 (now: false), thunder time: 0 (now: false)
+	Level game mode: Game mode: survival (ID 0). Hardcore: false. Cheats: false
+	Forced entities: 39 total; [EntityPainting['Painting'/97, l='MpServer', x=-258.50, y=22.50, z=-282.03], EntityArmorStand['Armor Stand'/75, l='MpServer', x=-210.44, y=17.00, z=-210.56], EntityArmorStand['Armor Stand'/79, l='MpServer', x=-219.78, y=17.00, z=-236.53], EntityPlayerSP['AppleClient'/229171298, l='MpServer', x=-243.59, y=11.00, z=-268.52], EntityArmorStand['Armor Stand'/23, l='MpServer', x=-307.59, y=12.38, z=-235.75], EntityArmorStand['Armor Stand'/24, l='MpServer', x=-305.59, y=12.34, z=-236.13], EntityArmorStand['Armor Stand'/89, l='MpServer', x=-248.34, y=17.00, z=-229.91], EntityArmorStand['Armor Stand'/25, l='MpServer', x=-306.56, y=12.28, z=-236.06], EntityArmorStand['Armor Stand'/26, l='MpServer', x=-304.75, y=12.38, z=-236.50], EntityArmorStand['Armor Stand'/90, l='MpServer', x=-246.00, y=17.00, z=-230.81], EntityArmorStand['Armor Stand'/91, l='MpServer', x=-245.50, y=18.00, z=-240.50], EntityArmorStand['Armor Stand'/93, l='MpServer', x=-271.66, y=12.22, z=-244.81], EntityArmorStand['Armor Stand'/94, l='MpServer', x=-285.56, y=12.38, z=-243.94], EntityArmorStand['Armor Stand'/30, l='MpServer', x=-183.81, y=13.00, z=-253.31], EntityArmorStand['Armor Stand'/95, l='MpServer', x=-272.59, y=12.34, z=-244.59], EntityArmorStand['Armor Stand'/31, l='MpServer', x=-182.72, y=15.19, z=-251.78], EntityArmorStand['Armor Stand'/96, l='MpServer', x=-284.53, y=12.28, z=-244.66], EntityArmorStand['Armor Stand'/32, l='MpServer', x=-185.50, y=13.00, z=-248.50], EntityPainting['Painting'/97, l='MpServer', x=-258.50, y=22.50, z=-282.03], EntityArmorStand['Armor Stand'/33, l='MpServer', x=-184.50, y=13.00, z=-245.50], EntityArmorStand['Armor Stand'/100, l='MpServer', x=-249.41, y=20.06, z=-293.34], EntityArmorStand['Armor Stand'/101, l='MpServer', x=-252.91, y=20.00, z=-291.13], EntityArmorStand['Armor Stand'/102, l='MpServer', x=-248.97, y=27.53, z=-292.66], EntityArmorStand['Armor Stand'/103, l='MpServer', x=-297.50, y=12.38, z=-241.81], EntityArmorStand['Armor Stand'/104, l='MpServer', x=-298.34, y=12.22, z=-242.00], EntityArmorStand['Armor Stand'/105, l='MpServer', x=-295.41, y=12.34, z=-241.97], EntityArmorStand['Armor Stand'/106, l='MpServer', x=-294.69, y=12.22, z=-242.47], EntityArmorStand['Armor Stand'/107, l='MpServer', x=-293.44, y=10.59, z=-255.63], EntityArmorStand['Armor Stand'/108, l='MpServer', x=-256.50, y=19.88, z=-295.75], EntityArmorStand['Armor Stand'/109, l='MpServer', x=-256.56, y=19.94, z=-290.34], EntityArmorStand['Armor Stand'/46, l='MpServer', x=-301.53, y=12.38, z=-235.78], EntityArmorStand['Armor Stand'/110, l='MpServer', x=-261.63, y=20.00, z=-292.97], EntityArmorStand['Armor Stand'/47, l='MpServer', x=-302.31, y=12.22, z=-235.66], EntityArmorStand['Armor Stand'/114, l='MpServer', x=-180.59, y=17.00, z=-256.88], EntityArmorStand['Armor Stand'/51, l='MpServer', x=-204.50, y=17.00, z=-250.50], EntityArmorStand['Armor Stand'/52, l='MpServer', x=-197.66, y=28.00, z=-249.91], EntityArmorStand['Armor Stand'/54, l='MpServer', x=-276.53, y=12.38, z=-238.88], EntityArmorStand['Armor Stand'/55, l='MpServer', x=-275.44, y=12.28, z=-238.91], EntityArmorStand['Armor Stand'/56, l='MpServer', x=-277.38, y=12.28, z=-239.50]]
+	Retry entities: 0 total; []
+	Server brand: FlameCord <- BlocksMC
+	Server type: Non-integrated multiplayer server
+Stacktrace:
+	at net.minecraft.client.multiplayer.WorldClient.addWorldInfoToCrashReport(WorldClient.java:403)
+	at net.minecraft.client.Minecraft.addGraphicsAndWorldToCrashReport(Minecraft.java:2792)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:463)
+	at net.minecraft.client.main.Main.main(Main.java:116)
+	at Start.main(Start.java:16)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.8.9
+	Operating System: Windows 11 (amd64) version 10.0
+	Java Version: 1.8.0_361, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 608344008 bytes (580 MB) / 1047003136 bytes (998 MB) up to 1047003136 bytes (998 MB)
+	JVM Flags: 2 total; -Xmx1024M -Xms1024M
+	IntCache: cache: 0, tcache: 0, allocated: 13, tallocated: 95
+	Launched Version: appleclient
+	LWJGL: 2.9.4
+	OpenGL: AMD Radeon(TM) Graphics GL version 4.6.14761 Compatibility Profile Context 21.30.14 30.0.13014.8, ATI Technologies Inc.
+	GL Caps: Using GL 1.3 multitexturing.
+Using GL 1.3 texture combiners.
+Using framebuffer objects because OpenGL 3.0 is supported and separate blending is supported.
+Shaders are available because OpenGL 2.1 is supported.
+VBOs are available because OpenGL 1.5 is supported.
+
+	Using VBOs: Yes
+	Is Modded: Definitely; Client brand changed to 'appleclient'
+	Type: Client (map_client.txt)
+	Resource Packs: 1.14 Textures
+	Current Language: English (US)
+	Profiler Position: N/A (disabled)
+	CPU: 12x AMD Ryzen 5 5500U with Radeon Graphics 
+	OptiFine Version: OptiFine_1.8.9_HD_U_M5
+	OptiFine Build: ~~NULL~~
+	Render Distance Chunks: 10
+	Mipmaps: 2
+	Anisotropic Filtering: 1
+	Antialiasing: 0
+	Multitexture: false
+	Shaders: null
+	OpenGlVersion: 4.6.14761 Compatibility Profile Context 21.30.14 30.0.13014.8
+	OpenGlRenderer: AMD Radeon(TM) Graphics
+	OpenGlVendor: ATI Technologies Inc.
+	CpuCount: 12

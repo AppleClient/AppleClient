@@ -1,0 +1,14 @@
+package appu26j.mods.visuals;
+
+import appu26j.interfaces.ModInterface;
+import appu26j.mods.Category;
+import appu26j.mods.Mod;
+
+@ModInterface(name = "Block Overlay", description = "Allows you to customize the block outline and apply an overlay.", category = Category.VISUALS)
+public class BlockOverlay extends Mod
+{
+    public BlockOverlay()
+    {
+        ;
+    }
+}

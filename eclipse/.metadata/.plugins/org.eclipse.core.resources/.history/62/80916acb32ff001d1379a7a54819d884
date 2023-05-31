@@ -1,0 +1,18 @@
+package appu26j.mods.multiplayer;
+
+import com.google.common.eventbus.Subscribe;
+
+import appu26j.events.chat.EventChat;
+import appu26j.interfaces.ModInterface;
+import appu26j.mods.Category;
+import appu26j.mods.Mod;
+
+@ModInterface(name = "Rank Changer", description = "Changes your rank on the Hypixel server.", category = Category.MULTIPLAYER)
+public class RankChanger extends Mod
+{
+    @Subscribe
+    public void onChat(EventChat e)
+    {
+        
+    }
+}

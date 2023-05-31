@@ -1,0 +1,8 @@
+package appu26j.mods.multiplayer;
+
+import appu26j.mods.Mod;
+
+public class AutoFriend extends Mod
+{
+    
+}

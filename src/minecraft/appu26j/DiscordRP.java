@@ -9,12 +9,10 @@ import net.arikia.dev.drpc.callbacks.ReadyCallback;
 public class DiscordRP
 {
 	private static volatile boolean running = true;
-	private static long milliseconds = 0;
+	private static final long milliseconds = System.currentTimeMillis();
 	
 	public static void start()
 	{
-		milliseconds = System.currentTimeMillis();
-		
 		DiscordEventHandlers discordEventHandlers = new DiscordEventHandlers.Builder().setReadyEventHandler(new ReadyCallback()
 		{
 			@Override

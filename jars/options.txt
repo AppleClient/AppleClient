@@ -16,7 +16,7 @@ ao:1
 renderClouds:true
 resourcePacks:["1.14 Textures"]
 incompatibleResourcePacks:[]
-lastServer:blocksmc.com
+lastServer:hypixel.net
 lang:en_US
 chatVisibility:0
 chatColors:true
@@ -52,7 +52,7 @@ streamChatEnabled:0
 streamChatUserFilter:0
 streamMicToggleBehavior:0
 forceUnicodeFont:false
-allowBlockAlternatives:false
+allowBlockAlternatives:true
 reducedDebugInfo:false
 useNativeTransport:true
 entityShadows:true

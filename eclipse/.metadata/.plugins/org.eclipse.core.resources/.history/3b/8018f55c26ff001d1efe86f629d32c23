@@ -1,0 +1,53 @@
+package appu26j.mods.visuals;
+
+import com.google.common.eventbus.Subscribe;
+
+import appu26j.events.chat.EventChat;
+import appu26j.interfaces.ModInterface;
+import appu26j.mods.Category;
+import appu26j.mods.Mod;
+import appu26j.settings.Setting;
+import net.minecraft.client.gui.GuiNewChat;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.IChatComponent;
+
+@ModInterface(name = "MC Chat", description = "Allows you to enable and change the behaviour of the chat.", category = Category.VISUALS)
+public class Chat extends Mod
+{
+    private int amount = 0, temp = 0;
+    private String lastMessage = "";
+    
+	public Chat()
+	{
+		this.addSetting(new Setting("Infinite History", this, false));
+		this.addSetting(new Setting("Text Shadow", this, true));
+        this.addSetting(new Setting("Stack Messages", this, false));
+	}
+	
+	@Subscribe
+	public void onChat(EventChat e)
+	{
+	    GuiNewChat guiNewChat = this.mc.ingameGUI.getChatGUI();
+	    IChatComponent message = e.getMessage();
+	    String text = message.getUnformattedText().endsWith(EnumChatFormatting.GRAY + " (" + this.amount + ")") ? message.getUnformattedText().substring(0, message.getUnformattedText().length() - 5) : message.getUnformattedText();
+	    e.setCancelled(true);
+	    
+	    System.out.println(this.temp);
+	    
+	    if (this.lastMessage.equals(text))
+	    {
+	        this.amount++;
+	        e.appendText(" (" + this.amount + ")");
+	        guiNewChat.printChatMessageWithOptionalDeletionNoEvent(e.getMessage(), e.getChatID());
+	    }
+	    
+	    else
+	    {
+	        this.amount = 0;
+	        guiNewChat.printChatMessageWithOptionalDeletionNoEvent(message, e.getChatID());
+	    }
+
+	    this.temp++;
+	    this.lastMessage = text;
+	}
+}

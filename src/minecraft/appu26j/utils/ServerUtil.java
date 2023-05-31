@@ -32,7 +32,10 @@ public class ServerUtil implements MinecraftInterface
 	    String[] servers = new String[]
 	    {
 	            "bedwarspractice.club: BW Practice",
-                "blocksmc.com: BlocksMC"
+                "blocksmc.com: BlocksMC",
+                "jartexnetwork.com: Jartex Network",
+                "jartex.fun: Jartex Network",
+                "pvp.land: PvP Land"
 	    };
 	    
 	    for (String server : servers)

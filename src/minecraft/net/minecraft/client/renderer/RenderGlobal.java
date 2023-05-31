@@ -1,5 +1,6 @@
 package net.minecraft.client.renderer;
 
+import java.awt.Color;
 import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -28,6 +29,9 @@ import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.google.gson.JsonSyntaxException;
 
+import appu26j.Apple;
+import appu26j.mods.visuals.BlockOverlay;
+import club.marshadow.ColorUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
 import net.minecraft.block.BlockEnderChest;
@@ -38,6 +42,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.ISound;
 import net.minecraft.client.audio.PositionedSoundRecord;
+import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.particle.EntityFX;
@@ -2610,12 +2615,21 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
      */
     public void drawSelectionBox(EntityPlayer player, MovingObjectPosition movingObjectPositionIn, int execute, float partialTicks)
     {
+        BlockOverlay blockOverlay = (BlockOverlay) Apple.CLIENT.getModsManager().getMod("Block Overlay");
+        
         if (execute == 0 && movingObjectPositionIn.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
         {
+            Color rainbowColor = new Color(ColorUtil.getRainbowColor(), true);
+            float redTemp = blockOverlay.isEnabled() ? (blockOverlay.getSetting("Color (RGB)").getColors()[0] / 255F) : 0;
+            float greenTemp = blockOverlay.isEnabled() ? (blockOverlay.getSetting("Color (RGB)").getColors()[1] / 255F) : 0;
+            float blueTemp = blockOverlay.isEnabled() ? (blockOverlay.getSetting("Color (RGB)").getColors()[2] / 255F) : 0;
+            float red = blockOverlay.isEnabled() && blockOverlay.getSetting("Rainbow Color").getCheckBoxValue() ? (rainbowColor.getRed() / 255F) : redTemp;
+            float green = blockOverlay.isEnabled() && blockOverlay.getSetting("Rainbow Color").getCheckBoxValue() ? (rainbowColor.getGreen() / 255F) : greenTemp;
+            float blue = blockOverlay.isEnabled() && blockOverlay.getSetting("Rainbow Color").getCheckBoxValue() ? (rainbowColor.getBlue() / 255F) : blueTemp;
             GlStateManager.enableBlend();
             GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
-            GlStateManager.color(0.0F, 0.0F, 0.0F, 0.4F);
-            GL11.glLineWidth(2.0F);
+            GlStateManager.color(red, green, blue, blockOverlay.isEnabled() ? (blockOverlay.getSetting("Alpha").getSliderValue() / 255) : 0.4F);
+            GL11.glLineWidth(blockOverlay.isEnabled() ? blockOverlay.getSetting("Line Thickness").getSliderValue() : 2.0F);
             GlStateManager.disableTexture2D();
 
             if (Config.isShaders())

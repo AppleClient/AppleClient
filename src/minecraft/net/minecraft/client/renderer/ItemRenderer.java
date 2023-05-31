@@ -310,7 +310,7 @@ public class ItemRenderer
     /**
      * Performs transformations prior to the rendering of a held item in first person.
      */
-    private void transformFirstPersonItem(float equipProgress, float swingProgress, float partialTicks)
+    private void transformFirstPersonItem(float equipProgress, float swingProgressFixed, float partialTicks)
     {
         Visuals visuals = (Visuals) Apple.CLIENT.getModsManager().getMod("1.7 Visuals");
         Cooldown cooldown = (Cooldown) Apple.CLIENT.getModsManager().getMod("1.9 Cooldown");
@@ -335,8 +335,8 @@ public class ItemRenderer
             
             GlStateManager.translate(0.0F, equipProgress * -0.6F, 0.0F);
             GlStateManager.rotate(this.itemToRender.getItem() instanceof ItemBlock ? 45.0F : 50.0F, 0.0F, 1.0F, 0.0F);
-            float f = MathHelper.sin(swingProgress * swingProgress * (float)Math.PI);
-            float f1 = MathHelper.sin(MathHelper.sqrt_float(swingProgress) * (float)Math.PI);
+            float f = MathHelper.sin(swingProgressFixed * swingProgressFixed * (float)Math.PI);
+            float f1 = MathHelper.sin(MathHelper.sqrt_float(swingProgressFixed) * (float)Math.PI);
             GlStateManager.rotate(f * -20.0F, 0.0F, 1.0F, 0.0F);
             GlStateManager.rotate(f1 * -20.0F, 0.0F, 0.0F, 1.0F);
             GlStateManager.rotate(f1 * -80.0F, 1.0F, 0.0F, 0.0F);
@@ -348,8 +348,8 @@ public class ItemRenderer
             GlStateManager.translate(0.56F, y, -0.71999997F);
             GlStateManager.translate(0.0F, equipProgress * -0.6F, 0.0F);
             GlStateManager.rotate(45.0F, 0.0F, 1.0F, 0.0F);
-            float f = MathHelper.sin(swingProgress * swingProgress * (float)Math.PI);
-            float f1 = MathHelper.sin(MathHelper.sqrt_float(swingProgress) * (float)Math.PI);
+            float f = MathHelper.sin(swingProgressFixed * swingProgressFixed * (float)Math.PI);
+            float f1 = MathHelper.sin(MathHelper.sqrt_float(swingProgressFixed) * (float)Math.PI);
             GlStateManager.rotate(f * -20.0F, 0.0F, 1.0F, 0.0F);
             GlStateManager.rotate(f1 * -20.0F, 0.0F, 0.0F, 1.0F);
             GlStateManager.rotate(f1 * -80.0F, 1.0F, 0.0F, 0.0F);
@@ -395,7 +395,12 @@ public class ItemRenderer
     private void doBlockTransformations()
     {
         Visuals visuals = (Visuals) Apple.CLIENT.getModsManager().getMod("1.7 Visuals");
-        GlStateManager.translate(-0.5F, visuals.isEnabled() && visuals.getSetting("1.7 Sword Block").getCheckBoxValue() ? 0.4F : 0.2F, 0.0F);
+        
+        if (!visuals.getSetting("Lunar Client 1.7 Sword Block").getCheckBoxValue())
+        {
+            GlStateManager.translate(-0.5F, visuals.isEnabled() && visuals.getSetting("1.7 Sword Block").getCheckBoxValue() ? 0.4F : 0.2F, 0.0F);
+        }
+        
         GlStateManager.rotate(30.0F, 0.0F, 1.0F, 0.0F);
         GlStateManager.rotate(-80.0F, 1.0F, 0.0F, 0.0F);
         GlStateManager.rotate(60.0F, 0.0F, 1.0F, 0.0F);
@@ -408,9 +413,12 @@ public class ItemRenderer
     {
         if (!Config.isShaders() || !Shaders.isSkipRenderHand())
         {
+            Cooldown cooldown = (Cooldown) Apple.CLIENT.getModsManager().getMod("1.9 Cooldown");
             float f = 1.0F - (this.prevEquippedProgress + (this.equippedProgress - this.prevEquippedProgress) * partialTicks);
             AbstractClientPlayer abstractclientplayer = this.mc.thePlayer;
             float f1 = abstractclientplayer.getSwingProgress(partialTicks);
+            float temp = (cooldown.getMaximumAttackTicksLimit() - cooldown.getAttackTicks(partialTicks)) / cooldown.getMaximumAttackTicksLimit();
+            f1 = cooldown.isEnabled() && cooldown.getMaximumAttackTicksLimit() != 4 && cooldown.isAttacking() ? 1 - temp : f1;
             float f2 = abstractclientplayer.prevRotationPitch + (abstractclientplayer.rotationPitch - abstractclientplayer.prevRotationPitch) * partialTicks;
             float f3 = abstractclientplayer.prevRotationYaw + (abstractclientplayer.rotationYaw - abstractclientplayer.prevRotationYaw) * partialTicks;
             this.rotateAroundXAndY(f2, f3);

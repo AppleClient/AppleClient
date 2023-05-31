@@ -1,5 +1,6 @@
 package net.minecraft.client.gui;
 
+import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -21,7 +22,10 @@ import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 
 import appu26j.Apple;
+import appu26j.AppleClientVersionChecker;
+import appu26j.fontrenderer.FixedFontRenderer;
 import appu26j.utils.ServerUtil;
+import appu26j.utils.SoundUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.GuiConnecting;
 import net.minecraft.client.multiplayer.ServerData;
@@ -92,6 +96,7 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
     private int field_92020_v;
     private int field_92019_w;
     private ResourceLocation backgroundTexture;
+    private boolean aBoolean = false;
 
     /** Minecraft Realms button. */
     private GuiButton realmsButton;
@@ -102,6 +107,17 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
 
     public GuiMainMenu()
     {
+        if (AppleClientVersionChecker.firstTimeInitialize)
+        {
+            this.aBoolean = !Apple.CLIENT.getVersionChecker().isUpToDate();
+            AppleClientVersionChecker.firstTimeInitialize = false;
+        }
+
+        if (this.aBoolean)
+        {
+            SoundUtil.playBellSound();
+        }
+        
         this.openGLWarning2 = field_96138_a;
         this.field_183502_L = false;
         this.splashText = "missingno";
@@ -198,6 +214,10 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
      */
     protected void keyTyped(char typedChar, int keyCode) throws IOException
     {
+        if (this.aBoolean && keyCode == 1)
+        {
+            this.aBoolean = false;
+        }
     }
 
     /**
@@ -672,6 +692,18 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
         {
             this.modUpdateNotification.drawScreen(mouseX, mouseY, partialTicks);
         }
+        
+        if (this.aBoolean)
+        {
+            this.drawRect(0, 0, this.width, this.height, new Color(0, 0, 0, 100).getRGB());
+            float x = this.width / 2;
+            float y = this.height / 2;
+            this.drawGradientRect(x - 140, y - 85, x + 140, y + 85, this.backgroundColourDarkened, this.backgroundColourLightened);
+            FixedFontRenderer.drawString("An update is available!", x - (FixedFontRenderer.getStringWidth("An update is available!", 16) / 2), y - 65, 16, -1);
+            FixedFontRenderer.drawString("We recommend you update Apple Client.", x - (FixedFontRenderer.getStringWidth("We recommend you update Apple Client.", 8) / 2), y - 40, 8, -1);
+            this.drawRect(x - 55, y + 30, x + 55, y + 60, this.isInside(mouseX, mouseY, x - 55, y + 30, x + 55, y + 60) ? new Color(75, 75, 90).getRGB() : new Color(85, 85, 100).getRGB());
+            FixedFontRenderer.drawString("OK", x - (FixedFontRenderer.getStringWidth("OK", 12) / 2), y + 40, 12, -1);
+        }
     }
 
     /**
@@ -680,20 +712,34 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
     protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException
     {
         super.mouseClicked(mouseX, mouseY, mouseButton);
-
-        synchronized (this.threadLock)
+        float x = this.width / 2;
+        float y = this.height / 2;
+        
+        if (this.aBoolean)
         {
-            if (this.openGLWarning1.length() > 0 && mouseX >= this.field_92022_t && mouseX <= this.field_92020_v && mouseY >= this.field_92021_u && mouseY <= this.field_92019_w)
+            if (this.isInside(mouseX, mouseY, x - 55, y + 30, x + 55, y + 60) && mouseButton == 0)
             {
-                GuiConfirmOpenLink guiconfirmopenlink = new GuiConfirmOpenLink(this, this.openGLWarningLink, 13, true);
-                guiconfirmopenlink.disableSecurityWarning();
-                this.mc.displayGuiScreen(guiconfirmopenlink);
+                SoundUtil.playClickSound();
+                this.aBoolean = false;
             }
         }
-
-        if (this.func_183501_a())
+        
+        else
         {
-            this.field_183503_M.mouseClicked(mouseX, mouseY, mouseButton);
+            synchronized (this.threadLock)
+            {
+                if (this.openGLWarning1.length() > 0 && mouseX >= this.field_92022_t && mouseX <= this.field_92020_v && mouseY >= this.field_92021_u && mouseY <= this.field_92019_w)
+                {
+                    GuiConfirmOpenLink guiconfirmopenlink = new GuiConfirmOpenLink(this, this.openGLWarningLink, 13, true);
+                    guiconfirmopenlink.disableSecurityWarning();
+                    this.mc.displayGuiScreen(guiconfirmopenlink);
+                }
+            }
+
+            if (this.func_183501_a())
+            {
+                this.field_183503_M.mouseClicked(mouseX, mouseY, mouseButton);
+            }
         }
     }
 
@@ -706,5 +752,10 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
         {
             this.field_183503_M.onGuiClosed();
         }
+    }
+    
+    public boolean isInside(int mouseX, int mouseY, float x, float y, float width, float height)
+    {
+        return mouseX > x && mouseX < width && mouseY > y && mouseY < height;
     }
 }

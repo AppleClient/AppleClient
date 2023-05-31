@@ -9,6 +9,8 @@ import org.apache.logging.log4j.Logger;
 import com.google.common.collect.Lists;
 
 import appu26j.Apple;
+import appu26j.events.chat.EventChat;
+import appu26j.events.chat.EventChat2;
 import appu26j.mods.visuals.Chat;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
@@ -34,6 +36,8 @@ public class GuiNewChat extends Gui
 
     public void drawChat(int updateCounter)
     {
+        Chat chat = (Chat) Apple.CLIENT.getModsManager().getMod("MC Chat");
+        
         if (this.mc.gameSettings.chatVisibility != EntityPlayer.EnumChatVisibility.HIDDEN)
         {
             int i = this.getLineCount();
@@ -82,7 +86,6 @@ public class GuiNewChat extends Gui
 
                             if (l1 > 3)
                             {
-                                Chat chat = (Chat) Apple.CLIENT.getModsManager().getMod("MC Chat");
                                 int i2 = 0;
                                 int j2 = -i1 * 9;
                                 drawRect(i2, j2 - 9, i2 + l + 4, j2, l1 / 2 << 24);
@@ -153,8 +156,76 @@ public class GuiNewChat extends Gui
         logger.info("[CHAT] " + chatComponent.getUnformattedText());
     }
 
+    /**
+     * prints the ChatComponent to Chat. If the ID is not 0, deletes an existing Chat Line of that ID from the GUI
+     */
+    public void printChatMessageWithOptionalDeletionNoEvent(IChatComponent chatComponent, int chatLineId)
+    {
+        this.setChatLineNoEvent(chatComponent, chatLineId, this.mc.ingameGUI.getUpdateCounter(), false);
+        logger.info("[CHAT] " + chatComponent.getUnformattedText());
+    }
+
     private void setChatLine(IChatComponent chatComponent, int chatLineId, int updateCounter, boolean displayOnly)
     {
+        EventChat e = new EventChat(chatComponent, chatLineId);
+        Apple.CLIENT.getEventBus().post(e);
+        chatComponent = e.getMessage();
+        
+        if (e.isCancelled())
+        {
+            return;
+        }
+        
+        if (chatLineId != 0)
+        {
+            this.deleteChatLine(chatLineId);
+        }
+
+        int i = MathHelper.floor_float((float)this.getChatWidth() / this.getChatScale());
+        List<IChatComponent> list = GuiUtilRenderComponents.splitText(chatComponent, i, this.mc.fontRendererObj, false, false);
+        boolean flag = this.getChatOpen();
+
+        for (IChatComponent ichatcomponent : list)
+        {
+            if (flag && this.scrollPos > 0)
+            {
+                this.isScrolled = true;
+                this.scroll(1);
+            }
+
+            this.drawnChatLines.add(0, new ChatLine(updateCounter, ichatcomponent, chatLineId));
+        }
+
+        Chat chat = (Chat) Apple.CLIENT.getModsManager().getMod("MC Chat");
+        int j = (chat.isEnabled() && chat.getSetting("Infinite History").getCheckBoxValue()) ? Integer.MAX_VALUE : 100;
+        
+        while (this.drawnChatLines.size() > j)
+        {
+            this.drawnChatLines.remove(this.drawnChatLines.size() - 1);
+        }
+
+        if (!displayOnly)
+        {
+            this.chatLines.add(0, new ChatLine(updateCounter, chatComponent, chatLineId));
+
+            while (this.chatLines.size() > j)
+            {
+                this.chatLines.remove(this.chatLines.size() - 1);
+            }
+        }
+    }
+
+    private void setChatLineNoEvent(IChatComponent chatComponent, int chatLineId, int updateCounter, boolean displayOnly)
+    {
+        EventChat2 e = new EventChat2(chatComponent, chatLineId);
+        Apple.CLIENT.getEventBus().post(e);
+        chatComponent = e.getMessage();
+        
+        if (e.isCancelled())
+        {
+            return;
+        }
+        
         if (chatLineId != 0)
         {
             this.deleteChatLine(chatLineId);

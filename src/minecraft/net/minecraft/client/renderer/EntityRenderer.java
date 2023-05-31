@@ -228,6 +228,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
     private int serverWaitTimeCurrent = 0;
     private float avgServerTimeDiff = 0.0F;
     private float avgServerTickDiff = 0.0F;
+    private float scrollZoom = 0.0F;
     private ShaderGroup[] fxaaShaders = new ShaderGroup[10];
     private boolean loadVisibleChunks = false;
 
@@ -661,6 +662,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
                     if (betterZoom.isEnabled())
                     {
                         f /= (4.0F * (betterZoom.getSetting("Zoom Factor (in %)").getSliderValue() / 100)) < 1 ? 1 : (4.0F * (betterZoom.getSetting("Zoom Factor (in %)").getSliderValue() / 100));
+                        f -= betterZoom.getSetting("Scroll Zoom").getCheckBoxValue() ? this.scrollZoom : 0;
                     }
                     
                     else
@@ -2941,6 +2943,47 @@ public class EntityRenderer implements IResourceManagerReloadListener
         {
             this.mc.gameSettings.ofChunkUpdates = i;
             this.mc.gameSettings.ofLazyChunkLoading = flag;
+        }
+    }
+
+    /**
+     * Handles mouse input.
+     */
+    public void handleMouseInput() throws IOException
+    {
+        BetterZoom betterZoom = (BetterZoom) Apple.CLIENT.getModsManager().getMod("Better Zoom");
+        
+        if (betterZoom.isEnabled() && betterZoom.getSetting("Scroll Zoom").getCheckBoxValue() && this.mc.gameSettings.ofKeyBindZoom.isKeyDown())
+        {
+            int i = Integer.compare(0, Mouse.getDWheel());
+            
+            if (i != 0)
+            {
+                if (i < 0)
+                {
+                    this.scrollZoom += 5;
+                    
+                    if (this.scrollZoom > 20)
+                    {
+                        this.scrollZoom = 20;
+                    }
+                }
+                
+                else
+                {
+                    this.scrollZoom -= 5;
+                    
+                    if (this.scrollZoom < 0)
+                    {
+                        this.scrollZoom = 0;
+                    }
+                }
+            }
+        }
+        
+        else
+        {
+            this.scrollZoom = 0;
         }
     }
 }

@@ -668,6 +668,7 @@ public abstract class RendererLivingEntity<T extends EntityLivingBase> extends R
 
                 if (d0 < (double)(f * f))
                 {
+                    float viewX = Minecraft.getMinecraft().gameSettings.thirdPersonView == 2 ? -this.renderManager.playerViewX : this.renderManager.playerViewX;
                     String s = entity.getDisplayName().getFormattedText();
                     float f1 = 0.02666667F;
                     GlStateManager.alphaFunc(516, 0.1F);
@@ -681,7 +682,7 @@ public abstract class RendererLivingEntity<T extends EntityLivingBase> extends R
                         GlStateManager.translate((float)x, (float)y + entity.height + 0.5F - (entity.isChild() ? entity.height / 2.0F : 0.0F), (float)z);
                         GL11.glNormal3f(0.0F, 1.0F, 0.0F);
                         GlStateManager.rotate(-this.renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
-                        GlStateManager.rotate(this.renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
+                        GlStateManager.rotate(viewX, 1.0F, 0.0F, 0.0F);
                         GlStateManager.scale(-0.02666667F, -0.02666667F, 0.02666667F);
                         GlStateManager.translate(0.0F, 9.374999F, 0.0F);
                         GlStateManager.disableLighting();
@@ -732,6 +733,7 @@ public abstract class RendererLivingEntity<T extends EntityLivingBase> extends R
 
     protected boolean canRenderName(T entity)
     {
+        NameTags nameTags = (NameTags) Apple.CLIENT.getModsManager().getMod("Name Tags");
         EntityPlayerSP entityplayersp = Minecraft.getMinecraft().thePlayer;
 
         if (entity instanceof EntityPlayer && entity != entityplayersp)
@@ -763,7 +765,7 @@ public abstract class RendererLivingEntity<T extends EntityLivingBase> extends R
             }
         }
 
-        return Minecraft.isGuiEnabled() && entity != this.renderManager.livingPlayer && !entity.isInvisibleToPlayer(entityplayersp) && entity.riddenByEntity == null;
+        return Minecraft.isGuiEnabled() && (entity != this.renderManager.livingPlayer || (nameTags.isEnabled() && nameTags.getSetting("Show self nametag").getCheckBoxValue())) && !entity.isInvisibleToPlayer(entityplayersp) && entity.riddenByEntity == null;
     }
 
     public void setRenderOutlines(boolean renderOutlinesIn)

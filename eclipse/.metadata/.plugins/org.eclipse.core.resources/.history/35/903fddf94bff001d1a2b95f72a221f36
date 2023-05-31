@@ -1,0 +1,11 @@
+package appu26j.mods.multiplayer;
+
+import appu26j.interfaces.ModInterface;
+import appu26j.mods.Category;
+import appu26j.mods.Mod;
+
+@ModInterface(name = "Auto Friend", description = "Automatically accepts friend requests from others.", category = Category.MULTIPLAYER)
+public class AutoFriend extends Mod
+{
+    
+}

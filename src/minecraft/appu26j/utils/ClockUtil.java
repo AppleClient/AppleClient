@@ -7,7 +7,7 @@ public class ClockUtil
 	public static String getTime12HourFormat()
 	{
 		ZonedDateTime zonedDateTime = ZonedDateTime.now();
-		int hour = zonedDateTime.getHour() > 12 ? zonedDateTime.getHour() - 12 : zonedDateTime.getHour();
+		int hour = zonedDateTime.getHour() > 12 ? zonedDateTime.getHour() - 12 : (zonedDateTime.getHour() == 0 ? 12 : zonedDateTime.getHour());
 		String minute = zonedDateTime.getMinute() < 10 ? "0" + zonedDateTime.getMinute() : ("" + zonedDateTime.getMinute());
 		String aString = zonedDateTime.getHour() > 11 ? "PM" : "AM";
 		return hour + ":" + minute + " " + aString;

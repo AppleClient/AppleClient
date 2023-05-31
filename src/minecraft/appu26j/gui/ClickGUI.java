@@ -86,14 +86,17 @@ public class ClickGUI extends GuiScreen
 		Color temp1 = new Color(this.backgroundColourDarkened, true);
         Color temp2 = new Color(this.backgroundColourLightened, true);
         Color temp3 = new Color(this.backgroundColour, true);
-        Color backgroundColourDarkened = new Color(temp1.getRed(), temp1.getGreen(), temp1.getBlue(), (int) (this.index * 255));
-        Color backgroundColourLightened = new Color(temp2.getRed(), temp2.getGreen(), temp2.getBlue(), (int) (this.index * 255));
-        Color backgroundColour = new Color(temp3.getRed(), temp3.getGreen(), temp3.getBlue(), (int) (this.index * 255));
+        Color backgroundColourDarkened = new Color(temp1.getRed(), temp1.getGreen(), temp1.getBlue(), (int) (this.index * 200));
+        Color backgroundColourLightened = new Color(temp2.getRed(), temp2.getGreen(), temp2.getBlue(), (int) (this.index * 200));
+        Color backgroundColour = new Color(temp3.getRed(), temp3.getGreen(), temp3.getBlue(), (int) (this.index * 200));
         this.drawBackground(this.width / this.zoomFactor / 0.75F + (this.index * 0.25F), this.height / this.zoomFactor / 0.75F + (this.index * 0.25F));
-		this.drawGradientRect(i - 200, j - 125, i + 200, j + (this.selectedMod instanceof ToggleSprint ? 150 : 125), backgroundColour.getRGB(), backgroundColourDarkened.getRGB());
+		this.drawGradientRect(i - 200, j - 125, i + 200, j + (this.selectedMod instanceof ToggleSprint ? 150 : 125), backgroundColour.getRGB(), 0);
         this.drawGradientRect(i - 200, j - 125, i + 200, j + (this.selectedMod instanceof ToggleSprint ? 150 : 125), 0, backgroundColourLightened.getRGB());
-        this.drawStringAlpha(this.selectedMod == null ? "Click GUI" : this.selectedMod.getName(), i - (this.getStringWidth(this.selectedMod == null ? "Click GUI" : this.selectedMod.getName(), 12) / 2), j - 117.5F, 12, -1, (int) (this.index * 255));
-		
+        this.drawStringAlpha(this.selectedMod == null ? "Click GUI" : this.selectedMod.getName(), i - (this.getStringWidth(this.selectedMod == null ? "Click GUI" : this.selectedMod.getName(), 12) / 2), j - 120, 12, -1, (int) (this.index * 255));
+        backgroundColourDarkened = new Color(temp1.getRed(), temp1.getGreen(), temp1.getBlue(), (int) (this.index * 200));
+        backgroundColourLightened = new Color(temp2.getRed(), temp2.getGreen(), temp2.getBlue(), (int) (this.index * 200));
+        backgroundColour = new Color(temp3.getRed(), temp3.getGreen(), temp3.getBlue(), (int) (this.index * 200));
+        
 		if (this.selectedMod == null)
 		{
 			int xOffset = 0, yOffset = this.scrollIndex, categoryOffset = 0;
@@ -254,6 +257,10 @@ public class ClickGUI extends GuiScreen
 		
 		if (this.searching)
 		{
+	        backgroundColourDarkened = new Color(temp1.getRed(), temp1.getGreen(), temp1.getBlue(), (int) (this.index * 255));
+	        backgroundColourLightened = new Color(temp2.getRed(), temp2.getGreen(), temp2.getBlue(), (int) (this.index * 255));
+	        backgroundColour = new Color(temp3.getRed(), temp3.getGreen(), temp3.getBlue(), (int) (this.index * 255));
+	        
 			if (this.timeUtil.hasTimePassed(500))
 			{
 				this.aBoolean = !this.aBoolean;
@@ -428,7 +435,7 @@ public class ClickGUI extends GuiScreen
 							
 							if (setting.getTypeOfSetting().equals("Color Box"))
 							{
-								if (this.isInsideBox(mouseX, mouseY, (i - 180) + (this.getStringWidth(setting.getName() + ": ") + 4), (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName() + ":  " + setting.getColors()[0]) + 7, (i - 60) + offset))
+								if (this.isInsideBox(mouseX, mouseY, (i - 180) + (this.getStringWidth(setting.getName() + ": ") + 4), (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName() + ":  " + setting.getColors()[0]) + 7, (j - 60) + offset))
 								{
 									if (setting.getColors()[0] > 0)
 									{
@@ -493,7 +500,7 @@ public class ClickGUI extends GuiScreen
 							
 							if (setting.getTypeOfSetting().equals("Color Box"))
 							{
-								if (this.isInsideBox(mouseX, mouseY, (i - 180) + (this.getStringWidth(setting.getName() + ": ") + 4), (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName() + ":  " + setting.getColors()[0]) + 7, (i - 60) + offset))
+								if (this.isInsideBox(mouseX, mouseY, (i - 180) + (this.getStringWidth(setting.getName() + ": ") + 4), (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName() + ":  " + setting.getColors()[0]) + 7, (j - 60) + offset))
 								{
 									if (setting.getColors()[0] < 255)
 									{

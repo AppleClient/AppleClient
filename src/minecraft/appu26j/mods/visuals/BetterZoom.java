@@ -12,5 +12,6 @@ public class BetterZoom extends Mod
 	{
 		this.addSetting(new Setting("Smooth Zoom", this, true));
 		this.addSetting(new Setting("Zoom Factor (in %)", this, 0, 100, 100, 5));
+        this.addSetting(new Setting("Scroll Zoom", this, true));
 	}
 }

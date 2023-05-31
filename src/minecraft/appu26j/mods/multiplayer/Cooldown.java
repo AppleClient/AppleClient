@@ -27,11 +27,13 @@ public class Cooldown extends Mod
 {
 	private int maximumAttackTicksLimit = 20, previousAttackTicks = 0, attackTicks = 0;
 	private ItemStack previousHeldItem = null;
+    private boolean attacking = false;
 	
 	public Cooldown()
 	{
 		this.addSetting(new Setting("Size", this, 0.5F, 1, 2, 0.25F));
         this.addSetting(new Setting("Cooldown Transparency", this, true));
+        this.addSetting(new Setting("Hide subtitle (Fake cooldown by servers)", this, true));
 	}
 	
 	@Subscribe
@@ -39,6 +41,7 @@ public class Cooldown extends Mod
 	{
 		if (!this.mc.objectMouseOver.typeOfHit.equals(MovingObjectType.BLOCK) || this.mc.playerController.getCurrentGameType().isAdventure())
 		{
+		    this.attacking = true;
 			this.attackTicks = 0;
 		}
 	}
@@ -51,6 +54,11 @@ public class Cooldown extends Mod
 		if (this.attackTicks < this.maximumAttackTicksLimit)
 		{
 			this.attackTicks++;
+		}
+		
+		else
+		{
+            this.attacking = false;
 		}
 		
 		if (this.mc.thePlayer.getHeldItem() != this.previousHeldItem)
@@ -122,6 +130,7 @@ public class Cooldown extends Mod
 			int j = height / 2;
 			i /= size;
 			j /= size;
+			GlStateManager.color(1, 1, 1, 1);
 			GlStateManager.enableBlend();
 			GlStateManager.tryBlendFuncSeparate(775, 769, 1, 0);
             this.mc.getTextureManager().bindTexture(new ResourceLocation("textures/gui/attack_cooldown.png"));
@@ -131,7 +140,8 @@ public class Cooldown extends Mod
             {
                 GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
             }
-            
+
+            GlStateManager.color(1, 1, 1, 1);
             GL11.glEnable(GL11.GL_SCISSOR_TEST);
 			this.scissor(i - 8, j + 6, i + 8 - (16 * (this.maximumAttackTicksLimit - this.getAttackTicks(partialTicks)) / this.maximumAttackTicksLimit), j + 12, size);
 			this.mc.getTextureManager().bindTexture(new ResourceLocation("textures/gui/attack_cooldown.png"));
@@ -152,5 +162,10 @@ public class Cooldown extends Mod
 	public float getMaximumAttackTicksLimit()
 	{
 		return this.maximumAttackTicksLimit;
+	}
+	
+	public boolean isAttacking()
+	{
+	    return this.attacking;
 	}
 }

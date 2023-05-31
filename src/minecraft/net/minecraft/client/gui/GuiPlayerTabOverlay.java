@@ -11,6 +11,7 @@ import com.mojang.authlib.GameProfile;
 import appu26j.Apple;
 import appu26j.fontrenderer.FixedFontRenderer;
 import appu26j.mods.visuals.PingIndicator;
+import appu26j.mods.visuals.TabList;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.network.NetHandlerPlayClient;
 import net.minecraft.client.network.NetworkPlayerInfo;
@@ -147,6 +148,8 @@ public class GuiPlayerTabOverlay extends Gui
                 l1 = Math.max(l1, this.mc.fontRendererObj.getStringWidth(s2));
             }
         }
+        
+        TabList tabList = (TabList) Apple.CLIENT.getModsManager().getMod("Tab List");
 
         if (list1 != null)
         {
@@ -155,7 +158,25 @@ public class GuiPlayerTabOverlay extends Gui
             for (String s3 : list1)
             {
                 int i2 = this.mc.fontRendererObj.getStringWidth(s3);
-                this.mc.fontRendererObj.drawStringWithShadow(s3, (float)(width / 2 - i2 / 2), (float)k1, -1);
+                
+                if (tabList.isEnabled())
+                {
+                    if (tabList.getSetting("Text Shadow").getCheckBoxValue())
+                    {
+                        this.mc.fontRendererObj.drawStringWithShadow(s3, (float)(width / 2 - i2 / 2), (float)k1, -1);
+                    }
+                    
+                    else
+                    {
+                        this.mc.fontRendererObj.drawString(s3, (float)(width / 2 - i2 / 2), (float)k1, -1);
+                    }
+                }
+                
+                else
+                {
+                    this.mc.fontRendererObj.drawStringWithShadow(s3, (float)(width / 2 - i2 / 2), (float)k1, -1);
+                }
+                
                 k1 += this.mc.fontRendererObj.FONT_HEIGHT;
             }
 
@@ -170,7 +191,6 @@ public class GuiPlayerTabOverlay extends Gui
             int i5 = k4 % i4;
             int j2 = j1 + l4 * i1 + l4 * 5;
             int k2 = k1 + i5 * 9;
-            drawRect(j2, k2, j2 + i1, k2 + 8, 553648127);
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
             GlStateManager.enableAlpha();
             GlStateManager.enableBlend();
@@ -201,14 +221,46 @@ public class GuiPlayerTabOverlay extends Gui
                     j2 += 9;
                 }
 
-                if (networkplayerinfo1.getGameType() == WorldSettings.GameType.SPECTATOR)
+                if (tabList.isEnabled())
                 {
-                    s1 = EnumChatFormatting.ITALIC + s1;
-                    this.mc.fontRendererObj.drawStringWithShadow(s1, (float)j2, (float)k2, -1862270977);
+                    if (tabList.getSetting("Text Shadow").getCheckBoxValue())
+                    {
+                        if (networkplayerinfo1.getGameType() == WorldSettings.GameType.SPECTATOR)
+                        {
+                            s1 = EnumChatFormatting.ITALIC + s1;
+                            this.mc.fontRendererObj.drawStringWithShadow(s1, (float)j2, (float)k2, -1862270977);
+                        }
+                        else
+                        {
+                            this.mc.fontRendererObj.drawStringWithShadow(s1, (float)j2, (float)k2, -1);
+                        }
+                    }
+                    
+                    else
+                    {
+                        if (networkplayerinfo1.getGameType() == WorldSettings.GameType.SPECTATOR)
+                        {
+                            s1 = EnumChatFormatting.ITALIC + s1;
+                            this.mc.fontRendererObj.drawString(s1, (float)j2, (float)k2, -1862270977);
+                        }
+                        else
+                        {
+                            this.mc.fontRendererObj.drawString(s1, (float)j2, (float)k2, -1);
+                        }
+                    }
                 }
+                
                 else
                 {
-                    this.mc.fontRendererObj.drawStringWithShadow(s1, (float)j2, (float)k2, -1);
+                    if (networkplayerinfo1.getGameType() == WorldSettings.GameType.SPECTATOR)
+                    {
+                        s1 = EnumChatFormatting.ITALIC + s1;
+                        this.mc.fontRendererObj.drawStringWithShadow(s1, (float)j2, (float)k2, -1862270977);
+                    }
+                    else
+                    {
+                        this.mc.fontRendererObj.drawStringWithShadow(s1, (float)j2, (float)k2, -1);
+                    }
                 }
 
                 if (scoreObjectiveIn != null && networkplayerinfo1.getGameType() != WorldSettings.GameType.SPECTATOR)
@@ -234,7 +286,25 @@ public class GuiPlayerTabOverlay extends Gui
             for (String s4 : list2)
             {
                 int j5 = this.mc.fontRendererObj.getStringWidth(s4);
-                this.mc.fontRendererObj.drawStringWithShadow(s4, (float)(width / 2 - j5 / 2), (float)k1, -1);
+                
+                if (tabList.isEnabled())
+                {
+                    if (tabList.getSetting("Text Shadow").getCheckBoxValue())
+                    {
+                        this.mc.fontRendererObj.drawStringWithShadow(s4, (float)(width / 2 - j5 / 2), (float)k1, -1);
+                    }
+                    
+                    else
+                    {
+                        this.mc.fontRendererObj.drawString(s4, (float)(width / 2 - j5 / 2), (float)k1, -1);
+                    }
+                }
+                
+                else
+                {
+                    this.mc.fontRendererObj.drawStringWithShadow(s4, (float)(width / 2 - j5 / 2), (float)k1, -1);
+                }
+                
                 k1 += this.mc.fontRendererObj.FONT_HEIGHT;
             }
         }

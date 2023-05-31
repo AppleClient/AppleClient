@@ -2,6 +2,9 @@ package net.minecraft.client.gui;
 
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
+
+import appu26j.Apple;
+import appu26j.mods.visuals.Chat;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
@@ -580,6 +583,111 @@ public class GuiTextField extends Gui
                 else
                 {
                     this.fontRendererInstance.drawStringWithShadow("_", (float)k1, (float)i1, i);
+                }
+            }
+
+            if (k != j)
+            {
+                int l1 = l + this.fontRendererInstance.getStringWidth(s.substring(0, k));
+                this.drawCursorVertical(k1, i1 - 1, l1 - 1, i1 + 1 + this.fontRendererInstance.FONT_HEIGHT);
+            }
+        }
+    }
+
+    /**
+     * Draws the textbox
+     */
+    public void drawTextBox(boolean chat)
+    {
+        Chat chatMod = (Chat) Apple.CLIENT.getModsManager().getMod("MC Chat");
+        
+        if (!chatMod.isEnabled())
+        {
+            this.drawTextBox();
+            return;
+        }
+        
+        if (this.getVisible())
+        {
+            if (this.getEnableBackgroundDrawing())
+            {
+                drawRect(this.xPosition - 1, this.yPosition - 1, this.xPosition + this.width + 1, this.yPosition + this.height + 1, -6250336);
+                drawRect(this.xPosition, this.yPosition, this.xPosition + this.width, this.yPosition + this.height, -16777216);
+            }
+
+            int i = this.isEnabled ? this.enabledColor : this.disabledColor;
+            int j = this.cursorPosition - this.lineScrollOffset;
+            int k = this.selectionEnd - this.lineScrollOffset;
+            String s = this.fontRendererInstance.trimStringToWidth(this.text.substring(this.lineScrollOffset), this.getWidth());
+            boolean flag = j >= 0 && j <= s.length();
+            boolean flag1 = this.isFocused && this.cursorCounter / 6 % 2 == 0 && flag;
+            int l = this.enableBackgroundDrawing ? this.xPosition + 4 : this.xPosition;
+            int i1 = this.enableBackgroundDrawing ? this.yPosition + (this.height - 8) / 2 : this.yPosition;
+            int j1 = l;
+
+            if (k > s.length())
+            {
+                k = s.length();
+            }
+
+            if (s.length() > 0)
+            {
+                String s1 = flag ? s.substring(0, j) : s;
+                
+                if (chatMod.getSetting("Text Shadow").getCheckBoxValue())
+                {
+                    j1 = this.fontRendererInstance.drawStringWithShadow(s1, (float)l, (float)i1, i);
+                }
+                
+                else
+                {
+                    j1 = this.fontRendererInstance.drawString(s1, (float)l, (float)i1, i);
+                }
+            }
+
+            boolean flag2 = this.cursorPosition < this.text.length() || this.text.length() >= this.getMaxStringLength();
+            int k1 = j1;
+
+            if (!flag)
+            {
+                k1 = j > 0 ? l + this.width : l;
+            }
+            else if (flag2)
+            {
+                k1 = j1 - 1;
+                --j1;
+            }
+
+            if (s.length() > 0 && flag && j < s.length())
+            {
+                if (chatMod.getSetting("Text Shadow").getCheckBoxValue())
+                {
+                    j1 = this.fontRendererInstance.drawStringWithShadow(s.substring(j), (float)j1, (float)i1, i);
+                }
+                
+                else
+                {
+                    j1 = this.fontRendererInstance.drawString(s.substring(j), (float)j1, (float)i1, i);
+                }
+            }
+
+            if (flag1)
+            {
+                if (flag2)
+                {
+                    Gui.drawRect(k1, i1 - 1, k1 + 1, i1 + 1 + this.fontRendererInstance.FONT_HEIGHT, -3092272);
+                }
+                else
+                {
+                    if (chatMod.getSetting("Text Shadow").getCheckBoxValue())
+                    {
+                        this.fontRendererInstance.drawStringWithShadow("_", (float)k1, (float)i1, i);
+                    }
+                    
+                    else
+                    {
+                        this.fontRendererInstance.drawString("_", (float)k1, (float)i1, i);
+                    }
                 }
             }
 

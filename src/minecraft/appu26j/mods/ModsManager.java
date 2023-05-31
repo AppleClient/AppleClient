@@ -23,6 +23,7 @@ public class ModsManager
 		this.mods.add(new AutoTip());
 		this.mods.add(new SnipeSafe());
 		this.mods.add(new Cooldown());
+		this.mods.add(new AutoFriend());
 		
 		// Visuals
 		this.mods.add(new Visuals());
@@ -47,14 +48,34 @@ public class ModsManager
 		this.mods.add(new ReachDisplay());
 		this.mods.add(new BetterZoom());
 		this.mods.add(new ArmorStatus());
+        this.mods.add(new TabList());
+        this.mods.add(new BossBar());
+        this.mods.add(new BlockOverlay());
 		this.mods.sort(Comparator.comparing(Mod::getName));
-		this.getMod("Score Board").setEnabled(true);
+		this.getMods("Score Board", "Boss Bar").forEach(mod -> mod.setEnabled(true));
 		return this;
 	}
 	
 	public ArrayList<Mod> getMods()
 	{
 		return this.mods;
+	}
+	
+	public ArrayList<Mod> getMods(String... names)
+	{
+	    ArrayList<Mod> mods = new ArrayList<>();
+	    
+	    for (String name : names)
+	    {
+	        Mod mod = this.mods.stream().filter(modObject -> modObject.getName().equals(name)).findFirst().orElse(null);
+	        
+	        if (mod != null)
+	        {
+	            mods.add(mod);
+	        }
+	    }
+	    
+	    return mods;
 	}
 	
 	public ArrayList<Mod> getMods(Category category)

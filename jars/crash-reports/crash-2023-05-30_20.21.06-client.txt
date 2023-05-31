@@ -1,0 +1,108 @@
+---- Minecraft Crash Report ----
+// Surprise! Haha. Well, this is awkward.
+
+Time: 5/30/23 8:21 PM
+Description: Rendering screen
+
+org.lwjgl.opengl.OpenGLException: Stack overflow (1283)
+	at org.lwjgl.opengl.Util.checkGLError(Util.java:59)
+	at org.lwjgl.opengl.WindowsContextImplementation.setSwapInterval(WindowsContextImplementation.java:113)
+	at org.lwjgl.opengl.ContextGL.setSwapInterval(ContextGL.java:232)
+	at org.lwjgl.opengl.DrawableGL.setSwapInterval(DrawableGL.java:86)
+	at org.lwjgl.opengl.Display.setSwapInterval(Display.java:1129)
+	at org.lwjgl.opengl.Display.setVSyncEnabled(Display.java:1142)
+	at appu26j.gui.DragGUI.initGui(DragGUI.java:332)
+	at net.minecraft.client.gui.GuiScreen.setWorldAndResolution(GuiScreen.java:563)
+	at net.minecraft.client.Minecraft.displayGuiScreen(Minecraft.java:1030)
+	at appu26j.gui.ClickGUI.drawScreen(ClickGUI.java:52)
+	at net.minecraft.client.renderer.EntityRenderer.updateCameraAndRender(EntityRenderer.java:1432)
+	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1160)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:436)
+	at net.minecraft.client.main.Main.main(Main.java:114)
+	at Start.main(Start.java:16)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Stacktrace:
+	at org.lwjgl.opengl.Util.checkGLError(Util.java:59)
+	at org.lwjgl.opengl.WindowsContextImplementation.setSwapInterval(WindowsContextImplementation.java:113)
+	at org.lwjgl.opengl.ContextGL.setSwapInterval(ContextGL.java:232)
+	at org.lwjgl.opengl.DrawableGL.setSwapInterval(DrawableGL.java:86)
+	at org.lwjgl.opengl.Display.setSwapInterval(Display.java:1129)
+	at org.lwjgl.opengl.Display.setVSyncEnabled(Display.java:1142)
+	at appu26j.gui.DragGUI.initGui(DragGUI.java:332)
+	at net.minecraft.client.gui.GuiScreen.setWorldAndResolution(GuiScreen.java:563)
+	at net.minecraft.client.Minecraft.displayGuiScreen(Minecraft.java:1030)
+	at appu26j.gui.ClickGUI.drawScreen(ClickGUI.java:52)
+
+-- Screen render details --
+Details:
+	Screen name: appu26j.gui.DragGUI
+	Mouse location: Scaled: (234, 95). Absolute: (704, 671)
+	Screen size: Scaled: (640, 319). Absolute: (1920, 956). Scale factor of 3
+
+-- Affected level --
+Details:
+	Level name: MpServer
+	All players: 1 total; [EntityPlayerSP['AppleClient'/117, l='MpServer', x=654.84, y=75.72, z=135.98]]
+	Chunk stats: MultiplayerChunkCache: 441, 441
+	Level seed: 0
+	Level generator: ID 02 - largeBiomes, ver 0. Features enabled: false
+	Level generator options: 
+	Level spawn location: 584.00,64.00,166.00 - World: (584,64,166), Chunk: (at 8,4,6 in 36,10; contains blocks 576,0,160 to 591,255,175), Region: (1,0; contains chunks 32,0 to 63,31, blocks 512,0,0 to 1023,255,511)
+	Level time: 95 game time, 14001 day time
+	Level dimension: 0
+	Level storage version: 0x00000 - Unknown?
+	Level weather: Rain time: 0 (now: false), thunder time: 0 (now: false)
+	Level game mode: Game mode: creative (ID 1). Hardcore: false. Cheats: false
+	Forced entities: 79 total; [EntitySkeleton['Skeleton'/259, l='MpServer', x=582.50, y=37.00, z=170.50], EntitySkeleton['Skeleton'/260, l='MpServer', x=581.50, y=37.00, z=171.50], EntitySkeleton['Skeleton'/261, l='MpServer', x=581.50, y=37.00, z=169.50], EntityBat['Bat'/273, l='MpServer', x=611.50, y=60.00, z=156.50], EntityZombie['Zombie'/29, l='MpServer', x=573.50, y=57.00, z=134.50], EntityZombie['Zombie'/33, l='MpServer', x=576.53, y=54.00, z=123.94], EntityZombie['Zombie'/34, l='MpServer', x=583.50, y=29.00, z=163.50], EntityBat['Bat'/35, l='MpServer', x=581.51, y=38.06, z=176.60], EntitySkeleton['Skeleton'/36, l='MpServer', x=586.50, y=43.00, z=190.50], EntitySkeleton['Skeleton'/37, l='MpServer', x=587.50, y=43.00, z=188.50], EntityZombie['Zombie'/38, l='MpServer', x=579.75, y=68.00, z=184.84], EntitySpider['Spider'/39, l='MpServer', x=586.50, y=67.00, z=190.50], EntityBat['Bat'/40, l='MpServer', x=583.55, y=27.25, z=194.73], EntitySkeleton['Skeleton'/41, l='MpServer', x=578.31, y=43.00, z=204.69], EntityCreeper['Creeper'/42, l='MpServer', x=590.00, y=63.00, z=204.34], EntitySpider['Spider'/43, l='MpServer', x=590.53, y=67.00, z=192.11], EntitySkeleton['Skeleton'/44, l='MpServer', x=585.50, y=67.00, z=195.50], EntitySpider['Spider'/47, l='MpServer', x=594.21, y=64.00, z=99.28], EntityBat['Bat'/48, l='MpServer', x=600.41, y=56.10, z=112.63], EntitySkeleton['Skeleton'/49, l='MpServer', x=595.41, y=25.00, z=159.16], EntityCreeper['Creeper'/50, l='MpServer', x=603.28, y=46.44, z=171.28], EntityZombie['Zombie'/51, l='MpServer', x=601.38, y=34.00, z=182.03], EntityZombie['Zombie'/52, l='MpServer', x=596.19, y=32.00, z=191.50], EntityZombie['Zombie'/53, l='MpServer', x=600.97, y=63.00, z=189.56], EntityCreeper['Creeper'/54, l='MpServer', x=601.50, y=52.00, z=180.50], EntitySkeleton['Skeleton'/55, l='MpServer', x=600.50, y=52.00, z=180.50], EntityMinecartChest['container.minecart'/59, l='MpServer', x=613.50, y=12.06, z=82.50], EntitySpider['Spider'/60, l='MpServer', x=617.27, y=67.00, z=133.01], EntitySkeleton['Skeleton'/61, l='MpServer', x=615.50, y=65.00, z=156.50], EntityZombie['Zombie'/62, l='MpServer', x=619.50, y=65.00, z=171.50], EntityZombie['Zombie'/63, l='MpServer', x=613.44, y=35.00, z=181.94], EntityItem['item.tile.sand.default'/64, l='MpServer', x=608.38, y=63.00, z=193.88], EntityCreeper['Creeper'/194, l='MpServer', x=595.50, y=70.00, z=138.50], EntityZombie['Zombie'/67, l='MpServer', x=629.03, y=12.00, z=56.66], EntitySpider['Spider'/69, l='MpServer', x=628.03, y=66.00, z=149.19], EntityCreeper['Creeper'/70, l='MpServer', x=638.50, y=64.00, z=178.50], EntityZombie['Zombie'/199, l='MpServer', x=653.50, y=63.00, z=188.50], EntitySpider['Spider'/200, l='MpServer', x=592.50, y=70.00, z=138.50], EntitySpider['Spider'/201, l='MpServer', x=620.50, y=65.00, z=179.50], EntityCreeper['Creeper'/202, l='MpServer', x=597.50, y=65.00, z=192.50], EntityMinecartChest['container.minecart'/75, l='MpServer', x=642.50, y=13.06, z=62.50], EntityZombie['Zombie'/77, l='MpServer', x=645.36, y=63.00, z=134.96], EntitySkeleton['Skeleton'/78, l='MpServer', x=643.50, y=35.00, z=172.50], EntityZombie['Zombie'/79, l='MpServer', x=650.11, y=62.31, z=166.04], EntitySpider['Spider'/80, l='MpServer', x=642.64, y=64.00, z=161.61], EntitySpider['Spider'/81, l='MpServer', x=655.53, y=66.00, z=207.88], EntityCreeper['Creeper'/209, l='MpServer', x=631.50, y=64.00, z=165.50], EntityZombie['Zombie'/82, l='MpServer', x=657.50, y=12.00, z=75.50], EntityCreeper['Creeper'/210, l='MpServer', x=656.50, y=63.00, z=176.50], EntitySquid['Squid'/83, l='MpServer', x=669.66, y=56.27, z=96.97], EntitySquid['Squid'/84, l='MpServer', x=667.94, y=49.07, z=132.01], EntitySquid['Squid'/85, l='MpServer', x=657.49, y=47.00, z=122.03], EntityBat['Bat'/86, l='MpServer', x=664.47, y=43.10, z=137.75], EntityBat['Bat'/214, l='MpServer', x=704.96, y=30.50, z=74.72], EntityBat['Bat'/87, l='MpServer', x=659.38, y=39.10, z=147.28], EntitySquid['Squid'/88, l='MpServer', x=667.15, y=48.58, z=171.91], EntityBat['Bat'/90, l='MpServer', x=674.94, y=15.00, z=99.49], EntityBat['Bat'/91, l='MpServer', x=676.58, y=15.57, z=99.53], EntitySquid['Squid'/92, l='MpServer', x=681.58, y=56.45, z=169.82], EntitySquid['Squid'/93, l='MpServer', x=691.55, y=61.45, z=171.53], EntitySquid['Squid'/94, l='MpServer', x=690.07, y=58.99, z=181.54], EntityCreeper['Creeper'/222, l='MpServer', x=612.50, y=52.00, z=173.50], EntityZombie['Zombie'/97, l='MpServer', x=700.50, y=25.00, z=78.50], EntityCreeper['Creeper'/98, l='MpServer', x=698.50, y=30.00, z=85.50], EntityCreeper['Creeper'/99, l='MpServer', x=689.84, y=21.00, z=110.81], EntityZombie['Zombie'/100, l='MpServer', x=691.38, y=27.00, z=127.69], EntitySkeleton['Skeleton'/101, l='MpServer', x=692.50, y=21.00, z=115.50], EntityCreeper['Creeper'/102, l='MpServer', x=694.56, y=21.00, z=116.61], EntityBat['Bat'/230, l='MpServer', x=644.13, y=22.66, z=193.38], EntitySkeleton['Skeleton'/103, l='MpServer', x=692.34, y=43.00, z=130.06], EntitySquid['Squid'/104, l='MpServer', x=690.65, y=62.38, z=175.62], EntitySquid['Squid'/105, l='MpServer', x=693.94, y=60.69, z=182.67], EntitySquid['Squid'/106, l='MpServer', x=702.61, y=61.35, z=196.07], EntitySquid['Squid'/107, l='MpServer', x=702.22, y=57.80, z=199.88], EntitySquid['Squid'/110, l='MpServer', x=706.10, y=59.71, z=199.16], EntityBat['Bat'/244, l='MpServer', x=614.28, y=12.03, z=83.24], EntityBat['Bat'/245, l='MpServer', x=613.36, y=12.04, z=89.31], EntityPlayerSP['AppleClient'/117, l='MpServer', x=654.84, y=75.72, z=135.98], EntityZombie['Zombie'/255, l='MpServer', x=582.50, y=37.00, z=167.50]]
+	Retry entities: 0 total; []
+	Server brand: vanilla
+	Server type: Integrated singleplayer server
+Stacktrace:
+	at net.minecraft.client.multiplayer.WorldClient.addWorldInfoToCrashReport(WorldClient.java:403)
+	at net.minecraft.client.Minecraft.addGraphicsAndWorldToCrashReport(Minecraft.java:2797)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:456)
+	at net.minecraft.client.main.Main.main(Main.java:114)
+	at Start.main(Start.java:16)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.8.9
+	Operating System: Windows 11 (amd64) version 10.0
+	Java Version: 1.8.0_361, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 706766624 bytes (674 MB) / 954728448 bytes (910 MB) up to 954728448 bytes (910 MB)
+	JVM Flags: 2 total; -Xmx1024M -Xms1024M
+	IntCache: cache: 0, tcache: 0, allocated: 13, tallocated: 99
+	Launched Version: appleclient
+	LWJGL: 2.9.4
+	OpenGL: AMD Radeon(TM) Graphics GL version 4.6.14761 Compatibility Profile Context 21.30.14 30.0.13014.8, ATI Technologies Inc.
+	GL Caps: Using GL 1.3 multitexturing.
+Using GL 1.3 texture combiners.
+Using framebuffer objects because OpenGL 3.0 is supported and separate blending is supported.
+Shaders are available because OpenGL 2.1 is supported.
+VBOs are available because OpenGL 1.5 is supported.
+
+	Using VBOs: Yes
+	Is Modded: Definitely; Client brand changed to 'appleclient'
+	Type: Client (map_client.txt)
+	Resource Packs: 1.14 Textures
+	Current Language: English (US)
+	Profiler Position: N/A (disabled)
+	CPU: 12x AMD Ryzen 5 5500U with Radeon Graphics 
+	OptiFine Version: OptiFine_1.8.9_HD_U_M5
+	OptiFine Build: ~~NULL~~
+	Render Distance Chunks: 10
+	Mipmaps: 2
+	Anisotropic Filtering: 1
+	Antialiasing: 0
+	Multitexture: false
+	Shaders: null
+	OpenGlVersion: 4.6.14761 Compatibility Profile Context 21.30.14 30.0.13014.8
+	OpenGlRenderer: AMD Radeon(TM) Graphics
+	OpenGlVendor: ATI Technologies Inc.
+	CpuCount: 12

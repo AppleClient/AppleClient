@@ -1,10 +1,11 @@
 package net.minecraft.util;
 
+import java.util.Map;
+import java.util.UUID;
+
 import com.google.common.collect.Maps;
 import com.mojang.authlib.GameProfile;
 import com.mojang.util.UUIDTypeAdapter;
-import java.util.Map;
-import java.util.UUID;
 
 public class Session
 {
@@ -24,6 +25,18 @@ public class Session
     public String getSessionID()
     {
         return "token:" + this.token + ":" + this.playerID;
+    }
+
+    public String getCensoredSessionID()
+    {
+        String censoredToken = "";
+        
+        for (int i = 0; i < this.token.length(); i++)
+        {
+            censoredToken += "#";
+        }
+        
+        return "token:" + censoredToken + ":" + this.playerID;
     }
 
     public String getPlayerID()

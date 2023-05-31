@@ -29,70 +29,73 @@ public class Config
 	
 	public void saveMods()
 	{
-		JsonObject jsonObject = new JsonObject();
-		PrintWriter printWriter = null;
-		
-		for (Mod mod : Apple.CLIENT.getModsManager().getMods())
+		new Thread(() ->
 		{
-			JsonObject jsonMod = new JsonObject();
-			jsonMod.addProperty("Enabled", mod.isEnabled());
-			jsonObject.add(mod.getName(), jsonMod);
-			
-			for (Setting setting : mod.getSettings())
-			{
-				if (setting.getTypeOfSetting().equals("Check Box"))
-				{
-					jsonMod.addProperty(setting.getName(), setting.getCheckBoxValue());
-				}
-				
-				else if (setting.getTypeOfSetting().equals("Mode"))
-				{
-					jsonMod.addProperty(setting.getName(), setting.getModeValue());
-				}
-				
-				else if (setting.getTypeOfSetting().equals("Slider"))
-				{
-					jsonMod.addProperty(setting.getName(), setting.getSliderValue());
-				}
-				
-				else if (setting.getTypeOfSetting().equals("Text Box"))
-				{
-					jsonMod.addProperty(setting.getName(), setting.getTextBoxValue());
-				}
-				
-				else
-				{
-					jsonMod.addProperty(setting.getName(), setting.getColors()[0] + ", " + setting.getColors()[1] + ", " + setting.getColors()[2]);
-				}
-			}
-			
-			if (mod.hasGUI())
-			{
-				jsonMod.addProperty("Position X", mod.getX());
-				jsonMod.addProperty("Position Y", mod.getY());
-			}
-		}
-		
-		jsonObject.addProperty("Click GUI Size", Apple.CLIENT.getDragGUI().clickGUI.zoomFactor);
-		
-		try
-		{
-			printWriter = new PrintWriter(new FileWriter(Apple.CONFIG));
-			printWriter.println(this.prettyGson.toJson(jsonObject));
-		}
-		
-		catch (Exception e)
-		{
-			;
-		}
-		
-		finally
-		{
-			if (printWriter != null)
-			{
-				printWriter.close();
-			}
-		}
+		    JsonObject jsonObject = new JsonObject();
+	        PrintWriter printWriter = null;
+	        
+	        for (Mod mod : Apple.CLIENT.getModsManager().getMods())
+	        {
+	            JsonObject jsonMod = new JsonObject();
+	            jsonMod.addProperty("Enabled", mod.isEnabled());
+	            jsonObject.add(mod.getName(), jsonMod);
+	            
+	            for (Setting setting : mod.getSettings())
+	            {
+	                if (setting.getTypeOfSetting().equals("Check Box"))
+	                {
+	                    jsonMod.addProperty(setting.getName(), setting.getCheckBoxValue());
+	                }
+	                
+	                else if (setting.getTypeOfSetting().equals("Mode"))
+	                {
+	                    jsonMod.addProperty(setting.getName(), setting.getModeValue());
+	                }
+	                
+	                else if (setting.getTypeOfSetting().equals("Slider"))
+	                {
+	                    jsonMod.addProperty(setting.getName(), setting.getSliderValue());
+	                }
+	                
+	                else if (setting.getTypeOfSetting().equals("Text Box"))
+	                {
+	                    jsonMod.addProperty(setting.getName(), setting.getTextBoxValue());
+	                }
+	                
+	                else
+	                {
+	                    jsonMod.addProperty(setting.getName(), setting.getColors()[0] + ", " + setting.getColors()[1] + ", " + setting.getColors()[2]);
+	                }
+	            }
+	            
+	            if (mod.hasGUI())
+	            {
+	                jsonMod.addProperty("Position X", mod.getX());
+	                jsonMod.addProperty("Position Y", mod.getY());
+	            }
+	        }
+	        
+	        jsonObject.addProperty("Click GUI Size", Apple.CLIENT.getDragGUI().clickGUI.zoomFactor);
+	        
+	        try
+	        {
+	            printWriter = new PrintWriter(new FileWriter(Apple.CONFIG));
+	            printWriter.println(this.prettyGson.toJson(jsonObject));
+	        }
+	        
+	        catch (Exception e)
+	        {
+	            ;
+	        }
+	        
+	        finally
+	        {
+	            if (printWriter != null)
+	            {
+	                printWriter.close();
+	            }
+	        }
+		}).start();
 	}
 	
 	public void loadMods()
