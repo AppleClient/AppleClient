@@ -63,7 +63,7 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
     private GuiButton buttonResetDemo;
 
     /** Timer used to rotate the panorama, increases every tick. */
-    private int panoramaTimer;
+    public int panoramaTimer;
 
     /**
      * Texture allocated for the current viewport of the main menu's panorama background.
@@ -84,7 +84,6 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
 
     /** Link to the Mojang Support about minimum requirements */
     private String openGLWarningLink;
-    private static final ResourceLocation splashTexts = new ResourceLocation("texts/splashes.txt");
     private static final ResourceLocation minecraftTitleTextures = new ResourceLocation("textures/gui/title/minecraft.png");
 
     /** An array of all the paths to the panorama pictures. */
@@ -123,57 +122,6 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
         
         this.openGLWarning2 = field_96138_a;
         this.field_183502_L = false;
-        this.splashText = "missingno";
-        BufferedReader bufferedreader = null;
-
-        try
-        {
-            List<String> list = Lists.<String>newArrayList();
-            bufferedreader = new BufferedReader(new InputStreamReader(Minecraft.getMinecraft().getResourceManager().getResource(splashTexts).getInputStream(), Charsets.UTF_8));
-            String s;
-
-            while ((s = bufferedreader.readLine()) != null)
-            {
-                s = s.trim();
-
-                if (!s.isEmpty())
-                {
-                    list.add(s);
-                }
-            }
-
-            if (!list.isEmpty())
-            {
-                while (true)
-                {
-                    this.splashText = (String)list.get(RANDOM.nextInt(list.size()));
-
-                    if (this.splashText.hashCode() != 125780783)
-                    {
-                        break;
-                    }
-                }
-            }
-        }
-        catch (IOException var12)
-        {
-            ;
-        }
-        finally
-        {
-            if (bufferedreader != null)
-            {
-                try
-                {
-                    bufferedreader.close();
-                }
-                catch (IOException var11)
-                {
-                    ;
-                }
-            }
-        }
-
         this.updateCounter = RANDOM.nextFloat();
         this.openGLWarning1 = "";
 
@@ -609,7 +557,7 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
      * Draws the screen and all the components in it. Args : mouseX, mouseY, renderPartialTicks
      */
     public void drawScreen(int mouseX, int mouseY, float partialTicks)
-    {        
+    {
         GlStateManager.disableAlpha();
         this.renderSkybox(mouseX, mouseY, partialTicks);
         GlStateManager.enableAlpha();

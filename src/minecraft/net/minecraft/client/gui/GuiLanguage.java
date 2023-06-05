@@ -4,6 +4,9 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import java.io.IOException;
 import java.util.Map;
+
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.resources.Language;
@@ -100,7 +103,11 @@ public class GuiLanguage extends GuiScreen
      */
     public void drawScreen(int mouseX, int mouseY, float partialTicks)
     {
+        this.drawDefaultBackground();
+        GL11.glEnable(GL11.GL_SCISSOR_TEST);
+        this.scissor(0, 30, this.width, this.height - 60);
         this.list.drawScreen(mouseX, mouseY, partialTicks);
+        GL11.glDisable(GL11.GL_SCISSOR_TEST);
         this.drawCenteredString(this.fontRendererObj, I18n.format("options.language", new Object[0]), this.width / 2, 16, 16777215);
         this.drawCenteredString(this.fontRendererObj, "(" + I18n.format("options.languageWarning", new Object[0]) + ")", this.width / 2, this.height - 56, 8421504);
         super.drawScreen(mouseX, mouseY, partialTicks);

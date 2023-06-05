@@ -6,23 +6,23 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value=""/>
+		<item key="selection" value="checkGLE"/>
 		<list key="findhistory">
-			<item value="backgroundThre"/>
-			<item value="backgroudnThre"/>
-			<item value="startGa"/>
-			<item value="star"/>
-			<item value="60"/>
-			<item value="30"/>
-			<item value="snooper"/>
-			<item value="drawscre"/>
-			<item value="gui"/>
+			<item value="checkGLE"/>
+			<item value="checlGl"/>
+			<item value="checkGL"/>
+			<item value="drawSc"/>
+			<item value="logger"/>
+			<item value="drawSC"/>
+			<item value="drawSCRE"/>
 			<item value="drawScre"/>
-			<item value="drawScree"/>
-			<item value="getLimi"/>
-			<item value="getFP"/>
-			<item value="removeEntityFrom"/>
-			<item value="removeEntity"/>
+			<item value="realms"/>
+			<item value="action"/>
+			<item value="initGui"/>
+			<item value="== 4"/>
+			<item value="updateS"/>
+			<item value="initGUI"/>
+			<item value=" 8"/>
 		</list>
 		<list key="replacehistory">
 			<item value="y"/>
@@ -31,7 +31,7 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item key="DIALOG_X_ORIGIN" value="521"/>
-		<item key="DIALOG_Y_ORIGIN" value="209"/>
+		<item key="DIALOG_Y_ORIGIN" value="15"/>
 		<item key="DIALOG_WIDTH" value="318"/>
 		<item key="DIALOG_HEIGHT" value="295"/>
 		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-21|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>

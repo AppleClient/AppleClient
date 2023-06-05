@@ -1,5 +1,6 @@
 package net.minecraft.client.gui;
 
+import java.awt.Color;
 import java.util.Iterator;
 import java.util.List;
 
@@ -122,8 +123,7 @@ public class GuiNewChat extends Gui
                     {
                         int k3 = j3 > 0 ? 170 : 96;
                         int l3 = this.isScrolled ? 13382451 : 3355562;
-                        drawRect(0, -j3, 2, -j3 - k1, l3 + (k3 << 24));
-                        drawRect(2, -j3, 1, -j3 - k1, 13421772 + (k3 << 24));
+                        drawRect(l + 5, -j3 - 1, l + 6, -j3 - k1 + 20, new Color(255, 255, 255, 128).getRGB());
                     }
                 }
 
@@ -153,7 +153,6 @@ public class GuiNewChat extends Gui
     public void printChatMessageWithOptionalDeletion(IChatComponent chatComponent, int chatLineId)
     {
         this.setChatLine(chatComponent, chatLineId, this.mc.ingameGUI.getUpdateCounter(), false);
-        logger.info("[CHAT] " + chatComponent.getUnformattedText());
     }
 
     /**
@@ -162,7 +161,6 @@ public class GuiNewChat extends Gui
     public void printChatMessageWithOptionalDeletionNoEvent(IChatComponent chatComponent, int chatLineId)
     {
         this.setChatLineNoEvent(chatComponent, chatLineId, this.mc.ingameGUI.getUpdateCounter(), false);
-        logger.info("[CHAT] " + chatComponent.getUnformattedText());
     }
 
     private void setChatLine(IChatComponent chatComponent, int chatLineId, int updateCounter, boolean displayOnly)
@@ -181,6 +179,7 @@ public class GuiNewChat extends Gui
             this.deleteChatLine(chatLineId);
         }
 
+        logger.info("[CHAT] " + chatComponent.getUnformattedText());
         int i = MathHelper.floor_float((float)this.getChatWidth() / this.getChatScale());
         List<IChatComponent> list = GuiUtilRenderComponents.splitText(chatComponent, i, this.mc.fontRendererObj, false, false);
         boolean flag = this.getChatOpen();
@@ -231,6 +230,7 @@ public class GuiNewChat extends Gui
             this.deleteChatLine(chatLineId);
         }
 
+        logger.info("[CHAT] " + chatComponent.getUnformattedText());
         int i = MathHelper.floor_float((float)this.getChatWidth() / this.getChatScale());
         List<IChatComponent> list = GuiUtilRenderComponents.splitText(chatComponent, i, this.mc.fontRendererObj, false, false);
         boolean flag = this.getChatOpen();

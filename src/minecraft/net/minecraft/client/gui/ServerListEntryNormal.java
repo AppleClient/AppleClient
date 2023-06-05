@@ -93,7 +93,7 @@ public class ServerListEntryNormal implements GuiListExtended.IGuiListEntry
         {
             ServerUtil.setFavouriteServer(this.server.serverIP);
             this.mc.getTextureManager().bindTexture(new ResourceLocation("star.png"));
-            Gui.drawScaledCustomSizeModalRect(x + this.mc.fontRendererObj.getStringWidth(this.server.serverName) + 37, y - 2, 12, 12, 12, 12, 12, 12, 12, 12);
+            Gui.drawScaledCustomSizeModalRect(x + this.mc.fontRendererObj.getStringWidth(this.server.serverName) + 37, y - 1, 12, 12, 12, 12, 12, 12, 12, 12);
         }
         
         List<String> list = this.mc.fontRendererObj.listFormattedStringToWidth(this.server.serverMOTD, listWidth - 32 - 2);

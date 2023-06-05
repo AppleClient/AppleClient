@@ -74,7 +74,10 @@ import net.minecraft.client.gui.GuiIngame;
 import net.minecraft.client.gui.GuiIngameMenu;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiMemoryErrorScreen;
+import net.minecraft.client.gui.GuiMultiplayer;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.GuiScreenAddServer;
+import net.minecraft.client.gui.GuiScreenServerList;
 import net.minecraft.client.gui.GuiSleepMP;
 import net.minecraft.client.gui.GuiYesNo;
 import net.minecraft.client.gui.GuiYesNoCallback;
@@ -1016,6 +1019,46 @@ public class Minecraft implements IThreadListener, IPlayerUsage
         {
             this.gameSettings.showDebugInfo = false;
             this.ingameGUI.getChatGUI().clearChatMessages();
+        }
+        
+        if (this.currentScreen instanceof GuiMainMenu && guiScreenIn instanceof GuiMultiplayer)
+        {
+            ((GuiMultiplayer) guiScreenIn).panoramaTimer = ((GuiMainMenu) this.currentScreen).panoramaTimer;
+        }
+        
+        else if (this.currentScreen instanceof GuiMultiplayer && guiScreenIn instanceof GuiMainMenu)
+        {
+            ((GuiMainMenu) guiScreenIn).panoramaTimer = ((GuiMultiplayer) this.currentScreen).panoramaTimer;
+        }
+
+        else if (this.currentScreen instanceof GuiMultiplayer && guiScreenIn instanceof GuiScreenServerList)
+        {
+            ((GuiScreenServerList) guiScreenIn).panoramaTimer = ((GuiMultiplayer) this.currentScreen).panoramaTimer;
+        }
+
+        else if (this.currentScreen instanceof GuiScreenServerList && guiScreenIn instanceof GuiMultiplayer)
+        {
+            ((GuiMultiplayer) guiScreenIn).panoramaTimer = ((GuiScreenServerList) this.currentScreen).panoramaTimer;
+        }
+
+        else if (this.currentScreen instanceof GuiMultiplayer && guiScreenIn instanceof GuiScreenAddServer)
+        {
+            ((GuiScreenAddServer) guiScreenIn).panoramaTimer = ((GuiMultiplayer) this.currentScreen).panoramaTimer;
+        }
+
+        else if (this.currentScreen instanceof GuiScreenAddServer && guiScreenIn instanceof GuiMultiplayer)
+        {
+            ((GuiMultiplayer) guiScreenIn).panoramaTimer = ((GuiScreenAddServer) this.currentScreen).panoramaTimer;
+        }
+        
+        else if (this.currentScreen instanceof GuiMultiplayer && guiScreenIn instanceof GuiMultiplayer && ((GuiMultiplayer) this.currentScreen).parentScreen instanceof GuiMainMenu)
+        {
+            ((GuiMultiplayer) guiScreenIn).panoramaTimer = ((GuiMultiplayer) this.currentScreen).panoramaTimer;
+        }
+        
+        else if (this.currentScreen instanceof GuiMultiplayer)
+        {
+            ((GuiMultiplayer) this.currentScreen).panoramaTimer = 0;
         }
 
         this.currentScreen = (GuiScreen)guiScreenIn;
