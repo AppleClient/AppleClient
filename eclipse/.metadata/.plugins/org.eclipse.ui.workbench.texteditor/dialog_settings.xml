@@ -6,23 +6,23 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="flag1"/>
+		<item key="selection" value=""/>
 		<list key="findhistory">
-			<item value="flag1"/>
-			<item value="isDrawBlockOutline"/>
-			<item value="highligh"/>
-			<item value="high"/>
-			<item value="blockHig"/>
-			<item value="block"/>
-			<item value="blockHo"/>
-			<item value="blockOu"/>
-			<item value="Block"/>
-			<item value="outline"/>
-			<item value="bossba"/>
-			<item value="boss"/>
-			<item value="Cooldow"/>
-			<item value="cooldo"/>
-			<item value="Cooldo"/>
+			<item value="backgroundThre"/>
+			<item value="backgroudnThre"/>
+			<item value="startGa"/>
+			<item value="star"/>
+			<item value="60"/>
+			<item value="30"/>
+			<item value="snooper"/>
+			<item value="drawscre"/>
+			<item value="gui"/>
+			<item value="drawScre"/>
+			<item value="drawScree"/>
+			<item value="getLimi"/>
+			<item value="getFP"/>
+			<item value="removeEntityFrom"/>
+			<item value="removeEntity"/>
 		</list>
 		<list key="replacehistory">
 			<item value="y"/>

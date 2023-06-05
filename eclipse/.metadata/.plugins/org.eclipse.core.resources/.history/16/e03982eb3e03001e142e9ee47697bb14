@@ -1,0 +1,37 @@
+package appu26j.mods.visuals;
+
+import java.util.ArrayList;
+
+import com.google.common.eventbus.Subscribe;
+
+import appu26j.events.entity.EventTick;
+import appu26j.interfaces.ModInterface;
+import appu26j.mods.Category;
+import appu26j.mods.Mod;
+import net.minecraft.entity.Entity;
+
+@ModInterface(name = "Performance", description = "Improves FPS.", category = Category.VISUALS)
+public class Performance extends Mod
+{
+    private ArrayList<Entity> entities = new ArrayList<>();
+    
+    @Subscribe
+    public void onTick(EventTick e)
+    {
+        ArrayList<Entity> removeQueue = new ArrayList<>();
+        
+        for (Entity entity : this.mc.theWorld.playerEntities)
+        {
+            if (!this.mc.thePlayer.canEntityBeSeen(entity))
+            {
+                removeQueue.add(entity);
+            }
+        }
+        
+        for (Entity entity : removeQueue)
+        {
+            this.mc.theWorld.removeEntityFromWorld(entity.getEntityId());
+        }
+        
+    }
+}

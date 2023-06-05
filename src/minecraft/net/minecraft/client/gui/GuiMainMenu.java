@@ -53,6 +53,7 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
     private static final AtomicInteger field_175373_f = new AtomicInteger(0);
     private static final Logger logger = LogManager.getLogger();
     private static final Random RANDOM = new Random();
+    private float index = 1;
 
     /** Counts the number of screen updates. */
     private float updateCounter;
@@ -97,6 +98,7 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
     private int field_92019_w;
     private ResourceLocation backgroundTexture;
     private boolean aBoolean = false;
+    private boolean animation = false;
 
     /** Minecraft Realms button. */
     private GuiButton realmsButton;
@@ -109,6 +111,7 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
     {
         if (AppleClientVersionChecker.firstTimeInitialize)
         {
+            this.animation = true;
             this.aBoolean = !Apple.CLIENT.getVersionChecker().isUpToDate();
             AppleClientVersionChecker.firstTimeInitialize = false;
         }
@@ -606,7 +609,7 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
      * Draws the screen and all the components in it. Args : mouseX, mouseY, renderPartialTicks
      */
     public void drawScreen(int mouseX, int mouseY, float partialTicks)
-    {
+    {        
         GlStateManager.disableAlpha();
         this.renderSkybox(mouseX, mouseY, partialTicks);
         GlStateManager.enableAlpha();
@@ -703,6 +706,34 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
             FixedFontRenderer.drawString("We recommend you update Apple Client.", x - (FixedFontRenderer.getStringWidth("We recommend you update Apple Client.", 8) / 2), y - 40, 8, -1);
             this.drawRect(x - 55, y + 30, x + 55, y + 60, this.isInside(mouseX, mouseY, x - 55, y + 30, x + 55, y + 60) ? new Color(75, 75, 90).getRGB() : new Color(85, 85, 100).getRGB());
             FixedFontRenderer.drawString("OK", x - (FixedFontRenderer.getStringWidth("OK", 12) / 2), y + 40, 12, -1);
+        }
+        
+        if (this.animation)
+        {
+            this.drawRect(0, 0, (this.width / 2) - 128, this.height, new Color(255, 255, 255, (int) (this.index * 255)).getRGB());
+            this.drawRect((this.width / 2) + 128, 0, this.width, this.height, new Color(255, 255, 255, (int) (this.index * 255)).getRGB());
+            this.drawRect((this.width / 2) - 128, 0, (this.width / 2) + 128, (this.height / 2) - 128, new Color(255, 255, 255, (int) (this.index * 255)).getRGB());
+            this.drawRect((this.width / 2) - 128, (this.height / 2) + 128, (this.width / 2) + 128, this.height, new Color(255, 255, 255, (int) (this.index * 255)).getRGB());
+            GlStateManager.enableAlpha();
+            GlStateManager.enableBlend();
+            GlStateManager.alphaFunc(516, 0);
+            GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+            ResourceLocation image = new ResourceLocation("textures/gui/title/mojang.png");
+            this.mc.getTextureManager().bindTexture(image);
+            GlStateManager.color(1, 1, 1, this.index);
+            this.drawScaledCustomSizeModalRect((this.width / 2) - 128, (this.height / 2) - 128, 0, 0, 256, 256, 256, 256, 256, 256);
+            
+            if (this.index > 0)
+            {
+                this.index -= 0.025F;
+                this.index = this.index < 0 ? 0 : this.index;
+            }
+            
+            if (this.index == 0)
+            {
+                this.animation = false;
+                this.index = 1;
+            }
         }
     }
 

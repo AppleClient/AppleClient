@@ -275,7 +275,6 @@ public class RegionFile
         }
         catch (IOException ioexception)
         {
-            ioexception.printStackTrace();
         }
     }
 

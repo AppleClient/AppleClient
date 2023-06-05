@@ -25,9 +25,11 @@
     <fullyQualifiedTypeName name="appu26j.events.Event"/>
     <fullyQualifiedTypeName name="appu26j.mods.visuals.Chat"/>
     <fullyQualifiedTypeName name="appu26j.utils.ServerUtil"/>
-    <fullyQualifiedTypeName name="appu26j.mods.Category"/>
     <fullyQualifiedTypeName name="appu26j.Apple"/>
     <fullyQualifiedTypeName name="club.marshadow.ColorUtil"/>
-    <fullyQualifiedTypeName name="java.awt.Color"/>
     <fullyQualifiedTypeName name="net.minecraft.client.gui.Gui"/>
+    <fullyQualifiedTypeName name="appu26j.mods.Category"/>
+    <fullyQualifiedTypeName name="net.minecraft.entity.Entity"/>
+    <fullyQualifiedTypeName name="java.awt.Color"/>
+    <fullyQualifiedTypeName name="org.lwjgl.opengl.Display"/>
 </qualifiedTypeNameHistroy>
