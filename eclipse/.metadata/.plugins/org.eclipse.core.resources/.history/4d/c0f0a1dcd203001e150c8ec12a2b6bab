@@ -1,0 +1,84 @@
+/*
+ * Decompiled with CFR 0.150.
+ * 
+ * Could not load the following classes:
+ *  net.labymod.api.Laby
+ *  net.labymod.api.client.gfx.BeginMode
+ *  net.labymod.api.client.gfx.GFXBeginMode
+ *  net.labymod.api.client.gfx.GFXBridge
+ *  net.labymod.api.client.gfx.GFXDataType
+ *  net.labymod.api.client.gfx.GFXObject
+ *  net.labymod.api.client.gfx.buffer.BufferDataUsage
+ *  net.labymod.api.client.gfx.buffer.BufferObject
+ *  net.labymod.api.client.gfx.buffer.BufferTarget
+ *  net.labymod.api.client.gfx.buffer.GFXBufferDataUsage
+ *  net.labymod.api.client.gfx.buffer.GFXBufferTarget
+ *  net.labymod.api.client.gfx.buffer.VertexArrayObject
+ */
+package net.labymod.addons.flux.core.buffer;
+
+import net.labymod.api.Laby;
+import net.labymod.api.client.gfx.BeginMode;
+import net.labymod.api.client.gfx.GFXBeginMode;
+import net.labymod.api.client.gfx.GFXBridge;
+import net.labymod.api.client.gfx.GFXDataType;
+import net.labymod.api.client.gfx.GFXObject;
+import net.labymod.api.client.gfx.buffer.BufferDataUsage;
+import net.labymod.api.client.gfx.buffer.BufferObject;
+import net.labymod.api.client.gfx.buffer.BufferTarget;
+import net.labymod.api.client.gfx.buffer.GFXBufferDataUsage;
+import net.labymod.api.client.gfx.buffer.GFXBufferTarget;
+import net.labymod.api.client.gfx.buffer.VertexArrayObject;
+
+public abstract class RenderableBuffer<T>
+implements AutoCloseable {
+    protected final GFXBridge gfx = Laby.gfx();
+    protected VertexArrayObject vao = this.gfx.createVertexArray();
+    protected BufferObject vbo = this.gfx.createBuffer((BufferTarget)GFXBufferTarget.ARRAY, (BufferDataUsage)GFXBufferDataUsage.STATIC_DRAW);
+    protected BufferObject ebo = this.gfx.createBuffer((BufferTarget)GFXBufferTarget.ELEMENT_ARRAY, (BufferDataUsage)GFXBufferDataUsage.STATIC_DRAW);
+    protected boolean sequentialBuffer;
+    protected int indices;
+
+    public void bind() {
+        this.vao.bind();
+    }
+
+    public void bindBuffers() {
+        this.vbo.bind();
+        this.ebo.bind();
+    }
+
+    public void unbindBuffers() {
+        this.ebo.unbind();
+        this.vbo.unbind();
+    }
+
+    public void unbind() {
+        this.vao.unbind();
+    }
+
+    public void draw() {
+        if (this.indices == 0) {
+            return;
+        }
+        this.gfx.drawElements((BeginMode)GFXBeginMode.QUADS, this.indices, (GFXObject)GFXDataType.UNSIGNED_INT);
+    }
+
+    public void drawInstanced(int primcount) {
+        this.gfx.drawElementsInstanced((BeginMode)GFXBeginMode.QUADS, this.indices, (GFXObject)GFXDataType.UNSIGNED_INT, primcount);
+    }
+
+    public abstract void upload(T var1);
+
+    @Override
+    public void close() {
+        this.vbo.dispose();
+        this.vbo = null;
+        if (!this.sequentialBuffer) {
+            this.ebo.dispose();
+            this.ebo = null;
+        }
+        this.vao.dispose();
+    }
+}
+

@@ -1,0 +1,79 @@
+/*
+ * Decompiled with CFR 0.150.
+ */
+package net.labymod.addons.flux.core.vertex.game.asm;
+
+public final class BufferWriterMethod
+extends Enum<BufferWriterMethod> {
+    public static final /* enum */ BufferWriterMethod WRITE_FLOAT = new BufferWriterMethod("writeFloat", "(IF)V", 23, 4);
+    public static final /* enum */ BufferWriterMethod WRITE_SHORT = new BufferWriterMethod("writeShort", "(IS)V", 21, 2);
+    public static final /* enum */ BufferWriterMethod WRITE_BYTE = new BufferWriterMethod("writeByte", "(IB)V", 21, 1);
+    public static final /* enum */ BufferWriterMethod WRITE_INT = new BufferWriterMethod("writeInt", "(II)V", 21, 4);
+    private static final BufferWriterMethod[] VALUES;
+    private final String methodName;
+    private final String methodDesc;
+    private final int valueOpcode;
+    private final int size;
+    private static final /* synthetic */ BufferWriterMethod[] $VALUES;
+
+    public static BufferWriterMethod[] values() {
+        return (BufferWriterMethod[])$VALUES.clone();
+    }
+
+    public static BufferWriterMethod valueOf(String name) {
+        return Enum.valueOf(BufferWriterMethod.class, name);
+    }
+
+    private BufferWriterMethod(String methodName, String methodDesc, int valueOpcode, int size) {
+        this.methodName = methodName;
+        this.methodDesc = methodDesc;
+        this.valueOpcode = valueOpcode;
+        this.size = size;
+    }
+
+    public static BufferWriterMethod[] getValues() {
+        return VALUES;
+    }
+
+    public static BufferWriterMethod get(String name) {
+        for (BufferWriterMethod value : VALUES) {
+            if (!value.name().equals(name)) continue;
+            return value;
+        }
+        throw new IllegalStateException("No enum constant " + BufferWriterMethod.class.getCanonicalName() + "." + name);
+    }
+
+    public static BufferWriterMethod getOrDefault(String name, BufferWriterMethod defaultValue) {
+        for (BufferWriterMethod value : VALUES) {
+            if (!value.name().equals(name)) continue;
+            return value;
+        }
+        return defaultValue;
+    }
+
+    public String getMethodName() {
+        return this.methodName;
+    }
+
+    public String getMethodDesc() {
+        return this.methodDesc;
+    }
+
+    public int getValueOpcode() {
+        return this.valueOpcode;
+    }
+
+    public int getSize() {
+        return this.size;
+    }
+
+    private static /* synthetic */ BufferWriterMethod[] $values() {
+        return new BufferWriterMethod[]{WRITE_FLOAT, WRITE_SHORT, WRITE_BYTE, WRITE_INT};
+    }
+
+    static {
+        $VALUES = BufferWriterMethod.$values();
+        VALUES = BufferWriterMethod.values();
+    }
+}
+

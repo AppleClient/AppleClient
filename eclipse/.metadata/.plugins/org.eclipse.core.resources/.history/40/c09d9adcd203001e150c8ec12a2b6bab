@@ -1,0 +1,17 @@
+/*
+ * Decompiled with CFR 0.150.
+ * 
+ * Could not load the following classes:
+ *  net.labymod.api.reference.ReferenceStorageAccessor
+ *  net.labymod.api.service.annotation.AutoService
+ */
+package net.labymod.addons.flux.core.generated;
+
+import net.labymod.api.reference.ReferenceStorageAccessor;
+import net.labymod.api.service.annotation.AutoService;
+
+@AutoService(value=ReferenceStorageAccessor.class)
+public class DefaultReferenceStorage
+implements ReferenceStorageAccessor {
+}
+

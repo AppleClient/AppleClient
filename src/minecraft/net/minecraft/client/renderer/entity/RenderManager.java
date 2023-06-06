@@ -7,9 +7,11 @@ import com.google.common.collect.Maps;
 
 import appu26j.Apple;
 import appu26j.mods.visuals.Visuals;
+import appu26j.performance.CullHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBed;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.model.ModelChicken;
@@ -143,6 +145,7 @@ public class RenderManager
     /** whether bounding box should be rendered or not */
     private boolean debugBoundingBox = false;
     public Render renderRender = null;
+    private CullHelper.CullFunction<Entity> cullFunction = entity -> !entity.isDead && !Minecraft.getMinecraft().theWorld.isVisible(entity);
 
     public RenderManager(TextureManager renderEngineIn, RenderItem itemRendererIn)
     {
@@ -382,8 +385,9 @@ public class RenderManager
 
     public boolean doRenderEntity(Entity entity, double x, double y, double z, float entityYaw, float partialTicks, boolean hideDebugBox)
     {
+        boolean needsToRender = !CullHelper.isCulled(CullHelper.CullType.ENTITY, this.cullFunction.apply(entity));
         Render<Entity> render = null;
-
+        
         try
         {
             render = this.<Entity>getEntityRenderObject(entity);
@@ -402,7 +406,15 @@ public class RenderManager
                         this.renderRender = render;
                     }
 
-                    render.doRender(entity, x, y, z, entityYaw, partialTicks);
+                    if (needsToRender)
+                    {
+                        render.doRender(entity, x, y, z, entityYaw, partialTicks);
+                    }
+                    
+                    else
+                    {
+                        render.renderName(entity, x, y, z);
+                    }
                 }
                 catch (Throwable throwable2)
                 {
@@ -411,7 +423,7 @@ public class RenderManager
 
                 try
                 {
-                    if (!this.renderOutlines)
+                    if (!this.renderOutlines && needsToRender)
                     {
                         render.doRenderShadowAndFire(entity, x, y, z, entityYaw, partialTicks);
                     }
@@ -421,7 +433,7 @@ public class RenderManager
                     throw new ReportedException(CrashReport.makeCrashReport(throwable1, "Post-rendering entity in world"));
                 }
 
-                if (this.debugBoundingBox && !entity.isInvisible() && !hideDebugBox)
+                if (this.debugBoundingBox && !entity.isInvisible() && !hideDebugBox && needsToRender)
                 {
                     try
                     {

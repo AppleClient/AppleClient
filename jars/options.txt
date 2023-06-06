@@ -3,14 +3,14 @@ mouseSensitivity:0.41549295
 fov:0.125
 gamma:100.0
 saturation:0.0
-renderDistance:10
+renderDistance:8
 guiScale:3
 particles:0
 bobView:true
 anaglyph3d:false
 maxFps:260
 fboEnable:true
-difficulty:1
+difficulty:2
 fancyGraphics:false
 ao:1
 renderClouds:true
@@ -52,7 +52,7 @@ streamChatEnabled:0
 streamChatUserFilter:0
 streamMicToggleBehavior:0
 forceUnicodeFont:false
-allowBlockAlternatives:false
+allowBlockAlternatives:true
 reducedDebugInfo:false
 useNativeTransport:true
 entityShadows:true

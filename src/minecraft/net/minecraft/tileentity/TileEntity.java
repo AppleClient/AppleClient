@@ -1,21 +1,27 @@
 package net.minecraft.tileentity;
 
-import com.google.common.collect.Maps;
 import java.util.Map;
 import java.util.concurrent.Callable;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import com.google.common.collect.Maps;
+
+import appu26j.performance.CullingTargetAccessor;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockJukebox;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.crash.CrashReportCategory;
+import net.minecraft.entity.item.EntityArmorStand;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
-public abstract class TileEntity
+public abstract class TileEntity implements CullingTargetAccessor
 {
     private static final Logger logger = LogManager.getLogger();
     private static Map < String, Class <? extends TileEntity >> nameToClassMap = Maps. < String, Class <? extends TileEntity >> newHashMap();
@@ -29,7 +35,71 @@ public abstract class TileEntity
 
     /** the Block type that this TileEntity is contained within */
     protected Block blockType;
+    private boolean lastCheckEvenTick = false, lastCullingVisible = true;
+    private long lastTimeChecked = 0;
 
+    @Override
+    public boolean isLastCullingVisible()
+    {
+        return this.lastCullingVisible;
+    }
+
+    @Override
+    public void setLastCullingVisible(boolean cullingVisible, boolean evenTick)
+    {
+        this.lastCullingVisible = cullingVisible;
+        this.lastCheckEvenTick = evenTick;
+        this.lastTimeChecked = System.currentTimeMillis();
+    }
+    
+    @Override
+    public boolean isLastCheckEvenTick()
+    {
+        return this.lastCheckEvenTick;
+    }
+    
+    @Override
+    public long getLastTimeChecked()
+    {
+        return this.lastTimeChecked;
+    }
+    
+    @Override
+    public double getMinX()
+    {
+        return this.pos.getX();
+    }
+
+    @Override
+    public double getMinY()
+    {
+        return this.pos.getY();
+    }
+    
+    @Override
+    public double getMinZ()
+    {
+        return this.pos.getZ();
+    }
+    
+    @Override
+    public double getMaxX()
+    {
+        return this.pos.getX() + 1;
+    }
+
+    @Override
+    public double getMaxY()
+    {
+        return this.pos.getY() + 1;
+    }
+
+    @Override
+    public double getMaxZ()
+    {
+        return this.pos.getZ() + 1;
+    }
+    
     /**
      * Adds a new two-way mapping between the class and its string name in both hashmaps.
      */

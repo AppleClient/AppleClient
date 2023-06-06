@@ -1,0 +1,137 @@
+---- Minecraft Crash Report ----
+// I bet Cylons wouldn't have this problem.
+
+Time: 6/6/23 11:25 AM
+Description: Rendering entity in world
+
+java.lang.Error: Unresolved compilation problem: 
+	Type mismatch: cannot convert from double to float
+
+	at net.minecraft.client.renderer.entity.Render.renderLivingLabel(Render.java:382)
+	at net.minecraft.client.renderer.entity.Render.renderOffsetLivingLabel(Render.java:90)
+	at net.minecraft.client.renderer.entity.RenderPlayer.renderOffsetLivingLabel(RenderPlayer.java:154)
+	at net.minecraft.client.renderer.entity.RenderPlayer.renderOffsetLivingLabel(RenderPlayer.java:1)
+	at net.minecraft.client.renderer.entity.RendererLivingEntity.renderName(RendererLivingEntity.java:722)
+	at net.minecraft.client.renderer.entity.RendererLivingEntity.renderName(RendererLivingEntity.java:1)
+	at net.minecraft.client.renderer.entity.Render.doRender(Render.java:72)
+	at net.minecraft.client.renderer.entity.RendererLivingEntity.doRender(RendererLivingEntity.java:287)
+	at net.minecraft.client.renderer.entity.RenderPlayer.doRender(RenderPlayer.java:63)
+	at net.minecraft.client.renderer.entity.RenderPlayer.doRender(RenderPlayer.java:1)
+	at net.minecraft.client.renderer.entity.RendererLivingEntity.doRender(RendererLivingEntity.java:1)
+	at net.minecraft.client.renderer.entity.RenderManager.doRenderEntity(RenderManager.java:411)
+	at net.minecraft.client.renderer.entity.RenderManager.renderEntityStatic(RenderManager.java:360)
+	at net.minecraft.client.renderer.entity.RenderManager.renderEntitySimple(RenderManager.java:327)
+	at net.minecraft.client.renderer.RenderGlobal.renderEntities(RenderGlobal.java:824)
+	at net.minecraft.client.renderer.EntityRenderer.renderWorldPass(EntityRenderer.java:1770)
+	at net.minecraft.client.renderer.EntityRenderer.renderWorld(EntityRenderer.java:1578)
+	at net.minecraft.client.renderer.EntityRenderer.updateCameraAndRender(EntityRenderer.java:1368)
+	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1203)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:439)
+	at net.minecraft.client.main.Main.main(Main.java:114)
+	at Start.main(Start.java:16)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Stacktrace:
+	at net.minecraft.client.renderer.entity.Render.renderLivingLabel(Render.java:382)
+	at net.minecraft.client.renderer.entity.Render.renderOffsetLivingLabel(Render.java:90)
+	at net.minecraft.client.renderer.entity.RenderPlayer.renderOffsetLivingLabel(RenderPlayer.java:154)
+	at net.minecraft.client.renderer.entity.RenderPlayer.renderOffsetLivingLabel(RenderPlayer.java:1)
+	at net.minecraft.client.renderer.entity.RendererLivingEntity.renderName(RendererLivingEntity.java:722)
+	at net.minecraft.client.renderer.entity.RendererLivingEntity.renderName(RendererLivingEntity.java:1)
+	at net.minecraft.client.renderer.entity.Render.doRender(Render.java:72)
+	at net.minecraft.client.renderer.entity.RendererLivingEntity.doRender(RendererLivingEntity.java:287)
+	at net.minecraft.client.renderer.entity.RenderPlayer.doRender(RenderPlayer.java:63)
+	at net.minecraft.client.renderer.entity.RenderPlayer.doRender(RenderPlayer.java:1)
+	at net.minecraft.client.renderer.entity.RendererLivingEntity.doRender(RendererLivingEntity.java:1)
+
+-- Entity being rendered --
+Details:
+	Entity Type: null (net.minecraft.client.entity.EntityPlayerSP)
+	Entity ID: 144
+	Entity Name: AppleClient
+	Entity's Exact location: 589.06, 54.00, 159.51
+	Entity's Block location: 589.00,54.00,159.00 - World: (589,54,159), Chunk: (at 13,3,15 in 36,9; contains blocks 576,0,144 to 591,255,159), Region: (1,0; contains chunks 32,0 to 63,31, blocks 512,0,0 to 1023,255,511)
+	Entity's Momentum: 0.00, -0.08, 0.00
+	Entity's Rider: ~~ERROR~~ NullPointerException: null
+	Entity's Vehicle: ~~ERROR~~ NullPointerException: null
+
+-- Renderer details --
+Details:
+	Assigned renderer: net.minecraft.client.renderer.entity.RenderPlayer@80347b2
+	Location: 0.00,0.00,0.00 - World: (0,0,0), Chunk: (at 0,0,0 in 0,0; contains blocks 0,0,0 to 15,255,15), Region: (0,0; contains chunks 0,0 to 31,31, blocks 0,0,0 to 511,255,511)
+	Rotation: -2227.669
+	Delta: 0.29947138
+Stacktrace:
+	at net.minecraft.client.renderer.entity.RenderManager.doRenderEntity(RenderManager.java:411)
+	at net.minecraft.client.renderer.entity.RenderManager.renderEntityStatic(RenderManager.java:360)
+	at net.minecraft.client.renderer.entity.RenderManager.renderEntitySimple(RenderManager.java:327)
+	at net.minecraft.client.renderer.RenderGlobal.renderEntities(RenderGlobal.java:824)
+	at net.minecraft.client.renderer.EntityRenderer.renderWorldPass(EntityRenderer.java:1770)
+	at net.minecraft.client.renderer.EntityRenderer.renderWorld(EntityRenderer.java:1578)
+
+-- Affected level --
+Details:
+	Level name: MpServer
+	All players: 1 total; [EntityPlayerSP['AppleClient'/144, l='MpServer', x=589.06, y=54.00, z=159.51]]
+	Chunk stats: MultiplayerChunkCache: 289, 289
+	Level seed: 0
+	Level generator: ID 02 - largeBiomes, ver 0. Features enabled: false
+	Level generator options: 
+	Level spawn location: 584.00,64.00,166.00 - World: (584,64,166), Chunk: (at 8,4,6 in 36,10; contains blocks 576,0,160 to 591,255,175), Region: (1,0; contains chunks 32,0 to 63,31, blocks 512,0,0 to 1023,255,511)
+	Level time: 12353 game time, 14001 day time
+	Level dimension: 0
+	Level storage version: 0x00000 - Unknown?
+	Level weather: Rain time: 0 (now: false), thunder time: 0 (now: false)
+	Level game mode: Game mode: survival (ID 0). Hardcore: false. Cheats: false
+	Forced entities: 42 total; [EntityCreeper['Creeper'/12419, l='MpServer', x=574.44, y=55.00, z=140.69], EntityCreeper['Creeper'/12421, l='MpServer', x=596.44, y=52.00, z=133.94], EntityPlayerSP['AppleClient'/144, l='MpServer', x=589.06, y=54.00, z=159.51], EntityZombie['Zombie'/21527, l='MpServer', x=557.50, y=67.00, z=223.50], EntitySpider['Spider'/21528, l='MpServer', x=552.97, y=64.00, z=211.25], EntitySpider['Spider'/21529, l='MpServer', x=554.50, y=67.00, z=222.00], EntityZombie['Zombie'/21530, l='MpServer', x=556.50, y=67.00, z=225.50], EntityZombie['Zombie'/21532, l='MpServer', x=594.78, y=63.00, z=123.41], EntityCreeper['Creeper'/6429, l='MpServer', x=575.59, y=55.00, z=141.06], EntityCreeper['Creeper'/6432, l='MpServer', x=570.38, y=44.00, z=154.00], EntityCreeper['Creeper'/6433, l='MpServer', x=599.94, y=53.00, z=149.47], EntityZombie['Zombie'/6434, l='MpServer', x=593.28, y=56.00, z=151.03], EntityCreeper['Creeper'/16816, l='MpServer', x=590.19, y=56.41, z=148.69], EntityCreeper['Creeper'/16817, l='MpServer', x=586.00, y=53.00, z=136.41], EntitySkeleton['Skeleton'/16818, l='MpServer', x=590.97, y=56.00, z=148.69], EntitySkeleton['Skeleton'/19510, l='MpServer', x=577.50, y=55.00, z=202.50], EntityZombie['Zombie'/19512, l='MpServer', x=609.50, y=64.00, z=221.50], EntityCreeper['Creeper'/19513, l='MpServer', x=619.50, y=64.00, z=222.50], EntityXPOrb['Experience Orb'/21178, l='MpServer', x=589.25, y=51.00, z=157.63], EntitySpider['Spider'/20667, l='MpServer', x=660.50, y=67.00, z=215.50], EntitySkeleton['Skeleton'/60, l='MpServer', x=579.50, y=53.00, z=126.88], EntityBat['Bat'/61, l='MpServer', x=568.75, y=42.10, z=160.75], EntityCreeper['Creeper'/20670, l='MpServer', x=606.50, y=63.00, z=113.50], EntitySpider['Spider'/576, l='MpServer', x=581.19, y=34.19, z=165.28], EntitySpider['Spider'/20672, l='MpServer', x=617.28, y=63.00, z=112.56], EntityCreeper['Creeper'/20673, l='MpServer', x=615.03, y=63.00, z=116.75], EntityBat['Bat'/67, l='MpServer', x=586.75, y=60.10, z=137.75], EntityBat['Bat'/68, l='MpServer', x=578.25, y=54.10, z=131.75], EntityBat['Bat'/69, l='MpServer', x=580.75, y=53.10, z=139.59], EntityZombie['Zombie'/15557, l='MpServer', x=582.56, y=26.22, z=141.22], EntityBat['Bat'/70, l='MpServer', x=586.75, y=59.10, z=133.50], EntityCreeper['Creeper'/71, l='MpServer', x=605.66, y=56.00, z=145.00], EntityBat['Bat'/73, l='MpServer', x=577.66, y=41.10, z=153.69], EntityCreeper['Creeper'/74, l='MpServer', x=589.03, y=35.06, z=173.47], EntityZombie['Zombie'/80, l='MpServer', x=594.16, y=56.00, z=151.44], EntityCreeper['Creeper'/81, l='MpServer', x=601.28, y=46.09, z=172.28], EntityBat['Bat'/593, l='MpServer', x=597.28, y=47.10, z=163.66], EntityBat['Bat'/82, l='MpServer', x=605.25, y=55.10, z=179.25], EntityBat['Bat'/83, l='MpServer', x=603.25, y=55.10, z=183.53], EntityBat['Bat'/84, l='MpServer', x=598.06, y=55.10, z=185.47], EntityItem['item.item.leather'/21239, l='MpServer', x=591.88, y=54.00, z=160.75], EntityItem['item.item.beefRaw'/21240, l='MpServer', x=591.34, y=54.00, z=161.88]]
+	Retry entities: 0 total; []
+	Server brand: vanilla
+	Server type: Integrated singleplayer server
+Stacktrace:
+	at net.minecraft.client.multiplayer.WorldClient.addWorldInfoToCrashReport(WorldClient.java:410)
+	at net.minecraft.client.Minecraft.addGraphicsAndWorldToCrashReport(Minecraft.java:2839)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:459)
+	at net.minecraft.client.main.Main.main(Main.java:114)
+	at Start.main(Start.java:16)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.8.9
+	Operating System: Windows 11 (amd64) version 10.0
+	Java Version: 1.8.0_361, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 602327008 bytes (574 MB) / 1066401792 bytes (1017 MB) up to 1066401792 bytes (1017 MB)
+	JVM Flags: 2 total; -Xmx1024M -Xms1024M
+	IntCache: cache: 0, tcache: 0, allocated: 13, tallocated: 99
+	Launched Version: appleclient
+	LWJGL: 2.9.4
+	OpenGL: AMD Radeon(TM) Graphics GL version 4.6.14761 Compatibility Profile Context 21.30.14 30.0.13014.8, ATI Technologies Inc.
+	GL Caps: Using GL 1.3 multitexturing.
+Using GL 1.3 texture combiners.
+Using framebuffer objects because OpenGL 3.0 is supported and separate blending is supported.
+Shaders are available because OpenGL 2.1 is supported.
+VBOs are available because OpenGL 1.5 is supported.
+
+	Using VBOs: Yes
+	Is Modded: Definitely; Client brand changed to 'appleclient'
+	Type: Client (map_client.txt)
+	Resource Packs: 1.14 Textures
+	Current Language: English (US)
+	Profiler Position: N/A (disabled)
+	CPU: 12x AMD Ryzen 5 5500U with Radeon Graphics 
+	OptiFine Version: OptiFine_1.8.9_HD_U_M5
+	OptiFine Build: ~~NULL~~
+	Render Distance Chunks: 8
+	Mipmaps: 2
+	Anisotropic Filtering: 1
+	Antialiasing: 0
+	Multitexture: false
+	Shaders: null
+	OpenGlVersion: 4.6.14761 Compatibility Profile Context 21.30.14 30.0.13014.8
+	OpenGlRenderer: AMD Radeon(TM) Graphics
+	OpenGlVendor: ATI Technologies Inc.
+	CpuCount: 12

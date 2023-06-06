@@ -1,0 +1,27 @@
+/*
+ * Decompiled with CFR 0.150.
+ */
+package net.labymod.addons.flux.core;
+
+import net.labymod.addons.flux.core.Flux;
+import net.labymod.addons.flux.core.buffer.RenderableBuffer;
+import net.labymod.addons.flux.core.configuration.FluxConfiguration;
+import net.labymod.addons.flux.core.lightning.LightningUpdateQueue;
+import net.labymod.addons.flux.core.world.FluxClientWorld;
+
+public abstract class FluxProvider {
+    public FluxProvider() {
+        FluxConfiguration configuration = (FluxConfiguration)Flux.get().configuration();
+        configuration.enabled().addChangeListener((type, oldValue, newValue) -> this.onResourcesReload());
+        configuration.enhancedRenderer().addChangeListener((type, oldValue, newValue) -> this.onResourcesReload());
+    }
+
+    public abstract RenderableBuffer createRenderableBuffer();
+
+    public abstract LightningUpdateQueue lightningUpdateQueue();
+
+    public abstract FluxClientWorld fluxClientWorld();
+
+    public abstract void onResourcesReload();
+}
+

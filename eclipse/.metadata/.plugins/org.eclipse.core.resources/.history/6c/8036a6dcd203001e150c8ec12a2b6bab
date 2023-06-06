@@ -1,0 +1,94 @@
+/*
+ * Decompiled with CFR 0.150.
+ * 
+ * Could not load the following classes:
+ *  net.labymod.core.util.ArrayIndex
+ *  org.jetbrains.annotations.NotNull
+ */
+package net.labymod.addons.flux.core.batching.buffer;
+
+import java.util.ArrayList;
+import java.util.function.IntFunction;
+import java.util.function.Supplier;
+import net.labymod.addons.flux.core.batching.buffer.RenderLayer;
+import net.labymod.addons.flux.core.batching.buffer.graph.RenderGraph;
+import net.labymod.addons.flux.core.batching.buffer.graph.VanillaRenderGraph;
+import net.labymod.addons.flux.core.batching.gl.FluxRenderType;
+import net.labymod.core.util.ArrayIndex;
+import org.jetbrains.annotations.NotNull;
+
+public abstract class RenderLayerBuffer<C, B extends C> {
+    private final RenderLayer renderLayer;
+    private final ArrayIndex<B> buffers;
+    private final RenderGraph<FluxRenderType> renderTypes;
+    private final Supplier<B> defaultBufferConstructor;
+
+    public RenderLayerBuffer(RenderLayer renderLayer, IntFunction<B[]> arrayConstructor, Supplier<B> defaultBufferConstructor) {
+        this.renderLayer = renderLayer;
+        this.renderTypes = new VanillaRenderGraph(new ArrayList<FluxRenderType>());
+        this.buffers = new ArrayIndex(8, arrayConstructor);
+        this.buffers.fill(defaultBufferConstructor);
+        this.defaultBufferConstructor = defaultBufferConstructor;
+    }
+
+    public C getBuffer(@NotNull FluxRenderType renderType) {
+        return (C)this.getBufferImplementation(renderType);
+    }
+
+    public B getBufferImplementation(@NotNull FluxRenderType renderType) {
+        Object buffer;
+        int index = this.renderTypes.findIndex(renderType);
+        if (index == -1) {
+            index = this.getIndex();
+            this.renderTypes.addEntry(renderType);
+        }
+        if ((buffer = this.buffers.get(index)) == null) {
+            throw new NullPointerException("Could not find a buffer (Index: " + index + ", Type: " + renderType + ")");
+        }
+        this.onPrepareBuffer(buffer, renderType);
+        return (B)buffer;
+    }
+
+    public void endBatch() {
+        for (int index = 0; index < this.renderTypes.size(); ++index) {
+            Object buffer = this.buffers.get(index);
+            if (buffer == null) continue;
+            this.drawBuffer(this.renderTypes.getEntry(index), buffer);
+        }
+        this.renderTypes.clear();
+    }
+
+    protected abstract void drawBuffer(FluxRenderType var1, B var2);
+
+    protected boolean shouldPrepareBuffer(B buffer, FluxRenderType renderType) {
+        return true;
+    }
+
+    protected abstract void prepareBuffer(B var1, FluxRenderType var2);
+
+    private void onPrepareBuffer(B buffer, FluxRenderType renderType) {
+        if (this.shouldPrepareBuffer(buffer, renderType)) {
+            this.prepareBuffer(buffer, renderType);
+        }
+    }
+
+    private int getIndex() {
+        int indexSize;
+        ArrayIndex<B> bufferIndex = this.buffers;
+        int size = this.renderTypes.size();
+        if (size >= (indexSize = bufferIndex.size())) {
+            bufferIndex.grow(indexSize * 2);
+            for (int index = 0; index < bufferIndex.size(); ++index) {
+                Object buffer = bufferIndex.get(index);
+                if (buffer != null) continue;
+                bufferIndex.set(index, this.defaultBufferConstructor.get());
+            }
+        }
+        return size;
+    }
+
+    public String toString() {
+        return "RenderLayerBuffer[" + this.renderLayer.toString() + ", RenderTypes: " + this.renderTypes.size() + "]";
+    }
+}
+

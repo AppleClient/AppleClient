@@ -9,9 +9,11 @@ import java.util.concurrent.Callable;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
+import appu26j.performance.CullHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ActiveRenderInfo;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
@@ -150,7 +152,7 @@ public class EffectRenderer
     }
 
     public void addEffect(EntityFX effect)
-    {
+    {   
         if (effect != null)
         {
             if (!(effect instanceof EntityFirework.SparkFX) || Config.isFireworkParticles())

@@ -1,0 +1,91 @@
+/*
+ * Decompiled with CFR 0.150.
+ * 
+ * Could not load the following classes:
+ *  net.labymod.core.util.ArrayIndex
+ *  org.jetbrains.annotations.NotNull
+ */
+package net.labymod.addons.flux.core.batching.buffer;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.function.IntFunction;
+import net.labymod.addons.flux.core.batching.buffer.BufferTracker;
+import net.labymod.addons.flux.core.batching.buffer.RenderLayer;
+import net.labymod.addons.flux.core.batching.buffer.RenderLayerBuffer;
+import net.labymod.addons.flux.core.batching.gl.FluxRenderType;
+import net.labymod.core.util.ArrayIndex;
+import org.jetbrains.annotations.NotNull;
+
+public abstract class FluxBufferSource<RT, C, B extends C, RLB extends RenderLayerBuffer<C, B>>
+implements BufferTracker {
+    protected final Map<RT, B> fallbackBuffers = new HashMap<RT, B>();
+    protected final List<FluxRenderType> trackedRenderTypes = new ArrayList<FluxRenderType>();
+    protected boolean shouldTrackRenderTypes;
+    private final ArrayIndex<RLB> buffers;
+
+    public FluxBufferSource(IntFunction<RLB[]> arrayConstructor, Function<RenderLayer, RLB> renderLayerBufferConstructor) {
+        RenderLayer[] layers = RenderLayer.values();
+        this.buffers = new ArrayIndex(layers.length, arrayConstructor);
+        this.buffers.fill(index -> (RenderLayerBuffer)renderLayerBufferConstructor.apply(layers[index]));
+    }
+
+    @NotNull
+    public C getBuffer(@NotNull RT renderType) {
+        FluxRenderType self = FluxRenderType.self(renderType);
+        if (self == null) {
+            return this.getFallbackBuffer(renderType);
+        }
+        RenderLayerBuffer buffer = (RenderLayerBuffer)this.buffers.get(self.renderLayer().ordinal());
+        if (buffer == null) {
+            throw new RuntimeException();
+        }
+        return buffer.getBuffer(self);
+    }
+
+    public void endBatch() {
+        this.buffers.forEach(RenderLayerBuffer::endBatch);
+        this.drawFallbackBuffers();
+    }
+
+    public void endLastBatch() {
+        this.drawFallbackBuffers();
+    }
+
+    protected abstract C getFallbackBuffer(RT var1);
+
+    protected abstract void drawBuffer(RT var1, B var2);
+
+    @Override
+    public void beginTracking() {
+        if (this.shouldTrackRenderTypes) {
+            this.endTracking();
+        }
+        this.shouldTrackRenderTypes = true;
+    }
+
+    @Override
+    public void endTracking() {
+        this.shouldTrackRenderTypes = false;
+        if (this.trackedRenderTypes.isEmpty()) {
+            return;
+        }
+        for (FluxRenderType trackedRenderType : this.trackedRenderTypes) {
+            RenderLayerBuffer renderLayerBuffer = (RenderLayerBuffer)this.buffers.get(trackedRenderType.renderLayer().ordinal());
+            if (renderLayerBuffer == null) continue;
+            Object buffer = renderLayerBuffer.getBufferImplementation(trackedRenderType);
+            this.drawBuffer(trackedRenderType, buffer);
+        }
+        this.trackedRenderTypes.clear();
+    }
+
+    private void drawFallbackBuffers() {
+        for (Map.Entry<RT, B> entry : this.fallbackBuffers.entrySet()) {
+            this.drawBuffer(entry.getKey(), entry.getValue());
+        }
+    }
+}
+

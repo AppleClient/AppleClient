@@ -1,0 +1,27 @@
+/*
+ * Decompiled with CFR 0.150.
+ */
+package net.labymod.addons.flux.core.batching.buffer;
+
+public interface BufferTracker {
+    public static void beginTracking(Object obj) {
+        if (!(obj instanceof BufferTracker)) {
+            return;
+        }
+        BufferTracker tracker = (BufferTracker)obj;
+        tracker.beginTracking();
+    }
+
+    public static void endTracking(Object obj) {
+        if (!(obj instanceof BufferTracker)) {
+            return;
+        }
+        BufferTracker tracker = (BufferTracker)obj;
+        tracker.endTracking();
+    }
+
+    public void beginTracking();
+
+    public void endTracking();
+}
+

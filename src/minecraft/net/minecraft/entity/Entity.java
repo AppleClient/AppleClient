@@ -7,6 +7,7 @@ import java.util.concurrent.Callable;
 
 import appu26j.Apple;
 import appu26j.mods.visuals.DamageTilt;
+import appu26j.performance.CullingTargetAccessor;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFence;
 import net.minecraft.block.BlockFenceGate;
@@ -23,6 +24,7 @@ import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.EnchantmentProtection;
 import net.minecraft.entity.effect.EntityLightningBolt;
+import net.minecraft.entity.item.EntityArmorStand;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -51,7 +53,7 @@ import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 
-public abstract class Entity implements ICommandSender
+public abstract class Entity implements ICommandSender, CullingTargetAccessor
 {
     private static final AxisAlignedBB ZERO_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D);
     private static int nextEntityID;
@@ -246,6 +248,81 @@ public abstract class Entity implements ICommandSender
 
     /** The command result statistics for this Entity. */
     private final CommandResultStats cmdResultStats;
+    private boolean lastCheckEvenTick = false;
+    private boolean lastCullingVisible = true;
+    private long lastTimeChecked = 0;
+    
+    @Override
+    public boolean isLastCullingVisible()
+    {
+        return this.lastCullingVisible;
+    }
+
+    @Override
+    public void setLastCullingVisible(boolean cullingVisible, boolean evenTick)
+    {
+        this.lastCullingVisible = cullingVisible;
+        this.lastCheckEvenTick = evenTick;
+        this.lastTimeChecked = System.currentTimeMillis();
+    }
+    
+    @Override
+    public boolean isLastCheckEvenTick()
+    {
+        return this.lastCheckEvenTick;
+    }
+
+    @Override
+    public long getLastTimeChecked()
+    {
+        return this.lastTimeChecked;
+    }
+    
+    @Override
+    public double getMinX()
+    {
+        return this.modify(this.boundingBox.minX, 0, false);
+    }
+    
+    @Override
+    public double getMinY()
+    {
+        return this.modify(this.boundingBox.minY, 1, false);
+    }
+    
+    @Override
+    public double getMinZ()
+    {
+        return this.modify(this.boundingBox.minZ, 2, false);
+    }
+    
+    @Override
+    public double getMaxX()
+    {
+        return this.modify(this.boundingBox.maxX, 0, true);
+    }
+    
+    @Override
+    public double getMaxY()
+    {
+        return this.modify(this.boundingBox.maxY, 1, true);
+    }
+    
+    @Override
+    public double getMaxZ()
+    {
+        return this.modify(this.boundingBox.maxZ, 2, true);
+    }
+    
+    private double modify(double value, int axis, boolean isMax) 
+    {
+        if (this instanceof EntityArmorStand && ((EntityArmorStand) this).hasMarker())
+        {
+            return axis == 1 && isMax ? value + 1.975 : value + (0.25 * (isMax ? 1 : -1));
+        }
+        
+        return value;
+    }
 
     public int getEntityId()
     {

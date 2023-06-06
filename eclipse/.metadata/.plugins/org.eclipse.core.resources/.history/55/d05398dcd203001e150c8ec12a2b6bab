@@ -1,0 +1,51 @@
+/*
+ * Decompiled with CFR 0.150.
+ */
+package net.labymod.addons.flux.core.lightning;
+
+import java.util.Arrays;
+import java.util.BitSet;
+import java.util.Collections;
+import java.util.List;
+import net.labymod.addons.flux.core.Flux;
+import net.labymod.addons.flux.core.configuration.FluxConfiguration;
+import net.labymod.addons.flux.core.configuration.lightning.LightningConfiguration;
+
+public class LightningPreload {
+    public static final LightningPreload INSTANCE = new LightningPreload();
+    private final byte[] preLightBrightData = this.createPreLight(-1);
+    private final byte[] preLightDarkData = this.createPreLight(0);
+
+    public void modify(BitSet skyYMask, List<byte[]> skyUpdates, int lightSectionCount, int minChunkY, LevelAccessor accessor) {
+        FluxConfiguration config = (FluxConfiguration)Flux.get().configuration();
+        LightningConfiguration lightningConfig = config.lightning();
+        if (!((Boolean)config.enabled().get()).booleanValue() || !((Boolean)lightningConfig.preloadLight().get()).booleanValue()) {
+            return;
+        }
+        byte[][] newData = new byte[lightSectionCount][];
+        int serverIndex = 0;
+        for (int y = 0; y < newData.length; ++y) {
+            boolean hasServerData = skyYMask.get(y);
+            if (hasServerData) {
+                newData[y] = skyUpdates.get(serverIndex);
+                ++serverIndex;
+                continue;
+            }
+            newData[y] = accessor.canSeeSky(y + minChunkY) ? this.preLightBrightData : this.preLightDarkData;
+            skyYMask.set(y, true);
+        }
+        skyUpdates.clear();
+        Collections.addAll(skyUpdates, newData);
+    }
+
+    private byte[] createPreLight(int value) {
+        byte[] data = new byte[2048];
+        Arrays.fill(data, (byte)value);
+        return data;
+    }
+
+    public static interface LevelAccessor {
+        public boolean canSeeSky(int var1);
+    }
+}
+

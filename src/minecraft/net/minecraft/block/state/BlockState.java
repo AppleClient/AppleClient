@@ -33,6 +33,7 @@ public class BlockState
         }
     };
     private final Block block;
+    private boolean processed = false;
     private final ImmutableList<IProperty> properties;
     private final ImmutableList<IBlockState> validStates;
 
@@ -199,5 +200,15 @@ public class BlockState
             map.put(property, value);
             return map;
         }
+    }
+    
+    public boolean isProcessed()
+    {
+        return this.processed;
+    }
+    
+    public void setProcessed(boolean processed)
+    {
+        this.processed = processed;
     }
 }

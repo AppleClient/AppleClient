@@ -1,8 +1,14 @@
 package net.minecraft.client.renderer.entity;
 
+import org.lwjgl.opengl.GL11;
+
+import appu26j.Apple;
+import appu26j.mods.visuals.DamageIndicator;
+import appu26j.mods.visuals.NameTags;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.Gui;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
@@ -13,6 +19,7 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.src.Config;
 import net.minecraft.util.AxisAlignedBB;
@@ -23,16 +30,15 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.optifine.entity.model.IEntityRenderer;
 import net.optifine.shaders.Shaders;
-import org.lwjgl.opengl.GL11;
-
-import appu26j.Apple;
-import appu26j.mods.visuals.NameTags;
 
 public abstract class Render<T extends Entity> implements IEntityRenderer
 {
     private static final ResourceLocation shadowTextures = new ResourceLocation("textures/misc/shadow.png");
     protected final RenderManager renderManager;
+    private float previousHealth = 0;
+    private boolean flag = false;
     public float shadowSize;
+    private long time;
 
     /**
      * Determines the darkness of the object's shadow. Higher value makes a darker shadow.
@@ -375,7 +381,7 @@ public abstract class Render<T extends Entity> implements IEntityRenderer
             float f = 1.6F;
             float f1 = 0.016666668F * f;
             GlStateManager.pushMatrix();
-            GlStateManager.translate((float)x + 0.0F, (float)y + entityIn.height + 0.5F, (float)z);
+            GlStateManager.translate((float)x, (float)y + entityIn.height + 0.5F, (float)z);
             GL11.glNormal3f(0.0F, 1.0F, 0.0F);
             GlStateManager.rotate(-this.renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
             GlStateManager.rotate(viewX, 1.0F, 0.0F, 0.0F);
@@ -403,6 +409,7 @@ public abstract class Render<T extends Entity> implements IEntityRenderer
             worldrenderer.pos((double)(j + 1), (double)(-1 + i), 0.0D).color(0.0F, 0.0F, 0.0F, 0.25F).endVertex();
             tessellator.draw();
             GlStateManager.enableTexture2D();
+            DamageIndicator damageIndicator = (DamageIndicator) Apple.CLIENT.getModsManager().getMod("Damage Indicator");
             
             if (renderWithTextShadow)
             {
@@ -425,6 +432,52 @@ public abstract class Render<T extends Entity> implements IEntityRenderer
             else
             {
                 fontrenderer.drawString(str, -fontrenderer.getStringWidth(str) / 2, i, -1);
+            }
+            
+            if (damageIndicator.isEnabled() && entityIn instanceof EntityPlayer && str.contains(entityIn.getName()))
+            {
+                GlStateManager.translate(-0.5F, 0, 0);
+                float maxHearts = ((EntityLivingBase) entityIn).getMaxHealth();
+                float numberOfHearts = ((EntityLivingBase) entityIn).getHealth();
+                Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("textures/gui/icons.png"));
+                
+                if (this.previousHealth != numberOfHearts)
+                {
+                    this.time = System.currentTimeMillis();
+                    this.previousHealth = numberOfHearts;
+                }
+                
+                if (System.currentTimeMillis() <= (this.time + 500))
+                {
+                    this.flag = Minecraft.getMinecraft().thePlayer.ticksExisted % 5 == 0;
+                }
+                
+                else
+                {
+                    this.flag = false;
+                }
+                
+                for (i = 0; i < maxHearts / 2; i++)
+                {
+                    boolean isEven = i % 2 == 0;
+                    GlStateManager.color(1, 1, 1, 1);
+                    Gui.drawModalRectWithCustomSizedTexture((i * 8) - (maxHearts * 2), -10, this.flag ? 25 : 16, 0, 9, 9, 256, 256);
+                }
+                
+                float temp = -1;
+                boolean isEven = false;
+                
+                for (f = 0; f < numberOfHearts; f++)
+                {
+                    if (f % 2 == 0)
+                    {
+                        temp++;
+                    }
+                    
+                    isEven = !isEven;
+                    GlStateManager.color(1, 1, 1, 1);
+                    Gui.drawModalRectWithCustomSizedTexture((temp * 8) - (maxHearts * 2), -10, 52, 0, isEven ? 5 : 9, 9, 256, 256);
+                }
             }
             
             GlStateManager.enableLighting();

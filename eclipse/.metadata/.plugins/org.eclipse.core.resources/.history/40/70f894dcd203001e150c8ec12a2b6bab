@@ -1,0 +1,33 @@
+/*
+ * Decompiled with CFR 0.150.
+ */
+package net.labymod.addons.flux.core.util;
+
+public final class NormalPacker {
+    private static final float RANGE = 127.0f;
+    private static final float NORMALIZE = 0.007874016f;
+
+    public static int pack(float x, float y, float z) {
+        int normX = NormalPacker.normalize(x);
+        int normY = NormalPacker.normalize(y);
+        int normZ = NormalPacker.normalize(z);
+        return normZ << 16 | normY << 8 | normX;
+    }
+
+    public static float unpackX(int packedNormal) {
+        return (float)((byte)(packedNormal & 0xFF)) * 0.007874016f;
+    }
+
+    public static float unpackY(int packedNormal) {
+        return (float)((byte)(packedNormal >> 8 & 0xFF)) * 0.007874016f;
+    }
+
+    public static float unpackZ(int packedNormal) {
+        return (float)((byte)(packedNormal >> 16 & 0xFF)) * 0.007874016f;
+    }
+
+    public static int normalize(float value) {
+        return (int)(value * 127.0f) & 0xFF;
+    }
+}
+

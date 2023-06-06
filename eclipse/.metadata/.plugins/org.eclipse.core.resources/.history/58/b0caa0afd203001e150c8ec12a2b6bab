@@ -1,0 +1,53 @@
+/*
+ * Decompiled with CFR 0.150.
+ * 
+ * Could not load the following classes:
+ *  net.labymod.api.Laby
+ *  net.labymod.api.addon.LabyAddon
+ *  net.labymod.api.client.gui.screen.key.Key
+ *  net.labymod.api.client.gui.screen.key.KeyHandler
+ *  net.labymod.api.client.gui.screen.widget.overlay.ScreenOverlay
+ *  net.labymod.api.configuration.loader.property.ConfigProperty
+ *  net.labymod.api.event.Subscribe
+ *  net.labymod.api.event.client.input.KeyEvent
+ *  net.labymod.api.event.client.input.KeyEvent$State
+ *  net.labymod.api.event.client.resources.pack.ResourceReloadEvent
+ *  net.labymod.api.loader.platform.PlatformEnvironment
+ *  net.labymod.api.models.addon.annotation.AddonMain
+ *  net.labymod.api.service.CustomServiceLoader
+ *  net.labymod.api.service.CustomServiceLoader$ServiceType
+ *  net.labymod.core.loader.DefaultLabyModLoader
+ */
+package net.labymod.addons.flux.core;
+
+import com.google.common.eventbus.Subscribe;
+
+import appu26j.events.mc.EventKey;
+import net.labymod.addons.flux.core.configuration.FluxConfiguration;
+
+public class Flux {
+    public static final String NAMESPACE = "flux";
+    private static FluxProvider provider;
+    private static Flux instance;
+
+    public Flux() {
+        instance = this;
+    }
+
+    public static Flux get() {
+        return instance;
+    }
+
+    protected void enable() {
+    }
+    }
+
+    protected Class<? extends FluxConfiguration> configurationClass() {
+        return FluxConfiguration.class;
+    }
+
+    public static FluxProvider provider() {
+        return provider;
+    }
+}
+

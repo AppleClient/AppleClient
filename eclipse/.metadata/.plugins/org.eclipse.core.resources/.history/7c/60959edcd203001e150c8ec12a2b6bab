@@ -1,0 +1,42 @@
+/*
+ * Decompiled with CFR 0.150.
+ * 
+ * Could not load the following classes:
+ *  net.labymod.api.client.gui.screen.widget.widgets.input.SwitchWidget$SwitchSetting
+ *  net.labymod.api.configuration.loader.Config
+ *  net.labymod.api.configuration.loader.annotation.ParentSwitch
+ *  net.labymod.api.configuration.loader.property.ConfigProperty
+ */
+package net.labymod.addons.flux.core.configuration.entity;
+
+import net.labymod.api.client.gui.screen.widget.widgets.input.SwitchWidget;
+import net.labymod.api.configuration.loader.Config;
+import net.labymod.api.configuration.loader.annotation.ParentSwitch;
+import net.labymod.api.configuration.loader.property.ConfigProperty;
+
+public class EntityConfiguration
+extends Config {
+    private final HideBehindBlocksConfiguration hideBehindBlocks = new HideBehindBlocksConfiguration();
+
+    public HideBehindBlocksConfiguration hideBehindBlocks() {
+        return this.hideBehindBlocks;
+    }
+
+    public static class HideBehindBlocksConfiguration
+    extends Config {
+        @SwitchWidget.SwitchSetting
+        @ParentSwitch
+        private final ConfigProperty<Boolean> enabled = ConfigProperty.create((Object)true);
+        @SwitchWidget.SwitchSetting
+        private final ConfigProperty<Boolean> hideArmorStandName = ConfigProperty.create((Object)true);
+
+        public ConfigProperty<Boolean> enabled() {
+            return this.enabled;
+        }
+
+        public ConfigProperty<Boolean> hideArmorStandName() {
+            return this.hideArmorStandName;
+        }
+    }
+}
+

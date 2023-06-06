@@ -1,0 +1,137 @@
+---- Minecraft Crash Report ----
+// Shall we play a game?
+
+Time: 6/6/23 10:35 AM
+Description: Rendering entity in world
+
+java.lang.Error: Unresolved compilation problem: 
+	isEven cannot be resolved to a variable
+
+	at net.minecraft.client.renderer.entity.Render.renderLivingLabel(Render.java:446)
+	at net.minecraft.client.renderer.entity.Render.renderOffsetLivingLabel(Render.java:87)
+	at net.minecraft.client.renderer.entity.RenderPlayer.renderOffsetLivingLabel(RenderPlayer.java:154)
+	at net.minecraft.client.renderer.entity.RenderPlayer.renderOffsetLivingLabel(RenderPlayer.java:1)
+	at net.minecraft.client.renderer.entity.RendererLivingEntity.renderName(RendererLivingEntity.java:722)
+	at net.minecraft.client.renderer.entity.RendererLivingEntity.renderName(RendererLivingEntity.java:1)
+	at net.minecraft.client.renderer.entity.Render.doRender(Render.java:69)
+	at net.minecraft.client.renderer.entity.RendererLivingEntity.doRender(RendererLivingEntity.java:287)
+	at net.minecraft.client.renderer.entity.RenderPlayer.doRender(RenderPlayer.java:63)
+	at net.minecraft.client.renderer.entity.RenderPlayer.doRender(RenderPlayer.java:1)
+	at net.minecraft.client.renderer.entity.RendererLivingEntity.doRender(RendererLivingEntity.java:1)
+	at net.minecraft.client.renderer.entity.RenderManager.doRenderEntity(RenderManager.java:411)
+	at net.minecraft.client.renderer.entity.RenderManager.renderEntityStatic(RenderManager.java:360)
+	at net.minecraft.client.renderer.entity.RenderManager.renderEntitySimple(RenderManager.java:327)
+	at net.minecraft.client.renderer.RenderGlobal.renderEntities(RenderGlobal.java:824)
+	at net.minecraft.client.renderer.EntityRenderer.renderWorldPass(EntityRenderer.java:1770)
+	at net.minecraft.client.renderer.EntityRenderer.renderWorld(EntityRenderer.java:1578)
+	at net.minecraft.client.renderer.EntityRenderer.updateCameraAndRender(EntityRenderer.java:1368)
+	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1203)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:439)
+	at net.minecraft.client.main.Main.main(Main.java:114)
+	at Start.main(Start.java:16)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Stacktrace:
+	at net.minecraft.client.renderer.entity.Render.renderLivingLabel(Render.java:446)
+	at net.minecraft.client.renderer.entity.Render.renderOffsetLivingLabel(Render.java:87)
+	at net.minecraft.client.renderer.entity.RenderPlayer.renderOffsetLivingLabel(RenderPlayer.java:154)
+	at net.minecraft.client.renderer.entity.RenderPlayer.renderOffsetLivingLabel(RenderPlayer.java:1)
+	at net.minecraft.client.renderer.entity.RendererLivingEntity.renderName(RendererLivingEntity.java:722)
+	at net.minecraft.client.renderer.entity.RendererLivingEntity.renderName(RendererLivingEntity.java:1)
+	at net.minecraft.client.renderer.entity.Render.doRender(Render.java:69)
+	at net.minecraft.client.renderer.entity.RendererLivingEntity.doRender(RendererLivingEntity.java:287)
+	at net.minecraft.client.renderer.entity.RenderPlayer.doRender(RenderPlayer.java:63)
+	at net.minecraft.client.renderer.entity.RenderPlayer.doRender(RenderPlayer.java:1)
+	at net.minecraft.client.renderer.entity.RendererLivingEntity.doRender(RendererLivingEntity.java:1)
+
+-- Entity being rendered --
+Details:
+	Entity Type: null (net.minecraft.client.entity.EntityPlayerSP)
+	Entity ID: 4
+	Entity Name: AppleClient
+	Entity's Exact location: 589.59, 54.00, 158.44
+	Entity's Block location: 589.00,54.00,158.00 - World: (589,54,158), Chunk: (at 13,3,14 in 36,9; contains blocks 576,0,144 to 591,255,159), Region: (1,0; contains chunks 32,0 to 63,31, blocks 512,0,0 to 1023,255,511)
+	Entity's Momentum: 0.00, -0.08, 0.00
+	Entity's Rider: ~~ERROR~~ NullPointerException: null
+	Entity's Vehicle: ~~ERROR~~ NullPointerException: null
+
+-- Renderer details --
+Details:
+	Assigned renderer: net.minecraft.client.renderer.entity.RenderPlayer@40b0436e
+	Location: 0.00,0.00,0.00 - World: (0,0,0), Chunk: (at 0,0,0 in 0,0; contains blocks 0,0,0 to 15,255,15), Region: (0,0; contains chunks 0,0 to 31,31, blocks 0,0,0 to 511,255,511)
+	Rotation: -28.733229
+	Delta: 0.028164148
+Stacktrace:
+	at net.minecraft.client.renderer.entity.RenderManager.doRenderEntity(RenderManager.java:411)
+	at net.minecraft.client.renderer.entity.RenderManager.renderEntityStatic(RenderManager.java:360)
+	at net.minecraft.client.renderer.entity.RenderManager.renderEntitySimple(RenderManager.java:327)
+	at net.minecraft.client.renderer.RenderGlobal.renderEntities(RenderGlobal.java:824)
+	at net.minecraft.client.renderer.EntityRenderer.renderWorldPass(EntityRenderer.java:1770)
+	at net.minecraft.client.renderer.EntityRenderer.renderWorld(EntityRenderer.java:1578)
+
+-- Affected level --
+Details:
+	Level name: MpServer
+	All players: 1 total; [EntityPlayerSP['AppleClient'/4, l='MpServer', x=589.59, y=54.00, z=158.44]]
+	Chunk stats: MultiplayerChunkCache: 289, 289
+	Level seed: 0
+	Level generator: ID 02 - largeBiomes, ver 0. Features enabled: false
+	Level generator options: 
+	Level spawn location: 584.00,64.00,166.00 - World: (584,64,166), Chunk: (at 8,4,6 in 36,10; contains blocks 576,0,160 to 591,255,175), Region: (1,0; contains chunks 32,0 to 63,31, blocks 512,0,0 to 1023,255,511)
+	Level time: 33260 game time, 14001 day time
+	Level dimension: 0
+	Level storage version: 0x00000 - Unknown?
+	Level weather: Rain time: 0 (now: false), thunder time: 0 (now: false)
+	Level game mode: Game mode: creative (ID 1). Hardcore: false. Cheats: false
+	Forced entities: 31 total; [EntityItem['item.tile.torch'/70144, l='MpServer', x=588.13, y=58.00, z=163.78], EntityItem['item.item.pickaxeDiamond'/77312, l='MpServer', x=588.13, y=54.00, z=157.81], EntityPlayerSP['AppleClient'/4, l='MpServer', x=476.22, y=63.00, z=-412.92], EntityCreeper['Creeper'/80967, l='MpServer', x=595.53, y=57.00, z=108.00], EntitySkeleton['Skeleton'/80968, l='MpServer', x=639.50, y=65.00, z=235.50], EntityCreeper['Creeper'/80970, l='MpServer', x=544.50, y=69.00, z=238.50], EntityPlayerSP['AppleClient'/4, l='MpServer', x=599.68, y=67.00, z=161.69], EntityPlayerSP['AppleClient'/4, l='MpServer', x=308.28, y=64.00, z=136.84], EntitySkeleton['Skeleton'/66199, l='MpServer', x=579.84, y=65.00, z=125.50], EntityPlayerSP['AppleClient'/4, l='MpServer', x=603.85, y=63.00, z=182.15], EntitySpider['Spider'/57019, l='MpServer', x=588.91, y=61.19, z=135.69], EntityItem['item.item.pickaxeDiamond'/66237, l='MpServer', x=589.06, y=54.00, z=157.13], EntityBat['Bat'/57026, l='MpServer', x=605.25, y=55.10, z=179.25], EntityPlayerSP['AppleClient'/4, l='MpServer', x=589.59, y=54.00, z=158.44], EntitySpider['Spider'/63694, l='MpServer', x=581.28, y=47.09, z=164.69], EntityZombie['Zombie'/63696, l='MpServer', x=564.56, y=39.00, z=171.47], EntityBat['Bat'/57043, l='MpServer', x=595.25, y=56.10, z=174.25], EntityBat['Bat'/56539, l='MpServer', x=614.91, y=50.03, z=167.41], EntityBat['Bat'/57057, l='MpServer', x=586.75, y=60.10, z=137.75], EntityPlayerSP['AppleClient'/4, l='MpServer', x=592.89, y=67.00, z=178.76], EntityCreeper['Creeper'/77189, l='MpServer', x=532.50, y=23.00, z=135.50], EntityPlayerSP['AppleClient'/4, l='MpServer', x=579.49, y=68.00, z=166.14], EntityPlayerSP['AppleClient'/4, l='MpServer', x=654.03, y=64.00, z=-257.56], EntityItem['item.tile.stonebrick'/70047, l='MpServer', x=588.13, y=54.00, z=161.88], EntityItem['item.tile.sand.default'/72619, l='MpServer', x=592.69, y=54.00, z=161.47], EntityPlayerSP['AppleClient'/4, l='MpServer', x=598.03, y=65.00, z=189.40], EntityBat['Bat'/60885, l='MpServer', x=577.66, y=41.10, z=153.69], EntityBat['Bat'/60886, l='MpServer', x=568.75, y=42.10, z=160.75], EntityPlayerSP['AppleClient'/4, l='MpServer', x=584.96, y=68.00, z=175.73], EntityPlayerSP['AppleClient'/4, l='MpServer', x=594.68, y=65.00, z=182.12], EntityItem['item.item.pickaxeDiamond'/77291, l='MpServer', x=588.13, y=54.00, z=158.06]]
+	Retry entities: 0 total; []
+	Server brand: vanilla
+	Server type: Integrated singleplayer server
+Stacktrace:
+	at net.minecraft.client.multiplayer.WorldClient.addWorldInfoToCrashReport(WorldClient.java:410)
+	at net.minecraft.client.Minecraft.addGraphicsAndWorldToCrashReport(Minecraft.java:2839)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:459)
+	at net.minecraft.client.main.Main.main(Main.java:114)
+	at Start.main(Start.java:16)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.8.9
+	Operating System: Windows 11 (amd64) version 10.0
+	Java Version: 1.8.0_361, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 444071480 bytes (423 MB) / 1070596096 bytes (1021 MB) up to 1070596096 bytes (1021 MB)
+	JVM Flags: 2 total; -Xmx1024M -Xms1024M
+	IntCache: cache: 0, tcache: 0, allocated: 13, tallocated: 99
+	Launched Version: appleclient
+	LWJGL: 2.9.4
+	OpenGL: AMD Radeon(TM) Graphics GL version 4.6.14761 Compatibility Profile Context 21.30.14 30.0.13014.8, ATI Technologies Inc.
+	GL Caps: Using GL 1.3 multitexturing.
+Using GL 1.3 texture combiners.
+Using framebuffer objects because OpenGL 3.0 is supported and separate blending is supported.
+Shaders are available because OpenGL 2.1 is supported.
+VBOs are available because OpenGL 1.5 is supported.
+
+	Using VBOs: Yes
+	Is Modded: Definitely; Client brand changed to 'appleclient'
+	Type: Client (map_client.txt)
+	Resource Packs: 1.14 Textures
+	Current Language: English (US)
+	Profiler Position: N/A (disabled)
+	CPU: 12x AMD Ryzen 5 5500U with Radeon Graphics 
+	OptiFine Version: OptiFine_1.8.9_HD_U_M5
+	OptiFine Build: ~~NULL~~
+	Render Distance Chunks: 8
+	Mipmaps: 2
+	Anisotropic Filtering: 1
+	Antialiasing: 0
+	Multitexture: false
+	Shaders: null
+	OpenGlVersion: 4.6.14761 Compatibility Profile Context 21.30.14 30.0.13014.8
+	OpenGlRenderer: AMD Radeon(TM) Graphics
+	OpenGlVendor: ATI Technologies Inc.
+	CpuCount: 12

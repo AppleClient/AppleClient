@@ -1,0 +1,42 @@
+/*
+ * Decompiled with CFR 0.150.
+ * 
+ * Could not load the following classes:
+ *  net.labymod.api.client.gui.screen.widget.widgets.input.SwitchWidget$SwitchSetting
+ *  net.labymod.api.client.gui.screen.widget.widgets.input.dropdown.DropdownWidget$DropdownSetting
+ *  net.labymod.api.configuration.loader.Config
+ *  net.labymod.api.configuration.loader.annotation.VersionCompatibility
+ *  net.labymod.api.configuration.loader.property.ConfigProperty
+ */
+package net.labymod.addons.flux.core.configuration.lightning;
+
+import net.labymod.addons.flux.core.lightning.UnloadStrategy;
+import net.labymod.api.client.gui.screen.widget.widgets.input.SwitchWidget;
+import net.labymod.api.client.gui.screen.widget.widgets.input.dropdown.DropdownWidget;
+import net.labymod.api.configuration.loader.Config;
+import net.labymod.api.configuration.loader.annotation.VersionCompatibility;
+import net.labymod.api.configuration.loader.property.ConfigProperty;
+
+public class LightningConfiguration
+extends Config {
+    @DropdownWidget.DropdownSetting
+    private final ConfigProperty<UnloadStrategy> chunkUnloadStrategy = ConfigProperty.create((Object)((Object)UnloadStrategy.SKIP));
+    @SwitchWidget.SwitchSetting
+    @VersionCompatibility(value="1.18<*")
+    private final ConfigProperty<Boolean> cacheLightUpdates = ConfigProperty.create((Object)true);
+    @SwitchWidget.SwitchSetting
+    private final ConfigProperty<Boolean> preloadLight = ConfigProperty.create((Object)true);
+
+    public ConfigProperty<UnloadStrategy> chunkUnloadStrategy() {
+        return this.chunkUnloadStrategy;
+    }
+
+    public ConfigProperty<Boolean> cacheLightUpdates() {
+        return this.cacheLightUpdates;
+    }
+
+    public ConfigProperty<Boolean> preloadLight() {
+        return this.preloadLight;
+    }
+}
+

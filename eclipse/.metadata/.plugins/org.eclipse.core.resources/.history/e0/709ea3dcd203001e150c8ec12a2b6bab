@@ -1,0 +1,17 @@
+/*
+ * Decompiled with CFR 0.150.
+ */
+package net.labymod.addons.flux.core.batching.buffer.graph;
+
+public interface RenderGraph<T> {
+    public int findIndex(T var1);
+
+    public void addEntry(T var1);
+
+    public T getEntry(int var1);
+
+    public void clear();
+
+    public int size();
+}
+

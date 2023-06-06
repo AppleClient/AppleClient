@@ -1,0 +1,167 @@
+/*
+ * Decompiled with CFR 0.150.
+ * 
+ * Could not load the following classes:
+ *  net.labymod.api.service.CustomServiceLoader
+ *  net.labymod.api.service.CustomServiceLoader$ServiceType
+ *  net.labymod.api.volt.asm.util.ASMHelper
+ *  net.labymod.core.loader.DefaultLabyModLoader
+ *  net.minecraft.launchwrapper.IClassTransformer
+ *  org.objectweb.asm.tree.AbstractInsnNode
+ *  org.objectweb.asm.tree.AnnotationNode
+ *  org.objectweb.asm.tree.ClassNode
+ *  org.objectweb.asm.tree.FieldInsnNode
+ *  org.objectweb.asm.tree.FieldNode
+ *  org.objectweb.asm.tree.InsnNode
+ *  org.objectweb.asm.tree.MethodInsnNode
+ *  org.objectweb.asm.tree.MethodNode
+ *  org.objectweb.asm.tree.VarInsnNode
+ */
+package net.labymod.addons.flux.core.transformer;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.OpenOption;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.attribute.FileAttribute;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import net.labymod.addons.flux.core.Flux;
+import net.labymod.addons.flux.core.util.mapping.DevMapping;
+import net.labymod.addons.flux.core.util.mapping.Mapping;
+import net.labymod.api.service.CustomServiceLoader;
+import net.labymod.api.volt.asm.util.ASMHelper;
+import net.labymod.core.loader.DefaultLabyModLoader;
+import net.minecraft.launchwrapper.IClassTransformer;
+import org.objectweb.asm.tree.AbstractInsnNode;
+import org.objectweb.asm.tree.AnnotationNode;
+import org.objectweb.asm.tree.ClassNode;
+import org.objectweb.asm.tree.FieldInsnNode;
+import org.objectweb.asm.tree.FieldNode;
+import org.objectweb.asm.tree.InsnNode;
+import org.objectweb.asm.tree.MethodInsnNode;
+import org.objectweb.asm.tree.MethodNode;
+import org.objectweb.asm.tree.VarInsnNode;
+
+public class FasterVertexWriterTransformer
+implements IClassTransformer {
+    private static final String VERTEX_WRITER_CLASS_NAME = "net/labymod/addons/flux/core/vertex/game/VertexWriter";
+    private final String[] excludes;
+    private final Mapping mapping;
+    private boolean transformed;
+
+    public FasterVertexWriterTransformer() {
+        Mapping map = null;
+        Iterator iterator = CustomServiceLoader.load(Mapping.class, (ClassLoader)Flux.class.getClassLoader(), (CustomServiceLoader.ServiceType)CustomServiceLoader.ServiceType.ADVANCED).iterator();
+        while (iterator.hasNext()) {
+            Mapping mapping;
+            map = mapping = (Mapping)iterator.next();
+        }
+        this.mapping = DefaultLabyModLoader.getInstance().isAddonDevelopmentEnvironment() ? new DevMapping() : map;
+        this.excludes = new String[]{this.mapping.getSpriteCoordinateExpander(), this.mapping.getSheetedDecalTextureGenerator(), this.mapping.getEntityOutlineGenerator()};
+    }
+
+    public byte[] transform(String name, String transformedName, byte[] classBytes) {
+        if (classBytes == null) {
+            return classBytes;
+        }
+        for (String exclude : this.excludes) {
+            if (!exclude.equals(name)) continue;
+            return classBytes;
+        }
+        try {
+            classBytes = ASMHelper.transformClassData((byte[])classBytes, this::patch);
+        }
+        catch (Throwable throwable) {
+            return classBytes;
+        }
+        if (this.transformed) {
+            try {
+                Path path = Paths.get("data/" + name.replace(".", "/") + ".class", new String[0]);
+                Path dir = path.getParent();
+                Files.createDirectories(dir, new FileAttribute[0]);
+                Files.write(path, classBytes, new OpenOption[0]);
+            }
+            catch (IOException exception) {
+                exception.printStackTrace();
+            }
+        }
+        return classBytes;
+    }
+
+    public int getPriority() {
+        return 2000;
+    }
+
+    private void patch(ClassNode classNode) {
+        List interfaces = classNode.interfaces;
+        if (interfaces.contains(VERTEX_WRITER_CLASS_NAME)) {
+            return;
+        }
+        if (classNode.invisibleAnnotations != null) {
+            for (AnnotationNode invisibleAnnotation : classNode.invisibleAnnotations) {
+                if (!invisibleAnnotation.desc.equals("Lorg/spongepowered/asm/mixin/Mixin;")) continue;
+                return;
+            }
+        }
+        ArrayList<FieldNode> vertexConsumers = new ArrayList<FieldNode>();
+        boolean skip = true;
+        for (Object field : classNode.fields) {
+            if (!((FieldNode)field).desc.equals(this.mapping.getVertexConsumer()) && !((FieldNode)field).desc.equals(this.mapping.getVertexConsumerArray())) continue;
+            skip = false;
+            vertexConsumers.add((FieldNode)field);
+        }
+        if (skip) {
+            return;
+        }
+        interfaces.add(VERTEX_WRITER_CLASS_NAME);
+        MethodNode writeMethodNodeSimple = new MethodNode(1, "writeVertex", "(FFFIFFIIFFF)V", null, null);
+        for (FieldNode fieldNode : vertexConsumers) {
+            writeMethodNodeSimple.instructions.add((AbstractInsnNode)new VarInsnNode(25, 0));
+            writeMethodNodeSimple.instructions.add((AbstractInsnNode)new FieldInsnNode(180, classNode.name, fieldNode.name, fieldNode.desc));
+            writeMethodNodeSimple.instructions.add((AbstractInsnNode)new VarInsnNode(23, 1));
+            writeMethodNodeSimple.instructions.add((AbstractInsnNode)new VarInsnNode(23, 2));
+            writeMethodNodeSimple.instructions.add((AbstractInsnNode)new VarInsnNode(23, 3));
+            writeMethodNodeSimple.instructions.add((AbstractInsnNode)new VarInsnNode(21, 4));
+            writeMethodNodeSimple.instructions.add((AbstractInsnNode)new VarInsnNode(23, 5));
+            writeMethodNodeSimple.instructions.add((AbstractInsnNode)new VarInsnNode(23, 6));
+            writeMethodNodeSimple.instructions.add((AbstractInsnNode)new VarInsnNode(21, 7));
+            writeMethodNodeSimple.instructions.add((AbstractInsnNode)new VarInsnNode(21, 8));
+            writeMethodNodeSimple.instructions.add((AbstractInsnNode)new VarInsnNode(23, 9));
+            writeMethodNodeSimple.instructions.add((AbstractInsnNode)new VarInsnNode(23, 10));
+            writeMethodNodeSimple.instructions.add((AbstractInsnNode)new VarInsnNode(23, 11));
+            writeMethodNodeSimple.instructions.add((AbstractInsnNode)new MethodInsnNode(185, VERTEX_WRITER_CLASS_NAME, "writeVertex", "(FFFIFFIIFFF)V", true));
+        }
+        writeMethodNodeSimple.instructions.add((AbstractInsnNode)new InsnNode(177));
+        classNode.methods.add(writeMethodNodeSimple);
+        MethodNode writeMethodNodePackedNormal = new MethodNode(1, "writeVertex", "(FFFIFFIII)V", null, null);
+        for (FieldNode field : vertexConsumers) {
+            writeMethodNodePackedNormal.instructions.add((AbstractInsnNode)new VarInsnNode(25, 0));
+            writeMethodNodePackedNormal.instructions.add((AbstractInsnNode)new FieldInsnNode(180, classNode.name, field.name, field.desc));
+            writeMethodNodePackedNormal.instructions.add((AbstractInsnNode)new VarInsnNode(23, 1));
+            writeMethodNodePackedNormal.instructions.add((AbstractInsnNode)new VarInsnNode(23, 2));
+            writeMethodNodePackedNormal.instructions.add((AbstractInsnNode)new VarInsnNode(23, 3));
+            writeMethodNodePackedNormal.instructions.add((AbstractInsnNode)new VarInsnNode(21, 4));
+            writeMethodNodePackedNormal.instructions.add((AbstractInsnNode)new VarInsnNode(23, 5));
+            writeMethodNodePackedNormal.instructions.add((AbstractInsnNode)new VarInsnNode(23, 6));
+            writeMethodNodePackedNormal.instructions.add((AbstractInsnNode)new VarInsnNode(21, 7));
+            writeMethodNodePackedNormal.instructions.add((AbstractInsnNode)new VarInsnNode(21, 8));
+            writeMethodNodePackedNormal.instructions.add((AbstractInsnNode)new VarInsnNode(21, 9));
+            writeMethodNodePackedNormal.instructions.add((AbstractInsnNode)new MethodInsnNode(185, VERTEX_WRITER_CLASS_NAME, "writeVertex", "(FFFIFFIII)V", true));
+        }
+        writeMethodNodePackedNormal.instructions.add((AbstractInsnNode)new InsnNode(177));
+        classNode.methods.add(writeMethodNodePackedNormal);
+        MethodNode methodNode = new MethodNode(1, "ensureBufferCapacity", "(I)V", null, null);
+        for (FieldNode field : vertexConsumers) {
+            methodNode.instructions.add((AbstractInsnNode)new VarInsnNode(25, 0));
+            methodNode.instructions.add((AbstractInsnNode)new FieldInsnNode(180, classNode.name, field.name, field.desc));
+            methodNode.instructions.add((AbstractInsnNode)new VarInsnNode(21, 1));
+            methodNode.instructions.add((AbstractInsnNode)new MethodInsnNode(185, VERTEX_WRITER_CLASS_NAME, "ensureBufferCapacity", "(I)V", true));
+        }
+        methodNode.instructions.add((AbstractInsnNode)new InsnNode(177));
+        classNode.methods.add(methodNode);
+    }
+}
+

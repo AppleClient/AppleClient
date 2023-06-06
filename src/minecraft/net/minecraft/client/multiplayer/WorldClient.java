@@ -1,10 +1,15 @@
 package net.minecraft.client.multiplayer;
 
-import com.google.common.collect.Sets;
 import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.Callable;
+import java.util.function.BooleanSupplier;
+
+import com.google.common.collect.Sets;
+
+import appu26j.performance.CullingTargetAccessor;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.MovingSoundMinecart;
@@ -24,7 +29,9 @@ import net.minecraft.src.Config;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
@@ -534,5 +541,200 @@ public class WorldClient extends World
     public boolean isPlayerUpdate()
     {
         return this.playerUpdate;
+    }
+    
+
+    public boolean isVisible(CullingTargetAccessor accessor)
+    {
+        if (accessor == null || this.mc.thePlayer.ticksExisted < 20)
+        {
+            return true;
+        }
+        
+        boolean evenTick = this.mc.thePlayer.ticksExisted % 2 == 0;
+        
+        if (accessor.isLastCheckEvenTick() == evenTick)
+        {
+            return accessor.isLastCullingVisible();
+        }
+        
+        boolean lastCullingVisible = accessor.isLastCullingVisible();
+        long timePassedSinceLastCheck = System.currentTimeMillis() - accessor.getLastTimeChecked();
+        
+        if (lastCullingVisible && timePassedSinceLastCheck < 2000L)
+        {
+            return true;
+        }
+        
+        boolean visible = this.isVisible(accessor.getMinX(), accessor.getMinY(), accessor.getMinZ(), accessor.getMaxX(), accessor.getMaxY(), accessor.getMaxZ());
+        accessor.setLastCullingVisible(visible, evenTick);
+        return visible;
+    }
+
+    public boolean isVisible(double minX, double minY, double minZ, double maxX, double maxY, double maxZ)
+    {
+        if (this.mc.thePlayer == null || this.mc.thePlayer.ticksExisted < 20)
+        {
+            return true;
+        }
+        
+        Vec3 cameraPosition = new Vec3(this.mc.thePlayer.posX, this.mc.thePlayer.posY + this.mc.thePlayer.getEyeHeight(), this.mc.thePlayer.posZ);
+        return this.isVisible(minX, minY, minZ, maxX, maxY, maxZ, cameraPosition.xCoord, cameraPosition.yCoord, cameraPosition.zCoord);
+    }
+
+    public boolean isVisible(double minX, double minY, double minZ, double maxX, double maxY, double maxZ, double cameraX, double cameraY, double cameraZ)
+    {
+        if (this.mc.thePlayer == null || this.mc.thePlayer.ticksExisted < 20)
+        {
+            return true;
+        }
+        
+        double distanceRay1X = minX - cameraX;
+        double distanceRay1Y = minY - cameraY;
+        double distanceRay1Z = minZ - cameraZ;
+        double ray1X = cameraX;
+        double ray1Y = cameraY;
+        double ray1Z = cameraZ;
+        double distanceRay1 = Math.sqrt(distanceRay1X * distanceRay1X + distanceRay1Y * distanceRay1Y + distanceRay1Z * distanceRay1Z);
+        double step1X = distanceRay1X / distanceRay1;
+        double step1Y = distanceRay1Y / distanceRay1;
+        double step1Z = distanceRay1Z / distanceRay1;
+        boolean ray1XPositive = step1X > 0.0;
+        boolean ray1YPositive = step1Y > 0.0;
+        boolean ray1ZPositive = step1Z > 0.0;
+        double distanceRay2X = maxX - cameraX;
+        double distanceRay2Y = maxY - cameraY;
+        double distanceRay2Z = maxZ - cameraZ;
+        double ray2X = cameraX;
+        double ray2Y = cameraY;
+        double ray2Z = cameraZ;
+        double distanceRay2 = Math.sqrt(distanceRay2X * distanceRay2X + distanceRay2Y * distanceRay2Y + distanceRay2Z * distanceRay2Z);
+        double step2X = distanceRay2X / distanceRay2;
+        double step2Y = distanceRay2Y / distanceRay2;
+        double step2Z = distanceRay2Z / distanceRay2;
+        boolean ray2XPositive = step2X > 0.0;
+        boolean ray2YPositive = step2Y > 0.0;
+        boolean ray2ZPositive = step2Z > 0.0;
+        double distanceRay3X = minX - cameraX;
+        double distanceRay3Y = maxY - cameraY;
+        double distanceRay3Z = minZ - cameraZ;
+        double ray3X = cameraX;
+        double ray3Y = cameraY;
+        double ray3Z = cameraZ;
+        double distanceRay3 = Math.sqrt(distanceRay3X * distanceRay3X + distanceRay3Y * distanceRay3Y + distanceRay3Z * distanceRay3Z);
+        double step3X = distanceRay3X / distanceRay3;
+        double step3Y = distanceRay3Y / distanceRay3;
+        double step3Z = distanceRay3Z / distanceRay3;
+        boolean ray3XPositive = step3X > 0.0;
+        boolean ray3YPositive = step3Y > 0.0;
+        boolean ray3ZPositive = step3Z > 0.0;
+        double distanceRay4X = maxX - cameraX;
+        double distanceRay4Y = minY - cameraY;
+        double distanceRay4Z = maxZ - cameraZ;
+        double ray4X = cameraX;
+        double ray4Y = cameraY;
+        double ray4Z = cameraZ;
+        double distanceRay4 = Math.sqrt(distanceRay4X * distanceRay4X + distanceRay4Y * distanceRay4Y + distanceRay4Z * distanceRay4Z);
+        double step4X = distanceRay4X / distanceRay4;
+        double step4Y = distanceRay4Y / distanceRay4;
+        double step4Z = distanceRay4Z / distanceRay4;
+        boolean ray4XPositive = step4X > 0.0;
+        boolean ray4YPositive = step4Y > 0.0;
+        boolean ray4ZPositive = step4Z > 0.0;
+        double maxDistance = Math.max(Math.max(Math.abs(distanceRay1), Math.abs(distanceRay2)), Math.max(Math.abs(distanceRay3), Math.abs(distanceRay4)));
+        boolean ray1Hit = false;
+        boolean ray2Hit = false;
+        boolean ray3Hit = false;
+        boolean ray4Hit = false;
+        boolean ray1Free = false;
+        boolean ray2Free = false;
+        boolean ray3Free = false;
+        boolean ray4Free = false;
+        int i = 0;
+        
+        while (i < Math.ceil(maxDistance))
+        {
+            if (this.isFullBlockAt(MathHelper.floor_double(ray1X), MathHelper.floor_double(ray1Y), MathHelper.floor_double((ray1Z))))
+            {
+                ray1Hit = ray1Free;
+            }
+            
+            else
+            {
+                ray1Free = true;
+            }
+            
+            if (this.isFullBlockAt(MathHelper.floor_double(ray2X), MathHelper.floor_double(ray2Y), MathHelper.floor_double(ray2Z)))
+            {
+                ray2Hit = ray2Free;
+            }
+            
+            else
+            {
+                ray2Free = true;
+            }
+            
+            if (this.isFullBlockAt(MathHelper.floor_double(ray3X), MathHelper.floor_double(ray3Y), MathHelper.floor_double(ray3Z)))
+            {
+                ray3Hit = ray3Free;
+            }
+            
+            else
+            {
+                ray3Free = true;
+            }
+            
+            if (this.isFullBlockAt(MathHelper.floor_double(ray4X), MathHelper.floor_double(ray4Y), MathHelper.floor_double(ray4Z)))
+            {
+                ray4Hit = ray4Free;
+            }
+            
+            else
+            {
+                ray4Free = true;
+            }
+            
+            if (ray1Hit && ray2Hit && ray3Hit && ray4Hit)
+            {
+                return false;
+            }
+            
+            ray1X = ray1XPositive ? Math.min(ray1X + step1X, minX) : Math.max(ray1X + step1X, minX);
+            ray1Y = ray1YPositive ? Math.min(ray1Y + step1Y, minY) : Math.max(ray1Y + step1Y, minY);
+            ray1Z = ray1ZPositive ? Math.min(ray1Z + step1Z, minZ) : Math.max(ray1Z + step1Z, minZ);
+            ray2X = ray2XPositive ? Math.min(ray2X + step2X, maxX) : Math.max(ray2X + step2X, maxX);
+            ray2Y = ray2YPositive ? Math.min(ray2Y + step2Y, maxY) : Math.max(ray2Y + step2Y, maxY);
+            ray2Z = ray2ZPositive ? Math.min(ray2Z + step2Z, maxZ) : Math.max(ray2Z + step2Z, maxZ);
+            ray3X = ray3XPositive ? Math.min(ray3X + step3X, minX) : Math.max(ray3X + step3X, minX);
+            ray3Y = ray3YPositive ? Math.min(ray3Y + step3Y, maxY) : Math.max(ray3Y + step3Y, minY);
+            ray3Z = ray3ZPositive ? Math.min(ray3Z + step3Z, minZ) : Math.max(ray3Z + step3Z, minZ);
+            ray4X = ray4XPositive ? Math.min(ray4X + step4X, maxX) : Math.max(ray4X + step4X, maxX);
+            ray4Y = ray4YPositive ? Math.min(ray4Y + step4Y, minY) : Math.max(ray4Y + step4Y, minY);
+            ray4Z = ray4ZPositive ? Math.min(ray4Z + step4Z, maxZ) : Math.max(ray4Z + step4Z, maxZ);
+            ++i;
+        }
+        
+        return true;
+    }
+
+    protected boolean isFullBlockAt(int x, int y, int z)
+    {
+        if (this.mc.thePlayer == null || this.mc.thePlayer.ticksExisted < 5)
+        {
+            return true;
+        }
+        
+        BlockState blockState = new BlockState(this.getBlockState(new BlockPos(x, y, z)).getBlock());
+        return isFullBlock(blockState);
+    }
+    
+    protected boolean isFullBlock(BlockState blockState)
+    {
+        if (this.mc.thePlayer == null || this.mc.thePlayer.ticksExisted < 5)
+        {
+            return true;
+        }
+        
+        return blockState.getBlock().isFullBlock();
     }
 }

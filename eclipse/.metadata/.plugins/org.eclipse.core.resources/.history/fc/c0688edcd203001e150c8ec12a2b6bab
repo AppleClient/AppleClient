@@ -1,0 +1,169 @@
+/*
+ * Decompiled with CFR 0.150.
+ * 
+ * Could not load the following classes:
+ *  net.labymod.api.loader.platform.PlatformEnvironment
+ *  org.objectweb.asm.ClassWriter
+ *  org.objectweb.asm.MethodVisitor
+ *  org.objectweb.asm.Type
+ */
+package net.labymod.addons.flux.core.vertex.game.asm;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.OpenOption;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.attribute.FileAttribute;
+import java.util.ArrayList;
+import java.util.List;
+import net.labymod.addons.flux.core.vertex.game.NamedGameVertexAttribute;
+import net.labymod.addons.flux.core.vertex.game.VertexFormatWriter;
+import net.labymod.addons.flux.core.vertex.game.asm.BufferWriterMethod;
+import net.labymod.addons.flux.core.vertex.game.asm.DefiningClassLoader;
+import net.labymod.api.loader.platform.PlatformEnvironment;
+import org.objectweb.asm.ClassWriter;
+import org.objectweb.asm.MethodVisitor;
+import org.objectweb.asm.Type;
+
+public class VertexFormatWriterFactory {
+    private static final String[] INTERFACES = new String[]{Type.getInternalName(VertexFormatWriter.class)};
+    private static final String BUFFER_WRITER = "net/labymod/addons/flux/core/vertex/game/BufferWriter";
+    private static final String WRITE_METHOD_NAME = "write";
+    private static final String WRITE_METHOD_DESC = "(Lnet/labymod/addons/flux/core/vertex/game/BufferWriter;FFFIFFIIBBB)V";
+    private static final String WRITE_METHOD_WITH_PACKED_NORMAL_DESC = "(Lnet/labymod/addons/flux/core/vertex/game/BufferWriter;FFFIFFIII)V";
+    private static VertexFormatWriterFactory instance;
+    private final String packageName;
+    private final DefiningClassLoader classLoader;
+    private final List<String> classes = new ArrayList<String>();
+    private int index;
+
+    private VertexFormatWriterFactory() {
+        this(VertexFormatWriterFactory.class.getClassLoader());
+    }
+
+    private VertexFormatWriterFactory(ClassLoader parent) {
+        this.classLoader = new DefiningClassLoader(parent);
+        Object version = PlatformEnvironment.getRunningVersion();
+        version = ((String)version).replace(".", "_");
+        version = ((String)version).replace("-", "_");
+        version = "v" + (String)version;
+        this.packageName = "net.labymod.addons.flux.generated." + (String)version + ".";
+    }
+
+    public static VertexFormatWriterFactory getInstance() {
+        if (instance == null) {
+            instance = new VertexFormatWriterFactory();
+        }
+        return instance;
+    }
+
+    public VertexFormatWriter create(List<NamedGameVertexAttribute> attributes) {
+        StringBuilder builder = new StringBuilder();
+        for (NamedGameVertexAttribute attribute : attributes) {
+            builder.append(attribute.getName());
+        }
+        String classname = this.packageName + builder + "VertexFormatWriter";
+        if (this.classes.contains(classname)) {
+            classname = classname + "1";
+        }
+        this.classes.add(classname);
+        ClassWriter writer = new ClassWriter(3);
+        writer.visit(52, 1, classname.replace(".", "/"), null, "java/lang/Object", INTERFACES);
+        this.createConstructor(writer);
+        this.createWriteMethod(writer, attributes, false);
+        this.createWriteMethod(writer, attributes, true);
+        writer.visitEnd();
+        return this.defineVertexFormatWriter(classname, writer.toByteArray());
+    }
+
+    private void createWriteMethod(ClassWriter writer, List<NamedGameVertexAttribute> attributes, boolean packedNormal) {
+        MethodVisitor writeMethodVisitor = writer.visitMethod(1, WRITE_METHOD_NAME, packedNormal ? WRITE_METHOD_WITH_PACKED_NORMAL_DESC : WRITE_METHOD_DESC, null, null);
+        writeMethodVisitor.visitCode();
+        block19: for (NamedGameVertexAttribute attribute : attributes) {
+            String name;
+            switch (name = attribute.getName()) {
+                case "Position": {
+                    this.invokeWriteMethod(writeMethodVisitor, BufferWriterMethod.WRITE_FLOAT, 2);
+                    this.invokeWriteMethod(writeMethodVisitor, BufferWriterMethod.WRITE_FLOAT, 3);
+                    this.invokeWriteMethod(writeMethodVisitor, BufferWriterMethod.WRITE_FLOAT, 4);
+                    continue block19;
+                }
+                case "Color": {
+                    this.invokeWriteMethod(writeMethodVisitor, BufferWriterMethod.WRITE_INT, 5);
+                    continue block19;
+                }
+                case "UV": 
+                case "UV0": {
+                    this.invokeWriteMethod(writeMethodVisitor, BufferWriterMethod.WRITE_FLOAT, 6);
+                    this.invokeWriteMethod(writeMethodVisitor, BufferWriterMethod.WRITE_FLOAT, 7);
+                    continue block19;
+                }
+                case "UV1": {
+                    this.invokeWriteMethod(writeMethodVisitor, BufferWriterMethod.WRITE_INT, 8);
+                    continue block19;
+                }
+                case "UV2": {
+                    this.invokeWriteMethod(writeMethodVisitor, BufferWriterMethod.WRITE_INT, 9);
+                    continue block19;
+                }
+                case "Normal": {
+                    if (packedNormal) {
+                        this.invokeWriteMethod(writeMethodVisitor, BufferWriterMethod.WRITE_INT, 10);
+                        continue block19;
+                    }
+                    this.invokeWriteMethod(writeMethodVisitor, BufferWriterMethod.WRITE_BYTE, 10);
+                    this.invokeWriteMethod(writeMethodVisitor, BufferWriterMethod.WRITE_BYTE, 11);
+                    this.invokeWriteMethod(writeMethodVisitor, BufferWriterMethod.WRITE_BYTE, 12);
+                    continue block19;
+                }
+                case "Padding": {
+                    ++this.index;
+                    continue block19;
+                }
+            }
+            System.out.println("Unknown attribute: " + name);
+        }
+        this.index = 0;
+        writeMethodVisitor.visitInsn(177);
+        writeMethodVisitor.visitMaxs(0, 0);
+        writeMethodVisitor.visitEnd();
+    }
+
+    private void invokeWriteMethod(MethodVisitor visitor, BufferWriterMethod method, int valueIndex) {
+        visitor.visitVarInsn(25, 1);
+        visitor.visitIntInsn(16, this.index);
+        visitor.visitVarInsn(method.getValueOpcode(), valueIndex);
+        visitor.visitMethodInsn(185, BUFFER_WRITER, method.getMethodName(), method.getMethodDesc(), true);
+        this.index += method.getSize();
+    }
+
+    private VertexFormatWriter defineVertexFormatWriter(String name, byte[] data) {
+        try {
+            try {
+                String path = "fluxclassdata" + name.replace(".", "/");
+                Path classPath = Paths.get(path + ".class", new String[0]);
+                Files.createDirectories(classPath.getParent(), new FileAttribute[0]);
+                Files.write(classPath, data, new OpenOption[0]);
+            }
+            catch (IOException exception) {
+                exception.printStackTrace();
+            }
+            return (VertexFormatWriter)this.classLoader.defineClass(name, data).getConstructor(new Class[0]).newInstance(new Object[0]);
+        }
+        catch (ReflectiveOperationException exception) {
+            throw new RuntimeException(exception);
+        }
+    }
+
+    private void createConstructor(ClassWriter writer) {
+        MethodVisitor visitor = writer.visitMethod(1, "<init>", "()V", null, null);
+        visitor.visitCode();
+        visitor.visitVarInsn(25, 0);
+        visitor.visitMethodInsn(183, "java/lang/Object", "<init>", "()V", false);
+        visitor.visitInsn(177);
+        visitor.visitMaxs(0, 0);
+        visitor.visitEnd();
+    }
+}
+

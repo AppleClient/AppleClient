@@ -1,0 +1,35 @@
+/*
+ * Decompiled with CFR 0.150.
+ */
+package net.labymod.addons.flux.core.util.mapping;
+
+import net.labymod.addons.flux.core.util.mapping.Mapping;
+
+public class DevMapping
+implements Mapping {
+    private static final String VERTEX_CONSUMER_DESC = "Lcom/mojang/blaze3d/vertex/VertexConsumer;";
+    private static final String SPRITE_COORDINATE_EXPANDER = "net.minecraft.client.renderer.SpriteCoordinateExpander";
+    private static final String SHEETED_DECAL_TEXTURE_GENERATOR = "com.mojang.blaze3d.vertex.SheetedDecalTextureGenerator";
+    private static final String ENTITY_OUTLINE_GENERATOR = "net.minecraft.client.renderer.OutlineBufferSource$EntityOutlineGenerator";
+
+    @Override
+    public String getVertexConsumer() {
+        return VERTEX_CONSUMER_DESC;
+    }
+
+    @Override
+    public String getSpriteCoordinateExpander() {
+        return SPRITE_COORDINATE_EXPANDER;
+    }
+
+    @Override
+    public String getSheetedDecalTextureGenerator() {
+        return SHEETED_DECAL_TEXTURE_GENERATOR;
+    }
+
+    @Override
+    public String getEntityOutlineGenerator() {
+        return ENTITY_OUTLINE_GENERATOR;
+    }
+}
+

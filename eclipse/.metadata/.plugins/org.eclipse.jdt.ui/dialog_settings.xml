@@ -50,7 +50,7 @@
 		<section name="DialogBoundsSettings">
 			<item key="DIALOG_HEIGHT" value="498"/>
 			<item key="DIALOG_WIDTH" value="600"/>
-			<item key="DIALOG_X_ORIGIN" value="355"/>
+			<item key="DIALOG_X_ORIGIN" value="205"/>
 			<item key="DIALOG_Y_ORIGIN" value="6"/>
 			<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-21|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
 		</section>

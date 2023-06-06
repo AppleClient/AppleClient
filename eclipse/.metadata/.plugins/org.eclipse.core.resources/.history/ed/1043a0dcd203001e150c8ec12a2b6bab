@@ -1,0 +1,55 @@
+/*
+ * Decompiled with CFR 0.150.
+ * 
+ * Could not load the following classes:
+ *  net.labymod.api.addon.AddonConfig
+ *  net.labymod.api.client.gui.screen.widget.widgets.input.SwitchWidget$SwitchSetting
+ *  net.labymod.api.configuration.loader.annotation.VersionCompatibility
+ *  net.labymod.api.configuration.loader.property.ConfigProperty
+ */
+package net.labymod.addons.flux.core.configuration;
+
+import net.labymod.addons.flux.core.configuration.blockentity.BlockEntityConfiguration;
+import net.labymod.addons.flux.core.configuration.entity.EntityConfiguration;
+import net.labymod.addons.flux.core.configuration.lightning.LightningConfiguration;
+import net.labymod.api.addon.AddonConfig;
+import net.labymod.api.client.gui.screen.widget.widgets.input.SwitchWidget;
+import net.labymod.api.configuration.loader.annotation.VersionCompatibility;
+import net.labymod.api.configuration.loader.property.ConfigProperty;
+
+public class FluxConfiguration
+extends AddonConfig {
+    @SwitchWidget.SwitchSetting
+    private final ConfigProperty<Boolean> enabled = ConfigProperty.create((Object)true);
+    @SwitchWidget.SwitchSetting
+    @VersionCompatibility(value="1.17<*")
+    private final ConfigProperty<Boolean> enhancedRenderer = ConfigProperty.create((Object)true);
+    private final LightningConfiguration lightning = new LightningConfiguration();
+    private final BlockEntityConfiguration blockEntity = new BlockEntityConfiguration();
+    private final EntityConfiguration entity = new EntityConfiguration();
+
+    public ConfigProperty<Boolean> enabled() {
+        return this.enabled;
+    }
+
+    public ConfigProperty<Boolean> enhancedRenderer() {
+        return this.enhancedRenderer;
+    }
+
+    public boolean isEnhancedRenderer() {
+        return (Boolean)this.enabled.get() != false && (Boolean)this.enhancedRenderer.get() != false;
+    }
+
+    public LightningConfiguration lightning() {
+        return this.lightning;
+    }
+
+    public BlockEntityConfiguration blockEntity() {
+        return this.blockEntity;
+    }
+
+    public EntityConfiguration entity() {
+        return this.entity;
+    }
+}
+

@@ -1,0 +1,114 @@
+/*
+ * Decompiled with CFR 0.150.
+ * 
+ * Could not load the following classes:
+ *  net.labymod.api.Laby
+ *  net.labymod.api.client.gfx.shader.GFXShaderType
+ *  net.labymod.api.client.gfx.shader.ShaderProgram
+ *  net.labymod.api.client.gfx.shader.ShaderProgram$Factory
+ *  net.labymod.api.client.gfx.shader.ShaderType
+ *  net.labymod.api.client.gfx.shader.UniformContext
+ *  net.labymod.api.client.gfx.shader.uniform.Uniform
+ *  net.labymod.api.client.gfx.shader.uniform.Uniform2I
+ *  net.labymod.api.client.gfx.shader.uniform.Uniform3F
+ *  net.labymod.api.client.gfx.shader.uniform.Uniform4F
+ *  net.labymod.api.client.gfx.shader.uniform.UniformDynamicSampler
+ *  net.labymod.api.client.gfx.shader.uniform.UniformMatrix4
+ *  net.labymod.api.client.gfx.shader.uniform.UniformSampler
+ *  net.labymod.api.client.gfx.vertex.VertexFormat
+ *  net.labymod.api.client.gfx.vertex.VertexFormat$Builder
+ *  net.labymod.api.client.gfx.vertex.VertexFormatStorage
+ *  net.labymod.api.client.gfx.vertex.attribute.VertexAttribute
+ *  net.labymod.api.client.gfx.vertex.attribute.VertexAttribute2F
+ *  net.labymod.api.client.gfx.vertex.attribute.VertexAttribute2S
+ *  net.labymod.api.client.gfx.vertex.attribute.VertexAttribute3B
+ *  net.labymod.api.client.gfx.vertex.attribute.VertexAttribute3F
+ *  net.labymod.api.client.gfx.vertex.attribute.VertexAttribute4B
+ *  net.labymod.api.client.resources.ResourceLocation
+ *  net.labymod.api.service.annotation.AutoService
+ *  net.labymod.api.util.TextFormat
+ */
+package net.labymod.addons.flux.core.vertex;
+
+import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
+import net.labymod.api.Laby;
+import net.labymod.api.client.gfx.shader.GFXShaderType;
+import net.labymod.api.client.gfx.shader.ShaderProgram;
+import net.labymod.api.client.gfx.shader.ShaderType;
+import net.labymod.api.client.gfx.shader.UniformContext;
+import net.labymod.api.client.gfx.shader.uniform.Uniform;
+import net.labymod.api.client.gfx.shader.uniform.Uniform2I;
+import net.labymod.api.client.gfx.shader.uniform.Uniform3F;
+import net.labymod.api.client.gfx.shader.uniform.Uniform4F;
+import net.labymod.api.client.gfx.shader.uniform.UniformDynamicSampler;
+import net.labymod.api.client.gfx.shader.uniform.UniformMatrix4;
+import net.labymod.api.client.gfx.shader.uniform.UniformSampler;
+import net.labymod.api.client.gfx.vertex.VertexFormat;
+import net.labymod.api.client.gfx.vertex.VertexFormatStorage;
+import net.labymod.api.client.gfx.vertex.attribute.VertexAttribute;
+import net.labymod.api.client.gfx.vertex.attribute.VertexAttribute2F;
+import net.labymod.api.client.gfx.vertex.attribute.VertexAttribute2S;
+import net.labymod.api.client.gfx.vertex.attribute.VertexAttribute3B;
+import net.labymod.api.client.gfx.vertex.attribute.VertexAttribute3F;
+import net.labymod.api.client.gfx.vertex.attribute.VertexAttribute4B;
+import net.labymod.api.client.resources.ResourceLocation;
+import net.labymod.api.service.annotation.AutoService;
+import net.labymod.api.util.TextFormat;
+
+@AutoService(value=VertexFormatStorage.class)
+public class FluxVertexFormatStorage
+implements VertexFormatStorage {
+    public static final Consumer<UniformContext> DEFAULT_ENTITY_UNIFORM_CONTEXT = context -> {
+        UniformMatrix4 projectionMatrix = (UniformMatrix4)context.addUniform((Uniform)new UniformMatrix4("ProjectionMatrix"));
+        UniformMatrix4 modelViewMatrix = (UniformMatrix4)context.addUniform((Uniform)new UniformMatrix4("ModelViewMatrix"));
+        Uniform4F colorModulator = (Uniform4F)context.addUniform((Uniform)new Uniform4F("ColorModulator"));
+        context.addUniform((Uniform)new UniformSampler("DiffuseSampler", 0));
+        context.addUniform((Uniform)((UniformDynamicSampler)UniformDynamicSampler.LIGHTMAP_SAMPLER.apply("LightSampler", 1)));
+        context.addUniform((Uniform)new Uniform2I("LightCoords"));
+        context.addUniform((Uniform)new Uniform3F("LightDirection0"));
+        context.addUniform((Uniform)new Uniform3F("LightDirection1"));
+        context.setUniformApplier(renderPipeline -> {
+            projectionMatrix.set(renderPipeline.getProjectionMatrix());
+            modelViewMatrix.set(renderPipeline.getModelViewMatrix());
+            colorModulator.set(renderPipeline.gfx().blaze3DGlStatePipeline().shaderUniformPipeline().colorModulator());
+        });
+    };
+    private static final String DEFAULT_ENTITY_NAME = "default_entity";
+    private final ShaderProgram.Factory shaderFactory = Laby.references().shaderProgramFactory();
+    private final VertexFormat.Builder formatBuilder = Laby.references().vertexFormatBuilder();
+
+    public void store(Map<String, VertexFormat> map) {
+        this.storeFormat(map, DEFAULT_ENTITY_NAME, DEFAULT_ENTITY_UNIFORM_CONTEXT, builder -> {
+            builder.addAttribute("Position", (VertexAttribute)new VertexAttribute3F(false));
+            builder.addAttribute("Color", (VertexAttribute)new VertexAttribute4B(true, true));
+            builder.addAttribute("UV0", (VertexAttribute)new VertexAttribute2F(false));
+            builder.addAttribute("UV1", (VertexAttribute)new VertexAttribute2S(true, true));
+            builder.addAttribute("UV2", (VertexAttribute)new VertexAttribute2S(true, true));
+            builder.addAttribute("Normal", (VertexAttribute)new VertexAttribute3B(false, true));
+        });
+    }
+
+    private void storeFormat(Map<String, VertexFormat> map, String name, Consumer<UniformContext> uniformConsumer, Consumer<VertexFormat.Builder> vertexFormatBuilder) {
+        map.put(name, this.buildFormat(name, uniformConsumer, (arg_0, arg_1) -> this.addShader(arg_0, arg_1), vertexFormatBuilder));
+    }
+
+    private VertexFormat buildFormat(String name, Consumer<UniformContext> uniformConsumer, BiConsumer<String, ShaderProgram> shaderConsumer, Consumer<VertexFormat.Builder> vertexFormatBuilder) {
+        ShaderProgram shaderProgram = this.shaderFactory.create(uniformConsumer);
+        shaderConsumer.accept(name, shaderProgram);
+        vertexFormatBuilder.accept(this.formatBuilder.addShaderProgram(shaderProgram));
+        return this.formatBuilder.build();
+    }
+
+    private void addShader(String name, ShaderProgram shader) {
+        shader.setDebugName(TextFormat.SNAKE_CASE.toCamelCase(name, false));
+        this.loadShaders(shader, name, (ShaderType)GFXShaderType.VERTEX);
+        this.loadShaders(shader, name, (ShaderType)GFXShaderType.FRAGMENT);
+    }
+
+    private void loadShaders(ShaderProgram shader, String name, ShaderType type) {
+        shader.addShader(ResourceLocation.create((String)"flux", (String)("shaders/vertex/" + name + "." + type.toString())), type);
+    }
+}
+

@@ -1,0 +1,12 @@
+/*
+ * Decompiled with CFR 0.150.
+ */
+package net.labymod.addons.flux.core.util;
+
+import net.labymod.addons.flux.core.util.Identifiable;
+
+public interface MutableIdentifiable
+extends Identifiable {
+    public void setId(int var1);
+}
+
