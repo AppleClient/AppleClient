@@ -59,4 +59,5 @@
     <typeInfo handle="=Client/src&lt;net.minecraft.client{Minecraft.java[Minecraft" modifiers="1" timestamp="1686074400736"/>
     <typeInfo handle="=Client/src&lt;net.minecraft.client.gui{GuiIngame.java[GuiIngame" modifiers="1" timestamp="1685559328009"/>
     <typeInfo handle="=Client/src&lt;net.minecraft.client.renderer.entity{RendererLivingEntity.java[RendererLivingEntity" modifiers="1025" timestamp="1686075876643"/>
+    <typeInfo handle="=Client/src&lt;net.minecraft.client.renderer.entity{Render.java[Render" modifiers="1025" timestamp="1686076195284"/>
 </typeInfoHistroy>

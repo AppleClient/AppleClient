@@ -716,7 +716,7 @@ public abstract class RendererLivingEntity<T extends EntityLivingBase> extends R
                             fontrenderer.drawString(s, -fontrenderer.getStringWidth(s) / 2, 0, 553648127);
                         }
 
-                        if (damageIndicator.isEnabled() && entity instanceof EntityPlayer && s.contains(entity.getName()))
+                        if (damageIndicator.isEnabled() && entityIn instanceof EntityPlayer && str.contains(entityIn.getName()))
                         {
                             GlStateManager.translate(-0.5F, 0, 0);
                             float maxHearts = ((EntityLivingBase) entity).getMaxHealth();

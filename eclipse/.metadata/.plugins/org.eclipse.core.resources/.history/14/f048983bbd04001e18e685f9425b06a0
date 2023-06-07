@@ -17,7 +17,6 @@ import appu26j.mods.visuals.NameTags;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.gui.Gui;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelSpider;
 import net.minecraft.client.renderer.GLAllocation;
@@ -36,7 +35,6 @@ import net.minecraft.scoreboard.Team;
 import net.minecraft.src.Config;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
 import net.optifine.EmissiveTextures;
 import net.optifine.entity.model.CustomEntityModels;
 import net.optifine.reflect.Reflector;
@@ -714,52 +712,6 @@ public abstract class RendererLivingEntity<T extends EntityLivingBase> extends R
                         else
                         {
                             fontrenderer.drawString(s, -fontrenderer.getStringWidth(s) / 2, 0, 553648127);
-                        }
-
-                        if (damageIndicator.isEnabled() && entity instanceof EntityPlayer && s.contains(entity.getName()))
-                        {
-                            GlStateManager.translate(-0.5F, 0, 0);
-                            float maxHearts = ((EntityLivingBase) entity).getMaxHealth();
-                            float numberOfHearts = ((EntityLivingBase) entity).getHealth();
-                            Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("textures/gui/icons.png"));
-                            
-                            if (this.previousHealth != numberOfHearts)
-                            {
-                                this.time = System.currentTimeMillis();
-                                this.previousHealth = numberOfHearts;
-                            }
-                            
-                            if (System.currentTimeMillis() <= (this.time + 500))
-                            {
-                                this.flag = Minecraft.getMinecraft().thePlayer.ticksExisted % 5 == 0;
-                            }
-                            
-                            else
-                            {
-                                this.flag = false;
-                            }
-                            
-                            for (i = 0; i < maxHearts / 2; i++)
-                            {
-                                boolean isEven = i % 2 == 0;
-                                GlStateManager.color(1, 1, 1, 1);
-                                Gui.drawModalRectWithCustomSizedTexture((i * 8) - (maxHearts * 2), -10, this.flag ? 25 : 16, 0, 9, 9, 256, 256);
-                            }
-                            
-                            float temp = -1;
-                            boolean isEven = false;
-                            
-                            for (f = 0; f < numberOfHearts; f++)
-                            {
-                                if (f % 2 == 0)
-                                {
-                                    temp++;
-                                }
-                                
-                                isEven = !isEven;
-                                GlStateManager.color(1, 1, 1, 1);
-                                Gui.drawModalRectWithCustomSizedTexture((temp * 8) - (maxHearts * 2), -10, 52, 0, isEven ? 5 : 9, 9, 256, 256);
-                            }
                         }
                         
                         GlStateManager.enableLighting();

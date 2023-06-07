@@ -742,7 +742,7 @@ public abstract class RendererLivingEntity<T extends EntityLivingBase> extends R
                             for (i = 0; i < maxHearts / 2; i++)
                             {
                                 boolean isEven = i % 2 == 0;
-                                GlStateManager.color(1, 1, 1, 1);
+                                GlStateManager.color(1, 1, 1, 0.5F);
                                 Gui.drawModalRectWithCustomSizedTexture((i * 8) - (maxHearts * 2), -10, this.flag ? 25 : 16, 0, 9, 9, 256, 256);
                             }
                             
@@ -757,7 +757,7 @@ public abstract class RendererLivingEntity<T extends EntityLivingBase> extends R
                                 }
                                 
                                 isEven = !isEven;
-                                GlStateManager.color(1, 1, 1, 1);
+                                GlStateManager.color(1, 1, 1, 0.5F);
                                 Gui.drawModalRectWithCustomSizedTexture((temp * 8) - (maxHearts * 2), -10, 52, 0, isEven ? 5 : 9, 9, 256, 256);
                             }
                         }

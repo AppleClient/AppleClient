@@ -6,8 +6,9 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="Damage"/>
+		<item key="selection" value="NameTa"/>
 		<list key="findhistory">
+			<item value="nameTa"/>
 			<item value="damage"/>
 			<item value="canRe"/>
 			<item value="Tick"/>
@@ -22,7 +23,6 @@
 			<item value="WorldClient"/>
 			<item value="world"/>
 			<item value="name"/>
-			<item value="Health"/>
 		</list>
 		<list key="replacehistory">
 			<item value="y"/>

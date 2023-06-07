@@ -35,10 +35,10 @@ public abstract class Render<T extends Entity> implements IEntityRenderer
 {
     private static final ResourceLocation shadowTextures = new ResourceLocation("textures/misc/shadow.png");
     protected final RenderManager renderManager;
-    protected float previousHealth = 0;
-    protected boolean flag = false;
+    private float previousHealth = 0;
+    private boolean flag = false;
     public float shadowSize;
-    protected long time;
+    private long time;
 
     /**
      * Determines the darkness of the object's shadow. Higher value makes a darker shadow.
