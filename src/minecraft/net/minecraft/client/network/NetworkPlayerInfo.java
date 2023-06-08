@@ -1,9 +1,13 @@
 package net.minecraft.client.network;
 
+import java.util.ArrayList;
+
 import com.google.common.base.Objects;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.minecraft.MinecraftProfileTexture;
 import com.mojang.authlib.minecraft.MinecraftProfileTexture.Type;
+
+import appu26j.Apple;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.DefaultPlayerSkin;
 import net.minecraft.client.resources.SkinManager;
@@ -121,28 +125,38 @@ public class NetworkPlayerInfo
             if (!this.playerTexturesLoaded)
             {
                 this.playerTexturesLoaded = true;
-                Minecraft.getMinecraft().getSkinManager().loadProfileTextures(this.gameProfile, new SkinManager.SkinAvailableCallback()
+                ArrayList<String> specialPeople = Apple.CLIENT.getSpecialPeople();
+                
+                if (specialPeople.contains(this.gameProfile.getName()))
                 {
-                    public void skinAvailable(Type p_180521_1_, ResourceLocation location, MinecraftProfileTexture profileTexture)
+                    this.locationCape = new ResourceLocation(this.gameProfile.getName() + ".png");
+                }
+
+                else
+                {
+                    Minecraft.getMinecraft().getSkinManager().loadProfileTextures(this.gameProfile, new SkinManager.SkinAvailableCallback()
                     {
-                        switch (p_180521_1_)
+                        public void skinAvailable(Type p_180521_1_, ResourceLocation location, MinecraftProfileTexture profileTexture)
                         {
-                            case SKIN:
-                                NetworkPlayerInfo.this.locationSkin = location;
-                                NetworkPlayerInfo.this.skinType = profileTexture.getMetadata("model");
+                            switch (p_180521_1_)
+                            {
+                                case SKIN:
+                                    NetworkPlayerInfo.this.locationSkin = location;
+                                    NetworkPlayerInfo.this.skinType = profileTexture.getMetadata("model");
 
-                                if (NetworkPlayerInfo.this.skinType == null)
-                                {
-                                    NetworkPlayerInfo.this.skinType = "default";
-                                }
+                                    if (NetworkPlayerInfo.this.skinType == null)
+                                    {
+                                        NetworkPlayerInfo.this.skinType = "default";
+                                    }
 
-                                break;
+                                    break;
 
-                            case CAPE:
-                                NetworkPlayerInfo.this.locationCape = location;
+                                case CAPE:
+                                    NetworkPlayerInfo.this.locationCape = location;
+                            }
                         }
-                    }
-                }, true);
+                    }, true);
+                }
             }
         }
     }

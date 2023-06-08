@@ -1,0 +1,17 @@
+package appu26j.utils;
+
+public class UpdateUtil
+{
+    public static void addHook()
+    {
+        Runtime.getRuntime().addShutdownHook(new Thread(() ->
+        {
+            
+        }));
+    }
+    
+    public static void checkUpdaterJar()
+    {
+        
+    }
+}

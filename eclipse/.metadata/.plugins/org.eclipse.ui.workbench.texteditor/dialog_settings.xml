@@ -6,32 +6,37 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="NameTa"/>
+		<item key="selection" value="ItemPhy"/>
 		<list key="findhistory">
-			<item value="nameTa"/>
-			<item value="damage"/>
-			<item value="canRe"/>
-			<item value="Tick"/>
-			<item value="tick"/>
-			<item value="rendererLivin"/>
-			<item value="run"/>
-			<item value="onTi"/>
-			<item value="isVi"/>
-			<item value="Runti"/>
-			<item value="runTi"/>
-			<item value="isVI"/>
-			<item value="WorldClient"/>
-			<item value="world"/>
-			<item value="name"/>
+			<item value="itemphy"/>
+			<item value="GuiIngame"/>
+			<item value="GL11.glBlendFunc"/>
+			<item value="GL11.glViewpor"/>
+			<item value=" &lt;&lt; 20 | "/>
+			<item value="axisalig"/>
+			<item value="axisaligned"/>
+			<item value="public AxisAlignedBB "/>
+			<item value="AxisAlignedBB "/>
+			<item value="AxisAlignedBB"/>
+			<item value="arm."/>
+			<item value="arm"/>
+			<item value="0.001, 0.001, 0.001"/>
+			<item value="0, 0.4"/>
+			<item value="0, 0.4,"/>
 		</list>
 		<list key="replacehistory">
+			<item value=""/>
+			<item value="g"/>
+			<item value="f"/>
+			<item value="e"/>
+			<item value="d"/>
 			<item value="y"/>
 			<item value="x"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="521"/>
-		<item key="DIALOG_Y_ORIGIN" value="6"/>
+		<item key="DIALOG_X_ORIGIN" value="509"/>
+		<item key="DIALOG_Y_ORIGIN" value="209"/>
 		<item key="DIALOG_WIDTH" value="318"/>
 		<item key="DIALOG_HEIGHT" value="295"/>
 		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-21|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>

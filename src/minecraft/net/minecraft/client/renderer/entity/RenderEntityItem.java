@@ -1,20 +1,30 @@
 package net.minecraft.client.renderer.entity;
 
 import java.util.Random;
+
+import appu26j.Apple;
+import appu26j.mods.visuals.ItemPhysics;
+import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.resources.model.IBakedModel;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
 
 public class RenderEntityItem extends Render<EntityItem>
 {
     private final RenderItem itemRenderer;
-    private Random field_177079_e = new Random();
+    private Random random = new Random();
 
     public RenderEntityItem(RenderManager renderManagerIn, RenderItem p_i46167_2_)
     {
@@ -90,8 +100,15 @@ public class RenderEntityItem extends Render<EntityItem>
      */
     public void doRender(EntityItem entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
+        ItemPhysics itemPhysics = (ItemPhysics) Apple.CLIENT.getModsManager().getMod("Item Physics");
+        
+        if (itemPhysics.isEnabled() && entity.getEntityItem() != null && this.renderItemPhysics(entity, x, y, z))
+        {
+            return;
+        }
+        
         ItemStack itemstack = entity.getEntityItem();
-        this.field_177079_e.setSeed(187L);
+        this.random.setSeed(187L);
         boolean flag = false;
 
         if (this.bindEntityTexture(entity))
@@ -116,9 +133,9 @@ public class RenderEntityItem extends Render<EntityItem>
 
                 if (j > 0)
                 {
-                    float f = (this.field_177079_e.nextFloat() * 2.0F - 1.0F) * 0.15F;
-                    float f1 = (this.field_177079_e.nextFloat() * 2.0F - 1.0F) * 0.15F;
-                    float f2 = (this.field_177079_e.nextFloat() * 2.0F - 1.0F) * 0.15F;
+                    float f = (this.random.nextFloat() * 2.0F - 1.0F) * 0.15F;
+                    float f1 = (this.random.nextFloat() * 2.0F - 1.0F) * 0.15F;
+                    float f2 = (this.random.nextFloat() * 2.0F - 1.0F) * 0.15F;
                     GlStateManager.translate(f, f1, f2);
                 }
 
@@ -151,6 +168,193 @@ public class RenderEntityItem extends Render<EntityItem>
         }
 
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
+    }
+
+    private boolean renderItemPhysics(EntityItem entity, double x, double y, double z)
+    {
+        ItemPhysics.updateLastRenderTime();
+        
+        if (entity.getAge() == 0)
+        {
+            return false;
+        }
+        
+        ItemStack itemStack = entity.getEntityItem();
+        boolean empty = itemStack.getItem() == null || itemStack.stackSize <= 0;
+        this.random.setSeed(empty ? 187L : Item.getIdFromItem(itemStack.getItem()) + itemStack.getItemDamage());
+        boolean flag = false;
+        
+        if (this.bindEntityTexture(entity))
+        {
+            this.renderManager.renderEngine.getTexture(this.getEntityTexture(entity)).setBlurMipmap(false, false);
+            flag = true;
+        }
+        
+        GlStateManager.enableRescaleNormal();
+        GlStateManager.alphaFunc(516, 0.1F);
+        GlStateManager.enableBlend();
+        RenderHelper.enableStandardItemLighting();
+        GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
+        GlStateManager.pushMatrix();
+        IBakedModel iBakedModel = this.itemRenderer.getItemModelMesher().getItemModel(itemStack);
+        boolean isThreeDimensional = iBakedModel.isGui3d();
+        float rotateBy = ItemPhysics.getRotation() * 40.0f;
+        
+        if (Minecraft.getMinecraft().isGamePaused())
+        {
+            rotateBy = 0;
+        }
+        
+        if (entity.rotationPitch > 360)
+        {
+            entity.rotationPitch = 0;
+        }
+        
+        if (!Double.isNaN(entity.posX) && !Double.isNaN(entity.posY) && !Double.isNaN(entity.posZ))
+        {
+            if (entity.onGround)
+            {
+                float rotationPitch = entity.rotationPitch;
+                
+                if (rotationPitch % 90 != 0)
+                {
+                    double d = Math.abs(rotationPitch), e = Math.abs(rotationPitch - 90), f = Math.abs(rotationPitch - 180), g = Math.abs(rotationPitch - 270);
+                    
+                    if (d <= e && d <= f && d <= g)
+                    {
+                        if (entity.rotationPitch < 0)
+                        {
+                            entity.rotationPitch += rotateBy;
+                        }
+                        
+                        else
+                        {
+                            entity.rotationPitch -= rotateBy;
+                        }
+                    }
+                    
+                    if (e < d && e <= f && e <= g)
+                    {
+                        if ((entity.rotationPitch - 90) < 0)
+                        {
+                            entity.rotationPitch += rotateBy;
+                        }
+                        
+                        else
+                        {
+                            entity.rotationPitch -= rotateBy;
+                        }
+                    }
+                    
+                    if (f < e && f < d && f <= g)
+                    {
+                        if ((entity.rotationPitch - 180) < 0)
+                        {
+                            entity.rotationPitch += rotateBy;
+                        }
+                        
+                        else
+                        {
+                            entity.rotationPitch -= rotateBy;
+                        }
+                    }
+                    
+                    if (g < e && g < f && g < d)
+                    {
+                        if ((entity.rotationPitch - 270) < 0)
+                        {
+                            entity.rotationPitch += rotateBy;
+                        }
+                        
+                        else
+                        {
+                            entity.rotationPitch -= rotateBy;
+                        }
+                    }
+                }
+            }
+            
+            else
+            {
+                if (this.isNearWater(entity))
+                {
+                    rotateBy /= 4.0;
+                }
+                
+                entity.rotationPitch += rotateBy;
+            }
+        }
+        
+        GlStateManager.translate(x, y + 0.15, z);
+        GlStateManager.rotate(entity.rotationYaw, 0, 1, 0);
+        GlStateManager.rotate(entity.rotationPitch + 90, 1, 0, 0);
+        int modelCount = this.func_177078_a(itemStack);
+        ItemCameraTransforms itemCameraTransforms = iBakedModel.getItemCameraTransforms();
+        double f1 = itemCameraTransforms.ground.scale.x;
+        double f2 = itemCameraTransforms.ground.scale.y;
+        double f3 = itemCameraTransforms.ground.scale.z;
+        
+        if (!isThreeDimensional)
+        {
+            double f4 = -0.0 * (modelCount - 1) * 0.5 * f1;
+            double f5 = -0.0 * (modelCount - 1) * 0.5 * f2;
+            double f6 = -0.09375 * (modelCount - 1) * 0.5 * f3;
+            GlStateManager.translate(f4, f5, f6);
+        }
+        
+        for (int k = 0; k < modelCount; k++)
+        {
+            if (isThreeDimensional)
+            {
+                GlStateManager.pushMatrix();
+                
+                if (k > 0)
+                {
+                    double translateX = (this.random.nextFloat() * 2.0f - 1.0f) * 0.15f;
+                    double translateY = (this.random.nextFloat() * 2.0f - 1.0f) * 0.15f;
+                    double translateZ = (this.random.nextFloat() * 2.0f - 1.0f) * 0.15f;
+                    GlStateManager.translate(translateX, translateY, translateZ);
+                }
+                
+                GlStateManager.scale(0.5, 0.5, 0.5);
+                itemCameraTransforms.applyTransform(ItemCameraTransforms.TransformType.GROUND);
+                this.itemRenderer.renderItem(itemStack, iBakedModel);
+                GlStateManager.popMatrix();
+            }
+            
+            else
+            {
+                GlStateManager.pushMatrix();
+                itemCameraTransforms.applyTransform(ItemCameraTransforms.TransformType.GROUND);
+                this.itemRenderer.renderItem(itemStack, iBakedModel);
+                GlStateManager.popMatrix();
+                GlStateManager.translate(0, 0, 0.046875 * f3);
+            }
+        }
+        
+        GlStateManager.popMatrix();
+        GlStateManager.disableRescaleNormal();
+        GlStateManager.disableBlend();
+        this.bindEntityTexture(entity);
+        
+        if (flag)
+        {
+            this.renderManager.renderEngine.getTexture(this.getEntityTexture(entity)).restoreLastBlurMipmap();
+        }
+        
+        return true;
+    }
+
+    private boolean isNearWater(Entity entity)
+    {
+        if (entity.isInWater())
+        {
+            return true;
+        }
+        
+        World world = entity.getEntityWorld();
+        BlockPos blockPos = entity.getPosition();
+        return Block.getIdFromBlock(world.getBlockState(blockPos).getBlock()) == 9 || Block.getIdFromBlock(world.getBlockState(blockPos.down()).getBlock()) == 9;
     }
 
     /**

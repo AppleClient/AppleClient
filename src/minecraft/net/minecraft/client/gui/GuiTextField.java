@@ -667,7 +667,7 @@ public class GuiTextField extends Gui
                 
                 else
                 {
-                    j1 = this.fontRendererInstance.drawString(s.substring(j), (float)j1, (float)i1, i);
+                    j1 = this.fontRendererInstance.drawString(s.substring(j), (float)j1 + 1, (float)i1, i);
                 }
             }
 

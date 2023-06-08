@@ -33,7 +33,7 @@ public class Session
         
         for (int i = 0; i < this.token.length(); i++)
         {
-            censoredToken += "#";
+            censoredToken += "*";
         }
         
         return "token:" + censoredToken + ":" + this.playerID;

@@ -6,6 +6,7 @@ import java.util.Locale;
 import org.lwjgl.opengl.GL11;
 
 import appu26j.interfaces.MinecraftInterface;
+import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
@@ -29,21 +30,17 @@ public class FixedFontRenderer implements MinecraftInterface
         float green = (float) (color >> 8 & 255) / 255;
         float blue = (float) (color & 255) / 255;
         float alpha = (float) (color >> 24 & 255) / 255;
-        x += 0.1F;
+        GlStateManager.pushMatrix();
+        GlStateManager.scale(size / 8, size / 8, size / 8);
+        GlStateManager.color(red, green, blue, alpha);
         
-        if (size != 12)
+        if (y % 0.5F == 0)
         {
             y += 0.1F;
         }
         
-        else
-        {
-            y += 0.01F;
-        }
-        
-        GlStateManager.pushMatrix();
-        GlStateManager.scale(1, 1, 1);
-        GlStateManager.color(red, green, blue, alpha);
+        x /= (size / 8);
+        y /= (size / 8);
         float offset = 0;
         
         for (int i = 0; i < text.length(); i++)
@@ -73,8 +70,14 @@ public class FixedFontRenderer implements MinecraftInterface
             
             else
             {
-                drawImage(font, x + offset, y, (float) (characterIndex % 16 * 8), (float) (characterIndex / 16 * 8), 8, 8, 128, 128, size, size);
-                offset += mc.fontRendererObj.getCharWidthNoUnicode((char) characterIndex) * (size / 8);
+                mc.getTextureManager().bindTexture(font);
+                GlStateManager.enableTexture2D();
+                GlStateManager.enableAlpha();
+                GlStateManager.enableBlend();
+                GlStateManager.alphaFunc(516, 0);
+                GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
+                Gui.drawModalRectWithCustomSizedTexture(x + offset, y, (float) (characterIndex % 16 * 8), (float) (characterIndex / 16 * 8), 7.9F, 7.9F, 128, 128);
+                offset += mc.fontRendererObj.getCharWidthNoUnicode((char) characterIndex);
             }
         }
         

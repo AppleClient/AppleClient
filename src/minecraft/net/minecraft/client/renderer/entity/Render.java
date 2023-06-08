@@ -35,10 +35,7 @@ public abstract class Render<T extends Entity> implements IEntityRenderer
 {
     private static final ResourceLocation shadowTextures = new ResourceLocation("textures/misc/shadow.png");
     protected final RenderManager renderManager;
-    protected float previousHealth = 0;
-    protected boolean flag = false;
     public float shadowSize;
-    protected long time;
 
     /**
      * Determines the darkness of the object's shadow. Higher value makes a darker shadow.
@@ -441,27 +438,27 @@ public abstract class Render<T extends Entity> implements IEntityRenderer
                 float numberOfHearts = ((EntityLivingBase) entityIn).getHealth();
                 Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("textures/gui/icons.png"));
                 
-                if (this.previousHealth != numberOfHearts)
+                if (entityIn.previousHealth != numberOfHearts)
                 {
-                    this.time = System.currentTimeMillis();
-                    this.previousHealth = numberOfHearts;
+                    entityIn.time = System.currentTimeMillis();
+                    entityIn.previousHealth = numberOfHearts;
                 }
                 
-                if (System.currentTimeMillis() <= (this.time + 500))
+                if (System.currentTimeMillis() <= (entityIn.time + 500))
                 {
-                    this.flag = Minecraft.getMinecraft().thePlayer.ticksExisted % 5 == 0;
+                    entityIn.flag = Minecraft.getMinecraft().thePlayer.ticksExisted % 5 == 0;
                 }
                 
                 else
                 {
-                    this.flag = false;
+                    entityIn.flag = false;
                 }
                 
                 for (i = 0; i < maxHearts / 2; i++)
                 {
                     boolean isEven = i % 2 == 0;
                     GlStateManager.color(1, 1, 1, 1);
-                    Gui.drawModalRectWithCustomSizedTexture((i * 8) - (maxHearts * 2), -10, this.flag ? 25 : 16, 0, 9, 9, 256, 256);
+                    Gui.drawModalRectWithCustomSizedTexture((i * 8) - (maxHearts * 2), -10, entityIn.flag ? 25 : 16, 0, 9, 9, 256, 256);
                 }
                 
                 float temp = -1;

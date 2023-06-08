@@ -59,6 +59,9 @@ public abstract class Entity implements ICommandSender, CullingTargetAccessor
     private static int nextEntityID;
     private int entityId;
     public double renderDistanceWeight;
+    public float previousHealth = 0;
+    public boolean flag = false;
+    public long time;
 
     /**
      * Blocks entities from spawning when they do their AABB check to make sure the spot is clear of entities that can

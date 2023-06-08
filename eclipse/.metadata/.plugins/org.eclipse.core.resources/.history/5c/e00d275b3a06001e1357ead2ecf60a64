@@ -1,0 +1,23 @@
+package appu26j.utils;
+
+import java.io.File;
+
+public class UpdateUtil
+{
+    private static File updater = new File("updater.jar");
+    
+    public static void addHook()
+    {
+        checkUpdaterJar();
+        
+        Runtime.getRuntime().addShutdownHook(new Thread(() ->
+        {
+            
+        }));
+    }
+    
+    private static void checkUpdaterJar()
+    {
+        
+    }
+}

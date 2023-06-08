@@ -30,7 +30,6 @@ INDEX VERSION 1.132+C:\Projects\Apple Client\eclipse\.metadata\.plugins\org.ecli
 2127241049.index
 1669787819.index
 2364371826.index
-1626058234.index
 1331533499.index
 3881495009.index
 2404500135.index

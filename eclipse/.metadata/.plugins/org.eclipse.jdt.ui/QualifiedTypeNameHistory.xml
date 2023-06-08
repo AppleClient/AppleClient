@@ -22,7 +22,6 @@
     <fullyQualifiedTypeName name="appu26j.events.Event"/>
     <fullyQualifiedTypeName name="appu26j.mods.visuals.Chat"/>
     <fullyQualifiedTypeName name="appu26j.utils.ServerUtil"/>
-    <fullyQualifiedTypeName name="appu26j.Apple"/>
     <fullyQualifiedTypeName name="club.marshadow.ColorUtil"/>
     <fullyQualifiedTypeName name="org.lwjgl.opengl.Display"/>
     <fullyQualifiedTypeName name="net.minecraft.client.gui.GuiMultiplayer"/>
@@ -30,7 +29,6 @@
     <fullyQualifiedTypeName name="net.minecraft.client.gui.GuiScreenAddServer"/>
     <fullyQualifiedTypeName name="org.lwjgl.opengl.GL11"/>
     <fullyQualifiedTypeName name="appu26j.events.mc.EventKey"/>
-    <fullyQualifiedTypeName name="net.minecraft.entity.Entity"/>
     <fullyQualifiedTypeName name="net.minecraft.util.Vec3"/>
     <fullyQualifiedTypeName name="net.minecraft.entity.EntityLivingBase"/>
     <fullyQualifiedTypeName name="java.awt.Color"/>
@@ -38,8 +36,20 @@
     <fullyQualifiedTypeName name="net.minecraft.util.MathHelper"/>
     <fullyQualifiedTypeName name="net.minecraft.block.state.BlockState"/>
     <fullyQualifiedTypeName name="appu26j.performance.CullHelper"/>
-    <fullyQualifiedTypeName name="net.minecraft.client.Minecraft"/>
     <fullyQualifiedTypeName name="appu26j.performance.CullHelper.CullType"/>
-    <fullyQualifiedTypeName name="appu26j.mods.Category"/>
     <fullyQualifiedTypeName name="net.minecraft.client.gui.Gui"/>
+    <fullyQualifiedTypeName name="appu26j.mods.Category"/>
+    <fullyQualifiedTypeName name="java.util.Arrays"/>
+    <fullyQualifiedTypeName name="net.minecraft.client.renderer.RenderHelper"/>
+    <fullyQualifiedTypeName name="appu26j.mods.visuals.ItemPhysics"/>
+    <fullyQualifiedTypeName name="net.minecraft.client.Minecraft"/>
+    <fullyQualifiedTypeName name="net.minecraft.entity.Entity"/>
+    <fullyQualifiedTypeName name="net.minecraft.block.Block"/>
+    <fullyQualifiedTypeName name="net.minecraft.init.Blocks"/>
+    <fullyQualifiedTypeName name="net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType"/>
+    <fullyQualifiedTypeName name="appu26j.utils.UpdateUtil"/>
+    <fullyQualifiedTypeName name="appu26j.utils.FileUtil"/>
+    <fullyQualifiedTypeName name="org.apache.commons.io.FileUtils"/>
+    <fullyQualifiedTypeName name="java.net.URL"/>
+    <fullyQualifiedTypeName name="appu26j.Apple"/>
 </qualifiedTypeNameHistroy>

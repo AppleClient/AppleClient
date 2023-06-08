@@ -96,7 +96,6 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
     private int field_92020_v;
     private int field_92019_w;
     private ResourceLocation backgroundTexture;
-    private boolean aBoolean = false;
     private boolean animation = false;
 
     /** Minecraft Realms button. */
@@ -111,13 +110,7 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
         if (AppleClientVersionChecker.firstTimeInitialize)
         {
             this.animation = true;
-            this.aBoolean = !Apple.CLIENT.getVersionChecker().isUpToDate();
             AppleClientVersionChecker.firstTimeInitialize = false;
-        }
-
-        if (this.aBoolean)
-        {
-            SoundUtil.playBellSound();
         }
         
         this.openGLWarning2 = field_96138_a;
@@ -157,18 +150,6 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
     public boolean doesGuiPauseGame()
     {
         return false;
-    }
-
-    /**
-     * Fired when a key is typed (except F11 which toggles full screen). This is the equivalent of
-     * KeyListener.keyTyped(KeyEvent e). Args : character (character on the key), keyCode (lwjgl Keyboard key code)
-     */
-    protected void keyTyped(char typedChar, int keyCode) throws IOException
-    {
-        if (this.aBoolean && keyCode == 1)
-        {
-            this.aBoolean = false;
-        }
     }
 
     /**
@@ -644,18 +625,6 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
             this.modUpdateNotification.drawScreen(mouseX, mouseY, partialTicks);
         }
         
-        if (this.aBoolean)
-        {
-            this.drawRect(0, 0, this.width, this.height, new Color(0, 0, 0, 100).getRGB());
-            float x = this.width / 2;
-            float y = this.height / 2;
-            this.drawGradientRect(x - 140, y - 85, x + 140, y + 85, this.backgroundColourDarkened, this.backgroundColourLightened);
-            FixedFontRenderer.drawString("An update is available!", x - (FixedFontRenderer.getStringWidth("An update is available!", 16) / 2), y - 65, 16, -1);
-            FixedFontRenderer.drawString("We recommend you update Apple Client.", x - (FixedFontRenderer.getStringWidth("We recommend you update Apple Client.", 8) / 2), y - 40, 8, -1);
-            this.drawRect(x - 55, y + 30, x + 55, y + 60, this.isInside(mouseX, mouseY, x - 55, y + 30, x + 55, y + 60) ? new Color(75, 75, 90).getRGB() : new Color(85, 85, 100).getRGB());
-            FixedFontRenderer.drawString("OK", x - (FixedFontRenderer.getStringWidth("OK", 12) / 2), y + 40, 12, -1);
-        }
-        
         if (this.animation)
         {
             this.drawRect(0, 0, (this.width / 2) - 128, this.height, new Color(255, 255, 255, (int) (this.index * 255)).getRGB());
@@ -691,34 +660,20 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
     protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException
     {
         super.mouseClicked(mouseX, mouseY, mouseButton);
-        float x = this.width / 2;
-        float y = this.height / 2;
         
-        if (this.aBoolean)
+        synchronized (this.threadLock)
         {
-            if (this.isInside(mouseX, mouseY, x - 55, y + 30, x + 55, y + 60) && mouseButton == 0)
+            if (this.openGLWarning1.length() > 0 && mouseX >= this.field_92022_t && mouseX <= this.field_92020_v && mouseY >= this.field_92021_u && mouseY <= this.field_92019_w)
             {
-                SoundUtil.playClickSound();
-                this.aBoolean = false;
+                GuiConfirmOpenLink guiconfirmopenlink = new GuiConfirmOpenLink(this, this.openGLWarningLink, 13, true);
+                guiconfirmopenlink.disableSecurityWarning();
+                this.mc.displayGuiScreen(guiconfirmopenlink);
             }
         }
-        
-        else
-        {
-            synchronized (this.threadLock)
-            {
-                if (this.openGLWarning1.length() > 0 && mouseX >= this.field_92022_t && mouseX <= this.field_92020_v && mouseY >= this.field_92021_u && mouseY <= this.field_92019_w)
-                {
-                    GuiConfirmOpenLink guiconfirmopenlink = new GuiConfirmOpenLink(this, this.openGLWarningLink, 13, true);
-                    guiconfirmopenlink.disableSecurityWarning();
-                    this.mc.displayGuiScreen(guiconfirmopenlink);
-                }
-            }
 
-            if (this.func_183501_a())
-            {
-                this.field_183503_M.mouseClicked(mouseX, mouseY, mouseButton);
-            }
+        if (this.func_183501_a())
+        {
+            this.field_183503_M.mouseClicked(mouseX, mouseY, mouseButton);
         }
     }
 

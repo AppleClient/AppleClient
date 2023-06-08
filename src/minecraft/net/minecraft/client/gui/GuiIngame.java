@@ -15,6 +15,7 @@ import appu26j.mods.Mod;
 import appu26j.mods.multiplayer.Cooldown;
 import appu26j.mods.visuals.BossBar;
 import appu26j.mods.visuals.CrossHair;
+import appu26j.mods.visuals.ItemPhysics;
 import appu26j.mods.visuals.NoPumpkin;
 import club.marshadow.ColorUtil;
 import net.minecraft.block.material.Material;
@@ -1287,7 +1288,7 @@ public class GuiIngame extends Gui
      * The update tick for the ingame UI
      */
     public void updateTick()
-    {
+    {   
         if (this.recordPlayingUpFor > 0)
         {
             --this.recordPlayingUpFor;

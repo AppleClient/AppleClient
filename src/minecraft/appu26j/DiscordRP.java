@@ -41,7 +41,8 @@ public class DiscordRP
 	
 	public static void update(String line)
 	{
-		Builder builder = new Builder(line);
+		Builder builder = new Builder("discord.gg/485Njm9hNG");
+		builder.setDetails(line);
 		builder.setBigImage("appleclient", "Apple Client");
 		builder.setStartTimestamps(milliseconds);
 		DiscordRPC.discordUpdatePresence(builder.build());

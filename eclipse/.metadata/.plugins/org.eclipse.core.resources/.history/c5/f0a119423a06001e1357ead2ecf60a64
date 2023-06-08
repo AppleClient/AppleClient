@@ -1,0 +1,9 @@
+package appu26j.utils;
+
+public class UpdateUtil
+{
+    public static void addHook()
+    {
+        
+    }
+}
