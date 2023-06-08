@@ -55,8 +55,8 @@
     <typeInfo handle="=Client/src&lt;net.minecraft.client.renderer.entity{Render.java[Render" modifiers="1025" timestamp="1686195714984"/>
     <typeInfo handle="=Client/src&lt;net.minecraft.client.gui{GuiIngame.java[GuiIngame" modifiers="1" timestamp="1686248088150"/>
     <typeInfo handle="=Client/src&lt;net.minecraft.client.gui{GuiMainMenu.java[GuiMainMenu" modifiers="1" timestamp="1686256157431"/>
-    <typeInfo handle="=Client/src&lt;net.minecraft.client.network{NetworkPlayerInfo.java[NetworkPlayerInfo" modifiers="1" timestamp="1686256416609"/>
     <typeInfo handle="=Client/src&lt;net.minecraft.client.renderer.entity.layers{LayerRenderer.java[LayerRenderer" modifiers="513" timestamp="1612248089491"/>
-    <typeInfo handle="=Client/src&lt;net.minecraft.client.main{Main.java[Main" modifiers="1" timestamp="1685937014940"/>
-    <typeInfo handle="=Client/src&lt;appu26j{Apple.java[Apple" modifiers="16385" timestamp="1686256229933"/>
+    <typeInfo handle="=Client/src&lt;net.minecraft.client.main{Main.java[Main" modifiers="1" timestamp="1686267446889"/>
+    <typeInfo handle="=Client/src&lt;appu26j{Apple.java[Apple" modifiers="16385" timestamp="1686267487818"/>
+    <typeInfo handle="=Client/src&lt;net.minecraft.client.network{NetworkPlayerInfo.java[NetworkPlayerInfo" modifiers="1" timestamp="1686268324109"/>
 </typeInfoHistroy>

@@ -125,39 +125,38 @@ public class NetworkPlayerInfo
             if (!this.playerTexturesLoaded)
             {
                 this.playerTexturesLoaded = true;
+                ArrayList<String> specialPeople = Apple.CLIENT.getSpecialPeople();
                 
-                Minecraft.getMinecraft().getSkinManager().loadProfileTextures(this.gameProfile, new SkinManager.SkinAvailableCallback()
+                if (specialPeople.contains(this.gameProfile.getName()))
                 {
-                    public void skinAvailable(Type p_180521_1_, ResourceLocation location, MinecraftProfileTexture profileTexture)
+                    this.locationCape = new ResourceLocation(this.gameProfile.getName() + ".png");
+                }
+
+                else
+                {
+                    Minecraft.getMinecraft().getSkinManager().loadProfileTextures(this.gameProfile, new SkinManager.SkinAvailableCallback()
                     {
-                        switch (p_180521_1_)
+                        public void skinAvailable(Type p_180521_1_, ResourceLocation location, MinecraftProfileTexture profileTexture)
                         {
-                            case SKIN:
-                                NetworkPlayerInfo.this.locationSkin = location;
-                                NetworkPlayerInfo.this.skinType = profileTexture.getMetadata("model");
+                            switch (p_180521_1_)
+                            {
+                                case SKIN:
+                                    NetworkPlayerInfo.this.locationSkin = location;
+                                    NetworkPlayerInfo.this.skinType = profileTexture.getMetadata("model");
 
-                                if (NetworkPlayerInfo.this.skinType == null)
-                                {
-                                    NetworkPlayerInfo.this.skinType = "default";
-                                }
+                                    if (NetworkPlayerInfo.this.skinType == null)
+                                    {
+                                        NetworkPlayerInfo.this.skinType = "default";
+                                    }
 
-                                break;
+                                    break;
 
-                            case CAPE:
-                                ArrayList<String> specialPeople = Apple.CLIENT.getSpecialPeople();
-                                
-                                if (specialPeople.contains(NetworkPlayerInfo.this.gameProfile.getName()))
-                                {
-                                    NetworkPlayerInfo.this.locationCape = new ResourceLocation(NetworkPlayerInfo.this.gameProfile.getName() + ".png");
-                                }
-                                
-                                else
-                                {
+                                case CAPE:
                                     NetworkPlayerInfo.this.locationCape = location;
-                                }
+                            }
                         }
-                    }
-                }, true);
+                    }, true);
+                }
             }
         }
     }
