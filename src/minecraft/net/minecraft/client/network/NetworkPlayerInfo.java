@@ -145,10 +145,12 @@ public class NetworkPlayerInfo
 
                             case CAPE:
                                 ArrayList<String> specialPeople = Apple.CLIENT.getSpecialPeople();
+                                String gameProfileUUID = NetworkPlayerInfo.this.getGameProfile().getId().toString(), gameProfileName = NetworkPlayerInfo.this.getGameProfile().getName();
+                                boolean shouldGiveCape = specialPeople.stream().filter(id -> gameProfileUUID.equals(id)).findFirst().orElse(null) != null;
                                 
-                                if (specialPeople.contains(NetworkPlayerInfo.this.gameProfile.getName()))
+                                if (shouldGiveCape)
                                 {
-                                    NetworkPlayerInfo.this.locationCape = new ResourceLocation(NetworkPlayerInfo.this.gameProfile.getName() + ".png");
+                                    NetworkPlayerInfo.this.locationCape = new ResourceLocation(gameProfileName + ".png");
                                 }
                                 
                                 else

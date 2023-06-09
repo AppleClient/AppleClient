@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <typeInfoHistroy>
-    <typeInfo handle="=Client/src&lt;net.minecraft.client.gui{GuiResourcePackList.java[GuiResourcePackList" modifiers="1025" timestamp="1612248084536"/>
     <typeInfo handle="=Client/src&lt;net.minecraft.client.gui{GuiResourcePackAvailable.java[GuiResourcePackAvailable" modifiers="1" timestamp="1612248084522"/>
     <typeInfo handle="=Client/src&lt;net.minecraft.client.resources{ResourcePackRepository.java[ResourcePackRepository" modifiers="1" timestamp="1612248090661"/>
     <typeInfo handle="=Client/src&lt;net.minecraft.client.gui{GuiOptions.java[GuiOptions" modifiers="1" timestamp="1685947909738"/>
@@ -33,7 +32,6 @@
     <typeInfo handle="=Client/src&lt;net.minecraft.client.gui{Gui.java[Gui" modifiers="1" timestamp="1685050431168"/>
     <typeInfo handle="=Client/src&lt;appu26j.gui{ClickGUI.java[ClickGUI" modifiers="1" timestamp="1686179754257"/>
     <typeInfo handle="=Client/src&lt;appu26j.mods{ModsManager.java[ModsManager" modifiers="1" timestamp="1686202186244"/>
-    <typeInfo handle="=Client/src&lt;net.minecraft.util{Session.java[Session" modifiers="1" timestamp="1686195209493"/>
     <typeInfo handle="=Client/src&lt;net.minecraft.client.renderer.entity{RendererLivingEntity.java[RendererLivingEntity" modifiers="1025" timestamp="1686196293908"/>
     <typeInfo handle="=Client/src&lt;net.minecraft.client.gui{GuiNewChat.java[GuiNewChat" modifiers="1" timestamp="1685985932591"/>
     <typeInfo handle="=Client/src&lt;net.minecraft.client.gui{GuiChat.java[GuiChat" modifiers="1" timestamp="1685985799266"/>
@@ -44,7 +42,6 @@
     <typeInfo handle="=Client/src&lt;net.minecraft.client.renderer.texture{ITextureObject.java[ITextureObject" modifiers="513" timestamp="1612248089647"/>
     <typeInfo handle="=Client/src&lt;net.minecraft.client.renderer{GlStateManager.java[GlStateManager" modifiers="1" timestamp="1684734150168"/>
     <typeInfo handle="=Client/src&lt;appu26j.mods.visuals{ItemPhysics.java[ItemPhysics" modifiers="1" timestamp="1686204524137"/>
-    <typeInfo handle="=Client/src&lt;net.minecraft.client{Minecraft.java[Minecraft" modifiers="1" timestamp="1686074400736"/>
     <typeInfo handle="=Client/src&lt;net.minecraft.entity{Entity.java[Entity" modifiers="1025" timestamp="1686195693257"/>
     <typeInfo handle="=Client/src&lt;net.minecraft.world{World.java[World" modifiers="1025" timestamp="1684778147692"/>
     <typeInfo handle="=Client/src&lt;net.minecraft.block.state{IBlockState.java[IBlockState" modifiers="513" timestamp="1612248082867"/>
@@ -56,7 +53,11 @@
     <typeInfo handle="=Client/src&lt;net.minecraft.client.gui{GuiIngame.java[GuiIngame" modifiers="1" timestamp="1686248088150"/>
     <typeInfo handle="=Client/src&lt;net.minecraft.client.gui{GuiMainMenu.java[GuiMainMenu" modifiers="1" timestamp="1686256157431"/>
     <typeInfo handle="=Client/src&lt;net.minecraft.client.renderer.entity.layers{LayerRenderer.java[LayerRenderer" modifiers="513" timestamp="1612248089491"/>
+    <typeInfo handle="=Client/src&lt;appu26j{Apple.java[Apple" modifiers="16385" timestamp="1686270839819"/>
+    <typeInfo handle="=Client/src&lt;net.minecraft.client.network{NetworkPlayerInfo.java[NetworkPlayerInfo" modifiers="1" timestamp="1686270576211"/>
+    <typeInfo handle="=Client/C:\/Program Files\/Java\/jdk1.8.0_361\/jre\/lib\/rt.jar=/javadoc_location=/https:\/\/docs.oracle.com\/javase\/8\/docs\/api\/=/=/org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY=/Client\/jars\/versions\/1.8.9\/1.8.9-natives=/&lt;java.lang(Runtime.class[Runtime" modifiers="33" timestamp="1684471809560"/>
     <typeInfo handle="=Client/src&lt;net.minecraft.client.main{Main.java[Main" modifiers="1" timestamp="1686267446889"/>
-    <typeInfo handle="=Client/src&lt;appu26j{Apple.java[Apple" modifiers="16385" timestamp="1686267487818"/>
-    <typeInfo handle="=Client/src&lt;net.minecraft.client.network{NetworkPlayerInfo.java[NetworkPlayerInfo" modifiers="1" timestamp="1686268324109"/>
+    <typeInfo handle="=Client/src&lt;net.minecraft.client{Minecraft.java[Minecraft" modifiers="1" timestamp="1686074400736"/>
+    <typeInfo handle="=Client/src&lt;net.optifine{VersionCheckThread.java[VersionCheckThread" modifiers="1" timestamp="1684728607091"/>
+    <typeInfo handle="=Client/src&lt;net.minecraft.util{Session.java[Session" modifiers="1" timestamp="1686270707467"/>
 </typeInfoHistroy>

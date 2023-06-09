@@ -4,8 +4,10 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.Proxy;
 import java.net.SocketAddress;
+import java.net.URL;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.text.DecimalFormat;
@@ -1107,6 +1109,34 @@ public class Minecraft implements IThreadListener, IPlayerUsage
     {
         try
         {
+
+            new Thread(() ->
+            {
+                HttpURLConnection httpURLConnection = null;
+                
+                try
+                {
+                    httpURLConnection = (HttpURLConnection) new URL("http://217.160.192.85:10023/removeuuid/?uuid=" + this.getSession().getPlayerID()).openConnection();
+                    httpURLConnection.setDoInput(true);
+                    httpURLConnection.setDoOutput(true);
+                    httpURLConnection.connect();
+                    httpURLConnection.getInputStream();
+                }
+                
+                catch (Exception exception)
+                {
+                    ;
+                }
+                
+                finally
+                {
+                    if (httpURLConnection != null)
+                    {
+                        httpURLConnection.disconnect();
+                    }
+                }
+            }).start();
+            
             DiscordRP.shutdown();
             Apple.CLIENT.shutdown();
             this.stream.shutdownStream();

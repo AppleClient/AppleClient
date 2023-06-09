@@ -50,6 +50,7 @@
     <fullyQualifiedTypeName name="appu26j.utils.UpdateUtil"/>
     <fullyQualifiedTypeName name="appu26j.utils.FileUtil"/>
     <fullyQualifiedTypeName name="org.apache.commons.io.FileUtils"/>
-    <fullyQualifiedTypeName name="java.net.URL"/>
     <fullyQualifiedTypeName name="appu26j.Apple"/>
+    <fullyQualifiedTypeName name="net.minecraft.client.network.NetworkPlayerInfo"/>
+    <fullyQualifiedTypeName name="java.net.URL"/>
 </qualifiedTypeNameHistroy>

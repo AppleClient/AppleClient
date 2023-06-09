@@ -25,6 +25,7 @@ import net.minecraft.scoreboard.Scoreboard;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.WorldSettings;
 
 public class GuiPlayerTabOverlay extends Gui
@@ -220,7 +221,16 @@ public class GuiPlayerTabOverlay extends Gui
 
                     j2 += 9;
                 }
-
+                
+                boolean aBoolean = Apple.CLIENT.getPeopleUsingAppleClient().stream().filter(id -> networkplayerinfo1.getGameProfile().getId().toString().equals(id)).findFirst().orElse(null) != null;
+                
+                if (aBoolean)
+                {
+                    this.mc.getTextureManager().bindTexture(new ResourceLocation("icons/icon_16x16.png"));
+                    GlStateManager.color(1, 1, 1);
+                    this.drawModalRectWithCustomSizedTexture(j2 + this.mc.fontRendererObj.getStringWidth(s1), k2, 0, 0, 8, 8, 8, 8);
+                }
+                
                 if (tabList.isEnabled())
                 {
                     if (tabList.getSetting("Text Shadow").getCheckBoxValue())
