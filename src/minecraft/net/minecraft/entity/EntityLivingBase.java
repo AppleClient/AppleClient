@@ -1,18 +1,22 @@
 package net.minecraft.entity;
 
-import com.google.common.base.Predicate;
-import com.google.common.base.Predicates;
-import com.google.common.collect.Maps;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
+
+import com.google.common.base.Predicate;
+import com.google.common.base.Predicates;
+import com.google.common.collect.Maps;
+
+import appu26j.Apple;
+import appu26j.mods.visuals.PotionSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.BaseAttributeMap;
@@ -609,6 +613,13 @@ public abstract class EntityLivingBase extends Entity
 
     protected void updatePotionEffects()
     {
+        PotionSettings potionSettings = (PotionSettings) Apple.CLIENT.getModsManager().getMod("Potion Settings");
+        
+        if (potionSettings.isEnabled() && potionSettings.getSetting("Hide own potion effect particles").getCheckBoxValue() && this instanceof EntityPlayerSP)
+        {
+            return;
+        }
+        
         Iterator<Integer> iterator = this.activePotionsMap.keySet().iterator();
 
         while (iterator.hasNext())

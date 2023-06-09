@@ -26,8 +26,8 @@ public enum Apple implements MinecraftInterface
 	CLIENT;
 	
 	public static final File DEFAULT_DIRECTORY = new File(System.getProperty("user.home"), "appleclient"), CONFIG = new File(DEFAULT_DIRECTORY, "config.json");
-	public static final String VERSION = "1.98", TITLE = "Apple Client " + VERSION;
-    private ArrayList<String> usersPlayingAppleClient = new ArrayList<>();
+    private ArrayList<String> usersPlayingAppleClient = new ArrayList<>(), specialPeople = new ArrayList<>();
+	public static final String VERSION = "1.99", TITLE = "Apple Client " + VERSION;
 	private AppleClientVersionChecker appleClientVersionChecker;
     private long time = System.currentTimeMillis();
 	private SettingsManager settingsManager;
@@ -79,6 +79,68 @@ public enum Apple implements MinecraftInterface
                 }
             }
         }).start();
+        
+        new Thread(() ->
+        {
+            HttpURLConnection httpURLConnection = null;
+            InputStreamReader inputStreamReader = null;
+            BufferedReader bufferedReader = null;
+            
+            try
+            {
+                httpURLConnection = (HttpURLConnection) new URL("http://217.160.192.85:10023/specialpeople").openConnection();
+                httpURLConnection.setDoInput(true);
+                httpURLConnection.setDoOutput(true);
+                httpURLConnection.connect();
+                inputStreamReader = new InputStreamReader(httpURLConnection.getInputStream());
+                bufferedReader = new BufferedReader(inputStreamReader);
+                String line;
+                
+                while ((line = bufferedReader.readLine()) != null)
+                {
+                    this.specialPeople.add(line);
+                }
+            }
+            
+            catch (Exception exception)
+            {
+                ;
+            }
+            
+            finally
+            {
+                if (bufferedReader != null)
+                {
+                    try
+                    {
+                        bufferedReader.close();
+                    }
+                    
+                    catch (Exception exception)
+                    {
+                        ;
+                    }
+                }
+                
+                if (inputStreamReader != null)
+                {
+                    try
+                    {
+                        inputStreamReader.close();
+                    }
+                    
+                    catch (Exception exception)
+                    {
+                        ;
+                    }
+                }
+                
+                if (httpURLConnection != null)
+                {
+                    httpURLConnection.disconnect();
+                }
+            }
+        }).start();
 		
 		BuiltInResourcePackDownloader.downloadPack();
 		this.appleClientVersionChecker.run();
@@ -119,10 +181,7 @@ public enum Apple implements MinecraftInterface
 	                
 	                while ((line = bufferedReader.readLine()) != null)
 	                {
-	                    if (!line.isEmpty())
-	                    {
-	                        this.usersPlayingAppleClient.add(line);
-	                    }
+                        this.usersPlayingAppleClient.add(line);
 	                }
 	            }
 	            
@@ -207,12 +266,7 @@ public enum Apple implements MinecraftInterface
 	
 	public ArrayList<String> getSpecialPeople()
 	{
-	    ArrayList<String> specialPeople = new ArrayList<>();
-	    specialPeople.add("eaa6e69a966b465da9114cae0bf49440");
-        specialPeople.add("cb6b6dd401d345abbbe646670c674b7b");
-        specialPeople.add("3ef63c89142c4aed9e2852e8d717591c");
-        specialPeople.add("94f73882b3594b9aab03c37b0f698be7");
-	    return specialPeople;
+	    return this.specialPeople;
 	}
 	
 	public ArrayList<String> getPeopleUsingAppleClient()

@@ -6,23 +6,23 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="Cape"/>
+		<item key="selection" value="leftCl"/>
 		<list key="findhistory">
+			<item value="leftCl"/>
+			<item value="leftClickC"/>
+			<item value="leftClickCOUn"/>
+			<item value="capabilit"/>
+			<item value="capability"/>
+			<item value="isCapa"/>
+			<item value="hasCapability"/>
+			<item value="hasCapa"/>
+			<item value="hasCAPA"/>
+			<item value="capa"/>
+			<item value="capab"/>
+			<item value="hasCa"/>
+			<item value="-0.1F"/>
+			<item value="updatePoti"/>
 			<item value="cape"/>
-			<item value="itemphy"/>
-			<item value="GuiIngame"/>
-			<item value="GL11.glBlendFunc"/>
-			<item value="GL11.glViewpor"/>
-			<item value=" &lt;&lt; 20 | "/>
-			<item value="axisalig"/>
-			<item value="axisaligned"/>
-			<item value="public AxisAlignedBB "/>
-			<item value="AxisAlignedBB "/>
-			<item value="AxisAlignedBB"/>
-			<item value="arm."/>
-			<item value="arm"/>
-			<item value="0.001, 0.001, 0.001"/>
-			<item value="0, 0.4"/>
 		</list>
 		<list key="replacehistory">
 			<item value=""/>

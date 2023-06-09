@@ -4,8 +4,10 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.Proxy;
 import java.net.SocketAddress;
+import java.net.URL;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.text.DecimalFormat;
@@ -74,7 +76,10 @@ import net.minecraft.client.gui.GuiIngame;
 import net.minecraft.client.gui.GuiIngameMenu;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiMemoryErrorScreen;
+import net.minecraft.client.gui.GuiMultiplayer;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.GuiScreenAddServer;
+import net.minecraft.client.gui.GuiScreenServerList;
 import net.minecraft.client.gui.GuiSleepMP;
 import net.minecraft.client.gui.GuiYesNo;
 import net.minecraft.client.gui.GuiYesNoCallback;
@@ -255,9 +260,6 @@ public class Minecraft implements IThreadListener, IPlayerUsage
     public LoadingScreenRenderer loadingScreen;
     public EntityRenderer entityRenderer;
 
-    /** Mouse left click counter */
-    private int leftClickCounter;
-
     /** Display width */
     private int tempDisplayWidth;
 
@@ -405,7 +407,6 @@ public class Minecraft implements IThreadListener, IPlayerUsage
 
         ImageIO.setUseCache(false);
         Bootstrap.register();
-        System.out.println(true);
     }
 
     public void run()
@@ -1018,6 +1019,46 @@ public class Minecraft implements IThreadListener, IPlayerUsage
             this.gameSettings.showDebugInfo = false;
             this.ingameGUI.getChatGUI().clearChatMessages();
         }
+        
+        if (this.currentScreen instanceof GuiMainMenu && guiScreenIn instanceof GuiMultiplayer)
+        {
+            ((GuiMultiplayer) guiScreenIn).panoramaTimer = ((GuiMainMenu) this.currentScreen).panoramaTimer;
+        }
+        
+        else if (this.currentScreen instanceof GuiMultiplayer && guiScreenIn instanceof GuiMainMenu)
+        {
+            ((GuiMainMenu) guiScreenIn).panoramaTimer = ((GuiMultiplayer) this.currentScreen).panoramaTimer;
+        }
+
+        else if (this.currentScreen instanceof GuiMultiplayer && guiScreenIn instanceof GuiScreenServerList)
+        {
+            ((GuiScreenServerList) guiScreenIn).panoramaTimer = ((GuiMultiplayer) this.currentScreen).panoramaTimer;
+        }
+
+        else if (this.currentScreen instanceof GuiScreenServerList && guiScreenIn instanceof GuiMultiplayer)
+        {
+            ((GuiMultiplayer) guiScreenIn).panoramaTimer = ((GuiScreenServerList) this.currentScreen).panoramaTimer;
+        }
+
+        else if (this.currentScreen instanceof GuiMultiplayer && guiScreenIn instanceof GuiScreenAddServer)
+        {
+            ((GuiScreenAddServer) guiScreenIn).panoramaTimer = ((GuiMultiplayer) this.currentScreen).panoramaTimer;
+        }
+
+        else if (this.currentScreen instanceof GuiScreenAddServer && guiScreenIn instanceof GuiMultiplayer)
+        {
+            ((GuiMultiplayer) guiScreenIn).panoramaTimer = ((GuiScreenAddServer) this.currentScreen).panoramaTimer;
+        }
+        
+        else if (this.currentScreen instanceof GuiMultiplayer && guiScreenIn instanceof GuiMultiplayer && ((GuiMultiplayer) this.currentScreen).parentScreen instanceof GuiMainMenu)
+        {
+            ((GuiMultiplayer) guiScreenIn).panoramaTimer = ((GuiMultiplayer) this.currentScreen).panoramaTimer;
+        }
+        
+        else if (this.currentScreen instanceof GuiMultiplayer)
+        {
+            ((GuiMultiplayer) this.currentScreen).panoramaTimer = 0;
+        }
 
         this.currentScreen = (GuiScreen)guiScreenIn;
 
@@ -1065,6 +1106,34 @@ public class Minecraft implements IThreadListener, IPlayerUsage
     {
         try
         {
+
+            new Thread(() ->
+            {
+                HttpURLConnection httpURLConnection = null;
+                
+                try
+                {
+                    httpURLConnection = (HttpURLConnection) new URL("http://217.160.192.85:10023/removeuuid/?uuid=" + this.getSession().getPlayerID()).openConnection();
+                    httpURLConnection.setDoInput(true);
+                    httpURLConnection.setDoOutput(true);
+                    httpURLConnection.connect();
+                    httpURLConnection.getInputStream();
+                }
+                
+                catch (Exception exception)
+                {
+                    ;
+                }
+                
+                finally
+                {
+                    if (httpURLConnection != null)
+                    {
+                        httpURLConnection.disconnect();
+                    }
+                }
+            }).start();
+            
             DiscordRP.shutdown();
             Apple.CLIENT.shutdown();
             this.stream.shutdownStream();
@@ -1470,7 +1539,6 @@ public class Minecraft implements IThreadListener, IPlayerUsage
                 this.inGameHasFocus = true;
                 this.mouseHelper.grabMouseCursor();
                 this.displayGuiScreen((GuiScreen)null);
-                this.leftClickCounter = 10000;
             }
         }
     }
@@ -1508,41 +1576,33 @@ public class Minecraft implements IThreadListener, IPlayerUsage
     {
         Visuals visuals = (Visuals) Apple.CLIENT.getModsManager().getMod("1.7 Visuals");
         
-        if (!leftClick)
+        if (!this.thePlayer.isUsingItem())
         {
-            this.leftClickCounter = 0;
-        }
-
-        if (this.leftClickCounter <= 0)
-        {
-            if (!this.thePlayer.isUsingItem())
+            if (leftClick && this.objectMouseOver != null && this.objectMouseOver.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
             {
-                if (leftClick && this.objectMouseOver != null && this.objectMouseOver.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
-                {
-                    BlockPos blockpos = this.objectMouseOver.getBlockPos();
+                BlockPos blockpos = this.objectMouseOver.getBlockPos();
 
-                    if (this.theWorld.getBlockState(blockpos).getBlock().getMaterial() != Material.air && this.playerController.onPlayerDamageBlock(blockpos, this.objectMouseOver.sideHit))
-                    {
-                        this.effectRenderer.addBlockHitEffects(blockpos, this.objectMouseOver.sideHit);
-                        this.thePlayer.swingItem();
-                    }
-                }
-                else
+                if (this.theWorld.getBlockState(blockpos).getBlock().getMaterial() != Material.air && this.playerController.onPlayerDamageBlock(blockpos, this.objectMouseOver.sideHit))
                 {
-                    this.playerController.resetBlockRemoving();
+                    this.effectRenderer.addBlockHitEffects(blockpos, this.objectMouseOver.sideHit);
+                    this.thePlayer.swingItem();
                 }
             }
-            else if (visuals.isEnabled() && visuals.getSetting("1.7 Block Hit").getCheckBoxValue())
+            else
             {
-                if (leftClick && this.objectMouseOver != null && this.objectMouseOver.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
-                {
-                    BlockPos blockpos = this.objectMouseOver.getBlockPos();
+                this.playerController.resetBlockRemoving();
+            }
+        }
+        else if (visuals.isEnabled() && visuals.getSetting("1.7 Block Hit").getCheckBoxValue())
+        {
+            if (leftClick && this.objectMouseOver != null && this.objectMouseOver.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
+            {
+                BlockPos blockpos = this.objectMouseOver.getBlockPos();
 
-                    if (this.theWorld.getBlockState(blockpos).getBlock().getMaterial() != Material.air)
-                    {
-                        this.effectRenderer.addBlockHitEffects(blockpos, this.objectMouseOver.sideHit);
-                        this.thePlayer.swingItemSilently();
-                    }
+                if (this.theWorld.getBlockState(blockpos).getBlock().getMaterial() != Material.air)
+                {
+                    this.effectRenderer.addBlockHitEffects(blockpos, this.objectMouseOver.sideHit);
+                    this.thePlayer.swingItemSilently();
                 }
             }
         }
@@ -1550,34 +1610,31 @@ public class Minecraft implements IThreadListener, IPlayerUsage
 
     private void clickMouse()
     {
-        if (this.leftClickCounter <= 0)
+        this.thePlayer.swingItem();
+
+        if (this.objectMouseOver == null)
         {
-            this.thePlayer.swingItem();
-
-            if (this.objectMouseOver == null)
+            logger.error("Null returned as \'hitResult\', this shouldn\'t happen!");
+        }
+        else
+        {
+            switch (this.objectMouseOver.typeOfHit)
             {
-                logger.error("Null returned as \'hitResult\', this shouldn\'t happen!");
-            }
-            else
-            {
-                switch (this.objectMouseOver.typeOfHit)
-                {
-                    case ENTITY:
-                        this.playerController.attackEntity(this.thePlayer, this.objectMouseOver.entityHit);
+                case ENTITY:
+                    this.playerController.attackEntity(this.thePlayer, this.objectMouseOver.entityHit);
+                    break;
+
+                case BLOCK:
+                    BlockPos blockpos = this.objectMouseOver.getBlockPos();
+
+                    if (this.theWorld.getBlockState(blockpos).getBlock().getMaterial() != Material.air)
+                    {
+                        this.playerController.clickBlock(blockpos, this.objectMouseOver.sideHit);
                         break;
+                    }
 
-                    case BLOCK:
-                        BlockPos blockpos = this.objectMouseOver.getBlockPos();
-
-                        if (this.theWorld.getBlockState(blockpos).getBlock().getMaterial() != Material.air)
-                        {
-                            this.playerController.clickBlock(blockpos, this.objectMouseOver.sideHit);
-                            break;
-                        }
-
-                    default:
-                        break;
-                }
+                default:
+                    break;
             }
         }
     }
@@ -1807,11 +1864,6 @@ public class Minecraft implements IThreadListener, IPlayerUsage
 
         if (this.currentScreen != null)
         {
-            this.leftClickCounter = 10000;
-        }
-
-        if (this.currentScreen != null)
-        {
             try
             {
                 this.currentScreen.handleInput();
@@ -1914,11 +1966,6 @@ public class Minecraft implements IThreadListener, IPlayerUsage
                         this.currentScreen.handleMouseInput();
                     }
                 }
-            }
-
-            if (this.leftClickCounter > 0)
-            {
-                --this.leftClickCounter;
             }
 
             this.mcProfiler.endStartSection("keyboard");

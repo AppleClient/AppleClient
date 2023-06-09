@@ -53,6 +53,7 @@ public class ModsManager
         this.mods.add(new BlockOverlay());
         this.mods.add(new DamageIndicator());
         this.mods.add(new ItemPhysics());
+        this.mods.add(new PotionSettings());
         this.mods.add(new Performance());
 		this.mods.sort(Comparator.comparing(Mod::getName));
 		this.getMods("Score Board", "Boss Bar", "Performance").forEach(mod -> mod.setEnabled(true));
