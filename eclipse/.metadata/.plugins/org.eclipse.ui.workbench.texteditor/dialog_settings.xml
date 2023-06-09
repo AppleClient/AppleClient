@@ -6,8 +6,9 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="ItemPhy"/>
+		<item key="selection" value="Cape"/>
 		<list key="findhistory">
+			<item value="cape"/>
 			<item value="itemphy"/>
 			<item value="GuiIngame"/>
 			<item value="GL11.glBlendFunc"/>
@@ -22,7 +23,6 @@
 			<item value="arm"/>
 			<item value="0.001, 0.001, 0.001"/>
 			<item value="0, 0.4"/>
-			<item value="0, 0.4,"/>
 		</list>
 		<list key="replacehistory">
 			<item value=""/>

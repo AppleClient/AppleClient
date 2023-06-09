@@ -122,6 +122,15 @@ public class NetworkPlayerInfo
     {
         synchronized (this)
         {
+            ArrayList<String> specialPeople = Apple.CLIENT.getSpecialPeople();
+            String gameProfileUUID = this.getGameProfile().getId().toString().replaceAll("-", ""), gameProfileName = this.getGameProfile().getName();
+            boolean shouldGiveCape = specialPeople.stream().filter(id -> gameProfileUUID.equals(id)).findFirst().orElse(null) != null;
+            
+            if (shouldGiveCape)
+            {
+                this.locationCape = new ResourceLocation(gameProfileName + ".png");
+            }
+            
             if (!this.playerTexturesLoaded)
             {
                 this.playerTexturesLoaded = true;
@@ -144,16 +153,7 @@ public class NetworkPlayerInfo
                                 break;
 
                             case CAPE:
-                                ArrayList<String> specialPeople = Apple.CLIENT.getSpecialPeople();
-                                String gameProfileUUID = NetworkPlayerInfo.this.getGameProfile().getId().toString(), gameProfileName = NetworkPlayerInfo.this.getGameProfile().getName();
-                                boolean shouldGiveCape = specialPeople.stream().filter(id -> gameProfileUUID.equals(id)).findFirst().orElse(null) != null;
-                                
-                                if (shouldGiveCape)
-                                {
-                                    NetworkPlayerInfo.this.locationCape = new ResourceLocation(gameProfileName + ".png");
-                                }
-                                
-                                else
+                                if (!shouldGiveCape)
                                 {
                                     NetworkPlayerInfo.this.locationCape = location;
                                 }

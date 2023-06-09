@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <typeInfoHistroy>
-    <typeInfo handle="=Client/src&lt;net.minecraft.client.gui{GuiResourcePackAvailable.java[GuiResourcePackAvailable" modifiers="1" timestamp="1612248084522"/>
     <typeInfo handle="=Client/src&lt;net.minecraft.client.resources{ResourcePackRepository.java[ResourcePackRepository" modifiers="1" timestamp="1612248090661"/>
     <typeInfo handle="=Client/src&lt;net.minecraft.client.gui{GuiOptions.java[GuiOptions" modifiers="1" timestamp="1685947909738"/>
     <typeInfo handle="=Client/src&lt;net.minecraft.client.gui{GuiMultiplayer.java[GuiMultiplayer" modifiers="1" timestamp="1685948002513"/>
@@ -17,7 +16,6 @@
     <typeInfo handle="=Client/src&lt;net.minecraft.client.renderer{BlockRendererDispatcher.java[BlockRendererDispatcher" modifiers="1" timestamp="1685992336176"/>
     <typeInfo handle="=Client/src&lt;net.minecraft.client.renderer.entity{RenderMagmaCube.java[RenderMagmaCube" modifiers="1" timestamp="1612248088851"/>
     <typeInfo handle="=Client/src&lt;net.minecraft.client.renderer.tileentity{TileEntityRendererDispatcher.java[TileEntityRendererDispatcher" modifiers="1" timestamp="1686025025190"/>
-    <typeInfo handle="=Client/src&lt;net.minecraft.world.chunk.storage{AnvilChunkLoader.java[AnvilChunkLoader" modifiers="1" timestamp="1686027438257"/>
     <typeInfo handle="=Client/src&lt;net.minecraft.util{BlockPos.java[BlockPos" modifiers="1" timestamp="1612248106804"/>
     <typeInfo handle="=Client/src&lt;net.minecraft.client.renderer{EntityRenderer.java[EntityRenderer" modifiers="1" timestamp="1685502078417"/>
     <typeInfo handle="=Client/src&lt;net.minecraft.world.pathfinder{NodeProcessor.java[NodeProcessor" modifiers="1025" timestamp="1684778750983"/>
@@ -53,11 +51,12 @@
     <typeInfo handle="=Client/src&lt;net.minecraft.client.gui{GuiIngame.java[GuiIngame" modifiers="1" timestamp="1686248088150"/>
     <typeInfo handle="=Client/src&lt;net.minecraft.client.gui{GuiMainMenu.java[GuiMainMenu" modifiers="1" timestamp="1686256157431"/>
     <typeInfo handle="=Client/src&lt;net.minecraft.client.renderer.entity.layers{LayerRenderer.java[LayerRenderer" modifiers="513" timestamp="1612248089491"/>
-    <typeInfo handle="=Client/src&lt;appu26j{Apple.java[Apple" modifiers="16385" timestamp="1686270839819"/>
-    <typeInfo handle="=Client/src&lt;net.minecraft.client.network{NetworkPlayerInfo.java[NetworkPlayerInfo" modifiers="1" timestamp="1686270576211"/>
     <typeInfo handle="=Client/C:\/Program Files\/Java\/jdk1.8.0_361\/jre\/lib\/rt.jar=/javadoc_location=/https:\/\/docs.oracle.com\/javase\/8\/docs\/api\/=/=/org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY=/Client\/jars\/versions\/1.8.9\/1.8.9-natives=/&lt;java.lang(Runtime.class[Runtime" modifiers="33" timestamp="1684471809560"/>
-    <typeInfo handle="=Client/src&lt;net.minecraft.client.main{Main.java[Main" modifiers="1" timestamp="1686267446889"/>
-    <typeInfo handle="=Client/src&lt;net.minecraft.client{Minecraft.java[Minecraft" modifiers="1" timestamp="1686074400736"/>
+    <typeInfo handle="=Client/src&lt;net.minecraft.client.main{Main.java[Main" modifiers="1" timestamp="1686286548522"/>
+    <typeInfo handle="=Client/src&lt;net.minecraft.client{Minecraft.java[Minecraft" modifiers="1" timestamp="1686286710762"/>
     <typeInfo handle="=Client/src&lt;net.optifine{VersionCheckThread.java[VersionCheckThread" modifiers="1" timestamp="1684728607091"/>
-    <typeInfo handle="=Client/src&lt;net.minecraft.util{Session.java[Session" modifiers="1" timestamp="1686270707467"/>
+    <typeInfo handle="=Client/src&lt;net.minecraft.util{Session.java[Session" modifiers="1" timestamp="1686323228045"/>
+    <typeInfo handle="=Client/src&lt;appu26j{Apple.java[Apple" modifiers="16385" timestamp="1686325272049"/>
+    <typeInfo handle="=Client/src&lt;net.minecraft.client.gui{GuiPlayerTabOverlay.java[GuiPlayerTabOverlay" modifiers="1" timestamp="1686325173531"/>
+    <typeInfo handle="=Client/src&lt;net.minecraft.client.network{NetworkPlayerInfo.java[NetworkPlayerInfo" modifiers="1" timestamp="1686325193567"/>
 </typeInfoHistroy>

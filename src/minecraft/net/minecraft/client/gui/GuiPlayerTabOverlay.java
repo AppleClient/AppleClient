@@ -3,6 +3,7 @@ package net.minecraft.client.gui;
 import java.awt.Color;
 import java.util.Comparator;
 import java.util.List;
+import java.util.UUID;
 
 import com.google.common.collect.ComparisonChain;
 import com.google.common.collect.Ordering;
@@ -154,7 +155,7 @@ public class GuiPlayerTabOverlay extends Gui
 
         if (list1 != null)
         {
-            drawRect(width / 2 - l1 / 2 - 1, k1 - 1, width / 2 + l1 / 2 + 1, k1 + list1.size() * this.mc.fontRendererObj.FONT_HEIGHT, Integer.MIN_VALUE);
+            drawRect(width / 2 - l1 / 2, k1 - 1, width / 2 + l1 / 2 + 1, k1 + list1.size() * this.mc.fontRendererObj.FONT_HEIGHT, Integer.MIN_VALUE);
 
             for (String s3 : list1)
             {
@@ -183,7 +184,7 @@ public class GuiPlayerTabOverlay extends Gui
 
             ++k1;
         }
-
+        
         drawRect(width / 2 - l1 / 2 - 1, k1 - 1, width / 2 + l1 / 2 + 1, k1 + i4 * 9, Integer.MIN_VALUE);
 
         for (int k4 = 0; k4 < l3; ++k4)
@@ -222,13 +223,13 @@ public class GuiPlayerTabOverlay extends Gui
                     j2 += 9;
                 }
                 
-                boolean aBoolean = Apple.CLIENT.getPeopleUsingAppleClient().stream().filter(id -> networkplayerinfo1.getGameProfile().getId().toString().equals(id)).findFirst().orElse(null) != null;
+                boolean aBoolean = Apple.CLIENT.getPeopleUsingAppleClient().stream().filter(id -> networkplayerinfo1.getGameProfile().getId().toString().replaceAll("-", "").equals(id)).findFirst().orElse(null) != null || networkplayerinfo1.getGameProfile().getId().toString().equals(this.mc.thePlayer.getGameProfile().getId().toString());
                 
                 if (aBoolean)
                 {
                     this.mc.getTextureManager().bindTexture(new ResourceLocation("icons/icon_16x16.png"));
                     GlStateManager.color(1, 1, 1);
-                    this.drawModalRectWithCustomSizedTexture(j2 + this.mc.fontRendererObj.getStringWidth(s1), k2, 0, 0, 8, 8, 8, 8);
+                    this.drawModalRectWithCustomSizedTexture(j2 + this.mc.fontRendererObj.getStringWidth(s1), k2 - 1.25F, 0, 0, 10, 10, 10, 10);
                 }
                 
                 if (tabList.isEnabled())
