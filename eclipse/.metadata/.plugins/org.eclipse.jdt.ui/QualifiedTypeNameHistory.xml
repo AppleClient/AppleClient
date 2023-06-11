@@ -14,7 +14,6 @@
     <fullyQualifiedTypeName name="appu26j.fontrenderer.FixedFontRenderer"/>
     <fullyQualifiedTypeName name="appu26j.utils.SoundUtil"/>
     <fullyQualifiedTypeName name="appu26j.utils.ClockUtil"/>
-    <fullyQualifiedTypeName name="net.minecraft.client.renderer.GlStateManager"/>
     <fullyQualifiedTypeName name="appu26j.DiscordRP"/>
     <fullyQualifiedTypeName name="appu26j.mods.multiplayer.RankChanger"/>
     <fullyQualifiedTypeName name="net.minecraft.util.EnumChatFormatting"/>
@@ -31,7 +30,6 @@
     <fullyQualifiedTypeName name="appu26j.events.mc.EventKey"/>
     <fullyQualifiedTypeName name="net.minecraft.util.Vec3"/>
     <fullyQualifiedTypeName name="net.minecraft.entity.EntityLivingBase"/>
-    <fullyQualifiedTypeName name="java.awt.Color"/>
     <fullyQualifiedTypeName name="appu26j.performance.CullingTargetAccessor"/>
     <fullyQualifiedTypeName name="net.minecraft.util.MathHelper"/>
     <fullyQualifiedTypeName name="net.minecraft.block.state.BlockState"/>
@@ -49,8 +47,13 @@
     <fullyQualifiedTypeName name="appu26j.utils.FileUtil"/>
     <fullyQualifiedTypeName name="org.apache.commons.io.FileUtils"/>
     <fullyQualifiedTypeName name="net.minecraft.client.network.NetworkPlayerInfo"/>
-    <fullyQualifiedTypeName name="java.net.URL"/>
     <fullyQualifiedTypeName name="appu26j.mods.Category"/>
-    <fullyQualifiedTypeName name="appu26j.Apple"/>
     <fullyQualifiedTypeName name="net.minecraft.client.Minecraft"/>
+    <fullyQualifiedTypeName name="net.minecraft.client.renderer.GlStateManager"/>
+    <fullyQualifiedTypeName name="org.lwjgl.input.Keyboard"/>
+    <fullyQualifiedTypeName name="java.net.URL"/>
+    <fullyQualifiedTypeName name="java.nio.file.Files"/>
+    <fullyQualifiedTypeName name="appu26j.Apple"/>
+    <fullyQualifiedTypeName name="net.minecraft.client.main.Main"/>
+    <fullyQualifiedTypeName name="java.awt.Color"/>
 </qualifiedTypeNameHistroy>

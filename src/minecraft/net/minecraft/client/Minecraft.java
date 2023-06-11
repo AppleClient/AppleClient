@@ -10,8 +10,10 @@ import java.net.SocketAddress;
 import java.net.URL;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.nio.file.Files;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.Iterator;
@@ -62,7 +64,10 @@ import appu26j.Apple;
 import appu26j.DiscordRP;
 import appu26j.events.mc.EventKey;
 import appu26j.events.mc.EventWorldChange;
+import appu26j.gui.LoginGUI;
 import appu26j.mods.visuals.Visuals;
+import fr.litarvan.openauth.microsoft.MicrosoftAuthResult;
+import fr.litarvan.openauth.microsoft.MicrosoftAuthenticator;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.audio.MusicTicker;
@@ -202,7 +207,7 @@ import net.minecraft.world.storage.WorldInfo;
 
 public class Minecraft implements IThreadListener, IPlayerUsage
 {
-    private static final Logger logger = LogManager.getLogger();
+    public static final Logger logger = LogManager.getLogger();
     private static final ResourceLocation locationMojangPng = new ResourceLocation("textures/gui/title/mojang.png");
     public static final boolean isRunningOnMac = Util.getOSType() == Util.EnumOS.OSX;
 
@@ -248,7 +253,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
     private Entity renderViewEntity;
     public Entity pointedEntity;
     public EffectRenderer effectRenderer;
-    private final Session session;
+    private Session session;
     private boolean isGamePaused;
 
     /** The font renderer used for displaying and measuring text */
@@ -391,8 +396,6 @@ public class Minecraft implements IThreadListener, IPlayerUsage
         this.proxy = gameConfig.userInfo.proxy == null ? Proxy.NO_PROXY : gameConfig.userInfo.proxy;
         this.sessionService = (new YggdrasilAuthenticationService(gameConfig.userInfo.proxy, UUID.randomUUID().toString())).createMinecraftSessionService();
         this.session = gameConfig.userInfo.session;
-        logger.info("Setting user: " + this.session.getUsername());
-        logger.info("(Session ID is " + this.session.getCensoredSessionID() + ")");
         this.isDemo = gameConfig.gameInfo.isDemo;
         this.displayWidth = gameConfig.displayInfo.width > 0 ? gameConfig.displayInfo.width : 1;
         this.displayHeight = gameConfig.displayInfo.height > 0 ? gameConfig.displayInfo.height : 1;
@@ -610,9 +613,20 @@ public class Minecraft implements IThreadListener, IPlayerUsage
         {
             this.displayGuiScreen(new GuiConnecting(new GuiMainMenu(), this, this.serverName, this.serverPort));
         }
+        
+        else if (!Apple.ACCOUNT.exists())
+        {
+            this.displayGuiScreen(new LoginGUI());
+        }
+        
         else
         {
+            ArrayList<String> lines = (ArrayList<String>) Files.readAllLines(Apple.ACCOUNT.toPath());
+            this.session = new Session(lines.get(2), lines.get(1), lines.get(0).equals("0") ? "0" : this.getAccessToken(lines.get(0)), lines.get(0).equals("0") ? "legacy" : "mojang");
+            logger.info("Setting user: " + this.session.getUsername());
+            logger.info("(Session ID is " + this.session.getCensoredSessionID() + ")");
             this.displayGuiScreen(new GuiMainMenu());
+            Apple.CLIENT.connectToServer();
         }
     }
 
@@ -741,6 +755,21 @@ public class Minecraft implements IThreadListener, IPlayerUsage
     public String getVersion()
     {
         return this.launchedVersion;
+    }
+    
+    private String getAccessToken(String refreshToken)
+    {
+        try
+        {
+            MicrosoftAuthenticator microsoftAuthenticator = new MicrosoftAuthenticator();
+            MicrosoftAuthResult microsoftAuthResult = microsoftAuthenticator.loginWithRefreshToken(refreshToken);
+            return microsoftAuthResult.getAccessToken();
+        }
+        
+        catch (Exception e)
+        {
+            return refreshToken;
+        }
     }
 
     private void startTimerHackThread()
@@ -3137,6 +3166,11 @@ public class Minecraft implements IThreadListener, IPlayerUsage
     public Session getSession()
     {
         return this.session;
+    }
+
+    public void setSession(Session session)
+    {
+        this.session = session;
     }
 
     public PropertyMap getTwitchDetails()

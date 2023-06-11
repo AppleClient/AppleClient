@@ -25,9 +25,9 @@ public enum Apple implements MinecraftInterface
 {
 	CLIENT;
 	
-	public static final File DEFAULT_DIRECTORY = new File(System.getProperty("user.home"), "appleclient"), CONFIG = new File(DEFAULT_DIRECTORY, "config.json");
+	public static final File DEFAULT_DIRECTORY = new File(System.getProperty("user.home"), "appleclient"), CONFIG = new File(DEFAULT_DIRECTORY, "config.json"), ACCOUNT = new File(DEFAULT_DIRECTORY, "account.txt");
     private ArrayList<String> usersPlayingAppleClient = new ArrayList<>(), specialPeople = new ArrayList<>();
-	public static final String VERSION = "1.99", TITLE = "Apple Client " + VERSION;
+	public static final String VERSION = "2.00", TITLE = "Apple Client " + VERSION;
 	private AppleClientVersionChecker appleClientVersionChecker;
     private long time = System.currentTimeMillis();
 	private SettingsManager settingsManager;
@@ -52,95 +52,6 @@ public enum Apple implements MinecraftInterface
 		this.modsManager = new ModsManager().initialize();
 		this.dragGUI = new DragGUI();
 		this.config = new Config();
-		
-        new Thread(() ->
-        {
-            HttpURLConnection httpURLConnection = null;
-            
-            try
-            {
-                httpURLConnection = (HttpURLConnection) new URL("http://217.160.192.85:10023/adduuid/?uuid=" + this.mc.getSession().getPlayerID()).openConnection();
-                httpURLConnection.setDoInput(true);
-                httpURLConnection.setDoOutput(true);
-                httpURLConnection.connect();
-                httpURLConnection.getInputStream();
-            }
-            
-            catch (Exception exception)
-            {
-                ;
-            }
-            
-            finally
-            {
-                if (httpURLConnection != null)
-                {
-                    httpURLConnection.disconnect();
-                }
-            }
-        }).start();
-        
-        new Thread(() ->
-        {
-            HttpURLConnection httpURLConnection = null;
-            InputStreamReader inputStreamReader = null;
-            BufferedReader bufferedReader = null;
-            
-            try
-            {
-                httpURLConnection = (HttpURLConnection) new URL("http://217.160.192.85:10023/specialpeople").openConnection();
-                httpURLConnection.setDoInput(true);
-                httpURLConnection.setDoOutput(true);
-                httpURLConnection.connect();
-                inputStreamReader = new InputStreamReader(httpURLConnection.getInputStream());
-                bufferedReader = new BufferedReader(inputStreamReader);
-                String line;
-                
-                while ((line = bufferedReader.readLine()) != null)
-                {
-                    this.specialPeople.add(line);
-                }
-            }
-            
-            catch (Exception exception)
-            {
-                ;
-            }
-            
-            finally
-            {
-                if (bufferedReader != null)
-                {
-                    try
-                    {
-                        bufferedReader.close();
-                    }
-                    
-                    catch (Exception exception)
-                    {
-                        ;
-                    }
-                }
-                
-                if (inputStreamReader != null)
-                {
-                    try
-                    {
-                        inputStreamReader.close();
-                    }
-                    
-                    catch (Exception exception)
-                    {
-                        ;
-                    }
-                }
-                
-                if (httpURLConnection != null)
-                {
-                    httpURLConnection.disconnect();
-                }
-            }
-        }).start();
 		
 		BuiltInResourcePackDownloader.downloadPack();
 		this.appleClientVersionChecker.run();
@@ -273,4 +184,97 @@ public enum Apple implements MinecraftInterface
     {
 	    return this.usersPlayingAppleClient;
     }
+	
+	public void connectToServer()
+	{
+
+        new Thread(() ->
+        {
+            HttpURLConnection httpURLConnection = null;
+            
+            try
+            {
+                httpURLConnection = (HttpURLConnection) new URL("http://217.160.192.85:10023/adduuid/?uuid=" + this.mc.getSession().getPlayerID()).openConnection();
+                httpURLConnection.setDoInput(true);
+                httpURLConnection.setDoOutput(true);
+                httpURLConnection.connect();
+                httpURLConnection.getInputStream();
+            }
+            
+            catch (Exception exception)
+            {
+                ;
+            }
+            
+            finally
+            {
+                if (httpURLConnection != null)
+                {
+                    httpURLConnection.disconnect();
+                }
+            }
+        }).start();
+        
+        new Thread(() ->
+        {
+            HttpURLConnection httpURLConnection = null;
+            InputStreamReader inputStreamReader = null;
+            BufferedReader bufferedReader = null;
+            
+            try
+            {
+                httpURLConnection = (HttpURLConnection) new URL("http://217.160.192.85:10023/specialpeople").openConnection();
+                httpURLConnection.setDoInput(true);
+                httpURLConnection.setDoOutput(true);
+                httpURLConnection.connect();
+                inputStreamReader = new InputStreamReader(httpURLConnection.getInputStream());
+                bufferedReader = new BufferedReader(inputStreamReader);
+                String line;
+                
+                while ((line = bufferedReader.readLine()) != null)
+                {
+                    this.specialPeople.add(line);
+                }
+            }
+            
+            catch (Exception exception)
+            {
+                ;
+            }
+            
+            finally
+            {
+                if (bufferedReader != null)
+                {
+                    try
+                    {
+                        bufferedReader.close();
+                    }
+                    
+                    catch (Exception exception)
+                    {
+                        ;
+                    }
+                }
+                
+                if (inputStreamReader != null)
+                {
+                    try
+                    {
+                        inputStreamReader.close();
+                    }
+                    
+                    catch (Exception exception)
+                    {
+                        ;
+                    }
+                }
+                
+                if (httpURLConnection != null)
+                {
+                    httpURLConnection.disconnect();
+                }
+            }
+        }).start();
+	}
 }

@@ -8,7 +8,6 @@ import javax.net.ssl.HttpsURLConnection;
 
 public class AppleClientVersionChecker extends Thread
 {
-    public static boolean firstTimeInitialize = true;
 	private boolean upToDate = false;
 	
 	@Override

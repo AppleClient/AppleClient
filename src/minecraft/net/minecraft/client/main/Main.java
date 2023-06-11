@@ -5,6 +5,8 @@ import com.google.gson.GsonBuilder;
 import com.mojang.authlib.properties.PropertyMap;
 import com.mojang.authlib.properties.PropertyMap.Serializer;
 
+import appu26j.Apple;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
@@ -24,6 +26,8 @@ import net.minecraft.util.Session;
 
 public class Main
 {
+    public static boolean firstTimeUser = !Apple.CONFIG.exists();
+    
     public static void main(String[] p_main_0_)
     {
         System.setProperty("java.net.preferIPv4Stack", "true");

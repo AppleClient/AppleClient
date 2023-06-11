@@ -13,8 +13,6 @@ import org.lwjgl.opengl.GL11;
 import appu26j.Apple;
 import appu26j.mods.Category;
 import appu26j.mods.Mod;
-import appu26j.mods.general.ToggleSprint;
-import appu26j.mods.visuals.Performance;
 import appu26j.settings.Setting;
 import appu26j.utils.SoundUtil;
 import appu26j.utils.TimeUtil;
@@ -27,7 +25,7 @@ public class ClickGUI extends GuiScreen
 	private boolean searching = false, aBoolean = false, vsync, closingGui = false;
 	private String randomModName = "", searchingMessage = "";
 	private Category selectedCategory = Category.ALL;
-	private int scrollIndex = 10, scrollIndex2 = 10;
+	private int scrollIndex = 10, scrollIndex2 = -10;
 	private TimeUtil timeUtil = new TimeUtil();
 	public float zoomFactor = 1, index = 0;
 	private Mod selectedMod;
@@ -90,9 +88,7 @@ public class ClickGUI extends GuiScreen
         Color backgroundColourLightened = new Color(temp2.getRed(), temp2.getGreen(), temp2.getBlue(), (int) (this.index * 200));
         Color backgroundColour = new Color(temp3.getRed(), temp3.getGreen(), temp3.getBlue(), (int) (this.index * 200));
         this.drawBackground(this.width / this.zoomFactor / 0.75F + (this.index * 0.25F), this.height / this.zoomFactor / 0.75F + (this.index * 0.25F));
-		this.drawGradientRect(i - 200, j - 125, i + 200, j + (this.selectedMod instanceof ToggleSprint ? 150 : 125), backgroundColour.getRGB(), 0);
-        this.drawGradientRect(i - 200, j - 125, i + 200, j + (this.selectedMod instanceof ToggleSprint ? 150 : 125), 0, backgroundColourLightened.getRGB());
-        this.drawStringAlpha(this.selectedMod == null ? "Click GUI" : this.selectedMod.getName(), i - (this.getStringWidth(this.selectedMod == null ? "Click GUI" : this.selectedMod.getName(), 12) / 2), j - 120, 12, -1, (int) (this.index * 255));
+		this.drawRect(i - 200, j - 140, i + 200, j + 140, backgroundColourDarkened.getRGB());
         backgroundColourDarkened = new Color(temp1.getRed(), temp1.getGreen(), temp1.getBlue(), (int) (this.index * 200));
         backgroundColourLightened = new Color(temp2.getRed(), temp2.getGreen(), temp2.getBlue(), (int) (this.index * 200));
         backgroundColour = new Color(temp3.getRed(), temp3.getGreen(), temp3.getBlue(), (int) (this.index * 200));
@@ -100,6 +96,8 @@ public class ClickGUI extends GuiScreen
 		if (this.selectedMod == null)
 		{
 			int xOffset = 0, yOffset = this.scrollIndex, categoryOffset = 0;
+			j -= 20;
+            i += 5;
 			
 			for (Category category : Category.values())
 			{
@@ -107,12 +105,12 @@ public class ClickGUI extends GuiScreen
 				
 				if (!this.searching && this.isInsideBox(mouseX, mouseY, f + categoryOffset, j - 100, (f + this.getStringWidth(category.name(), 8)) + 10 + categoryOffset, j - 80))
 				{
-				    this.drawGradientRect(f + categoryOffset, j - 100, (f + this.getStringWidth(category.name(), 8)) + 10 + categoryOffset, j - 80, backgroundColourDarkened.darker().getRGB(), backgroundColourDarkened.brighter().getRGB());
+				    this.drawRect(f + categoryOffset, j - 100, (f + this.getStringWidth(category.name(), 8)) + 10 + categoryOffset, j - 80, backgroundColour.getRGB());
 				}
 				
 				else
 				{
-				    this.drawGradientRect(f + categoryOffset, j - 100, (f + this.getStringWidth(category.name(), 8)) + 10 + categoryOffset, j - 80, backgroundColourLightened.darker().getRGB(), backgroundColourLightened.getRGB());
+				    this.drawRect(f + categoryOffset, j - 100, (f + this.getStringWidth(category.name(), 8)) + 10 + categoryOffset, j - 80, backgroundColourLightened.getRGB());
 				}
 				
 				this.drawStringAlpha((this.selectedCategory.equals(category) ? "§n" : "") + category.name(), f + 5 + categoryOffset, j - 93.5F, -1, (int) (this.index * 255));
@@ -121,12 +119,12 @@ public class ClickGUI extends GuiScreen
 			
 			if (!this.searching && this.isInsideBox(mouseX, mouseY, i + 55, j - 100, i + 160, j - 80))
 			{
-			    this.drawGradientRect(i + 55, j - 100, i + 160, j - 80, backgroundColourDarkened.darker().getRGB(), backgroundColourDarkened.brighter().getRGB());
+			    this.drawRect(i + 55, j - 100, i + 160, j - 80, backgroundColour.getRGB());
 			}
 			
 			else
 			{
-			    this.drawGradientRect(i + 55, j - 100, i + 160, j - 80, backgroundColourLightened.darker().getRGB(), backgroundColourLightened.getRGB());
+			    this.drawRect(i + 55, j - 100, i + 160, j - 80, backgroundColourLightened.getRGB());
 			}
 			
 			this.drawStringAlpha(this.randomModName + "...", i + 60, j - 94, new Color(135, 135, 135).getRGB(), (int) (this.index * 255));
@@ -135,15 +133,10 @@ public class ClickGUI extends GuiScreen
 			this.mc.getTextureManager().bindTexture(new ResourceLocation("icons/search.png"));
 			this.drawScaledCustomSizeModalRect(i + 140, j - 99, 0, 0, 16, 16, 16, 16, 16, 16);
 			GL11.glEnable(GL11.GL_SCISSOR_TEST);
-			this.scissor(i - 200, j - 70, i + 200, j + 123, 0.85F + (this.index * 0.15F));
+			this.scissor(i - 200, j - 70, i + 200, j + 150, 0.85F + (this.index * 0.15F));
 			
 			for (Mod mod : this.selectedCategory.equals(Category.ALL) ? Apple.CLIENT.getModsManager().getMods() : Apple.CLIENT.getModsManager().getMods(this.selectedCategory))
 			{
-			    if (mod instanceof Performance)
-			    {
-			        continue;
-			    }
-			    
 				if (xOffset != 0 && xOffset % 3 == 0)
 				{
 					yOffset += 115;
@@ -152,29 +145,29 @@ public class ClickGUI extends GuiScreen
 				
 				String[] names = mod.getName().split(" ");
 				
-				if (!this.searching && this.isInsideBox(mouseX, mouseY, i - 200, j - 70, i + 200, j + 125) && this.isInsideBox(mouseX, mouseY, (i - 170) + xOffset, (j - 80) + yOffset, (i - 170) + xOffset + 100, (j - 80) + yOffset + 100))
+				if (!this.searching && this.isInsideBox(mouseX, mouseY, i - 200, j - 70, i + 200, j + 150) && this.isInsideBox(mouseX, mouseY, (i - 170) + xOffset, (j - 80) + yOffset, (i - 170) + xOffset + 100, (j - 80) + yOffset + 100))
 				{
-				    this.drawGradientRect((i - 170) + xOffset, (j - 80) + yOffset, (i - 170) + xOffset + 100, (j - 80) + yOffset + 100, backgroundColourDarkened.darker().getRGB(), backgroundColourDarkened.brighter().brighter().getRGB());
+				    this.drawRect((i - 170) + xOffset, (j - 80) + yOffset, (i - 170) + xOffset + 100, (j - 80) + yOffset + 100, backgroundColour.getRGB());
 				}
 				
 				else
 				{
-				    this.drawGradientRect((i - 170) + xOffset, (j - 80) + yOffset, (i - 170) + xOffset + 100, (j - 80) + yOffset + 100, backgroundColourLightened.darker().getRGB(), backgroundColourLightened.brighter().getRGB());
+				    this.drawRect((i - 170) + xOffset, (j - 80) + yOffset, (i - 170) + xOffset + 100, (j - 80) + yOffset + 100, backgroundColourLightened.getRGB());
 				}
 				
 				this.drawStringAlpha(names[0], (i - 120) - (this.getStringWidth(names[0], 12) / 2) + xOffset, (j - 60) + yOffset, 12, -1, (int) (this.index * 255));
 				this.drawStringAlpha(names[1], (i - 120) - (this.getStringWidth(names[1], 12) / 2) + xOffset, (j - 40) + yOffset, 12, -1, (int) (this.index * 255));
 				
-				if (!this.searching && this.isInsideBox(mouseX, mouseY, i - 200, j - 70, i + 200, j + 125) && this.isInsideBox(mouseX, mouseY, (i - 170) + xOffset, (j - 80) + yOffset, (i - 170) + xOffset + 100, (j - 80) + yOffset + 100))
+				if (!this.searching && this.isInsideBox(mouseX, mouseY, i - 200, j - 70, i + 200, j + 150) && this.isInsideBox(mouseX, mouseY, (i - 170) + xOffset, (j - 80) + yOffset, (i - 170) + xOffset + 100, (j - 80) + yOffset + 100))
 				{
 				    if (mod.isEnabled())
 	                {
-				        this.drawGradientRect((i - 170) + xOffset, (j - 5) + yOffset, (i - 170) + xOffset + 100, (j - 80) + yOffset + 100, new Color(0, 200, 75, (int) (this.index * 255)).darker().getRGB(), new Color(0, 200, 75, (int) (this.index * 255)).brighter().getRGB());
+				        this.drawRect((i - 170) + xOffset, (j - 5) + yOffset, (i - 170) + xOffset + 100, (j - 80) + yOffset + 100, new Color(0, 200, 75, (int) (this.index * 255)).darker().getRGB());
 	                }
 	                
 	                else
 	                {
-	                    this.drawGradientRect((i - 170) + xOffset, (j - 5) + yOffset, (i - 170) + xOffset + 100, (j - 80) + yOffset + 100, new Color(180, 0, 0, (int) (this.index * 255)).darker().getRGB(), new Color(180, 0, 0, (int) (this.index * 255)).brighter().getRGB());
+	                    this.drawRect((i - 170) + xOffset, (j - 5) + yOffset, (i - 170) + xOffset + 100, (j - 80) + yOffset + 100, new Color(180, 0, 0, (int) (this.index * 255)).getRGB());
 	                }
 				}
 				
@@ -182,12 +175,12 @@ public class ClickGUI extends GuiScreen
 				{
 				    if (mod.isEnabled())
                     {
-				        this.drawGradientRect((i - 170) + xOffset, (j - 5) + yOffset, (i - 170) + xOffset + 100, (j - 80) + yOffset + 100, new Color(0, 225, 100, (int) (this.index * 255)).darker().getRGB(), new Color(0, 225, 100, (int) (this.index * 255)).brighter().getRGB());
-                    }
+				        this.drawRect((i - 170) + xOffset, (j - 5) + yOffset, (i - 170) + xOffset + 100, (j - 80) + yOffset + 100, new Color(0, 200, 75, (int) (this.index * 255)).getRGB());
+	                }
 				    
 				    else
 				    {
-				        this.drawGradientRect((i - 170) + xOffset, (j - 5) + yOffset, (i - 170) + xOffset + 100, (j - 80) + yOffset + 100, new Color(255, 25, 50, (int) (this.index * 255)).darker().getRGB(), new Color(255, 25, 50, (int) (this.index * 255)).brighter().getRGB());
+				        this.drawRect((i - 170) + xOffset, (j - 5) + yOffset, (i - 170) + xOffset + 100, (j - 80) + yOffset + 100, new Color(255, 25, 50, (int) (this.index * 255)).getRGB());
 				    }
 				}
 				
@@ -196,20 +189,24 @@ public class ClickGUI extends GuiScreen
 				xOffset += 115;
 			}
 			
+			j += 20;
+            i -= 5;
 			GL11.glDisable(GL11.GL_SCISSOR_TEST);
 		}
 		
 		else
 		{
-			this.drawStringAlpha(this.selectedMod.getDescription(), i - (this.getStringWidth(this.selectedMod.getDescription(), 8) / 2), j - 100, -1, (int) (this.index * 255));
+		    this.drawStringAlpha(this.selectedMod.getName(), i - (this.getStringWidth(this.selectedMod.getName(), 16) / 2), j - 130, 16, -1, (int) (this.index * 255));
+			this.drawStringAlpha(this.selectedMod.getDescription(), i - (this.getStringWidth(this.selectedMod.getDescription(), 8) / 2), j - 110, -1, (int) (this.index * 255));
 			int offset = 0;
+            j -= 15;
 			
 			for (Setting setting : this.selectedMod.getSettings())
 			{
 				if (setting.getTypeOfSetting().equals("Check Box"))
 				{
-					this.drawRect(i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName()) + 25, (j - 60) + offset, this.isInsideBox(mouseX, mouseY, i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName()) + 25, (j - 60) + offset) ? this.backgroundColourDarkened : this.backgroundColourLightened, (int) (this.index * 255));
-					this.drawRect((i - 180) + this.getStringWidth(setting.getName()) + 9, (j - 75) + offset, (i - 180) + this.getStringWidth(setting.getName()) + 19, (j - 65) + offset, setting.getCheckBoxValue() ? new Color(0, 225, 100).getRGB() : this.backgroundColour, (int) (this.index * 255));
+					this.drawRect(i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName()) + 25, (j - 60) + offset, this.isInsideBox(mouseX, mouseY, i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName()) + 25, (j - 60) + offset) ? this.backgroundColour : this.backgroundColourLightened, (int) (this.index * 255));
+					this.drawRect((i - 180) + this.getStringWidth(setting.getName()) + 9, (j - 75) + offset, (i - 180) + this.getStringWidth(setting.getName()) + 19, (j - 65) + offset, setting.getCheckBoxValue() ? new Color(0, 225, 100).getRGB() : this.isInsideBox(mouseX, mouseY, i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName()) + 25, (j - 60) + offset) ? this.backgroundColourLightened : this.backgroundColour, (int) (this.index * 255));
 					this.drawStringAlpha(setting.getName(), i - 175, (j - 74) + offset, -1, (int) (this.index * 255));
 					offset += 25;
 				}
@@ -230,21 +227,21 @@ public class ClickGUI extends GuiScreen
 						setting.setBoolean(false);
 					}
 					
-					this.drawRect(i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName() + ": " + setting.getTextBoxValue()) + 9, (j - 60) + offset, this.isInsideBox(mouseX, mouseY, i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName() + ": " + setting.getTextBoxValue()) + 9, (j - 60) + offset) ? this.backgroundColourDarkened : this.backgroundColourLightened, (int) (this.index * 255));
+					this.drawRect(i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName() + ": " + setting.getTextBoxValue()) + 9, (j - 60) + offset, this.isInsideBox(mouseX, mouseY, i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName() + ": " + setting.getTextBoxValue()) + 9, (j - 60) + offset) ? this.backgroundColour : this.backgroundColourLightened, (int) (this.index * 255));
 					this.drawStringAlpha(setting.getName() + ": " + setting.getTextBoxValue() + (setting.getBoolean() ? "|" : ""), i - 175, (j - 74) + offset, -1, (int) (this.index * 255));
 					offset += 25;
 				}
 				
 				if (setting.getTypeOfSetting().equals("Mode"))
 				{
-					this.drawRect(i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName() + ": " + setting.getModeValue()) + 9, (j - 60) + offset, this.isInsideBox(mouseX, mouseY, i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName() + ": " + setting.getModeValue()) + 9, (j - 60) + offset) ? this.backgroundColourDarkened : this.backgroundColourLightened, (int) (this.index * 255));
+					this.drawRect(i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName() + ": " + setting.getModeValue()) + 9, (j - 60) + offset, this.isInsideBox(mouseX, mouseY, i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName() + ": " + setting.getModeValue()) + 9, (j - 60) + offset) ? this.backgroundColour : this.backgroundColourLightened, (int) (this.index * 255));
 					this.drawStringAlpha(setting.getName() + ": " + setting.getModeValue(), i - 175, (j - 74) + offset, -1, (int) (this.index * 255));
 					offset += 25;
 				}
 				
 				if (setting.getTypeOfSetting().equals("Color Box"))
 				{
-					this.drawRect(i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName() + ":  " + setting.getColors()[0] + ", " + setting.getColors()[1] + ", " + setting.getColors()[2]) + 9, (j - 60) + offset, this.isInsideBox(mouseX, mouseY, i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName() + ":  " + setting.getColors()[0] + ", " + setting.getColors()[1] + ", " + setting.getColors()[2]) + 9, (j - 60) + offset) ? this.backgroundColourDarkened : this.backgroundColourLightened, (int) (this.index * 255));
+					this.drawRect(i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName() + ":  " + setting.getColors()[0] + ", " + setting.getColors()[1] + ", " + setting.getColors()[2]) + 9, (j - 60) + offset, this.isInsideBox(mouseX, mouseY, i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName() + ":  " + setting.getColors()[0] + ", " + setting.getColors()[1] + ", " + setting.getColors()[2]) + 9, (j - 60) + offset) ? this.backgroundColour : this.backgroundColourLightened, (int) (this.index * 255));
 					this.drawStringAlpha(setting.getName() + ":  " + setting.getColors()[0] + ", " + setting.getColors()[1] + ", " + setting.getColors()[2], i - 175, (j - 74) + offset, -1, (int) (this.index * 255));
 					this.drawRect(i - 180 + this.getStringWidth(setting.getName() + ": ") + 4, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName() + ":  " + setting.getColors()[0] + ", " + setting.getColors()[1] + ", " + setting.getColors()[2]) + 9, (j - 60) + offset, new Color(setting.getColors()[0], setting.getColors()[1], setting.getColors()[2]).getRGB(), (int) (this.index * 255));
 					this.drawStringAlpha(setting.getColors()[0] + ", " + setting.getColors()[1] + ", " + setting.getColors()[2], i - 175 + this.getStringWidth(setting.getName() + ":  "), (j - 74) + offset, new Color(255 - setting.getColors()[0], 255 - setting.getColors()[1], 255 - setting.getColors()[2]).getRGB(), (int) (this.index * 255));
@@ -253,11 +250,13 @@ public class ClickGUI extends GuiScreen
 				
 				if (setting.getTypeOfSetting().equals("Slider"))
 				{
-					this.drawRect(i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName() + ": " + setting.getSliderValue()) + 9, (j - 60) + offset, this.isInsideBox(mouseX, mouseY, i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName() + ": " + setting.getSliderValue()) + 9, (j - 60) + offset) ? this.backgroundColourDarkened : this.backgroundColourLightened, (int) (this.index * 255));
+					this.drawRect(i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName() + ": " + setting.getSliderValue()) + 9, (j - 60) + offset, this.isInsideBox(mouseX, mouseY, i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName() + ": " + setting.getSliderValue()) + 9, (j - 60) + offset) ? this.backgroundColour: this.backgroundColourLightened, (int) (this.index * 255));
 					this.drawStringAlpha(setting.getName() + ": " + setting.getSliderValue(), i - 175, (j - 74) + offset, -1, (int) (this.index * 255));
 					offset += 25;
 				}
 			}
+			
+            j += 15;
 		}
 		
 		if (this.searching)
@@ -272,7 +271,7 @@ public class ClickGUI extends GuiScreen
 				this.timeUtil.reset();
 			}
 			
-			int xOffset = 0, yOffset = this.scrollIndex2;
+			int xOffset = 0, yOffset = this.scrollIndex2 - 1;
 			this.drawRect(0, 0, this.width / this.zoomFactor / (0.75F + (this.index * 0.25F)), this.height / this.zoomFactor / (0.75F + (this.index * 0.25F)), new Color(0, 0, 0, 200).getRGB(), (int) (this.index * 200));
 			
 			if (this.isInsideBox(mouseX, mouseY, i - 100, 20, i + 100, 50))
@@ -291,33 +290,29 @@ public class ClickGUI extends GuiScreen
 			this.mc.getTextureManager().bindTexture(new ResourceLocation("icons/search.png"));
 			this.drawScaledCustomSizeModalRect(i + 70, 20, 0, 0, 28, 28, 28, 28, 28, 28);
 			GL11.glEnable(GL11.GL_SCISSOR_TEST);
-			this.scissor(0, 70, this.width / this.zoomFactor, this.height / this.zoomFactor, 0.85F + (this.index * 0.15F));
-			
+			this.scissor(0, 69, this.width / this.zoomFactor, this.height / this.zoomFactor, 0.85F + (this.index * 0.15F));
+            i += 5;
+            
 			for (Mod mod : this.searchingMessage.isEmpty() ? Apple.CLIENT.getModsManager().getMods() : Apple.CLIENT.getModsManager().getMods().stream().filter(mod -> mod.getName().toLowerCase().contains(this.searchingMessage.toLowerCase())).collect(Collectors.toCollection(ArrayList::new)))
 			{
 	            j = 160;
-	            
-			    if (mod instanceof Performance)
+                
+                if (xOffset != 0 && xOffset % 3 == 0)
                 {
-                    continue;
+                    yOffset += 115;
+                    xOffset = 0;
                 }
-			    
-				if (xOffset != 0 && xOffset % 3 == 0)
-				{
-					yOffset += 115;
-					xOffset = 0;
-				}
-				
-				String[] names = mod.getName().split(" ");
+                
+                String[] names = mod.getName().split(" ");
                 
                 if (this.isInsideBox(mouseX, mouseY, (i - 170) + xOffset, (j - 80) + yOffset, (i - 170) + xOffset + 100, (j - 80) + yOffset + 100))
                 {
-                    this.drawGradientRect((i - 170) + xOffset, (j - 80) + yOffset, (i - 170) + xOffset + 100, (j - 80) + yOffset + 100, backgroundColourDarkened.darker().getRGB(), backgroundColourDarkened.brighter().brighter().getRGB());
+                    this.drawRect((i - 170) + xOffset, (j - 80) + yOffset, (i - 170) + xOffset + 100, (j - 80) + yOffset + 100, backgroundColour.getRGB());
                 }
                 
                 else
                 {
-                    this.drawGradientRect((i - 170) + xOffset, (j - 80) + yOffset, (i - 170) + xOffset + 100, (j - 80) + yOffset + 100, backgroundColourLightened.darker().getRGB(), backgroundColourLightened.brighter().getRGB());
+                    this.drawRect((i - 170) + xOffset, (j - 80) + yOffset, (i - 170) + xOffset + 100, (j - 80) + yOffset + 100, backgroundColourLightened.getRGB());
                 }
                 
                 this.drawStringAlpha(names[0], (i - 120) - (this.getStringWidth(names[0], 12) / 2) + xOffset, (j - 60) + yOffset, 12, -1, (int) (this.index * 255));
@@ -327,12 +322,12 @@ public class ClickGUI extends GuiScreen
                 {
                     if (mod.isEnabled())
                     {
-                        this.drawGradientRect((i - 170) + xOffset, (j - 5) + yOffset, (i - 170) + xOffset + 100, (j - 80) + yOffset + 100, new Color(0, 200, 75, (int) (this.index * 255)).darker().getRGB(), new Color(0, 200, 75, (int) (this.index * 255)).brighter().getRGB());
+                        this.drawRect((i - 170) + xOffset, (j - 5) + yOffset, (i - 170) + xOffset + 100, (j - 80) + yOffset + 100, new Color(0, 200, 75, (int) (this.index * 255)).darker().getRGB());
                     }
                     
                     else
                     {
-                        this.drawGradientRect((i - 170) + xOffset, (j - 5) + yOffset, (i - 170) + xOffset + 100, (j - 80) + yOffset + 100, new Color(180, 0, 0, (int) (this.index * 255)).darker().getRGB(), new Color(180, 0, 0, (int) (this.index * 255)).brighter().getRGB());
+                        this.drawRect((i - 170) + xOffset, (j - 5) + yOffset, (i - 170) + xOffset + 100, (j - 80) + yOffset + 100, new Color(180, 0, 0, (int) (this.index * 255)).getRGB());
                     }
                 }
                 
@@ -340,12 +335,12 @@ public class ClickGUI extends GuiScreen
                 {
                     if (mod.isEnabled())
                     {
-                        this.drawGradientRect((i - 170) + xOffset, (j - 5) + yOffset, (i - 170) + xOffset + 100, (j - 80) + yOffset + 100, new Color(0, 225, 100, (int) (this.index * 255)).darker().getRGB(), new Color(0, 225, 100, (int) (this.index * 255)).brighter().getRGB());
+                        this.drawRect((i - 170) + xOffset, (j - 5) + yOffset, (i - 170) + xOffset + 100, (j - 80) + yOffset + 100, new Color(0, 200, 75, (int) (this.index * 255)).getRGB());
                     }
                     
                     else
                     {
-                        this.drawGradientRect((i - 170) + xOffset, (j - 5) + yOffset, (i - 170) + xOffset + 100, (j - 80) + yOffset + 100, new Color(255, 25, 50, (int) (this.index * 255)).darker().getRGB(), new Color(255, 25, 50, (int) (this.index * 255)).brighter().getRGB());
+                        this.drawRect((i - 170) + xOffset, (j - 5) + yOffset, (i - 170) + xOffset + 100, (j - 80) + yOffset + 100, new Color(255, 25, 50, (int) (this.index * 255)).getRGB());
                     }
                 }
                 
@@ -354,6 +349,7 @@ public class ClickGUI extends GuiScreen
                 xOffset += 115;
 			}
 			
+			i -= 5;
 			GL11.glDisable(GL11.GL_SCISSOR_TEST);
 		}
 		
@@ -421,6 +417,7 @@ public class ClickGUI extends GuiScreen
 				j /= this.zoomFactor;
 				mouseX /= this.zoomFactor;
 				mouseY /= this.zoomFactor;
+	            j -= 15;
 				
 				if (ii != 0)
 				{
@@ -554,6 +551,8 @@ public class ClickGUI extends GuiScreen
 						}
 					}
 				}
+				
+				j += 15;
 			}
 		}
     }
@@ -571,7 +570,7 @@ public class ClickGUI extends GuiScreen
 		
 		if (this.searching)
 		{
-			int xOffset = 0, yOffset = this.scrollIndex2;
+			int xOffset = 0, yOffset = this.scrollIndex2 - 1;
 			
 			for (Mod mod : this.searchingMessage.isEmpty() ? Apple.CLIENT.getModsManager().getMods() : Apple.CLIENT.getModsManager().getMods().stream().filter(mod -> mod.getName().toLowerCase().contains(this.searchingMessage.toLowerCase())).collect(Collectors.toCollection(ArrayList::new)))
 			{
@@ -580,8 +579,8 @@ public class ClickGUI extends GuiScreen
 					yOffset += 115;
 					xOffset = 0;
 				}
-				
-				if (this.isInsideBox(mouseX, mouseY, 0, 70, this.width / this.zoomFactor, this.height / this.zoomFactor) && this.isInsideBox(mouseX, mouseY, (i - 170) + xOffset, (80) + yOffset, (i - 170) + xOffset + 100, (80) + yOffset + 100))
+                
+				if (this.isInsideBox(mouseX, mouseY, 0, 69, this.width / this.zoomFactor, this.height / this.zoomFactor) && this.isInsideBox(mouseX, mouseY, (i - 170) + xOffset, (80) + yOffset, (i - 170) + xOffset + 100, (80) + yOffset + 100))
 				{
 					if (mouseButton == 0)
 					{
@@ -607,7 +606,8 @@ public class ClickGUI extends GuiScreen
 			if (this.selectedMod == null)
 			{
 				int xOffset = 0, yOffset = this.scrollIndex, categoryOffset = 0;
-				
+                j -= 20;
+                
 				if (this.isInsideBox(mouseX, mouseY, i + 55, j - 100, i + 160, j - 80) && mouseButton == 0)
 				{
 					SoundUtil.playClickSound();
@@ -636,7 +636,7 @@ public class ClickGUI extends GuiScreen
 						xOffset = 0;
 					}
 					
-					if (this.isInsideBox(mouseX, mouseY, i - 200, j - 70, i + 200, j + 125) && this.isInsideBox(mouseX, mouseY, (i - 170) + xOffset, (j - 80) + yOffset, (i - 170) + xOffset + 100, (j - 80) + yOffset + 100))
+					if (this.isInsideBox(mouseX, mouseY, i - 200, j - 70, i + 200, j + 150) && this.isInsideBox(mouseX, mouseY, (i - 170) + xOffset, (j - 80) + yOffset, (i - 170) + xOffset + 100, (j - 80) + yOffset + 100))
 					{
 						if (mouseButton == 0)
 						{
@@ -653,11 +653,14 @@ public class ClickGUI extends GuiScreen
 					
 					xOffset += 115;
 				}
+				
+	            j += 20;
 			}
 			
 			else
 			{
 				int offset = 0;
+	            j -= 15;
 				
 				for (Setting setting : this.selectedMod.getSettings())
 				{
@@ -742,6 +745,8 @@ public class ClickGUI extends GuiScreen
 						offset += 25;
 					}
 				}
+				
+				j += 15;
 			}
 		}
     }

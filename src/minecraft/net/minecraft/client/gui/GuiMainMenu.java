@@ -1,9 +1,6 @@
 package net.minecraft.client.gui;
 
-import java.awt.Color;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.URI;
 import java.util.Calendar;
 import java.util.Date;
@@ -11,7 +8,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.apache.commons.io.Charsets;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.GL11;
@@ -22,10 +18,8 @@ import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 
 import appu26j.Apple;
-import appu26j.AppleClientVersionChecker;
-import appu26j.fontrenderer.FixedFontRenderer;
+import appu26j.gui.LoginGUI;
 import appu26j.utils.ServerUtil;
-import appu26j.utils.SoundUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.GuiConnecting;
 import net.minecraft.client.multiplayer.ServerData;
@@ -96,7 +90,6 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
     private int field_92020_v;
     private int field_92019_w;
     private ResourceLocation backgroundTexture;
-    private boolean animation = false;
 
     /** Minecraft Realms button. */
     private GuiButton realmsButton;
@@ -106,13 +99,7 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
     private GuiScreen modUpdateNotification;
 
     public GuiMainMenu()
-    {
-        if (AppleClientVersionChecker.firstTimeInitialize)
-        {
-            this.animation = true;
-            AppleClientVersionChecker.firstTimeInitialize = false;
-        }
-        
+    {        
         this.openGLWarning2 = field_96138_a;
         this.field_183502_L = false;
         this.updateCounter = RANDOM.nextFloat();
@@ -153,6 +140,15 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
     }
 
     /**
+     * Fired when a key is typed (except F11 which toggles full screen). This is the equivalent of
+     * KeyListener.keyTyped(KeyEvent e). Args : character (character on the key), keyCode (lwjgl Keyboard key code)
+     */
+    protected void keyTyped(char typedChar, int keyCode) throws IOException
+    {
+        ;
+    }
+
+    /**
      * Adds the buttons (and other controls) to the screen in question. Called when the GUI is displayed and when the
      * window resizes, the buttonList is cleared beforehand.
      */
@@ -190,6 +186,7 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
 
         this.buttonList.add(new GuiButton(0, this.width / 2 - 100, j + 72 + 12, 98, 20, I18n.format("menu.options", new Object[0])));
         this.buttonList.add(new GuiButton(4, this.width / 2 + 2, j + 72 + 12, 98, 20, I18n.format("menu.quit", new Object[0])));
+        this.buttonList.add(new GuiButton(2626, this.width - 65, 5, 60, 20, "Log Out"));
         this.buttonList.add(new GuiButtonLanguage(5, this.width / 2 - 124, j + 72 + 12));
 
         synchronized (this.threadLock)
@@ -298,6 +295,12 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
         if (button.id == 11)
         {
             this.mc.launchIntegratedServer("Demo_World", "Demo_World", DemoWorldServer.demoWorldSettings);
+        }
+        
+        if (button.id == 2626)
+        {
+            Apple.ACCOUNT.delete();
+            this.mc.displayGuiScreen(new LoginGUI());
         }
 
         if (button.id == 12)
@@ -603,7 +606,7 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
             this.drawString(this.fontRendererObj, s, 2, this.height - 10, -1);
         }
 
-        String s2 = Apple.CLIENT.getVersionChecker().isUpToDate() ? "You are on the latest version" : "You are on an outdated version";
+        String s2 = "Copyright Mojang AB. Do not distribute!";
         this.drawString(this.fontRendererObj, s2, this.width - this.fontRendererObj.getStringWidth(s2) - 2, this.height - 10, -1);
 
         if (this.openGLWarning1 != null && this.openGLWarning1.length() > 0)
@@ -623,34 +626,6 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
         if (this.modUpdateNotification != null)
         {
             this.modUpdateNotification.drawScreen(mouseX, mouseY, partialTicks);
-        }
-        
-        if (this.animation)
-        {
-            this.drawRect(0, 0, (this.width / 2) - 128, this.height, new Color(255, 255, 255, (int) (this.index * 255)).getRGB());
-            this.drawRect((this.width / 2) + 128, 0, this.width, this.height, new Color(255, 255, 255, (int) (this.index * 255)).getRGB());
-            this.drawRect((this.width / 2) - 128, 0, (this.width / 2) + 128, (this.height / 2) - 128, new Color(255, 255, 255, (int) (this.index * 255)).getRGB());
-            this.drawRect((this.width / 2) - 128, (this.height / 2) + 128, (this.width / 2) + 128, this.height, new Color(255, 255, 255, (int) (this.index * 255)).getRGB());
-            GlStateManager.enableAlpha();
-            GlStateManager.enableBlend();
-            GlStateManager.alphaFunc(516, 0);
-            GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-            ResourceLocation image = new ResourceLocation("textures/gui/title/mojang.png");
-            this.mc.getTextureManager().bindTexture(image);
-            GlStateManager.color(1, 1, 1, this.index);
-            this.drawScaledCustomSizeModalRect((this.width / 2) - 128, (this.height / 2) - 128, 0, 0, 256, 256, 256, 256, 256, 256);
-            
-            if (this.index > 0)
-            {
-                this.index -= 0.025F;
-                this.index = this.index < 0 ? 0 : this.index;
-            }
-            
-            if (this.index == 0)
-            {
-                this.animation = false;
-                this.index = 1;
-            }
         }
     }
 

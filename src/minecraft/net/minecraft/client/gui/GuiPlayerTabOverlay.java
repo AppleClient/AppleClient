@@ -85,7 +85,8 @@ public class GuiPlayerTabOverlay extends Gui
 
         for (NetworkPlayerInfo networkplayerinfo : list)
         {
-            int k = this.mc.fontRendererObj.getStringWidth(this.getPlayerName(networkplayerinfo));
+            boolean aBoolean = Apple.CLIENT.getPeopleUsingAppleClient().stream().filter(id -> networkplayerinfo.getGameProfile().getId().toString().replaceAll("-", "").equals(id)).findFirst().orElse(null) != null || networkplayerinfo.getGameProfile().getId().toString().equals(this.mc.thePlayer.getGameProfile().getId().toString());
+            int k = this.mc.fontRendererObj.getStringWidth(this.getPlayerName(networkplayerinfo)) + (aBoolean ? 8 : 0);
             i = Math.max(i, k);
 
             if (scoreObjectiveIn != null && scoreObjectiveIn.getRenderType() != IScoreObjectiveCriteria.EnumRenderType.HEARTS)

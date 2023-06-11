@@ -20,7 +20,7 @@ public class FixedFontRenderer implements MinecraftInterface
     
     public static void drawStringWithShadow(String text, float x, float y, float size, int color)
     {
-        drawString(text, x + 1, y + 1, size, new Color(color, true).darker().darker().darker().darker().getRGB());
+        drawString(text, x + (size / 8), y + (size / 8), size, new Color(color, true).darker().darker().darker().darker().getRGB());
         drawString(text, x, y, size, color);
     }
     

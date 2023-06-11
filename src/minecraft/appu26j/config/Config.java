@@ -15,7 +15,6 @@ import com.google.gson.JsonParser;
 
 import appu26j.Apple;
 import appu26j.mods.Mod;
-import appu26j.mods.visuals.Performance;
 import appu26j.settings.Setting;
 
 public class Config
@@ -37,12 +36,7 @@ public class Config
             jsonObject.addProperty("Apple Client Version", Apple.VERSION);
 	        
 	        for (Mod mod : Apple.CLIENT.getModsManager().getMods())
-	        {
-	            if (mod instanceof Performance)
-	            {
-	                continue;
-	            }
-	            
+	        {   
 	            JsonObject jsonMod = new JsonObject();
 	            jsonMod.addProperty("Enabled", mod.isEnabled());
 	            jsonObject.add(mod.getName(), jsonMod);
@@ -121,7 +115,7 @@ public class Config
 				Entry<String, JsonElement> entry = iterator.next();
 				Mod mod = Apple.CLIENT.getModsManager().getMod(entry.getKey());
 				
-				if (mod != null && !(mod instanceof Performance))
+				if (mod != null)
 				{
 					JsonObject jsonMod = (JsonObject) entry.getValue();
 					

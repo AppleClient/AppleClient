@@ -6,23 +6,23 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="leftCl"/>
+		<item key="selection" value=""/>
 		<list key="findhistory">
-			<item value="leftCl"/>
-			<item value="leftClickC"/>
-			<item value="leftClickCOUn"/>
-			<item value="capabilit"/>
-			<item value="capability"/>
-			<item value="isCapa"/>
-			<item value="hasCapability"/>
-			<item value="hasCapa"/>
-			<item value="hasCAPA"/>
-			<item value="capa"/>
-			<item value="capab"/>
-			<item value="hasCa"/>
-			<item value="-0.1F"/>
-			<item value="updatePoti"/>
-			<item value="cape"/>
+			<item value="Scanning for"/>
+			<item value="Scanning fo"/>
+			<item value="Scanning"/>
+			<item value="GuiMultiplayer extends GuiScreen implements GuiYesNoCallback"/>
+			<item value="aBoolea"/>
+			<item value="button"/>
+			<item value="buttonId"/>
+			<item value="buttonID"/>
+			<item value="initGui"/>
+			<item value="initGu"/>
+			<item value="startGa"/>
+			<item value="guimainmen"/>
+			<item value="keyTy"/>
+			<item value="startGame()"/>
+			<item value="mouseClic"/>
 		</list>
 		<list key="replacehistory">
 			<item value=""/>
@@ -36,7 +36,7 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item key="DIALOG_X_ORIGIN" value="509"/>
-		<item key="DIALOG_Y_ORIGIN" value="209"/>
+		<item key="DIALOG_Y_ORIGIN" value="6"/>
 		<item key="DIALOG_WIDTH" value="318"/>
 		<item key="DIALOG_HEIGHT" value="295"/>
 		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-21|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
