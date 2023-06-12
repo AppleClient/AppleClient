@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <typeInfoHistroy>
-    <typeInfo handle="=Client/src&lt;net.minecraft.entity.item{EntityArmorStand.java[EntityArmorStand" modifiers="1" timestamp="1612248097204"/>
     <typeInfo handle="=Client/src&lt;net.minecraft.tileentity{TileEntity.java[TileEntity" modifiers="1025" timestamp="1686024866834"/>
     <typeInfo handle="=Client/src&lt;net.minecraft.client.renderer{BlockRendererDispatcher.java[BlockRendererDispatcher" modifiers="1" timestamp="1685992336176"/>
     <typeInfo handle="=Client/src&lt;net.minecraft.client.renderer.entity{RenderMagmaCube.java[RenderMagmaCube" modifiers="1" timestamp="1612248088851"/>
@@ -47,17 +46,18 @@
     <typeInfo handle="=Client/src&lt;net.minecraft.client.gui{GuiMainMenu.java[GuiMainMenu" modifiers="1" timestamp="1686541712708"/>
     <typeInfo handle="=Client/src&lt;appu26j.gui{LoginGUI.java[LoginGUI" modifiers="1" timestamp="1686541859738"/>
     <typeInfo handle="=Client/src&lt;net.minecraft.client.gui{GuiResourcePackList.java[GuiResourcePackList" modifiers="1025" timestamp="1612248084536"/>
-    <typeInfo handle="=Client/src&lt;appu26j.gui{DragGUI.java[DragGUI" modifiers="1" timestamp="1686580772576"/>
-    <typeInfo handle="=Client/src&lt;appu26j.interfaces{GUIInterface.java[GUIInterface" modifiers="513" timestamp="1685246231279"/>
+    <typeInfo handle="=Client/src&lt;appu26j.gui{DragGUI.java[DragGUI" modifiers="1" timestamp="1686596311796"/>
+    <typeInfo handle="=Client/src&lt;appu26j.interfaces{GUIInterface.java[GUIInterface" modifiers="513" timestamp="1686595821858"/>
     <typeInfo handle="=Client/src&lt;appu26j.gui{ClickGUI.java[ClickGUI" modifiers="1" timestamp="1686588468507"/>
     <typeInfo handle="=Client/src&lt;appu26j.mods.visuals{TimeChanger.java[TimeChanger" modifiers="1" timestamp="1686583356682"/>
     <typeInfo handle="=Client/src&lt;appu26j.mods.visuals{CPS.java[CPS" modifiers="1" timestamp="1684730164764"/>
     <typeInfo handle="=Client/src&lt;net.minecraft.client.gui{GuiIngame.java[GuiIngame" modifiers="1" timestamp="1686583429830"/>
     <typeInfo handle="=Client/jars\/libraries\/org\/lwjgl\/lwjgl\/lwjgl\/2.9.4-nightly-20150209\/lwjgl-2.9.4-nightly-20150209.jar&lt;org.lwjgl.opengl(APPLEClientStorage.class[APPLEClientStorage" modifiers="49" timestamp="1682519104135"/>
-    <typeInfo handle="=Client/src&lt;appu26j.gui{TutorialGUI.java[TutorialGUI" modifiers="1" timestamp="1686495384768"/>
-    <typeInfo handle="=Client/src&lt;appu26j.fontrenderer{FixedFontRenderer.java[FixedFontRenderer" modifiers="1" timestamp="1686460016180"/>
+    <typeInfo handle="=Client/src&lt;appu26j.gui{TutorialGUI.java[TutorialGUI" modifiers="1" timestamp="1686596112486"/>
+    <typeInfo handle="=Client/src&lt;appu26j.fontrenderer{FixedFontRenderer.java[FixedFontRenderer" modifiers="1" timestamp="1686596437018"/>
     <typeInfo handle="=Client/C:\/Program Files\/Java\/jdk1.8.0_361\/jre\/lib\/rt.jar=/javadoc_location=/https:\/\/docs.oracle.com\/javase\/8\/docs\/api\/=/=/org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY=/Client\/jars\/versions\/1.8.9\/1.8.9-natives=/&lt;java.awt.font(FontRenderContext.class[FontRenderContext" modifiers="33" timestamp="1684471809560"/>
-    <typeInfo handle="=Client/src&lt;net.minecraft.client.gui{FontRenderer.java[FontRenderer" modifiers="1" timestamp="1686522689532"/>
-    <typeInfo handle="=Client/src&lt;net.minecraft.client{Minecraft.java[Minecraft" modifiers="1" timestamp="1686541668471"/>
-    <typeInfo handle="=Client/src&lt;appu26j{Apple.java[Apple" modifiers="16385" timestamp="1686586978533"/>
+    <typeInfo handle="=Client/src&lt;net.minecraft.client{Minecraft.java[Minecraft" modifiers="1" timestamp="1686597097991"/>
+    <typeInfo handle="=Client/src&lt;net.minecraft.client.gui{FontRenderer.java[FontRenderer" modifiers="1" timestamp="1686600756819"/>
+    <typeInfo handle="=Client/src&lt;appu26j{DiscordRP.java[DiscordRP" modifiers="1" timestamp="1686601029844"/>
+    <typeInfo handle="=Client/src&lt;appu26j{Apple.java[Apple" modifiers="16385" timestamp="1686600794655"/>
 </typeInfoHistroy>

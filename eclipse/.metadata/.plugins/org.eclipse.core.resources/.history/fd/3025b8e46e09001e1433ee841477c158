@@ -47,7 +47,7 @@ public class GuiConnecting extends GuiScreen
 
     private void connect(String ip, final int port)
     {
-        if (ip.equals("Hypixel"))
+        if (ip == "Hypixel")
         {
             ip = "mc.hypixel.net";
         }
