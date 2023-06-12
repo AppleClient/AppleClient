@@ -14,6 +14,7 @@ import org.lwjgl.input.Keyboard;
 import appu26j.Apple;
 import fr.litarvan.openauth.microsoft.MicrosoftAuthResult;
 import fr.litarvan.openauth.microsoft.MicrosoftAuthenticator;
+import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.main.Main;
@@ -33,7 +34,6 @@ public class LoginGUI extends GuiScreen
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks)
     {
-        super.drawScreen(mouseX, mouseY, partialTicks);
         GlStateManager.color(1, 1, 1, 1);
         this.mc.getTextureManager().bindTexture(new ResourceLocation("panorama.png"));
         this.drawModalRectWithCustomSizedTexture(0, 0, 0, 0, this.width, this.height, this.width, this.height);
@@ -59,6 +59,8 @@ public class LoginGUI extends GuiScreen
                 this.time = System.currentTimeMillis();
             }
         }
+        
+        super.drawScreen(mouseX, mouseY, partialTicks);
     }
     
     /**
@@ -75,6 +77,13 @@ public class LoginGUI extends GuiScreen
         {
             try
             {
+                boolean fullscreen = this.mc.isFullScreen();
+                
+                if (fullscreen)
+                {
+                    this.mc.toggleFullscreen();
+                }
+                
                 MicrosoftAuthenticator microsoftAuthenticator = new MicrosoftAuthenticator();
                 MicrosoftAuthResult microsoftAuthResult = microsoftAuthenticator.loginWithWebview();
                 this.mc.setSession(new Session(microsoftAuthResult.getProfile().getName(), microsoftAuthResult.getProfile().getId(), microsoftAuthResult.getAccessToken(), "mojang"));
@@ -116,6 +125,12 @@ public class LoginGUI extends GuiScreen
                 this.mc.logger.info("(Session ID is " + this.mc.getSession().getCensoredSessionID() + ")");
                 this.mc.displayGuiScreen(Main.firstTimeUser ? new TutorialGUI() : new GuiMainMenu());
                 Apple.CLIENT.connectToServer();
+                Main.firstTimeUser = false;
+                
+                if (fullscreen)
+                {
+                    this.mc.toggleFullscreen();
+                }
             }
             
             catch (Exception e)
@@ -184,6 +199,7 @@ public class LoginGUI extends GuiScreen
             this.mc.logger.info("(Session ID is " + this.mc.getSession().getCensoredSessionID() + ")");
             this.mc.displayGuiScreen(Main.firstTimeUser ? new TutorialGUI() : new GuiMainMenu());
             Apple.CLIENT.connectToServer();
+            Main.firstTimeUser = false;
             this.crackedLogin = false;
         }
         
@@ -210,9 +226,57 @@ public class LoginGUI extends GuiScreen
     }
     
     @Override
+    public void actionPerformed(GuiButton button)
+    {
+        if (button.id == 1)
+        {
+            FileWriter fileWriter = null;
+            
+            try
+            {
+                if (!Apple.ACCOUNT.exists())
+                {
+                    Apple.ACCOUNT.createNewFile();
+                }
+                
+                fileWriter = new FileWriter(Apple.ACCOUNT);
+                fileWriter.write("1\n" + this.mc.getSession().getPlayerID() + "\n" + this.mc.getSession().getUsername());
+            }
+            
+            catch (Exception e)
+            {
+                ;
+            }
+            
+            finally
+            {
+                if (fileWriter != null)
+                {
+                    try
+                    {
+                        fileWriter.close();
+                    }
+                    
+                    catch (Exception e)
+                    {
+                        ;
+                    }
+                }
+            }
+            
+            this.mc.logger.info("Setting user: " + this.mc.getSession().getUsername());
+            this.mc.logger.info("(Session ID is " + this.mc.getSession().getCensoredSessionID() + ")");
+            this.mc.displayGuiScreen(Main.firstTimeUser ? new TutorialGUI() : new GuiMainMenu());
+            Apple.CLIENT.connectToServer();
+            Main.firstTimeUser = false;
+        }
+    }
+    
+    @Override
     public void initGui()
     {
         super.initGui();
+        this.buttonList.add(new GuiButton(1, this.width - 65, 5, 60, 20, "Skip"));
         Keyboard.enableRepeatEvents(true);
     }
     

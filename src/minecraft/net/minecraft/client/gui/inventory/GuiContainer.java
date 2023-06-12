@@ -457,6 +457,7 @@ public abstract class GuiContainer extends GuiScreen
         this.lastClickSlot = slot;
         this.lastClickTime = i;
         this.lastClickButton = mouseButton;
+        this.checkHotbarKeys(mouseButton - 100);
     }
 
     /**

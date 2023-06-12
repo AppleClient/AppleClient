@@ -53,7 +53,7 @@
     <fullyQualifiedTypeName name="org.lwjgl.input.Keyboard"/>
     <fullyQualifiedTypeName name="java.net.URL"/>
     <fullyQualifiedTypeName name="java.nio.file.Files"/>
-    <fullyQualifiedTypeName name="appu26j.Apple"/>
     <fullyQualifiedTypeName name="net.minecraft.client.main.Main"/>
     <fullyQualifiedTypeName name="java.awt.Color"/>
+    <fullyQualifiedTypeName name="appu26j.Apple"/>
 </qualifiedTypeNameHistroy>

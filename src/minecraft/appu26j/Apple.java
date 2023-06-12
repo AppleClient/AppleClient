@@ -27,7 +27,7 @@ public enum Apple implements MinecraftInterface
 	
 	public static final File DEFAULT_DIRECTORY = new File(System.getProperty("user.home"), "appleclient"), CONFIG = new File(DEFAULT_DIRECTORY, "config.json"), ACCOUNT = new File(DEFAULT_DIRECTORY, "account.txt");
     private ArrayList<String> usersPlayingAppleClient = new ArrayList<>(), specialPeople = new ArrayList<>();
-	public static final String VERSION = "2.00", TITLE = "Apple Client " + VERSION;
+	public static final String VERSION = "2.04", TITLE = "Apple Client " + VERSION;
 	private AppleClientVersionChecker appleClientVersionChecker;
     private long time = System.currentTimeMillis();
 	private SettingsManager settingsManager;
@@ -81,7 +81,7 @@ public enum Apple implements MinecraftInterface
 	            
 	            try
 	            {
-                    this.usersPlayingAppleClient.clear();
+                    ArrayList<String> temp = new ArrayList<>();
 	                httpURLConnection = (HttpURLConnection) new URL("http://217.160.192.85:10023/uuidlist").openConnection();
 	                httpURLConnection.setDoInput(true);
 	                httpURLConnection.setDoOutput(true);
@@ -92,8 +92,11 @@ public enum Apple implements MinecraftInterface
 	                
 	                while ((line = bufferedReader.readLine()) != null)
 	                {
-                        this.usersPlayingAppleClient.add(line);
+                        temp.add(line);
 	                }
+	                
+                    this.usersPlayingAppleClient.clear();
+                    this.usersPlayingAppleClient.addAll(temp);
 	            }
 	            
 	            catch (Exception exception)
@@ -187,7 +190,6 @@ public enum Apple implements MinecraftInterface
 	
 	public void connectToServer()
 	{
-
         new Thread(() ->
         {
             HttpURLConnection httpURLConnection = null;
@@ -277,4 +279,34 @@ public enum Apple implements MinecraftInterface
             }
         }).start();
 	}
+	
+	public void disconnectFromServer()
+    {
+	    new Thread(() ->
+        {
+            HttpURLConnection httpURLConnection = null;
+            
+            try
+            {
+                httpURLConnection = (HttpURLConnection) new URL("http://217.160.192.85:10023/removeuuid/?uuid=" + this.mc.getSession().getPlayerID()).openConnection();
+                httpURLConnection.setDoInput(true);
+                httpURLConnection.setDoOutput(true);
+                httpURLConnection.connect();
+                httpURLConnection.getInputStream();
+            }
+            
+            catch (Exception exception)
+            {
+                ;
+            }
+            
+            finally
+            {
+                if (httpURLConnection != null)
+                {
+                    httpURLConnection.disconnect();
+                }
+            }
+        }).start();
+    }
 }

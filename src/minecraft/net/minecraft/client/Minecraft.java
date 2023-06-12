@@ -622,7 +622,12 @@ public class Minecraft implements IThreadListener, IPlayerUsage
         else
         {
             ArrayList<String> lines = (ArrayList<String>) Files.readAllLines(Apple.ACCOUNT.toPath());
-            this.session = new Session(lines.get(2), lines.get(1), lines.get(0).equals("0") ? "0" : this.getAccessToken(lines.get(0)), lines.get(0).equals("0") ? "legacy" : "mojang");
+            
+            if (lines.get(0) != "1")
+            {
+                this.session = new Session(lines.get(2), lines.get(1), lines.get(0).equals("0") ? "0" : this.getAccessToken(lines.get(0)), lines.get(0).equals("0") ? "legacy" : "mojang");
+            }
+            
             logger.info("Setting user: " + this.session.getUsername());
             logger.info("(Session ID is " + this.session.getCensoredSessionID() + ")");
             this.displayGuiScreen(new GuiMainMenu());
@@ -1138,34 +1143,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
     {
         try
         {
-
-            new Thread(() ->
-            {
-                HttpURLConnection httpURLConnection = null;
-                
-                try
-                {
-                    httpURLConnection = (HttpURLConnection) new URL("http://217.160.192.85:10023/removeuuid/?uuid=" + this.getSession().getPlayerID()).openConnection();
-                    httpURLConnection.setDoInput(true);
-                    httpURLConnection.setDoOutput(true);
-                    httpURLConnection.connect();
-                    httpURLConnection.getInputStream();
-                }
-                
-                catch (Exception exception)
-                {
-                    ;
-                }
-                
-                finally
-                {
-                    if (httpURLConnection != null)
-                    {
-                        httpURLConnection.disconnect();
-                    }
-                }
-            }).start();
-            
+            Apple.CLIENT.disconnectFromServer();
             DiscordRP.shutdown();
             Apple.CLIENT.shutdown();
             this.stream.shutdownStream();

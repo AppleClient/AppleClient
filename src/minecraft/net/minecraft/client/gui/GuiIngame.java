@@ -371,7 +371,19 @@ public class GuiIngame extends Gui
                 this.getFontRenderer().drawString(this.displayedTitle, (float)(-this.getFontRenderer().getStringWidth(this.displayedTitle) / 2), -10.0F, 16777215 | j2, true);
                 GlStateManager.popMatrix();
                 
-                if (!(cooldown.isEnabled() && cooldown.getSetting("Hide subtitle (Fake cooldown by servers)").getCheckBoxValue()))
+                if (cooldown.isEnabled())
+                {
+                    if (!cooldown.getSetting("Hide subtitle (Fake cooldown by servers)").getCheckBoxValue())
+                    {
+                        GlStateManager.pushMatrix();
+                        GlStateManager.scale(2.0F, 2.0F, 2.0F);
+                        this.getFontRenderer().drawString(this.displayedSubTitle, (float)(-this.getFontRenderer().getStringWidth(this.displayedSubTitle) / 2), 5.0F, 16777215 | j2, true);
+                        GlStateManager.popMatrix();
+                        GlStateManager.disableBlend();
+                    }
+                }
+                
+                else
                 {
                     GlStateManager.pushMatrix();
                     GlStateManager.scale(2.0F, 2.0F, 2.0F);

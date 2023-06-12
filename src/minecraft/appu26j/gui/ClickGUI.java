@@ -276,12 +276,12 @@ public class ClickGUI extends GuiScreen
 			
 			if (this.isInsideBox(mouseX, mouseY, i - 100, 20, i + 100, 50))
 			{
-			    this.drawGradientRect(i - 100, 20, i + 100, 50, backgroundColourDarkened.darker().getRGB(), backgroundColourDarkened.brighter().getRGB());
+			    this.drawRect(i - 100, 20, i + 100, 50, backgroundColour.getRGB());
 			}
 			
 			else
 			{
-			    this.drawGradientRect(i - 100, 20, i + 100, 50, backgroundColourLightened.darker().darker().getRGB(), backgroundColourLightened.getRGB());
+			    this.drawRect(i - 100, 20, i + 100, 50, backgroundColourLightened.getRGB());
 			}
 			
 			this.drawStringAlpha(this.searchingMessage + (this.aBoolean ? "|" : ""), i - 95, 27, 16, -1, (int) (this.index * 255));

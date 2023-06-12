@@ -300,6 +300,7 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
         if (button.id == 2626)
         {
             Apple.ACCOUNT.delete();
+            Apple.CLIENT.disconnectFromServer();
             this.mc.displayGuiScreen(new LoginGUI());
         }
 
