@@ -3,13 +3,11 @@ package appu26j.gui;
 import java.awt.Color;
 import java.io.IOException;
 
-import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 
 import appu26j.Apple;
 import appu26j.mods.Mod;
-import appu26j.utils.ClockUtil;
 import appu26j.utils.SoundUtil;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
@@ -17,7 +15,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class DragGUI extends GuiScreen
 {
-	private boolean initialized = false, vsync, closingGui = false, displayingClickGUI = false;
+	private boolean initialized = false, closingGui = false, displayingClickGUI = false;
 	private float dragX = 0, dragY = 0, index = 0;
 	public ClickGUI clickGUI = new ClickGUI();
 	private Mod draggingMod = null;
@@ -212,12 +210,12 @@ public class DragGUI extends GuiScreen
 		
 		if (this.isInsideBox(mouseX, mouseY, i - 50, j - 12.5F, i + 50, j + 12.5F))
 		{
-		    this.drawGradientRect(i - 50, j - 12.5F, i + 50, j + 12.5F, backgroundColourDarkened.darker().getRGB(), backgroundColourDarkened.brighter().getRGB());
+		    this.drawRect(i - 50, j - 12.5F, i + 50, j + 12.5F, backgroundColourDarkened.getRGB());
 		}
 		
 		else
 		{
-		    this.drawGradientRect(i - 50, j - 12.5F, i + 50, j + 12.5F, backgroundColour.darker().getRGB(), backgroundColour.brighter().getRGB());
+		    this.drawRect(i - 50, j - 12.5F, i + 50, j + 12.5F, backgroundColour.getRGB());
 		}
 		
 		this.drawStringAlpha("SETTINGS", i - (this.getStringWidth("SETTINGS", 12) / 2), j - 5, 12, -1, (int) (this.index * 255));
@@ -328,8 +326,6 @@ public class DragGUI extends GuiScreen
 	public void initGui()
 	{
 		super.initGui();
-		this.vsync = this.mc.gameSettings.enableVsync;
-		Display.setVSyncEnabled(true);
 		
 		if (this.draggingMod != null)
 		{
@@ -348,7 +344,6 @@ public class DragGUI extends GuiScreen
     {
 		if (keyCode == 1)
 		{
-			Display.setVSyncEnabled(this.vsync);
 			this.closingGui = true;
 		}
 		

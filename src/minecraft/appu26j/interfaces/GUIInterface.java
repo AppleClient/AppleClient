@@ -7,6 +7,7 @@ import org.lwjgl.opengl.GL11;
 import appu26j.Apple;
 import appu26j.gui.ClickGUI;
 import appu26j.gui.DragGUI;
+import appu26j.gui.MusicPlayerGUI;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 
@@ -23,7 +24,7 @@ public interface GUIInterface
 		width *= scaledResolution.getScaleFactor();
 		height *= scaledResolution.getScaleFactor();
 		
-		if (Minecraft.getMinecraft().currentScreen instanceof ClickGUI || Minecraft.getMinecraft().currentScreen instanceof DragGUI)
+		if (Minecraft.getMinecraft().currentScreen instanceof ClickGUI || Minecraft.getMinecraft().currentScreen instanceof DragGUI || Minecraft.getMinecraft().currentScreen instanceof MusicPlayerGUI)
 		{
 			float zoomFactor =  Apple.CLIENT.getDragGUI().clickGUI.zoomFactor;
 			x *= zoomFactor;
@@ -44,7 +45,7 @@ public interface GUIInterface
 		width *= scaledResolution.getScaleFactor();
 		height *= scaledResolution.getScaleFactor();
 		
-		if (Minecraft.getMinecraft().currentScreen instanceof ClickGUI || Minecraft.getMinecraft().currentScreen instanceof DragGUI)
+		if (Minecraft.getMinecraft().currentScreen instanceof ClickGUI || Minecraft.getMinecraft().currentScreen instanceof DragGUI || Minecraft.getMinecraft().currentScreen instanceof MusicPlayerGUI)
 		{
 			float zoomFactor =  Apple.CLIENT.getDragGUI().clickGUI.zoomFactor;
 			x *= zoomFactor;

@@ -16,6 +16,7 @@ import appu26j.config.Config;
 import appu26j.events.entity.EventTick;
 import appu26j.events.mc.EventKey;
 import appu26j.gui.DragGUI;
+import appu26j.gui.MusicPlayerGUI;
 import appu26j.interfaces.MinecraftInterface;
 import appu26j.mods.ModsManager;
 import appu26j.settings.SettingsManager;
@@ -27,10 +28,11 @@ public enum Apple implements MinecraftInterface
 	
 	public static final File DEFAULT_DIRECTORY = new File(System.getProperty("user.home"), "appleclient"), CONFIG = new File(DEFAULT_DIRECTORY, "config.json"), ACCOUNT = new File(DEFAULT_DIRECTORY, "account.txt");
     private ArrayList<String> usersPlayingAppleClient = new ArrayList<>(), specialPeople = new ArrayList<>();
-	public static final String VERSION = "2.04", TITLE = "Apple Client " + VERSION;
+	public static final String VERSION = "2.06", TITLE = "Apple Client " + VERSION;
 	private AppleClientVersionChecker appleClientVersionChecker;
     private long time = System.currentTimeMillis();
 	private SettingsManager settingsManager;
+    private MusicPlayerGUI musicPlayerGUI;
 	private ModsManager modsManager;
 	private EventBus eventBus;
 	private DragGUI dragGUI;
@@ -50,8 +52,15 @@ public enum Apple implements MinecraftInterface
 		this.settingsManager = new SettingsManager().initialize();
         this.eventBus = new EventBus("Apple Client Event Bus");
 		this.modsManager = new ModsManager().initialize();
+        this.musicPlayerGUI = new MusicPlayerGUI();
 		this.dragGUI = new DragGUI();
 		this.config = new Config();
+		File musicFolder = new File("music");
+		
+		if (!musicFolder.exists())
+		{
+		    musicFolder.mkdirs();
+		}
 		
 		BuiltInResourcePackDownloader.downloadPack();
 		this.appleClientVersionChecker.run();
@@ -65,6 +74,11 @@ public enum Apple implements MinecraftInterface
 		if (e.getKey() == Keyboard.KEY_RSHIFT)
 		{
 			this.mc.displayGuiScreen(this.dragGUI.initialize());
+		}
+		
+		if (e.getKey() == Keyboard.KEY_M)
+		{
+		    this.mc.displayGuiScreen(this.musicPlayerGUI);
 		}
 	}
 	

@@ -32,6 +32,7 @@ public class TutorialGUI extends GuiScreen
         items.add("9. To search for a mod, left click on the search box and begin typing.");
         items.add("10. To move an enabled mod with a GUI, open the GUI and drag the mod.");
         items.add("11. To zoom out/in the GUI, press CTRL + MINUS KEY or CTRL + PLUS KEY.");
+        items.add("12. To open the music player, press the M key on your keyboard.");
         items.add("12. Have fun!");
         
         for (int i = 0; i < items.size(); i++)

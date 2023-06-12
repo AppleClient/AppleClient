@@ -6,25 +6,27 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="Hot"/>
+		<item key="selection" value="isUnicode"/>
 		<list key="findhistory">
-			<item value="hot"/>
-			<item value="hotbar"/>
-			<item value="2626"/>
-			<item value="Log Out"/>
-			<item value="log out"/>
-			<item value="removeuuid"/>
-			<item value="on loc"/>
-			<item value="mouseClicked"/>
-			<item value="mouseC"/>
-			<item value="checkHot"/>
-			<item value="getChar"/>
-			<item value="getCharWid"/>
-			<item value="drawString("/>
-			<item value="drawSc"/>
-			<item value="cooldown."/>
+			<item value="isUnicode"/>
+			<item value="setUnicodeF"/>
+			<item value="setUnicode"/>
+			<item value="keyT"/>
+			<item value="keyTt"/>
+			<item value="this.scrollIndex"/>
+			<item value="drawScre"/>
+			<item value="scroll"/>
+			<item value="initGui"/>
+			<item value="(j "/>
+			<item value="(i "/>
+			<item value="doesGuiP"/>
+			<item value="keyTyp"/>
+			<item value="Display."/>
+			<item value="Display"/>
 		</list>
 		<list key="replacehistory">
+			<item value="(height "/>
+			<item value="(width "/>
 			<item value=""/>
 			<item value="g"/>
 			<item value="f"/>
@@ -35,8 +37,8 @@
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="648"/>
-		<item key="DIALOG_Y_ORIGIN" value="148"/>
+		<item key="DIALOG_X_ORIGIN" value="630"/>
+		<item key="DIALOG_Y_ORIGIN" value="195"/>
 		<item key="DIALOG_WIDTH" value="318"/>
 		<item key="DIALOG_HEIGHT" value="295"/>
 		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-21|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>

@@ -1,0 +1,94 @@
+---- Minecraft Crash Report ----
+// Don't be sad, have a hug! <3
+
+Time: 6/12/23 10:05 AM
+Description: Rendering screen
+
+java.lang.ArrayIndexOutOfBoundsException: -1
+	at java.util.ArrayList.elementData(ArrayList.java:424)
+	at java.util.ArrayList.get(ArrayList.java:437)
+	at appu26j.gui.MusicPlayerGUI.drawScreen(MusicPlayerGUI.java:131)
+	at net.minecraft.client.renderer.EntityRenderer.updateCameraAndRender(EntityRenderer.java:1432)
+	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1240)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:444)
+	at net.minecraft.client.main.Main.main(Main.java:124)
+	at Start.main(Start.java:16)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Stacktrace:
+	at java.util.ArrayList.elementData(ArrayList.java:424)
+	at java.util.ArrayList.get(ArrayList.java:437)
+	at appu26j.gui.MusicPlayerGUI.drawScreen(MusicPlayerGUI.java:131)
+
+-- Screen render details --
+Details:
+	Screen name: appu26j.gui.MusicPlayerGUI
+	Mouse location: Scaled: (274, 181). Absolute: (823, 412)
+	Screen size: Scaled: (640, 319). Absolute: (1920, 956). Scale factor of 3
+
+-- Affected level --
+Details:
+	Level name: MpServer
+	All players: 1 total; [EntityPlayerSP['Appu26j'/40, l='MpServer', x=8962.60, y=72.00, z=9279.81]]
+	Chunk stats: MultiplayerChunkCache: 286, 286
+	Level seed: 0
+	Level generator: ID 02 - largeBiomes, ver 0. Features enabled: false
+	Level generator options: 
+	Level spawn location: 584.00,64.00,166.00 - World: (584,64,166), Chunk: (at 8,4,6 in 36,10; contains blocks 576,0,160 to 591,255,175), Region: (1,0; contains chunks 32,0 to 63,31, blocks 512,0,0 to 1023,255,511)
+	Level time: 8448 game time, 14000 day time
+	Level dimension: 0
+	Level storage version: 0x00000 - Unknown?
+	Level weather: Rain time: 0 (now: false), thunder time: 0 (now: false)
+	Level game mode: Game mode: creative (ID 1). Hardcore: false. Cheats: false
+	Forced entities: 57 total; [EntitySheep['Sheep'/129, l='MpServer', x=8960.09, y=69.00, z=9344.09], EntitySheep['Sheep'/137, l='MpServer', x=8980.31, y=69.00, z=9246.84], EntityCreeper['Creeper'/2953, l='MpServer', x=9037.50, y=19.00, z=9303.50], EntitySheep['Sheep'/138, l='MpServer', x=8984.78, y=73.00, z=9303.41], EntityRabbit['Rabbit'/139, l='MpServer', x=8987.78, y=71.00, z=9299.81], EntityEnderman['Enderman'/2955, l='MpServer', x=9037.50, y=19.00, z=9301.50], EntitySkeleton['Skeleton'/2190, l='MpServer', x=8974.50, y=28.00, z=9293.50], EntitySkeleton['Skeleton'/2191, l='MpServer', x=8924.28, y=18.00, z=9322.69], EntitySheep['Sheep'/149, l='MpServer', x=8993.16, y=63.00, z=9253.06], EntitySheep['Sheep'/150, l='MpServer', x=8995.66, y=71.00, z=9289.53], EntitySheep['Sheep'/151, l='MpServer', x=8976.31, y=69.00, z=9279.69], EntitySheep['Sheep'/152, l='MpServer', x=9000.53, y=79.00, z=9350.63], EntitySheep['Sheep'/153, l='MpServer', x=9007.72, y=79.00, z=9356.94], EntitySheep['Sheep'/158, l='MpServer', x=9020.47, y=78.00, z=9209.16], EntitySheep['Sheep'/162, l='MpServer', x=9014.38, y=79.00, z=9354.38], EntitySquid['Squid'/2338, l='MpServer', x=8908.66, y=60.16, z=9287.63], EntitySquid['Squid'/2341, l='MpServer', x=8906.38, y=60.00, z=9295.75], EntitySquid['Squid'/2344, l='MpServer', x=8910.41, y=60.94, z=9271.97], EntityCow['Cow'/169, l='MpServer', x=9027.06, y=78.00, z=9200.03], EntitySquid['Squid'/2345, l='MpServer', x=8913.53, y=59.72, z=9268.66], EntityCow['Cow'/170, l='MpServer', x=9035.28, y=81.00, z=9228.22], EntitySquid['Squid'/1578, l='MpServer', x=8915.03, y=61.81, z=9264.50], EntitySheep['Sheep'/171, l='MpServer', x=9036.66, y=84.00, z=9236.44], EntityZombie['Zombie'/1723, l='MpServer', x=8903.50, y=17.00, z=9314.88], EntityPlayerSP['Appu26j'/40, l='MpServer', x=8962.60, y=72.00, z=9279.81], EntityBat['Bat'/2364, l='MpServer', x=8995.31, y=19.94, z=9311.66], EntityBat['Bat'/2369, l='MpServer', x=8993.16, y=21.78, z=9325.56], EntityBat['Bat'/1606, l='MpServer', x=8909.19, y=17.10, z=9315.50], EntitySheep['Sheep'/71, l='MpServer', x=8921.25, y=63.00, z=9278.22], EntitySheep['Sheep'/75, l='MpServer', x=8923.16, y=63.00, z=9310.72], EntityRabbit['Rabbit'/76, l='MpServer', x=8913.09, y=77.00, z=9341.63], EntitySheep['Sheep'/84, l='MpServer', x=8933.44, y=63.00, z=9258.19], EntitySheep['Sheep'/85, l='MpServer', x=8943.16, y=63.00, z=9306.34], EntitySheep['Sheep'/86, l='MpServer', x=8931.97, y=64.00, z=9316.03], EntitySheep['Sheep'/87, l='MpServer', x=8940.56, y=66.00, z=9321.44], EntityRabbit['Rabbit'/88, l='MpServer', x=8933.19, y=68.00, z=9341.16], EntitySheep['Sheep'/90, l='MpServer', x=8929.47, y=74.00, z=9355.31], EntityZombie['Zombie'/2526, l='MpServer', x=8983.38, y=47.00, z=9332.03], EntityCreeper['Creeper'/2528, l='MpServer', x=9010.50, y=25.00, z=9269.50], EntityCreeper['Creeper'/2529, l='MpServer', x=9008.50, y=24.00, z=9259.38], EntityRabbit['Rabbit'/98, l='MpServer', x=8944.41, y=67.00, z=9253.41], EntitySheep['Sheep'/99, l='MpServer', x=8946.28, y=67.00, z=9251.16], EntitySheep['Sheep'/100, l='MpServer', x=8991.53, y=71.00, z=9274.25], EntitySheep['Sheep'/101, l='MpServer', x=8952.59, y=70.41, z=9272.84], EntityRabbit['Rabbit'/102, l='MpServer', x=8945.81, y=63.00, z=9308.13], EntitySheep['Sheep'/104, l='MpServer', x=8949.69, y=64.00, z=9314.91], EntitySheep['Sheep'/105, l='MpServer', x=8954.31, y=64.00, z=9312.22], EntitySheep['Sheep'/106, l='MpServer', x=8939.31, y=66.00, z=9322.53], EntitySheep['Sheep'/107, l='MpServer', x=8945.31, y=69.00, z=9334.56], EntitySheep['Sheep'/108, l='MpServer', x=8944.47, y=69.00, z=9329.66], EntitySheep['Sheep'/114, l='MpServer', x=8974.44, y=81.00, z=9206.25], EntitySheep['Sheep'/116, l='MpServer', x=8973.09, y=67.00, z=9241.38], EntitySheep['Sheep'/117, l='MpServer', x=8960.91, y=68.00, z=9245.06], EntitySheep['Sheep'/118, l='MpServer', x=8933.22, y=63.00, z=9288.88], EntitySheep['Sheep'/119, l='MpServer', x=8934.16, y=64.00, z=9272.75], EntitySheep['Sheep'/120, l='MpServer', x=8948.09, y=69.00, z=9251.00], EntityZombie['Zombie'/2812, l='MpServer', x=9041.50, y=22.00, z=9307.50]]
+	Retry entities: 0 total; []
+	Server brand: vanilla
+	Server type: Integrated singleplayer server
+Stacktrace:
+	at net.minecraft.client.multiplayer.WorldClient.addWorldInfoToCrashReport(WorldClient.java:410)
+	at net.minecraft.client.Minecraft.addGraphicsAndWorldToCrashReport(Minecraft.java:2876)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:464)
+	at net.minecraft.client.main.Main.main(Main.java:124)
+	at Start.main(Start.java:16)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.8.9
+	Operating System: Windows 11 (amd64) version 10.0
+	Java Version: 1.8.0_361, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 490617576 bytes (467 MB) / 1067974656 bytes (1018 MB) up to 1067974656 bytes (1018 MB)
+	JVM Flags: 2 total; -Xmx1024M -Xms1024M
+	IntCache: cache: 0, tcache: 0, allocated: 13, tallocated: 99
+	Launched Version: appleclient
+	LWJGL: 2.9.4
+	OpenGL: AMD Radeon(TM) Graphics GL version 4.6.14761 Compatibility Profile Context 21.30.14 30.0.13014.8, ATI Technologies Inc.
+	GL Caps: Using GL 1.3 multitexturing.
+Using GL 1.3 texture combiners.
+Using framebuffer objects because OpenGL 3.0 is supported and separate blending is supported.
+Shaders are available because OpenGL 2.1 is supported.
+VBOs are available because OpenGL 1.5 is supported.
+
+	Using VBOs: Yes
+	Is Modded: Definitely; Client brand changed to 'appleclient'
+	Type: Client (map_client.txt)
+	Resource Packs: 1.14 Textures
+	Current Language: English (US)
+	Profiler Position: N/A (disabled)
+	CPU: 12x AMD Ryzen 5 5500U with Radeon Graphics 
+	OptiFine Version: OptiFine_1.8.9_HD_U_M5
+	OptiFine Build: ~~NULL~~
+	Render Distance Chunks: 8
+	Mipmaps: 4
+	Anisotropic Filtering: 1
+	Antialiasing: 0
+	Multitexture: false
+	Shaders: null
+	OpenGlVersion: 4.6.14761 Compatibility Profile Context 21.30.14 30.0.13014.8
+	OpenGlRenderer: AMD Radeon(TM) Graphics
+	OpenGlVendor: ATI Technologies Inc.
+	CpuCount: 12

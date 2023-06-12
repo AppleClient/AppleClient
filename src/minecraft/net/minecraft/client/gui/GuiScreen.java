@@ -192,7 +192,7 @@ public abstract class GuiScreen extends Gui implements GuiYesNoCallback, GUIInte
     }
 
     /**
-     * Draws a List of strings as a tooltip. Every entry is drawn on a seperate line.
+     * Draws a List of strings as a tooltip. Every entry is drawn on a separate line.
      */
     protected void drawHoveringText(List<String> textLines, int x, int y)
     {
@@ -856,7 +856,7 @@ public abstract class GuiScreen extends Gui implements GuiYesNoCallback, GUIInte
     public void drawStringAlpha(String text, float x, float y, int color, int alpha)
     {
         Color temp = new Color(color, true);
-        this.drawString(text, x, y, new Color(temp.getRed(), temp.getGreen(), temp.getBlue(), alpha).getRGB());
+        this.drawString(text, x, y, 8, new Color(temp.getRed(), temp.getGreen(), temp.getBlue(), alpha).getRGB());
     }
     
     public void drawStringAlpha(String text, float x, float y, float size, int color, int alpha)

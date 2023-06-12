@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="appu26j.gui.ClickGUI"/>
-    <fullyQualifiedTypeName name="appu26j.interfaces.GUIInterface"/>
-    <fullyQualifiedTypeName name="appu26j.events.entity.EventTick"/>
-    <fullyQualifiedTypeName name="appu26j.events.entity.EventAttack"/>
-    <fullyQualifiedTypeName name="appu26j.events.mc.EventWorldChange"/>
     <fullyQualifiedTypeName name="appu26j.events.network.EventPacketReceive"/>
     <fullyQualifiedTypeName name="appu26j.gui.DragGUI"/>
     <fullyQualifiedTypeName name="appu26j.mods.Mod"/>
@@ -12,7 +7,6 @@
     <fullyQualifiedTypeName name="net.minecraft.client.multiplayer.ServerList"/>
     <fullyQualifiedTypeName name="appu26j.AppleClientVersionChecker"/>
     <fullyQualifiedTypeName name="appu26j.fontrenderer.FixedFontRenderer"/>
-    <fullyQualifiedTypeName name="appu26j.utils.SoundUtil"/>
     <fullyQualifiedTypeName name="appu26j.utils.ClockUtil"/>
     <fullyQualifiedTypeName name="appu26j.DiscordRP"/>
     <fullyQualifiedTypeName name="appu26j.mods.multiplayer.RankChanger"/>
@@ -26,7 +20,6 @@
     <fullyQualifiedTypeName name="net.minecraft.client.gui.GuiMultiplayer"/>
     <fullyQualifiedTypeName name="net.minecraft.client.gui.GuiScreenServerList"/>
     <fullyQualifiedTypeName name="net.minecraft.client.gui.GuiScreenAddServer"/>
-    <fullyQualifiedTypeName name="org.lwjgl.opengl.GL11"/>
     <fullyQualifiedTypeName name="appu26j.events.mc.EventKey"/>
     <fullyQualifiedTypeName name="net.minecraft.util.Vec3"/>
     <fullyQualifiedTypeName name="net.minecraft.entity.EntityLivingBase"/>
@@ -55,5 +48,16 @@
     <fullyQualifiedTypeName name="java.nio.file.Files"/>
     <fullyQualifiedTypeName name="net.minecraft.client.main.Main"/>
     <fullyQualifiedTypeName name="java.awt.Color"/>
+    <fullyQualifiedTypeName name="appu26j.utils.SoundUtil"/>
+    <fullyQualifiedTypeName name="java.awt.Desktop"/>
+    <fullyQualifiedTypeName name="org.lwjgl.opengl.GL11"/>
+    <fullyQualifiedTypeName name="javafx.scene.media.Media"/>
+    <fullyQualifiedTypeName name="appu26j.utils.MusicUtil"/>
+    <fullyQualifiedTypeName name="java.nio.file.Paths"/>
+    <fullyQualifiedTypeName name="javafx.stage.WindowEvent"/>
+    <fullyQualifiedTypeName name="javafx.event.EventHandler"/>
+    <fullyQualifiedTypeName name="javafx.scene.text.Font"/>
+    <fullyQualifiedTypeName name="javafx.application.Application"/>
+    <fullyQualifiedTypeName name="java.time.Duration"/>
     <fullyQualifiedTypeName name="appu26j.Apple"/>
 </qualifiedTypeNameHistroy>

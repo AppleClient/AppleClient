@@ -1,0 +1,26 @@
+package appu26j.utils;
+
+import javafx.application.Application;
+import javafx.event.EventHandler;
+import javafx.scene.SceneBuilder;
+import javafx.scene.control.LabelBuilder;
+import javafx.scene.text.Font;
+import javafx.stage.Stage;
+import javafx.stage.StageBuilder;
+import javafx.stage.WindowEvent;
+
+public class JavaFX extends Application
+{
+    @Override
+    public void start(Stage primaryStage) throws Exception
+    {
+        StageBuilder.create().scene(SceneBuilder.create().width(320).height(240).root(LabelBuilder.create().font(Font.font("Arial", 54)).text("JavaFX").build()).build()).onCloseRequest(new EventHandler<WindowEvent>()
+        {
+            @Override
+            public void handle(WindowEvent windowEvent)
+            {
+                System.exit(0);
+            }
+        }).build().show();
+    }
+}

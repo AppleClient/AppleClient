@@ -1,14 +1,14 @@
-#Mon Jun 05 09:57:20 MST 2023
+#Mon Jun 12 12:13:46 MST 2023
 shaderPack=OFF
 antialiasingLevel=0
 normalMapEnabled=true
 specularMapEnabled=true
 renderResMul=1.0
 shadowResMul=1.0
-handDepthMul=0.25
+handDepthMul=0.125
 cloudShadow=false
 oldHandLight=default
-oldLighting=false
+oldLighting=default
 tweakBlockDamage=false
 shadowClipFrustrum=true
 TexMinFilB=0
