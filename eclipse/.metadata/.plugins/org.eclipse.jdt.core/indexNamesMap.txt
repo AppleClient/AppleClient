@@ -1,3 +1,3 @@
 INDEX VERSION 1.132
-file:/C:/Users/Thanos/Documents/GitHub/AppleClient/eclipse/.metadata/.plugins/org.eclipse.jdt.core/1865797976.index
+file:/C:/Projects/Apple%20Client/eclipse/.metadata/.plugins/org.eclipse.jdt.core/1865797976.index
 meta_index
