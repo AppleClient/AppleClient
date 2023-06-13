@@ -544,6 +544,7 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
      */
     public void drawScreen(int mouseX, int mouseY, float partialTicks)
     {
+        System.out.println(true);
         if (this.mc.getSession().getPlayerID().replaceAll("-", "").equals("eaa6e69a966b465da9114cae0bf49440"))
         {
             GlStateManager.color(1, 1, 1, 1);

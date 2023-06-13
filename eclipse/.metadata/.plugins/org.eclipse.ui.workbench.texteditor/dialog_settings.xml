@@ -6,8 +6,10 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="button.id == 4"/>
+		<item key="selection" value="Profiler"/>
 		<list key="findhistory">
+			<item value="profiler"/>
+			<item value="this.worldObj.theProfiler"/>
 			<item value="button.id == 4"/>
 			<item value="direct"/>
 			<item value="d"/>
@@ -21,10 +23,9 @@
 			<item value="logger."/>
 			<item value="blockRenderDispatcher"/>
 			<item value="refreshRe"/>
-			<item value="res"/>
-			<item value="reloadT"/>
 		</list>
 		<list key="replacehistory">
+			<item value="T"/>
 			<item value="(height "/>
 			<item value="(width "/>
 			<item value=""/>
@@ -38,9 +39,9 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item key="DIALOG_X_ORIGIN" value="616"/>
-		<item key="DIALOG_Y_ORIGIN" value="6"/>
-		<item key="DIALOG_WIDTH" value="318"/>
-		<item key="DIALOG_HEIGHT" value="295"/>
-		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-21|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+		<item key="DIALOG_Y_ORIGIN" value="8"/>
+		<item key="DIALOG_WIDTH" value="322"/>
+		<item key="DIALOG_HEIGHT" value="391"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
 	</section>
 </section>

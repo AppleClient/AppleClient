@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <libraryInfos>
+    <libraryInfo home="C:\Users\Thanos\.jdks\corretto-1.8.0_372" version="1.8.0_372">
+        <bootpath>
+            <entry path="C:\Users\Thanos\.jdks\corretto-1.8.0_372\jre\lib\resources.jar"/>
+            <entry path="C:\Users\Thanos\.jdks\corretto-1.8.0_372\jre\lib\rt.jar"/>
+            <entry path="C:\Users\Thanos\.jdks\corretto-1.8.0_372\jre\lib\sunrsasign.jar"/>
+            <entry path="C:\Users\Thanos\.jdks\corretto-1.8.0_372\jre\lib\jsse.jar"/>
+            <entry path="C:\Users\Thanos\.jdks\corretto-1.8.0_372\jre\lib\jce.jar"/>
+            <entry path="C:\Users\Thanos\.jdks\corretto-1.8.0_372\jre\lib\charsets.jar"/>
+            <entry path="C:\Users\Thanos\.jdks\corretto-1.8.0_372\jre\lib\jfr.jar"/>
+            <entry path="C:\Users\Thanos\.jdks\corretto-1.8.0_372\jre\classes"/>
+        </bootpath>
+        <extensionDirs>
+            <entry path="C:\Users\Thanos\.jdks\corretto-1.8.0_372\jre\lib\ext"/>
+            <entry path="C:\WINDOWS\Sun\Java\lib\ext"/>
+        </extensionDirs>
+        <endorsedDirs>
+            <entry path="C:\Users\Thanos\.jdks\corretto-1.8.0_372\jre\lib\endorsed"/>
+        </endorsedDirs>
+    </libraryInfo>
     <libraryInfo home="C:\Program Files\Eclipse\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.6.v20230204-1729" version="17.0.6"/>
+    <libraryInfo home="C:\Users\Thanos\.p2\pool\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.7.v20230425-1502\jre" version="17.0.7"/>
+    <libraryInfo home="C:\Users\Thanos\.p2\pool\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.7.v20230425-1502" version="17.0.7"/>
     <libraryInfo home="C:\Program Files\Java\jdk1.8.0_361" version="1.8.0_361">
         <bootpath>
             <entry path="C:\Program Files\Java\jdk1.8.0_361\jre\lib\resources.jar"/>

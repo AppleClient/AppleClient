@@ -206,7 +206,7 @@ import net.minecraft.world.storage.ISaveFormat;
 import net.minecraft.world.storage.ISaveHandler;
 import net.minecraft.world.storage.WorldInfo;
 
-public class Minecraft implements IThreadListener, IPlayerUsage
+public class Minecraft implements IThreadListener
 {
     public static final Logger logger = LogManager.getLogger();
     private static final ResourceLocation locationMojangPng = new ResourceLocation("textures/gui/title/mojang.png");
@@ -244,7 +244,6 @@ public class Minecraft implements IThreadListener, IPlayerUsage
     private Timer timer = new Timer(20.0F);
 
     /** Instance of PlayerUsageSnooper. */
-    private PlayerUsageSnooper usageSnooper = new PlayerUsageSnooper("client", this, MinecraftServer.getCurrentTimeMillis());
     public WorldClient theWorld;
     public RenderGlobal renderGlobal;
     private RenderManager renderManager;
@@ -1262,7 +1261,6 @@ public class Minecraft implements IThreadListener, IPlayerUsage
             }
         }
 
-        this.mcProfiler.endSection();
         long l = System.nanoTime();
         this.mcProfiler.startSection("tick");
 
@@ -1276,7 +1274,6 @@ public class Minecraft implements IThreadListener, IPlayerUsage
         this.checkGLError("Pre render");
         this.mcProfiler.endStartSection("sound");
         this.mcSoundHandler.setListener(this.thePlayer, this.timer.renderPartialTicks);
-        this.mcProfiler.endSection();
         this.mcProfiler.startSection("render");
         GlStateManager.pushMatrix();
         GlStateManager.clear(16640);
@@ -1289,32 +1286,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
             this.gameSettings.thirdPersonView = 0;
         }
 
-        this.mcProfiler.endSection();
 
-        if (!this.skipRenderWorld)
-        {
-            this.mcProfiler.endStartSection("gameRenderer");
-            this.entityRenderer.updateCameraAndRender(this.timer.renderPartialTicks, i);
-            this.mcProfiler.endSection();
-        }
-
-        this.mcProfiler.endSection();
-
-        if (this.gameSettings.showDebugInfo && this.gameSettings.showDebugProfilerChart && !this.gameSettings.hideGUI)
-        {
-            if (!this.mcProfiler.profilingEnabled)
-            {
-                this.mcProfiler.clearProfiling();
-            }
-
-            this.mcProfiler.profilingEnabled = true;
-            this.displayDebugInfo(i1);
-        }
-        else
-        {
-            this.mcProfiler.profilingEnabled = false;
-            this.prevFrameTime = System.nanoTime();
-        }
 
         this.guiAchievement.updateAchievementWindow();
         this.framebufferMc.unbindFramebuffer();
@@ -1333,8 +1305,6 @@ public class Minecraft implements IThreadListener, IPlayerUsage
         this.stream.func_152935_j();
         this.mcProfiler.endStartSection("submit");
         this.stream.func_152922_k();
-        this.mcProfiler.endSection();
-        this.mcProfiler.endSection();
         this.checkGLError("Post render");
         ++this.fpsCounter;
         this.isGamePaused = this.isSingleplayer() && this.currentScreen != null && this.currentScreen.doesGuiPauseGame() && !this.theIntegratedServer.getPublic();
@@ -1345,23 +1315,16 @@ public class Minecraft implements IThreadListener, IPlayerUsage
         while (getSystemTime() >= this.debugUpdateTime + 1000L)
         {
             debugFPS = this.fpsCounter;
-            this.debug = String.format("%d fps (%d chunk update%s) T: %s%s%s%s%s", new Object[] {Integer.valueOf(debugFPS), Integer.valueOf(RenderChunk.renderChunksUpdated), RenderChunk.renderChunksUpdated != 1 ? "s" : "", (float)this.gameSettings.limitFramerate == GameSettings.Options.FRAMERATE_LIMIT.getValueMax() ? "inf" : Integer.valueOf(this.gameSettings.limitFramerate), this.gameSettings.enableVsync ? " vsync" : "", this.gameSettings.fancyGraphics ? "" : " fast", this.gameSettings.clouds == 0 ? "" : (this.gameSettings.clouds == 1 ? " fast-clouds" : " fancy-clouds"), OpenGlHelper.useVbo() ? " vbo" : ""});
+            this.debug = String.format("%d fps", new Object[] {Integer.valueOf(debugFPS)});
             RenderChunk.renderChunksUpdated = 0;
             this.debugUpdateTime += 1000L;
             this.fpsCounter = 0;
-            this.usageSnooper.addMemoryStatsToSnooper();
 
-            if (!this.usageSnooper.isSnooperRunning())
-            {
-                this.usageSnooper.startSnooper();
-            }
         }
 
         if (this.isFramerateLimitBelowMax())
         {
-            this.mcProfiler.startSection("fpslimit_wait");
             Display.sync(this.getLimitFramerate());
-            this.mcProfiler.endSection();
         }
 
         this.mcProfiler.endSection();
@@ -1437,153 +1400,9 @@ public class Minecraft implements IThreadListener, IPlayerUsage
      */
     private void updateDebugProfilerName(int keyCount)
     {
-        List<Profiler.Result> list = this.mcProfiler.getProfilingData(this.debugProfilerName);
-
-        if (list != null && !list.isEmpty())
-        {
-            Profiler.Result profiler$result = (Profiler.Result)list.remove(0);
-
-            if (keyCount == 0)
-            {
-                if (profiler$result.field_76331_c.length() > 0)
-                {
-                    int i = this.debugProfilerName.lastIndexOf(".");
-
-                    if (i >= 0)
-                    {
-                        this.debugProfilerName = this.debugProfilerName.substring(0, i);
-                    }
-                }
-            }
-            else
-            {
-                --keyCount;
-
-                if (keyCount < list.size() && !((Profiler.Result)list.get(keyCount)).field_76331_c.equals("unspecified"))
-                {
-                    if (this.debugProfilerName.length() > 0)
-                    {
-                        this.debugProfilerName = this.debugProfilerName + ".";
-                    }
-
-                    this.debugProfilerName = this.debugProfilerName + ((Profiler.Result)list.get(keyCount)).field_76331_c;
-                }
-            }
-        }
+       
     }
 
-    /**
-     * Parameter appears to be unused
-     */
-    private void displayDebugInfo(long elapsedTicksTime)
-    {
-        if (this.mcProfiler.profilingEnabled)
-        {
-            List<Profiler.Result> list = this.mcProfiler.getProfilingData(this.debugProfilerName);
-            Profiler.Result profiler$result = (Profiler.Result)list.remove(0);
-            GlStateManager.clear(256);
-            GlStateManager.matrixMode(5889);
-            GlStateManager.enableColorMaterial();
-            GlStateManager.loadIdentity();
-            GlStateManager.ortho(0.0D, (double)this.displayWidth, (double)this.displayHeight, 0.0D, 1000.0D, 3000.0D);
-            GlStateManager.matrixMode(5888);
-            GlStateManager.loadIdentity();
-            GlStateManager.translate(0.0F, 0.0F, -2000.0F);
-            GL11.glLineWidth(1.0F);
-            GlStateManager.disableTexture2D();
-            Tessellator tessellator = Tessellator.getInstance();
-            WorldRenderer worldrenderer = tessellator.getWorldRenderer();
-            int i = 160;
-            int j = this.displayWidth - i - 10;
-            int k = this.displayHeight - i * 2;
-            GlStateManager.enableBlend();
-            worldrenderer.begin(7, DefaultVertexFormats.POSITION_COLOR);
-            worldrenderer.pos((double)((float)j - (float)i * 1.1F), (double)((float)k - (float)i * 0.6F - 16.0F), 0.0D).color(200, 0, 0, 0).endVertex();
-            worldrenderer.pos((double)((float)j - (float)i * 1.1F), (double)(k + i * 2), 0.0D).color(200, 0, 0, 0).endVertex();
-            worldrenderer.pos((double)((float)j + (float)i * 1.1F), (double)(k + i * 2), 0.0D).color(200, 0, 0, 0).endVertex();
-            worldrenderer.pos((double)((float)j + (float)i * 1.1F), (double)((float)k - (float)i * 0.6F - 16.0F), 0.0D).color(200, 0, 0, 0).endVertex();
-            tessellator.draw();
-            GlStateManager.disableBlend();
-            double d0 = 0.0D;
-
-            for (int l = 0; l < list.size(); ++l)
-            {
-                Profiler.Result profiler$result1 = (Profiler.Result)list.get(l);
-                int i1 = MathHelper.floor_double(profiler$result1.field_76332_a / 4.0D) + 1;
-                worldrenderer.begin(6, DefaultVertexFormats.POSITION_COLOR);
-                int j1 = profiler$result1.getColor();
-                int k1 = j1 >> 16 & 255;
-                int l1 = j1 >> 8 & 255;
-                int i2 = j1 & 255;
-                worldrenderer.pos((double)j, (double)k, 0.0D).color(k1, l1, i2, 255).endVertex();
-
-                for (int j2 = i1; j2 >= 0; --j2)
-                {
-                    float f = (float)((d0 + profiler$result1.field_76332_a * (double)j2 / (double)i1) * Math.PI * 2.0D / 100.0D);
-                    float f1 = MathHelper.sin(f) * (float)i;
-                    float f2 = MathHelper.cos(f) * (float)i * 0.5F;
-                    worldrenderer.pos((double)((float)j + f1), (double)((float)k - f2), 0.0D).color(k1, l1, i2, 255).endVertex();
-                }
-
-                tessellator.draw();
-                worldrenderer.begin(5, DefaultVertexFormats.POSITION_COLOR);
-
-                for (int i3 = i1; i3 >= 0; --i3)
-                {
-                    float f3 = (float)((d0 + profiler$result1.field_76332_a * (double)i3 / (double)i1) * Math.PI * 2.0D / 100.0D);
-                    float f4 = MathHelper.sin(f3) * (float)i;
-                    float f5 = MathHelper.cos(f3) * (float)i * 0.5F;
-                    worldrenderer.pos((double)((float)j + f4), (double)((float)k - f5), 0.0D).color(k1 >> 1, l1 >> 1, i2 >> 1, 255).endVertex();
-                    worldrenderer.pos((double)((float)j + f4), (double)((float)k - f5 + 10.0F), 0.0D).color(k1 >> 1, l1 >> 1, i2 >> 1, 255).endVertex();
-                }
-
-                tessellator.draw();
-                d0 += profiler$result1.field_76332_a;
-            }
-
-            DecimalFormat decimalformat = new DecimalFormat("##0.00");
-            GlStateManager.enableTexture2D();
-            String s = "";
-
-            if (!profiler$result.field_76331_c.equals("unspecified"))
-            {
-                s = s + "[0] ";
-            }
-
-            if (profiler$result.field_76331_c.length() == 0)
-            {
-                s = s + "ROOT ";
-            }
-            else
-            {
-                s = s + profiler$result.field_76331_c + " ";
-            }
-
-            int l2 = 16777215;
-            this.fontRendererObj.drawStringWithShadow(s, (float)(j - i), (float)(k - i / 2 - 16), l2);
-            this.fontRendererObj.drawStringWithShadow(s = decimalformat.format(profiler$result.field_76330_b) + "%", (float)(j + i - this.fontRendererObj.getStringWidth(s)), (float)(k - i / 2 - 16), l2);
-
-            for (int k2 = 0; k2 < list.size(); ++k2)
-            {
-                Profiler.Result profiler$result2 = (Profiler.Result)list.get(k2);
-                String s1 = "";
-
-                if (profiler$result2.field_76331_c.equals("unspecified"))
-                {
-                    s1 = s1 + "[?] ";
-                }
-                else
-                {
-                    s1 = s1 + "[" + (k2 + 1) + "] ";
-                }
-
-                s1 = s1 + profiler$result2.field_76331_c;
-                this.fontRendererObj.drawStringWithShadow(s1, (float)(j - i), (float)(k + i / 2 + k2 * 8 + 20), profiler$result2.getColor());
-                this.fontRendererObj.drawStringWithShadow(s1 = decimalformat.format(profiler$result2.field_76332_a) + "%", (float)(j + i - 50 - this.fontRendererObj.getStringWidth(s1)), (float)(k + i / 2 + k2 * 8 + 20), profiler$result2.getColor());
-                this.fontRendererObj.drawStringWithShadow(s1 = decimalformat.format(profiler$result2.field_76330_b) + "%", (float)(j + i - this.fontRendererObj.getStringWidth(s1)), (float)(k + i / 2 + k2 * 8 + 20), profiler$result2.getColor());
-            }
-        }
-    }
 
     /**
      * Called when the window is closing. Sets 'running' to false which allows the game loop to exit cleanly.
@@ -2913,13 +2732,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
                 return Minecraft.this.mcLanguageManager.getCurrentLanguage().toString();
             }
         });
-        theCrash.getCategory().addCrashSectionCallable("Profiler Position", new Callable<String>()
-        {
-            public String call() throws Exception
-            {
-                return Minecraft.this.mcProfiler.profilingEnabled ? Minecraft.this.mcProfiler.getNameOfLastSection() : "N/A (disabled)";
-            }
-        });
+
         theCrash.getCategory().addCrashSectionCallable("CPU", new Callable<String>()
         {
             public String call()
@@ -3177,10 +2990,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
     /**
      * Returns the PlayerUsageSnooper instance.
      */
-    public PlayerUsageSnooper getPlayerUsageSnooper()
-    {
-        return this.usageSnooper;
-    }
+
 
     /**
      * Gets the system time in milliseconds.

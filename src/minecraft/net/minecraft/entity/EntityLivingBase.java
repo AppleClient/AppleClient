@@ -2021,13 +2021,9 @@ public abstract class EntityLivingBase extends Entity
         }
         else if (this.isServerWorld())
         {
-            this.worldObj.theProfiler.startSection("newAi");
             this.updateEntityActionState();
-            this.worldObj.theProfiler.endSection();
         }
 
-        this.worldObj.theProfiler.endSection();
-        this.worldObj.theProfiler.startSection("jump");
 
         if (this.isJumping)
         {
@@ -2050,21 +2046,16 @@ public abstract class EntityLivingBase extends Entity
             this.jumpTicks = 0;
         }
 
-        this.worldObj.theProfiler.endSection();
-        this.worldObj.theProfiler.startSection("travel");
         this.moveStrafing *= 0.98F;
         this.moveForward *= 0.98F;
         this.randomYawVelocity *= 0.9F;
         this.moveEntityWithHeading(this.moveStrafing, this.moveForward);
-        this.worldObj.theProfiler.endSection();
-        this.worldObj.theProfiler.startSection("push");
 
         if (!this.worldObj.isRemote)
         {
             this.collideWithNearbyEntities();
         }
 
-        this.worldObj.theProfiler.endSection();
     }
 
     protected void updateEntityActionState()
