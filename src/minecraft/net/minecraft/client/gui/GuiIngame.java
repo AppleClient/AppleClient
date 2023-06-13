@@ -685,10 +685,8 @@ public class GuiIngame extends Gui
                 String s2 = EnumChatFormatting.RED + "" + score1.getScorePoints();
                 int k = j1 - j * this.getFontRenderer().FONT_HEIGHT;
                 int l = scaledRes.getScaledWidth() - k1 + 2;
-                if (!scoreboardMod.getSetting("No Background").getCheckBoxValue())
-                {
                 drawRect(l1 - 2, k, l, k + this.getFontRenderer().FONT_HEIGHT, 1342177280);
-                }
+                
                 if (scoreboardMod.getSetting("Text Shadow").getCheckBoxValue())
                 {
                     String text = scoreboardMod.getSetting("Footer Text").getTextBoxValue();
@@ -753,11 +751,8 @@ public class GuiIngame extends Gui
                     if (j == collection.size())
                     {
                         String s3 = objective.getDisplayName();
-                        if (!scoreboardMod.getSetting("No Background").getCheckBoxValue())
-                        {
                         drawRect(l1 - 2, k - this.getFontRenderer().FONT_HEIGHT - 1, l, k - 1, 1610612736);
                         drawRect(l1 - 2, k - 1, l, k, 1342177280);
-                        }
                         this.getFontRenderer().drawStringWithShadow(s3, l1 + i / 2 - this.getFontRenderer().getStringWidth(s3) / 2, k - this.getFontRenderer().FONT_HEIGHT, 553648127);
                     }
                 }

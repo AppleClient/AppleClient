@@ -680,6 +680,13 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
         long i = System.nanoTime();
         ++this.tickCounter;
 
+        if (this.startProfiling)
+        {
+            this.startProfiling = false;
+            this.theProfiler.profilingEnabled = true;
+            this.theProfiler.clearProfiling();
+        }
+
         this.theProfiler.startSection("root");
         this.updateTimeLightAndEntities();
 
@@ -889,7 +896,13 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
      */
     public CrashReport addServerInfoToCrashReport(CrashReport report)
     {
-
+        report.getCategory().addCrashSectionCallable("Profiler Position", new Callable<String>()
+        {
+            public String call() throws Exception
+            {
+                return MinecraftServer.this.theProfiler.profilingEnabled ? MinecraftServer.this.theProfiler.getNameOfLastSection() : "N/A (disabled)";
+            }
+        });
 
         if (this.serverConfigManager != null)
         {

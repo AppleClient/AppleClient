@@ -13,19 +13,14 @@ import org.apache.logging.log4j.Logger;
 
 public class Profiler
 {
-
-
-    public static void endStartSection(String string) {
-
-    }
-    public static void startSection(String string) {
-
-    }
-    public static void endSection() {}
-   /* private static final Logger logger = LogManager.getLogger();
+    private static final Logger logger = LogManager.getLogger();
     private final List<String> sectionList = Lists.<String>newArrayList();
     private final List<Long> timestampList = Lists.<Long>newArrayList();
+
+    /** Flag profiling enabled */
     public boolean profilingEnabled;
+
+    /** Current profiling section */
     private String profilingSection = "";
     private final Map<String, Long> profilingMap = Maps.<String, Long>newHashMap();
     public boolean profilerGlobalEnabled = true;
@@ -46,6 +41,9 @@ public class Profiler
         this.profilerLocalEnabled = this.profilerGlobalEnabled;
     }
 
+    /**
+     * Clear profiling.
+     */
     public void clearProfiling()
     {
         this.profilingMap.clear();
@@ -54,6 +52,9 @@ public class Profiler
         this.profilerLocalEnabled = this.profilerGlobalEnabled;
     }
 
+    /**
+     * Start section
+     */
     public void startSection(String name)
     {
         if (Lagometer.isActive())
@@ -105,6 +106,9 @@ public class Profiler
         }
     }
 
+    /**
+     * End section
+     */
     public void endSection()
     {
         if (this.profilerLocalEnabled)
@@ -202,6 +206,9 @@ public class Profiler
         }
     }
 
+    /**
+     * End current section and start a new section
+     */
     public void endStartSection(String name)
     {
         if (this.profilerLocalEnabled)
@@ -246,5 +253,5 @@ public class Profiler
         {
             return (this.field_76331_c.hashCode() & 11184810) + 4473924;
         }
-    }*/
+    }
 }

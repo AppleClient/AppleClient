@@ -475,6 +475,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
 
         if (entity != null && this.mc.theWorld != null)
         {
+            this.mc.mcProfiler.startSection("pick");
             this.mc.pointedEntity = null;
             double d0 = (double)this.mc.playerController.getBlockReachDistance();
             this.mc.objectMouseOver = entity.rayTrace(d0, partialTicks);
@@ -575,6 +576,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
                 }
             }
 
+            this.mc.mcProfiler.endSection();
         }
     }
 
@@ -1303,6 +1305,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
             this.prevFrameTime = Minecraft.getSystemTime();
         }
 
+        this.mc.mcProfiler.startSection("mouse");
 
         if (flag && Minecraft.isRunningOnMac && this.mc.inGameHasFocus && !Mouse.isInsideWindow())
         {

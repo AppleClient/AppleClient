@@ -12,7 +12,6 @@ public class Scoreboard extends Mod
 	{
 		this.addSetting(new Setting("Text Shadow", this, false));
 		this.addSetting(new Setting("Hide Numbers", this, false));
-	    this.addSetting(new Setting("No Background", this, false));
         this.addSetting(new Setting("Footer Text", this, "Default"));
         this.addSetting(new Setting("Rainbow Footer Text", this, false));
 	}

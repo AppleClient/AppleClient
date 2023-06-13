@@ -80,12 +80,17 @@ public class CommandDebug extends CommandBase
                     throw new WrongUsageException("commands.debug.usage", new Object[0]);
                 }
 
+                if (!MinecraftServer.getServer().theProfiler.profilingEnabled)
+                {
+                    throw new CommandException("commands.debug.notStarted", new Object[0]);
+                }
 
                 long i = MinecraftServer.getCurrentTimeMillis();
                 int j = MinecraftServer.getServer().getTickCounter();
                 long k = i - this.profileStartTime;
                 int l = j - this.profileStartTick;
                 this.saveProfileResults(k, l);
+                MinecraftServer.getServer().theProfiler.profilingEnabled = false;
                 notifyOperators(sender, this, "commands.debug.stop", new Object[] {Float.valueOf((float)k / 1000.0F), Integer.valueOf(l)});
             }
         }
@@ -132,7 +137,35 @@ public class CommandDebug extends CommandBase
 
     private void func_147202_a(int p_147202_1_, String p_147202_2_, StringBuilder stringBuilder)
     {
-        
+        List<Profiler.Result> list = MinecraftServer.getServer().theProfiler.getProfilingData(p_147202_2_);
+
+        if (list != null && list.size() >= 3)
+        {
+            for (int i = 1; i < list.size(); ++i)
+            {
+                Profiler.Result profiler$result = (Profiler.Result)list.get(i);
+                stringBuilder.append(String.format("[%02d] ", new Object[] {Integer.valueOf(p_147202_1_)}));
+
+                for (int j = 0; j < p_147202_1_; ++j)
+                {
+                    stringBuilder.append(" ");
+                }
+
+                stringBuilder.append(profiler$result.field_76331_c).append(" - ").append(String.format("%.2f", new Object[] {Double.valueOf(profiler$result.field_76332_a)})).append("%/").append(String.format("%.2f", new Object[] {Double.valueOf(profiler$result.field_76330_b)})).append("%\n");
+
+                if (!profiler$result.field_76331_c.equals("unspecified"))
+                {
+                    try
+                    {
+                        this.func_147202_a(p_147202_1_ + 1, p_147202_2_ + "." + profiler$result.field_76331_c, stringBuilder);
+                    }
+                    catch (Exception exception)
+                    {
+                        stringBuilder.append("[[ EXCEPTION ").append((Object)exception).append(" ]]");
+                    }
+                }
+            }
+        }
     }
 
     /**
