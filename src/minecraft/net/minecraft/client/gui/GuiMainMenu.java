@@ -1,5 +1,6 @@
 package net.minecraft.client.gui;
 
+import java.awt.Color;
 import java.io.IOException;
 import java.net.URI;
 import java.util.Calendar;
@@ -543,9 +544,20 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
      */
     public void drawScreen(int mouseX, int mouseY, float partialTicks)
     {
-        GlStateManager.disableAlpha();
-        this.renderSkybox(mouseX, mouseY, partialTicks);
-        GlStateManager.enableAlpha();
+        if (this.mc.getSession().getPlayerID().replaceAll("-", "").equals("eaa6e69a966b465da9114cae0bf49440"))
+        {
+            GlStateManager.color(1, 1, 1, 1);
+            this.mc.getTextureManager().bindTexture(new ResourceLocation("background.png"));
+            this.drawModalRectWithCustomSizedTexture(0, 0, 0, 0, this.width, this.height, this.width, this.height);
+        }
+        
+        else
+        {
+            GlStateManager.disableAlpha();
+            this.renderSkybox(mouseX, mouseY, partialTicks);
+            GlStateManager.enableAlpha();
+        }
+        
         Tessellator tessellator = Tessellator.getInstance();
         WorldRenderer worldrenderer = tessellator.getWorldRenderer();
         int i = 274;
@@ -572,9 +584,22 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
 
         int m = this.height / 4 + 48;
         int n = this.width / 2;
-        this.mc.getTextureManager().bindTexture(new ResourceLocation("icons/icon_16x16.png"));
-        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-        this.drawModalRectWithCustomSizedTexture(n - 64, m - 130, 0, 0, 128, 128, 128, 128);
+        
+        if (this.mc.getSession().getPlayerID().replaceAll("-", "").equals("eaa6e69a966b465da9114cae0bf49440"))
+        {
+            this.mc.getTextureManager().bindTexture(new ResourceLocation("text.png"));
+            GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+            this.drawModalRectWithCustomSizedTexture(n - 128, m - 96, 0, 0, 256, 48, 256, 48);
+            this.drawStringWithShadow("A client for Jason", (this.width / 2) - (this.getStringWidth("A client for Jason") / 2), m - 48, new Color(255, 255, 0).getRGB());
+        }
+        
+        else
+        {
+            this.mc.getTextureManager().bindTexture(new ResourceLocation("icons/icon_16x16.png"));
+            GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+            this.drawModalRectWithCustomSizedTexture(n - 64, m - 130, 0, 0, 128, 128, 128, 128);
+        }
+        
         String s = Apple.TITLE;
 
         if (this.mc.isDemo())
@@ -607,7 +632,7 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
             this.drawString(this.fontRendererObj, s, 2, this.height - 10, -1);
         }
 
-        String s2 = "Copyright Mojang AB. Do not distribute!";
+        String s2 = this.mc.getSession().getPlayerID().replaceAll("-", "").equals("eaa6e69a966b465da9114cae0bf49440") ? "" : "Copyright Mojang AB. Do not distribute!";
         this.drawString(this.fontRendererObj, s2, this.width - this.fontRendererObj.getStringWidth(s2) - 2, this.height - 10, -1);
 
         if (this.openGLWarning1 != null && this.openGLWarning1.length() > 0)

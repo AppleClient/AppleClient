@@ -116,7 +116,7 @@ public class ResourcePackRepository
 
         for (File file1 : this.getResourcePackFiles())
         {
-            ResourcePackRepository.Entry resourcepackrepository$entry = new ResourcePackRepository.Entry(file1);
+            ResourcePackRepository.Entry resourcepackrepository$entry = new ResourcePackRepository.Entry(file1, this);
 
             if (!this.repositoryEntriesAll.contains(resourcepackrepository$entry))
             {
@@ -308,23 +308,25 @@ public class ResourcePackRepository
         }
     }
 
-    public class Entry
+    public static class Entry
     {
         private final File resourcePackFile;
         private IResourcePack reResourcePack;
         private PackMetadataSection rePackMetadataSection;
         private BufferedImage texturePackIcon;
         private ResourceLocation locationTexturePackIcon;
+        private ResourcePackRepository parent;
 
-        private Entry(File resourcePackFileIn)
+        public Entry(File resourcePackFileIn, ResourcePackRepository parent)
         {
             this.resourcePackFile = resourcePackFileIn;
+            this.parent = parent;
         }
 
         public void updateResourcePack() throws IOException
         {
             this.reResourcePack = (IResourcePack)(this.resourcePackFile.isDirectory() ? new FolderResourcePack(this.resourcePackFile) : new FileResourcePack(this.resourcePackFile));
-            this.rePackMetadataSection = (PackMetadataSection)this.reResourcePack.getPackMetadata(ResourcePackRepository.this.rprMetadataSerializer, "pack");
+            this.rePackMetadataSection = (PackMetadataSection)this.reResourcePack.getPackMetadata(this.parent.rprMetadataSerializer, "pack");
 
             try
             {
@@ -337,7 +339,7 @@ public class ResourcePackRepository
 
             if (this.texturePackIcon == null)
             {
-                this.texturePackIcon = ResourcePackRepository.this.rprDefaultResourcePack.getPackImage();
+                this.texturePackIcon = this.parent.rprDefaultResourcePack.getPackImage();
             }
 
             this.closeResourcePack();

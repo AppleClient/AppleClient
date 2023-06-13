@@ -191,11 +191,6 @@ public class GuiIngame extends Gui
                 {
                     mod.onRender();
                 }
-                
-                if (mod instanceof TimeChanger)
-                {
-                    ((TimeChanger) mod).render();
-                }
             }
         }
 

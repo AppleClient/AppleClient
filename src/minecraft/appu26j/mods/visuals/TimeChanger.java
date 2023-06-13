@@ -2,6 +2,7 @@ package appu26j.mods.visuals;
 
 import com.google.common.eventbus.Subscribe;
 
+import appu26j.events.entity.EventTick;
 import appu26j.events.network.EventPacketReceive;
 import appu26j.interfaces.ModInterface;
 import appu26j.mods.Category;
@@ -17,7 +18,8 @@ public class TimeChanger extends Mod
 		this.addSetting(new Setting("Time", this, 1000, 1000, 24000, 500));
 	}
 	
-	public void render()
+	@Subscribe
+	public void onTick(EventTick e)
 	{
 	    if (this.mc.theWorld != null)
 	    {

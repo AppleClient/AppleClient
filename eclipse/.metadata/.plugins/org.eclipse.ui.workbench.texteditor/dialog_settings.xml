@@ -6,23 +6,23 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="isUnicode"/>
+		<item key="selection" value="button.id == 4"/>
 		<list key="findhistory">
-			<item value="isUnicode"/>
-			<item value="setUnicodeF"/>
-			<item value="setUnicode"/>
-			<item value="keyT"/>
-			<item value="keyTt"/>
-			<item value="this.scrollIndex"/>
+			<item value="button.id == 4"/>
+			<item value="direct"/>
+			<item value="d"/>
 			<item value="drawScre"/>
-			<item value="scroll"/>
-			<item value="initGui"/>
-			<item value="(j "/>
-			<item value="(i "/>
-			<item value="doesGuiP"/>
-			<item value="keyTyp"/>
-			<item value="Display."/>
-			<item value="Display"/>
+			<item value="drawScree"/>
+			<item value="startGa"/>
+			<item value="startGame"/>
+			<item value="reResourcePack"/>
+			<item value="refreshR"/>
+			<item value="refresh"/>
+			<item value="logger."/>
+			<item value="blockRenderDispatcher"/>
+			<item value="refreshRe"/>
+			<item value="res"/>
+			<item value="reloadT"/>
 		</list>
 		<list key="replacehistory">
 			<item value="(height "/>
@@ -37,8 +37,8 @@
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="630"/>
-		<item key="DIALOG_Y_ORIGIN" value="195"/>
+		<item key="DIALOG_X_ORIGIN" value="616"/>
+		<item key="DIALOG_Y_ORIGIN" value="6"/>
 		<item key="DIALOG_WIDTH" value="318"/>
 		<item key="DIALOG_HEIGHT" value="295"/>
 		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-21|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="appu26j.events.network.EventPacketReceive"/>
     <fullyQualifiedTypeName name="appu26j.gui.DragGUI"/>
     <fullyQualifiedTypeName name="appu26j.mods.Mod"/>
     <fullyQualifiedTypeName name="net.minecraft.item.ItemBlock"/>
@@ -47,7 +46,6 @@
     <fullyQualifiedTypeName name="java.net.URL"/>
     <fullyQualifiedTypeName name="java.nio.file.Files"/>
     <fullyQualifiedTypeName name="net.minecraft.client.main.Main"/>
-    <fullyQualifiedTypeName name="java.awt.Color"/>
     <fullyQualifiedTypeName name="appu26j.utils.SoundUtil"/>
     <fullyQualifiedTypeName name="java.awt.Desktop"/>
     <fullyQualifiedTypeName name="org.lwjgl.opengl.GL11"/>
@@ -60,4 +58,6 @@
     <fullyQualifiedTypeName name="javafx.application.Application"/>
     <fullyQualifiedTypeName name="java.time.Duration"/>
     <fullyQualifiedTypeName name="appu26j.Apple"/>
+    <fullyQualifiedTypeName name="net.minecraft.client.resources.ResourcePackRepository.Entry"/>
+    <fullyQualifiedTypeName name="java.awt.Color"/>
 </qualifiedTypeNameHistroy>

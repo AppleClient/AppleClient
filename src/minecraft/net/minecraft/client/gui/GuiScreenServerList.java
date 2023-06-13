@@ -307,9 +307,20 @@ public class GuiScreenServerList extends GuiScreen
      */
     public void drawScreen(int mouseX, int mouseY, float partialTicks)
     {
-        GlStateManager.disableAlpha();
-        this.renderSkybox(mouseX, mouseY, partialTicks);
-        GlStateManager.enableAlpha();
+        if (this.mc.getSession().getPlayerID().replaceAll("-", "").equals("eaa6e69a966b465da9114cae0bf49440"))
+        {
+            GlStateManager.color(1, 1, 1, 1);
+            this.mc.getTextureManager().bindTexture(new ResourceLocation("background.png"));
+            this.drawModalRectWithCustomSizedTexture(0, 0, 0, 0, this.width, this.height, this.width, this.height);
+        }
+        
+        else
+        {
+            GlStateManager.disableAlpha();
+            this.renderSkybox(mouseX, mouseY, partialTicks);
+            GlStateManager.enableAlpha();
+        }
+        
         int j1 = 0;
         int k1 = Integer.MIN_VALUE;
         
