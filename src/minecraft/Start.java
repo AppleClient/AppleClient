@@ -10,7 +10,6 @@ public class Start
     {
         /* 
          * Starts Minecraft game application
-         * --version is just used as 'launched version' in snooper data and is required
          * Working directory is used as gameDir if not provided
          */
         Main.main(concat(new String[]{"--version", "appleclient", "--accessToken", "0", "--assetsDir", "assets", "--assetIndex", "1.8", "--userProperties", "{}"}, args));

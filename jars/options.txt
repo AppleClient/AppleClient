@@ -3,7 +3,7 @@ mouseSensitivity:0.5
 fov:0.0
 gamma:100.0
 saturation:0.0
-renderDistance:10
+renderDistance:8
 guiScale:3
 particles:0
 bobView:true
@@ -23,13 +23,12 @@ chatColors:true
 chatLinks:true
 chatLinksPrompt:true
 chatOpacity:1.0
-snooperEnabled:true
 fullscreen:false
-enableVsync:true
-useVbo:false
+enableVsync:false
+useVbo:true
 hideServerAddress:false
 advancedItemTooltips:false
-pauseOnLostFocus:true
+pauseOnLostFocus:false
 touchscreen:false
 overrideWidth:0
 overrideHeight:0

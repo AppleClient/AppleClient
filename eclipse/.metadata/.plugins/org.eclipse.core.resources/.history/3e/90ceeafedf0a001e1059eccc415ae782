@@ -1,0 +1,35 @@
+// 
+// Decompiled by Procyon v0.5.36
+// 
+
+package club.sk1er.motionblur;
+
+import java.util.List;
+
+import net.minecraft.client.resources.FallbackResourceManager;
+import net.minecraft.client.resources.IResource;
+import net.minecraft.client.resources.IResourceManager;
+import net.minecraft.client.resources.data.IMetadataSerializer;
+import net.minecraft.util.ResourceLocation;
+
+public class MotionBlurResourceManager extends FallbackResourceManager implements IResourceManager
+{
+    private static final String author = "https://github.com/sk1erLLC";
+    
+    public MotionBlurResourceManager(IMetadataSerializer frmMetadataSerializerIn)
+    {
+        super(frmMetadataSerializerIn);
+    }
+    
+    @Override
+    public IResource getResource(ResourceLocation location)
+    {
+        return new MotionBlurResource();
+    }
+    
+    @Override
+    public List<IResource> getAllResources(ResourceLocation location)
+    {
+        return null;
+    }
+}

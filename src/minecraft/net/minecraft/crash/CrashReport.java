@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.concurrent.Callable;
 import net.minecraft.util.ReportedException;
 import net.minecraft.world.gen.layer.IntCache;
-import net.optifine.CrashReporter;
 import net.optifine.reflect.Reflector;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.ArrayUtils;
@@ -240,7 +239,6 @@ public class CrashReport
         if (!this.reported)
         {
             this.reported = true;
-            CrashReporter.onCrashReport(this, this.theReportCategory);
         }
 
         StringBuilder stringbuilder = new StringBuilder();

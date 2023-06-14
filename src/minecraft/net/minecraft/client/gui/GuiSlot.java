@@ -257,7 +257,7 @@ public abstract class GuiSlot
             GlStateManager.disableDepth();
             int i1 = 4;
             
-            if (!aBoolean)
+            if (!aBoolean && !(this.mc.currentScreen instanceof GuiScreenResourcePacks))
             {
                 this.overlayBackground(0, this.top, 255, 255);
                 this.overlayBackground(this.bottom, this.height, 255, 255);

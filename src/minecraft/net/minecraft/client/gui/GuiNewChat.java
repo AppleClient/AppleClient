@@ -17,6 +17,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.util.MathHelper;
 
@@ -179,7 +180,7 @@ public class GuiNewChat extends Gui
             this.deleteChatLine(chatLineId);
         }
 
-        logger.info("[CHAT] " + chatComponent.getUnformattedText());
+        logger.info("[CHAT] " + EnumChatFormatting.getTextWithoutFormattingCodes(chatComponent.getUnformattedText()));
         int i = MathHelper.floor_float((float)this.getChatWidth() / this.getChatScale());
         List<IChatComponent> list = GuiUtilRenderComponents.splitText(chatComponent, i, this.mc.fontRendererObj, false, false);
         boolean flag = this.getChatOpen();
@@ -230,7 +231,7 @@ public class GuiNewChat extends Gui
             this.deleteChatLine(chatLineId);
         }
 
-        logger.info("[CHAT] " + chatComponent.getUnformattedText());
+        logger.info("[CHAT] " + EnumChatFormatting.getTextWithoutFormattingCodes(chatComponent.getUnformattedText()));
         int i = MathHelper.floor_float((float)this.getChatWidth() / this.getChatScale());
         List<IChatComponent> list = GuiUtilRenderComponents.splitText(chatComponent, i, this.mc.fontRendererObj, false, false);
         boolean flag = this.getChatOpen();

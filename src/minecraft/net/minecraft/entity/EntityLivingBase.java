@@ -12,7 +12,7 @@ import com.google.common.base.Predicates;
 import com.google.common.collect.Maps;
 
 import appu26j.Apple;
-import appu26j.mods.visuals.PotionSettings;
+import appu26j.mods.visuals.PotionEffects;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -613,7 +613,7 @@ public abstract class EntityLivingBase extends Entity
 
     protected void updatePotionEffects()
     {
-        PotionSettings potionSettings = (PotionSettings) Apple.CLIENT.getModsManager().getMod("Potion Settings");
+        PotionEffects potionSettings = (PotionEffects) Apple.CLIENT.getModsManager().getMod("Potion Effects");
         
         if (potionSettings.isEnabled() && potionSettings.getSetting("Hide own potion effect particles").getCheckBoxValue() && this instanceof EntityPlayerSP)
         {

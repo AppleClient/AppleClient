@@ -1,0 +1,90 @@
+---- Minecraft Crash Report ----
+// I let you down. Sorry :(
+
+Time: 6/14/23 10:27 AM
+Description: Unexpected error
+
+java.util.UnknownFormatConversionException: Conversion = 'l'
+	at java.util.Formatter$FormatSpecifier.conversion(Formatter.java:2691)
+	at java.util.Formatter$FormatSpecifier.<init>(Formatter.java:2720)
+	at java.util.Formatter.parse(Formatter.java:2560)
+	at java.util.Formatter.format(Formatter.java:2501)
+	at java.util.Formatter.format(Formatter.java:2455)
+	at java.lang.String.format(String.java:2940)
+	at net.minecraft.client.gui.GuiOverlayDebug.getDebugInfoRight(GuiOverlayDebug.java:270)
+	at net.minecraft.client.gui.GuiOverlayDebug.renderDebugInfoRight(GuiOverlayDebug.java:110)
+	at net.minecraft.client.gui.GuiOverlayDebug.renderDebugInfo(GuiOverlayDebug.java:61)
+	at net.minecraft.client.gui.GuiIngame.renderGameOverlay(GuiIngame.java:308)
+	at net.minecraft.client.renderer.EntityRenderer.updateCameraAndRender(EntityRenderer.java:1392)
+	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1292)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:440)
+	at net.minecraft.client.main.Main.main(Main.java:124)
+	at Start.main(Start.java:15)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Stacktrace:
+	at java.util.Formatter$FormatSpecifier.conversion(Formatter.java:2691)
+	at java.util.Formatter$FormatSpecifier.<init>(Formatter.java:2720)
+	at java.util.Formatter.parse(Formatter.java:2560)
+	at java.util.Formatter.format(Formatter.java:2501)
+	at java.util.Formatter.format(Formatter.java:2455)
+	at java.lang.String.format(String.java:2940)
+	at net.minecraft.client.gui.GuiOverlayDebug.getDebugInfoRight(GuiOverlayDebug.java:270)
+	at net.minecraft.client.gui.GuiOverlayDebug.renderDebugInfoRight(GuiOverlayDebug.java:110)
+	at net.minecraft.client.gui.GuiOverlayDebug.renderDebugInfo(GuiOverlayDebug.java:61)
+	at net.minecraft.client.gui.GuiIngame.renderGameOverlay(GuiIngame.java:308)
+
+-- Affected level --
+Details:
+	Level name: MpServer
+	All players: 1 total; [EntityPlayerSP['Appu26j'/40, l='MpServer', x=9236.08, y=91.03, z=9277.93]]
+	Chunk stats: MultiplayerChunkCache: 20, 20
+	Level seed: 0
+	Level generator: ID 02 - largeBiomes, ver 0. Features enabled: false
+	Level generator options: 
+	Level spawn location: 584.00,64.00,166.00 - World: (584,64,166), Chunk: (at 8,4,6 in 36,10; contains blocks 576,0,160 to 591,255,175), Region: (1,0; contains chunks 32,0 to 63,31, blocks 512,0,0 to 1023,255,511)
+	Level time: 11 game time, 14001 day time
+	Level dimension: 0
+	Level storage version: 0x00000 - Unknown?
+	Level weather: Rain time: 0 (now: false), thunder time: 0 (now: false)
+	Level game mode: Game mode: creative (ID 1). Hardcore: false. Cheats: false
+	Forced entities: 46 total; [EntityItem['item.tile.rail'/256, l='MpServer', x=9240.13, y=36.00, z=9248.88], EntityItem['item.tile.torch'/257, l='MpServer', x=9245.78, y=33.00, z=9294.97], EntityRabbit['Rabbit'/258, l='MpServer', x=9235.84, y=64.00, z=9281.72], EntityPlayerSP['Appu26j'/40, l='MpServer', x=9236.08, y=91.03, z=9277.93], EntityItem['item.item.string'/259, l='MpServer', x=9239.88, y=33.00, z=9302.31], EntityBat['Bat'/260, l='MpServer', x=9242.31, y=34.41, z=9296.38], EntityItem['item.tile.torch'/265, l='MpServer', x=9260.56, y=28.00, z=9261.88], EntityZombie['Zombie'/266, l='MpServer', x=9261.50, y=33.00, z=9248.50], EntityBat['Bat'/267, l='MpServer', x=9257.88, y=34.10, z=9248.75], EntityMinecartChest['container.minecart'/268, l='MpServer', x=9261.50, y=29.06, z=9286.50], EntityItem['item.tile.torch'/269, l='MpServer', x=9253.63, y=37.00, z=9281.34], EntityBat['Bat'/270, l='MpServer', x=9259.88, y=32.09, z=9286.25], EntityBat['Bat'/271, l='MpServer', x=9259.25, y=32.03, z=9286.88], EntityBat['Bat'/272, l='MpServer', x=9255.31, y=34.10, z=9295.25], EntityItem['item.tile.torch'/211, l='MpServer', x=9204.00, y=28.00, z=9255.41], EntityItem['item.tile.torch'/212, l='MpServer', x=9212.72, y=28.00, z=9255.38], EntityItem['item.tile.torch'/213, l='MpServer', x=9214.91, y=35.00, z=9272.97], EntityItem['item.tile.torch'/278, l='MpServer', x=9275.88, y=33.00, z=9263.75], EntityChicken['Chicken'/214, l='MpServer', x=9215.31, y=65.00, z=9279.59], EntitySkeleton['Skeleton'/279, l='MpServer', x=9276.50, y=42.00, z=9262.50], EntityItem['item.tile.torch'/215, l='MpServer', x=9209.22, y=33.00, z=9295.69], EntityBat['Bat'/280, l='MpServer', x=9270.25, y=33.16, z=9251.72], EntityChicken['Chicken'/216, l='MpServer', x=9206.50, y=66.00, z=9281.50], EntityItem['item.tile.torch'/281, l='MpServer', x=9276.78, y=31.00, z=9277.31], EntityChicken['Chicken'/217, l='MpServer', x=9204.50, y=66.00, z=9280.50], EntityChicken['Chicken'/218, l='MpServer', x=9200.50, y=65.00, z=9282.50], EntityPig['Pig'/219, l='MpServer', x=9212.66, y=65.00, z=9286.63], EntityPig['Pig'/220, l='MpServer', x=9215.53, y=66.00, z=9284.56], EntityItem['item.tile.rail'/221, l='MpServer', x=9201.13, y=29.00, z=9309.75], EntityItem['item.tile.rail'/222, l='MpServer', x=9203.88, y=29.00, z=9308.31], EntityItem['item.tile.rail'/223, l='MpServer', x=9203.41, y=29.00, z=9306.53], EntityItem['item.tile.torch'/224, l='MpServer', x=9206.56, y=38.00, z=9299.03], EntityItem['item.tile.torch'/236, l='MpServer', x=9230.50, y=29.00, z=9260.13], EntityItem['item.tile.rail'/237, l='MpServer', x=9225.88, y=38.00, z=9252.38], EntityMinecartChest['container.minecart'/238, l='MpServer', x=9223.50, y=32.06, z=9269.50], EntityItem['item.tile.torch'/239, l='MpServer', x=9228.53, y=37.00, z=9277.44], EntityRabbit['Rabbit'/240, l='MpServer', x=9220.56, y=67.00, z=9272.22], EntityItem['item.tile.torch'/241, l='MpServer', x=9226.34, y=28.00, z=9286.13], EntityItem['item.tile.torch'/242, l='MpServer', x=9218.97, y=37.00, z=9288.63], EntityItem['item.tile.rail'/243, l='MpServer', x=9221.38, y=34.00, z=9295.22], EntityPig['Pig'/244, l='MpServer', x=9222.56, y=67.00, z=9289.44], EntityRabbit['Rabbit'/245, l='MpServer', x=9230.50, y=67.00, z=9281.88], EntityPig['Pig'/246, l='MpServer', x=9217.44, y=73.22, z=9282.63], EntityItem['item.tile.torch'/247, l='MpServer', x=9220.47, y=41.00, z=9299.00], EntitySpider['Spider'/254, l='MpServer', x=9236.50, y=29.00, z=9260.50], EntityItem['item.tile.rail'/255, l='MpServer', x=9247.19, y=36.00, z=9248.88]]
+	Retry entities: 0 total; []
+	Server brand: vanilla
+	Server type: Integrated singleplayer server
+Stacktrace:
+	at net.minecraft.client.multiplayer.WorldClient.addWorldInfoToCrashReport(WorldClient.java:410)
+	at net.minecraft.client.Minecraft.addGraphicsAndWorldToCrashReport(Minecraft.java:2922)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:468)
+	at net.minecraft.client.main.Main.main(Main.java:124)
+	at Start.main(Start.java:15)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.8.9
+	Operating System: Windows 11 (amd64) version 10.0
+	Java Version: 1.8.0_361, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 649774976 bytes (619 MB) / 977797120 bytes (932 MB) up to 977797120 bytes (932 MB)
+	JVM Flags: 2 total; -Xmx1024M -Xms1024M
+	IntCache: cache: 0, tcache: 0, allocated: 13, tallocated: 99
+	Launched Version: appleclient
+	LWJGL: 2.9.4
+	OpenGL: AMD Radeon(TM) Graphics GL version 4.6.14761 Compatibility Profile Context 21.30.14 30.0.13014.8, ATI Technologies Inc.
+	GL Caps: Using GL 1.3 multitexturing.
+Using GL 1.3 texture combiners.
+Using framebuffer objects because OpenGL 3.0 is supported and separate blending is supported.
+Shaders are available because OpenGL 2.1 is supported.
+VBOs are available because OpenGL 1.5 is supported.
+
+	Using VBOs: Yes
+	Is Modded: Definitely; Client brand changed to 'appleclient'
+	Type: Client (map_client.txt)
+	Resource Packs: 
+	Current Language: English (US)
+	Profiler Position: N/A (disabled)
+	CPU: 12x AMD Ryzen 5 5500U with Radeon Graphics 

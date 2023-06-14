@@ -22,19 +22,6 @@ public class VersionCheckThread extends Thread
             Config.dbg("Checking for new version");
             URL url = new URL("http://optifine.net/version/1.8.9/HD_U.txt");
             httpurlconnection = (HttpURLConnection)url.openConnection();
-
-            if (Config.getGameSettings().snooperEnabled)
-            {
-                httpurlconnection.setRequestProperty("OF-MC-Version", "1.8.9");
-                httpurlconnection.setRequestProperty("OF-MC-Brand", "" + ClientBrandRetriever.getClientModName());
-                httpurlconnection.setRequestProperty("OF-Edition", "HD_U");
-                httpurlconnection.setRequestProperty("OF-Release", "M5");
-                httpurlconnection.setRequestProperty("OF-Java-Version", "" + System.getProperty("java.version"));
-                httpurlconnection.setRequestProperty("OF-CpuCount", "" + Config.getAvailableProcessors());
-                httpurlconnection.setRequestProperty("OF-OpenGL-Version", "" + Config.openGlVersion);
-                httpurlconnection.setRequestProperty("OF-OpenGL-Vendor", "" + Config.openGlVendor);
-            }
-
             httpurlconnection.setDoInput(true);
             httpurlconnection.setDoOutput(false);
             httpurlconnection.connect();

@@ -188,7 +188,11 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
         this.buttonList.add(new GuiButton(0, this.width / 2 - 100, j + 72 + 12, 98, 20, I18n.format("menu.options", new Object[0])));
         this.buttonList.add(new GuiButton(4, this.width / 2 + 2, j + 72 + 12, 98, 20, I18n.format("menu.quit", new Object[0])));
         this.buttonList.add(new GuiButton(2626, this.width - 65, 5, 60, 20, "Log Out"));
-        this.buttonList.add(new GuiButtonLanguage(5, this.width / 2 - 124, j + 72 + 12));
+        
+        if (!this.mc.getSession().getPlayerID().replaceAll("-", "").equals("eaa6e69a966b465da9114cae0bf49440"))
+        {
+            this.buttonList.add(new GuiButtonLanguage(5, this.width / 2 - 124, j + 72 + 12));
+        }
 
         synchronized (this.threadLock)
         {
