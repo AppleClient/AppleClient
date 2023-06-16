@@ -22,6 +22,8 @@ public class Chat extends Mod
 		this.addSetting(new Setting("Infinite History", this, false));
 		this.addSetting(new Setting("Text Shadow", this, true));
         this.addSetting(new Setting("Stack Messages", this, false));
+        this.addSetting(new Setting("Don't Clear History", this, false));
+        this.addSetting(new Setting("No Close My Chat", this, false));
 	}
 	
 	@Subscribe

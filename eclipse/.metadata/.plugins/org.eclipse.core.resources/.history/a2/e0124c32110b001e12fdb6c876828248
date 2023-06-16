@@ -1,0 +1,6 @@
+package net.minecraft.profiler;
+
+public class Profiler
+{
+    
+}

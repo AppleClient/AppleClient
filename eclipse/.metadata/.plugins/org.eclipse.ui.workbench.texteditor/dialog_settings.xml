@@ -6,23 +6,23 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="logger."/>
+		<item key="selection" value="renderNa"/>
 		<list key="findhistory">
+			<item value="renderNa"/>
+			<item value="aBoo"/>
+			<item value="clearChatMessages"/>
+			<item value="clearChat"/>
+			<item value="clearCh"/>
+			<item value="worl"/>
+			<item value="run()"/>
+			<item value="run"/>
+			<item value="drawScre"/>
+			<item value="startGae"/>
+			<item value="startGa"/>
 			<item value="logger."/>
 			<item value="logger"/>
-			<item value="drawScre"/>
 			<item value="105"/>
 			<item value="105,"/>
-			<item value="resourcep"/>
-			<item value="framebufferEn"/>
-			<item value="framebuffer\"/>
-			<item value="framebuff"/>
-			<item value="domainRe"/>
-			<item value="domainR"/>
-			<item value="domain"/>
-			<item value="doamin"/>
-			<item value="metaDataSeri"/>
-			<item value="metaData"/>
 		</list>
 		<list key="replacehistory">
 			<item value="(height "/>

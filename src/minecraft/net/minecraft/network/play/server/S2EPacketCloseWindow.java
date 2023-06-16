@@ -1,6 +1,11 @@
 package net.minecraft.network.play.server;
 
 import java.io.IOException;
+
+import appu26j.Apple;
+import appu26j.mods.visuals.Chat;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiChat;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayClient;
@@ -23,7 +28,12 @@ public class S2EPacketCloseWindow implements Packet<INetHandlerPlayClient>
      */
     public void processPacket(INetHandlerPlayClient handler)
     {
-        handler.handleCloseWindow(this);
+        Chat chat = (Chat) Apple.CLIENT.getModsManager().getMod("MC Chat");
+        
+        if (!(chat.isEnabled() && chat.getSetting("No Close My Chat").getCheckBoxValue() && Minecraft.getMinecraft().currentScreen instanceof GuiChat))
+        {
+            handler.handleCloseWindow(this);
+        }
     }
 
     /**

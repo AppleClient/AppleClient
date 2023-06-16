@@ -20,6 +20,7 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelSpider;
+import net.minecraft.client.network.NetworkPlayerInfo;
 import net.minecraft.client.renderer.GLAllocation;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -666,6 +667,8 @@ public abstract class RendererLivingEntity<T extends EntityLivingBase> extends R
         {
             if (this.canRenderName(entity))
             {
+                NetworkPlayerInfo networkPlayerInfo = entity == null || !(entity instanceof EntityPlayer) ? null : Minecraft.getMinecraft().getNetHandler().getPlayerInfo(((EntityPlayer) entity).getGameProfile().getId());
+                boolean aBoolean = networkPlayerInfo != null && (Apple.CLIENT.getPeopleUsingAppleClient().stream().filter(id -> networkPlayerInfo.getGameProfile().getId().toString().replaceAll("-", "").equals(id)).findFirst().orElse(null) != null || networkPlayerInfo.getGameProfile().getId().toString().equals(Minecraft.getMinecraft().thePlayer.getGameProfile().getId().toString()));
                 double d0 = entity.getDistanceSqToEntity(this.renderManager.livingPlayer);
                 float f = entity.isSneaking() ? NAME_TAG_RANGE_SNEAK : NAME_TAG_RANGE;
 
@@ -714,6 +717,12 @@ public abstract class RendererLivingEntity<T extends EntityLivingBase> extends R
                         else
                         {
                             fontrenderer.drawString(s, -fontrenderer.getStringWidth(s) / 2, 0, 553648127);
+                        }
+                        
+                        if (aBoolean)
+                        {
+                            Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("icons/icon_16x16.png"));
+                            Gui.drawModalRectWithCustomSizedTexture(fontrenderer.getStringWidth(s) / 2, -3, 0, 0, 12, 12, 12, 12);
                         }
 
                         if (damageIndicator.isEnabled() && entity instanceof EntityPlayer && s.contains(entity.getName()))

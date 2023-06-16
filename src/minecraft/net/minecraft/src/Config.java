@@ -1511,20 +1511,7 @@ public class Config
 
     public static void checkGlError(String p_checkGlError_0_)
     {
-        int i = GlStateManager.glGetError();
-
-        if (i != 0 && GlErrors.isEnabled(i))
-        {
-            String s = getGlErrorString(i);
-            String s1 = String.format("OpenGL error: %s (%s), at: %s", new Object[] {Integer.valueOf(i), s, p_checkGlError_0_});
-            error(s1);
-
-            if (isShowGlErrors() && TimedEvent.isActive("ShowGlError", 10000L))
-            {
-                String s2 = I18n.format("of.message.openglError", new Object[] {Integer.valueOf(i), s});
-                minecraft.ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(s2));
-            }
-        }
+        ;
     }
 
     public static boolean isSmoothBiomes()

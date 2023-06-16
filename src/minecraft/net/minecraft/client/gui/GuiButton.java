@@ -135,13 +135,14 @@ public class GuiButton extends Gui
             }
             
             this.mouseDragged(mc, mouseX, mouseY);
+            boolean aBoolean = Minecraft.getMinecraft().getResourcePackRepository().getRepositoryEntries().size() != 0 && Minecraft.getMinecraft().getResourcePackRepository().getRepositoryEntries().get(0).getResourcePackName().equals("1.14 Textures") && i == 2;
             int j = new Color(225, 225, 225).getRGB();
 
             if (!this.enabled)
             {
                 j = 10526880;
             }
-            else if (this.hovered)
+            else if (this.hovered && !aBoolean)
             {
                 j = new Color(225 + (int) (30 * this.index), 225 + (int) (30 * this.index), 225 - (int) (65 * this.index)).getRGB();
             }

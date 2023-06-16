@@ -138,9 +138,14 @@ public class GuiNewChat extends Gui
      */
     public void clearChatMessages()
     {
-        this.drawnChatLines.clear();
-        this.chatLines.clear();
-        this.sentMessages.clear();
+        Chat chat = (Chat) Apple.CLIENT.getModsManager().getMod("MC Chat");
+        
+        if (!(chat.isEnabled() && chat.getSetting("Don't Clear History").getCheckBoxValue()))
+        {
+            this.drawnChatLines.clear();
+            this.chatLines.clear();
+            this.sentMessages.clear();
+        }
     }
 
     public void printChatMessage(IChatComponent chatComponent)

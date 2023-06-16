@@ -123,12 +123,12 @@ public class NetworkPlayerInfo
         synchronized (this)
         {
             ArrayList<String> specialPeople = Apple.CLIENT.getSpecialPeople();
-            String gameProfileUUID = this.getGameProfile().getId().toString().replaceAll("-", ""), gameProfileName = this.getGameProfile().getName();
+            String gameProfileUUID = this.getGameProfile().getId().toString().replaceAll("-", "");
             boolean shouldGiveCape = specialPeople.stream().filter(id -> gameProfileUUID.equals(id)).findFirst().orElse(null) != null;
             
             if (shouldGiveCape)
             {
-                this.locationCape = new ResourceLocation(gameProfileName + ".png");
+                this.locationCape = new ResourceLocation(gameProfileUUID + ".png");
             }
             
             if (!this.playerTexturesLoaded)

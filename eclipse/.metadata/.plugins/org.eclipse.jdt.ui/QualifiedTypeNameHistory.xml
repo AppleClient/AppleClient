@@ -10,7 +10,6 @@
     <fullyQualifiedTypeName name="appu26j.mods.multiplayer.RankChanger"/>
     <fullyQualifiedTypeName name="java.util.regex.Pattern"/>
     <fullyQualifiedTypeName name="appu26j.events.Event"/>
-    <fullyQualifiedTypeName name="appu26j.mods.visuals.Chat"/>
     <fullyQualifiedTypeName name="appu26j.utils.ServerUtil"/>
     <fullyQualifiedTypeName name="club.marshadow.ColorUtil"/>
     <fullyQualifiedTypeName name="org.lwjgl.opengl.Display"/>
@@ -37,7 +36,6 @@
     <fullyQualifiedTypeName name="appu26j.utils.FileUtil"/>
     <fullyQualifiedTypeName name="org.apache.commons.io.FileUtils"/>
     <fullyQualifiedTypeName name="net.minecraft.client.network.NetworkPlayerInfo"/>
-    <fullyQualifiedTypeName name="net.minecraft.client.Minecraft"/>
     <fullyQualifiedTypeName name="net.minecraft.client.renderer.GlStateManager"/>
     <fullyQualifiedTypeName name="org.lwjgl.input.Keyboard"/>
     <fullyQualifiedTypeName name="java.net.URL"/>
@@ -57,7 +55,9 @@
     <fullyQualifiedTypeName name="net.minecraft.client.resources.ResourcePackRepository.Entry"/>
     <fullyQualifiedTypeName name="java.awt.Color"/>
     <fullyQualifiedTypeName name="appu26j.mods.Category"/>
-    <fullyQualifiedTypeName name="appu26j.Apple"/>
     <fullyQualifiedTypeName name="appu26j.mods.visuals.MotionBlur"/>
     <fullyQualifiedTypeName name="net.minecraft.util.EnumChatFormatting"/>
+    <fullyQualifiedTypeName name="appu26j.Apple"/>
+    <fullyQualifiedTypeName name="appu26j.mods.visuals.Chat"/>
+    <fullyQualifiedTypeName name="net.minecraft.client.Minecraft"/>
 </qualifiedTypeNameHistroy>

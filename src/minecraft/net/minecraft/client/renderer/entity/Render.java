@@ -10,6 +10,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.model.ModelBiped;
+import net.minecraft.client.network.NetworkPlayerInfo;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
@@ -367,6 +368,8 @@ public abstract class Render<T extends Entity> implements IEntityRenderer
      */
     protected void renderLivingLabel(T entityIn, String str, double x, double y, double z, int maxDistance)
     {
+        NetworkPlayerInfo networkPlayerInfo = entityIn == null || !(entityIn instanceof EntityPlayer) ? null : Minecraft.getMinecraft().getNetHandler().getPlayerInfo(((EntityPlayer) entityIn).getGameProfile().getId());
+        boolean aBoolean = networkPlayerInfo != null && (Apple.CLIENT.getPeopleUsingAppleClient().stream().filter(id -> networkPlayerInfo.getGameProfile().getId().toString().replaceAll("-", "").equals(id)).findFirst().orElse(null) != null || networkPlayerInfo.getGameProfile().getId().toString().equals(Minecraft.getMinecraft().thePlayer.getGameProfile().getId().toString()));
         float viewX = Minecraft.getMinecraft().gameSettings.thirdPersonView == 2 ? -this.renderManager.playerViewX : this.renderManager.playerViewX;
         double d0 = entityIn.getDistanceSqToEntity(this.renderManager.livingPlayer);
 
@@ -429,6 +432,12 @@ public abstract class Render<T extends Entity> implements IEntityRenderer
             else
             {
                 fontrenderer.drawString(str, -fontrenderer.getStringWidth(str) / 2, i, -1);
+            }
+            
+            if (aBoolean)
+            {
+                Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("icons/icon_16x16.png"));
+                Gui.drawModalRectWithCustomSizedTexture(fontrenderer.getStringWidth(str) / 2, -3, 0, 0, 12, 12, 12, 12);
             }
             
             if (damageIndicator.isEnabled() && entityIn instanceof EntityPlayer && str.contains(entityIn.getName()))

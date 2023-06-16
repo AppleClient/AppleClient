@@ -10,11 +10,11 @@ bobView:true
 anaglyph3d:false
 maxFps:260
 fboEnable:true
-difficulty:3
+difficulty:2
 fancyGraphics:true
 ao:2
 renderClouds:true
-resourcePacks:[]
+resourcePacks:["1.14 Textures"]
 incompatibleResourcePacks:[]
 lastServer:
 lang:en_US

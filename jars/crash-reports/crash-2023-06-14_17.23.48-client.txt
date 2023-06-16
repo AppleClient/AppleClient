@@ -1,0 +1,69 @@
+---- Minecraft Crash Report ----
+// Surprise! Haha. Well, this is awkward.
+
+Time: 6/14/23 5:23 PM
+Description: Rendering screen
+
+java.lang.IndexOutOfBoundsException: index (0) must be less than size (0)
+	at com.google.common.base.Preconditions.checkElementIndex(Preconditions.java:313)
+	at com.google.common.base.Preconditions.checkElementIndex(Preconditions.java:295)
+	at com.google.common.collect.RegularImmutableList.get(RegularImmutableList.java:65)
+	at net.minecraft.client.gui.GuiButton.drawButton(GuiButton.java:149)
+	at net.minecraft.client.gui.GuiScreen.drawScreen(GuiScreen.java:99)
+	at net.minecraft.client.gui.GuiOptions.drawScreen(GuiOptions.java:227)
+	at net.minecraft.client.renderer.EntityRenderer.updateCameraAndRender(EntityRenderer.java:1432)
+	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1292)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:440)
+	at net.minecraft.client.main.Main.main(Main.java:124)
+	at Start.main(Start.java:15)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Stacktrace:
+	at com.google.common.base.Preconditions.checkElementIndex(Preconditions.java:313)
+	at com.google.common.base.Preconditions.checkElementIndex(Preconditions.java:295)
+	at com.google.common.collect.RegularImmutableList.get(RegularImmutableList.java:65)
+	at net.minecraft.client.gui.GuiButton.drawButton(GuiButton.java:149)
+	at net.minecraft.client.gui.GuiScreen.drawScreen(GuiScreen.java:99)
+	at net.minecraft.client.gui.GuiOptions.drawScreen(GuiOptions.java:227)
+
+-- Screen render details --
+Details:
+	Screen name: net.minecraft.client.gui.GuiOptions
+	Mouse location: Scaled: (376, 276). Absolute: (1128, 128)
+	Screen size: Scaled: (640, 319). Absolute: (1920, 956). Scale factor of 3
+Stacktrace:
+	at net.minecraft.client.renderer.EntityRenderer.updateCameraAndRender(EntityRenderer.java:1432)
+	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1292)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:440)
+	at net.minecraft.client.main.Main.main(Main.java:124)
+	at Start.main(Start.java:15)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.8.9
+	Operating System: Windows 11 (amd64) version 10.0
+	Java Version: 1.8.0_361, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 780081528 bytes (743 MB) / 1039138816 bytes (991 MB) up to 1039138816 bytes (991 MB)
+	JVM Flags: 2 total; -Xmx1024M -Xms1024M
+	IntCache: cache: 0, tcache: 0, allocated: 0, tallocated: 0
+	Launched Version: appleclient
+	LWJGL: 2.9.4
+	OpenGL: AMD Radeon(TM) Graphics GL version 4.6.14761 Compatibility Profile Context 21.30.14 30.0.13014.8, ATI Technologies Inc.
+	GL Caps: Using GL 1.3 multitexturing.
+Using GL 1.3 texture combiners.
+Using framebuffer objects because OpenGL 3.0 is supported and separate blending is supported.
+Shaders are available because OpenGL 2.1 is supported.
+VBOs are available because OpenGL 1.5 is supported.
+
+	Using VBOs: Yes
+	Is Modded: Definitely; Client brand changed to 'appleclient'
+	Type: Client (map_client.txt)
+	Resource Packs: 
+	Current Language: English (US)
+	Profiler Position: N/A (disabled)
+	CPU: 12x AMD Ryzen 5 5500U with Radeon Graphics 
