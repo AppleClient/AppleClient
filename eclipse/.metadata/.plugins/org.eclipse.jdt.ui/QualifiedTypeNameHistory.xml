@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="appu26j.mods.Mod"/>
-    <fullyQualifiedTypeName name="net.minecraft.item.ItemBlock"/>
     <fullyQualifiedTypeName name="net.minecraft.client.multiplayer.ServerList"/>
     <fullyQualifiedTypeName name="appu26j.AppleClientVersionChecker"/>
     <fullyQualifiedTypeName name="appu26j.fontrenderer.FixedFontRenderer"/>
@@ -41,7 +39,6 @@
     <fullyQualifiedTypeName name="java.nio.file.Files"/>
     <fullyQualifiedTypeName name="net.minecraft.client.main.Main"/>
     <fullyQualifiedTypeName name="appu26j.utils.SoundUtil"/>
-    <fullyQualifiedTypeName name="java.awt.Desktop"/>
     <fullyQualifiedTypeName name="org.lwjgl.opengl.GL11"/>
     <fullyQualifiedTypeName name="javafx.scene.media.Media"/>
     <fullyQualifiedTypeName name="appu26j.utils.MusicUtil"/>
@@ -60,4 +57,7 @@
     <fullyQualifiedTypeName name="appu26j.mods.visuals.Chat"/>
     <fullyQualifiedTypeName name="net.minecraft.client.Minecraft"/>
     <fullyQualifiedTypeName name="net.minecraft.client.gui.Gui"/>
+    <fullyQualifiedTypeName name="net.java.games.input.Mouse"/>
+    <fullyQualifiedTypeName name="org.lwjgl.input.Mouse"/>
+    <fullyQualifiedTypeName name="java.awt.Desktop"/>
 </qualifiedTypeNameHistroy>
