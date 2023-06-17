@@ -1,3 +1,5 @@
-eclipse/**
-jars/**
+.metadata/.plugins
+.metadata/.lock
+.metadata/.log
+.class
 
