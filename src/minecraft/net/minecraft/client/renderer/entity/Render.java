@@ -369,7 +369,7 @@ public abstract class Render<T extends Entity> implements IEntityRenderer
     protected void renderLivingLabel(T entityIn, String str, double x, double y, double z, int maxDistance)
     {
         NetworkPlayerInfo networkPlayerInfo = entityIn == null || !(entityIn instanceof EntityPlayer) ? null : Minecraft.getMinecraft().getNetHandler().getPlayerInfo(((EntityPlayer) entityIn).getGameProfile().getId());
-        boolean aBoolean = networkPlayerInfo != null && (Apple.CLIENT.getPeopleUsingAppleClient().stream().filter(id -> networkPlayerInfo.getGameProfile().getId().toString().replaceAll("-", "").equals(id)).findFirst().orElse(null) != null || networkPlayerInfo.getGameProfile().getId().toString().equals(Minecraft.getMinecraft().thePlayer.getGameProfile().getId().toString()));
+        boolean aBoolean = networkPlayerInfo != null && (Apple.CLIENT.getPeopleUsingAppleClient().stream().filter(id -> networkPlayerInfo.getGameProfile().getId().toString().replaceAll("-", "").equals(id)).findFirst().orElse(null) != null || networkPlayerInfo.getGameProfile().getId().toString().equals(Minecraft.getMinecraft().thePlayer.getGameProfile().getId().toString())) && entityIn instanceof EntityPlayer && entityIn.getDisplayName().getFormattedText().contains(entityIn.getName());
         float viewX = Minecraft.getMinecraft().gameSettings.thirdPersonView == 2 ? -this.renderManager.playerViewX : this.renderManager.playerViewX;
         double d0 = entityIn.getDistanceSqToEntity(this.renderManager.livingPlayer);
 
@@ -436,6 +436,7 @@ public abstract class Render<T extends Entity> implements IEntityRenderer
             
             if (aBoolean)
             {
+                GlStateManager.color(1, 1, 1, 1);
                 Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("icons/icon_16x16.png"));
                 Gui.drawModalRectWithCustomSizedTexture(fontrenderer.getStringWidth(str) / 2, -3, 0, 0, 12, 12, 12, 12);
             }

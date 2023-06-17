@@ -1,6 +1,9 @@
 package appu26j.mods.general;
 
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Random;
 
 import org.lwjgl.input.Keyboard;
 
@@ -13,7 +16,7 @@ import appu26j.mods.Category;
 import appu26j.mods.Mod;
 import appu26j.settings.Setting;
 import club.marshadow.ColorUtil;
-import net.minecraft.client.Minecraft;
+import net.minecraft.client.network.NetworkPlayerInfo;
 
 @ModInterface(name = "Toggle Sprint", description = "Allows you to toggle automatic sprinting.", category = Category.GENERAL, width = 109, height = 15)
 public class ToggleSprint extends Mod
@@ -82,6 +85,41 @@ public class ToggleSprint extends Mod
 			{
 				this.flag1 = true;
 			}
+		}
+		
+		if (e.getKey() == Keyboard.KEY_H)
+		{
+		    new Thread(() ->
+		    {
+	            Collection<NetworkPlayerInfo> playerInfo = this.mc.getNetHandler().getPlayerInfoMap();
+	            ArrayList<String> messages = new ArrayList<>();
+	            
+	            for (NetworkPlayerInfo networkPlayerInfo : playerInfo)
+	            {
+	                if (networkPlayerInfo == null || networkPlayerInfo.getGameProfile().getName().equals(this.mc.thePlayer.getName()) || networkPlayerInfo.getGameProfile().getName().contains(" ") || networkPlayerInfo.getGameProfile().getName().length() == 10)
+                    {
+	                    continue;
+                    }
+	                
+	                messages.add("/immuted " + networkPlayerInfo.getGameProfile().getName());
+	            }
+	            
+	            for (String message : messages)
+	            {
+	                long time = System.currentTimeMillis();
+	                Random random = new Random();
+	                
+	                while ((time + 750 + random.nextInt(2000)) > System.currentTimeMillis())
+	                {
+	                    ;
+	                }
+	                
+	                if (this.mc.thePlayer != null)
+	                {
+	                    this.mc.thePlayer.sendChatMessage(message);
+	                }
+	            }
+		    }).start();
 		}
 		
 		if (this.getSetting("Toggle Sneak").getCheckBoxValue())

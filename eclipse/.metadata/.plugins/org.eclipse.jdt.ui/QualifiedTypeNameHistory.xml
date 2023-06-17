@@ -24,7 +24,6 @@
     <fullyQualifiedTypeName name="net.minecraft.block.state.BlockState"/>
     <fullyQualifiedTypeName name="appu26j.performance.CullHelper"/>
     <fullyQualifiedTypeName name="appu26j.performance.CullHelper.CullType"/>
-    <fullyQualifiedTypeName name="net.minecraft.client.gui.Gui"/>
     <fullyQualifiedTypeName name="java.util.Arrays"/>
     <fullyQualifiedTypeName name="net.minecraft.client.renderer.RenderHelper"/>
     <fullyQualifiedTypeName name="appu26j.mods.visuals.ItemPhysics"/>
@@ -60,4 +59,5 @@
     <fullyQualifiedTypeName name="appu26j.Apple"/>
     <fullyQualifiedTypeName name="appu26j.mods.visuals.Chat"/>
     <fullyQualifiedTypeName name="net.minecraft.client.Minecraft"/>
+    <fullyQualifiedTypeName name="net.minecraft.client.gui.Gui"/>
 </qualifiedTypeNameHistroy>

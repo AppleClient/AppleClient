@@ -1,10 +1,10 @@
-ofFogType:1
+ofFogType:3
 ofFogStart:0.8
 ofMipmapType:0
 ofOcclusionFancy:false
 ofSmoothFps:false
 ofSmoothWorld:false
-ofAoLevel:1.0
+ofAoLevel:0.2535211
 ofClouds:0
 ofCloudsHeight:0.0
 ofTrees:0
@@ -64,7 +64,7 @@ ofDynamicLights:3
 ofScreenshotSize:1
 ofCustomEntityModels:true
 ofCustomGuis:true
-ofShowGlErrors:true
+ofShowGlErrors:false
 ofFullscreenMode:Default
 ofFastMath:true
 ofFastRender:true

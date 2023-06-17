@@ -345,11 +345,7 @@ public class SoundManager
             {
                 SoundEventAccessorComposite soundeventaccessorcomposite = this.sndHandler.getSound(p_sound.getSoundLocation());
 
-                if (soundeventaccessorcomposite == null)
-                {
-                    logger.warn(LOG_MARKER, "Unable to play unknown soundEvent: {}", new Object[] {p_sound.getSoundLocation()});
-                }
-                else
+                if (soundeventaccessorcomposite != null)
                 {
                     SoundPoolEntry soundpoolentry = soundeventaccessorcomposite.cloneEntry();
 

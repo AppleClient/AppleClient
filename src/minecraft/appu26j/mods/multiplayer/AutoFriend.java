@@ -75,7 +75,7 @@ public class AutoFriend extends Mod
                         name = name.substring(name.indexOf("] ") + 2);
                     }
                     
-                    mc.thePlayer.sendChatMessage("/friend accept " + name);
+                    this.mc.thePlayer.sendChatMessage("/friend accept " + name);
                 }
             }
         }

@@ -668,7 +668,7 @@ public abstract class RendererLivingEntity<T extends EntityLivingBase> extends R
             if (this.canRenderName(entity))
             {
                 NetworkPlayerInfo networkPlayerInfo = entity == null || !(entity instanceof EntityPlayer) ? null : Minecraft.getMinecraft().getNetHandler().getPlayerInfo(((EntityPlayer) entity).getGameProfile().getId());
-                boolean aBoolean = networkPlayerInfo != null && (Apple.CLIENT.getPeopleUsingAppleClient().stream().filter(id -> networkPlayerInfo.getGameProfile().getId().toString().replaceAll("-", "").equals(id)).findFirst().orElse(null) != null || networkPlayerInfo.getGameProfile().getId().toString().equals(Minecraft.getMinecraft().thePlayer.getGameProfile().getId().toString()));
+                boolean aBoolean = networkPlayerInfo != null && (Apple.CLIENT.getPeopleUsingAppleClient().stream().filter(id -> networkPlayerInfo.getGameProfile().getId().toString().replaceAll("-", "").equals(id)).findFirst().orElse(null) != null || networkPlayerInfo.getGameProfile().getId().toString().equals(Minecraft.getMinecraft().thePlayer.getGameProfile().getId().toString())) && entity instanceof EntityPlayer && entity.getDisplayName().getFormattedText().contains(entity.getName());
                 double d0 = entity.getDistanceSqToEntity(this.renderManager.livingPlayer);
                 float f = entity.isSneaking() ? NAME_TAG_RANGE_SNEAK : NAME_TAG_RANGE;
 
@@ -721,6 +721,7 @@ public abstract class RendererLivingEntity<T extends EntityLivingBase> extends R
                         
                         if (aBoolean)
                         {
+                            GlStateManager.color(1, 1, 1, 1);
                             Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("icons/icon_16x16.png"));
                             Gui.drawModalRectWithCustomSizedTexture(fontrenderer.getStringWidth(s) / 2, -3, 0, 0, 12, 12, 12, 12);
                         }
