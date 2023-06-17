@@ -462,7 +462,10 @@ public class EntityRenderer implements IResourceManagerReloadListener
                 this.theShaderGroup.createBindFramebuffers(width, height);
             }
 
-            this.mc.renderGlobal.createBindEntityOutlineFbs(width, height);
+            if (this.mc != null && this.mc.renderGlobal != null)
+            {
+                this.mc.renderGlobal.createBindEntityOutlineFbs(width, height);
+            }
         }
     }
 

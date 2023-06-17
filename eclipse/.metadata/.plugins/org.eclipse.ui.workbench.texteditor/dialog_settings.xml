@@ -6,8 +6,9 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="Input"/>
+		<item key="selection" value="Loading Sett"/>
 		<list key="findhistory">
+			<item value="Loading Sett"/>
 			<item value="input"/>
 			<item value="keyTy"/>
 			<item value="renderNA"/>
@@ -22,7 +23,6 @@
 			<item value="clearChatMessages"/>
 			<item value="clearChat"/>
 			<item value="clearCh"/>
-			<item value="worl"/>
 		</list>
 		<list key="replacehistory">
 			<item value="(height "/>

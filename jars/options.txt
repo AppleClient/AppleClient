@@ -10,20 +10,20 @@ bobView:true
 anaglyph3d:false
 maxFps:260
 fboEnable:true
-difficulty:3
+difficulty:0
 fancyGraphics:true
 ao:1
 renderClouds:true
 resourcePacks:["1.14 Textures"]
 incompatibleResourcePacks:[]
-lastServer:bedwarspractice.club
+lastServer:bedlessmc.apexmc.co
 lang:en_US
 chatVisibility:0
 chatColors:true
 chatLinks:true
 chatLinksPrompt:true
 chatOpacity:1.0
-fullscreen:false
+fullscreen:true
 enableVsync:false
 useVbo:true
 hideServerAddress:false

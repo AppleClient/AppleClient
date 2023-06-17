@@ -505,7 +505,7 @@ public class Minecraft implements IThreadListener
         this.renderEngine = new TextureManager(this.mcResourceManager);
         this.mcResourceManager.registerReloadListener(this.renderEngine);
         //this.drawSplashScreen(this.renderEngine);
-        SplashProgress.drawSplash(getTextureManager());
+        SplashProgress.drawSplash(this.getTextureManager());
         this.initStream();
         this.skinManager = new SkinManager(this.renderEngine, new File(this.fileAssets, "skins"), this.sessionService);
         this.saveLoader = new AnvilSaveConverter(new File(this.mcDataDir, "saves"));
@@ -559,51 +559,83 @@ public class Minecraft implements IThreadListener
         this.renderEngine.bindTexture(TextureMap.locationBlocksTexture);
         this.textureMapBlocks.setBlurMipmapDirect(false, this.gameSettings.mipmapLevels > 0);
         this.modelManager = new ModelManager(this.textureMapBlocks);
-        SplashProgress.setProgress(1, "Client - Initializing Discord RP");
+        SplashProgress.setProgress(1, "Client - Initializing Discord RPC");
+        SplashProgress.drawSplash(this.getTextureManager());
         this.mcResourceManager.registerReloadListener(this.modelManager);
+        SplashProgress.drawSplash(this.getTextureManager());
         this.renderItem = new RenderItem(this.renderEngine, this.modelManager);
+        SplashProgress.drawSplash(this.getTextureManager());
         this.renderManager = new RenderManager(this.renderEngine, this.renderItem);
+        SplashProgress.drawSplash(this.getTextureManager());
         this.itemRenderer = new ItemRenderer(this);
+        SplashProgress.drawSplash(this.getTextureManager());
         this.mcResourceManager.registerReloadListener(this.renderItem);
-        SplashProgress.setProgress(2, "Client - Loading Cosmetics");
+        SplashProgress.drawSplash(this.getTextureManager());
+        SplashProgress.setProgress(2, "Client - Loading Renderers");
+        SplashProgress.drawSplash(this.getTextureManager());
+        SplashProgress.drawSplash(this.getTextureManager());
         this.entityRenderer = new EntityRenderer(this, this.mcResourceManager);
+        SplashProgress.drawSplash(this.getTextureManager());
         this.mcResourceManager.registerReloadListener(this.entityRenderer);
+        SplashProgress.drawSplash(this.getTextureManager());
         this.blockRenderDispatcher = new BlockRendererDispatcher(this.modelManager.getBlockModelShapes(), this.gameSettings);
-        SplashProgress.setProgress(3, "Client - Loading Music Files");
+        SplashProgress.drawSplash(this.getTextureManager());
+        SplashProgress.setProgress(3, "Client - Loading Files");
+        SplashProgress.drawSplash(this.getTextureManager());
         this.mcResourceManager.registerReloadListener(this.blockRenderDispatcher);
+        SplashProgress.drawSplash(this.getTextureManager());
         this.renderGlobal = new RenderGlobal(this);
+        SplashProgress.drawSplash(this.getTextureManager());
         this.mcResourceManager.registerReloadListener(this.renderGlobal);
+        SplashProgress.drawSplash(this.getTextureManager());
         this.guiAchievement = new GuiAchievement(this);
+        SplashProgress.drawSplash(this.getTextureManager());
         GlStateManager.viewport(0, 0, this.displayWidth, this.displayHeight);
+        SplashProgress.drawSplash(this.getTextureManager());
         this.effectRenderer = new EffectRenderer(this.theWorld, this.renderEngine);
-        SplashProgress.setProgress(4, "Client - Loading Settings");
+        SplashProgress.setProgress(4, "Client - Loading Minecraft");
+        SplashProgress.drawSplash(this.getTextureManager());
         this.checkGLError("Post startup");
+        SplashProgress.drawSplash(this.getTextureManager());
         this.ingameGUI = new GuiIngame(this);
+        SplashProgress.drawSplash(this.getTextureManager());
         this.refreshResources();
+        SplashProgress.drawSplash(this.getTextureManager());
         Apple.CLIENT.initialize();
+        SplashProgress.drawSplash(this.getTextureManager());
         new ServerList(this);
+        SplashProgress.drawSplash(this.getTextureManager());
         this.renderEngine.deleteTexture(this.mojangLogo);
+        SplashProgress.drawSplash(this.getTextureManager());
         this.mojangLogo = null;
+        SplashProgress.drawSplash(this.getTextureManager());
         this.loadingScreen = new LoadingScreenRenderer(this);
+        SplashProgress.drawSplash(this.getTextureManager());
 
         if (this.gameSettings.fullScreen && !this.fullscreen)
         {
             this.toggleFullscreen();
+            SplashProgress.drawSplash(this.getTextureManager());
         }
 
         try
         {
             Display.setVSyncEnabled(this.gameSettings.enableVsync);
+            SplashProgress.drawSplash(this.getTextureManager());
         }
         catch (OpenGLException var2)
         {
             this.gameSettings.enableVsync = false;
             this.gameSettings.saveOptions();
+            SplashProgress.drawSplash(this.getTextureManager());
         }
 
         DiscordRP.update("Playing Apple Client " + Apple.VERSION);
+        SplashProgress.drawSplash(this.getTextureManager());
         this.renderGlobal.makeEntityOutlineShader();
+        SplashProgress.drawSplash(this.getTextureManager());
         memoryReserve = new byte[0];
+        SplashProgress.drawSplash(this.getTextureManager());
         
         if (this.serverName != null)
         {

@@ -28,11 +28,11 @@ public class UnicodeFontRenderer {
     }
     
     public static UnicodeFontRenderer getFontOnPC(String name, int size, int fontType) {
-        return getFontOnPC(name, size, fontType, 0);
+        return getFontOnPC(name, size, fontType, 4);
     }
     
     public static UnicodeFontRenderer getFontOnPC(String name, int size, int fontType, float kerning) {
-        return getFontOnPC(name, size, fontType, kerning, 3.0f);
+        return getFontOnPC(name, size, fontType, kerning, 4);
     }
     
     public static UnicodeFontRenderer getFontOnPC(String name, int size, int fontType, float kerning, float antiAliasingFactor) {
@@ -48,7 +48,7 @@ public class UnicodeFontRenderer {
     }
     
     public static UnicodeFontRenderer getFontFromAssets(String name, int size, float kerning, int fontType) {
-        return getFontFromAssets(name, size, fontType, kerning, 3.0f);
+        return getFontFromAssets(name, size, fontType, kerning, 4);
     }
     
     public static UnicodeFontRenderer getFontFromAssets(String name, int size, int fontType,  float kerning, float antiAliasingFactor) {

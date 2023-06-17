@@ -54,21 +54,24 @@ public class SplashProgress {
         
         
         if(splash == null) {
-            splash = new ResourceLocation("splash.png");
+            splash = new ResourceLocation("panorama.png");
         }
         
         tm.bindTexture(splash);
         
         GlStateManager.resetColor();
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-        
-        Gui.drawScaledCustomSizeModalRect(0, 0, 0, 0, 1920, 1080, scaledResolution.getScaledWidth(), scaledResolution.getScaledHeight(), 1920, 1080);
+
+        GlStateManager.enableAlpha();
+        GlStateManager.enableBlend();
+        GlStateManager.alphaFunc(516, 0.1F);
+        Gui.drawModalRectWithCustomSizedTexture(0, 0, 0, 0, scaledResolution.getScaledWidth(), scaledResolution.getScaledHeight(), 480, 238);
+        tm.bindTexture(new ResourceLocation("icons/icon_32x32.png"));
+        Gui.drawModalRectWithCustomSizedTexture((scaledResolution.getScaledWidth() / 2) - 48, (scaledResolution.getScaledHeight() / 2) - 64, 0, 0, 96, 96, 96, 96);
         drawProgress();
         framebuffer.unbindFramebuffer();
         framebuffer.framebufferRender(scaledResolution.getScaledWidth() * scaleFactor, scaledResolution.getScaledHeight() * scaleFactor);
         
-        GlStateManager.enableAlpha();
-        GlStateManager.alphaFunc(516, 0.1F);
         
         Minecraft.getMinecraft().updateDisplay();
     }
@@ -80,7 +83,7 @@ public class SplashProgress {
         }
         
         if(ufr == null) {
-            ufr = UnicodeFontRenderer.getFontOnPC("Arial", 20);
+            ufr = UnicodeFontRenderer.getFontOnPC("Segoe UI", 20);
         }
         
         ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft());
@@ -94,7 +97,7 @@ public class SplashProgress {
         resetTextureState();
         
         
-        ufr.drawString(CURRENT, 20, sr.getScaledHeight() - 35, 0xFFFFFFFF);
+        ufr.drawString(CURRENT, 20, sr.getScaledHeight() - 25, 0xFFFFFFFF);
         
         String step = PROGRESS + "/" + MAX;
         ufr.drawString(step, sr.getScaledWidth() - 20 - ufr.getStringWidth(step), sr.getScaledHeight() - 25, 0xe1e1e1FF);
