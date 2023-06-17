@@ -668,7 +668,7 @@ public abstract class RendererLivingEntity<T extends EntityLivingBase> extends R
             if (this.canRenderName(entity))
             {
                 NetworkPlayerInfo networkPlayerInfo = entity == null || !(entity instanceof EntityPlayer) ? null : Minecraft.getMinecraft().getNetHandler().getPlayerInfo(((EntityPlayer) entity).getGameProfile().getId());
-                boolean aBoolean = networkPlayerInfo != null && (Apple.CLIENT.getPeopleUsingAppleClient().stream().filter(id -> networkPlayerInfo.getGameProfile().getId().toString().replaceAll("-", "").equals(id)).findFirst().orElse(null) != null || networkPlayerInfo.getGameProfile().getId().toString().equals(Minecraft.getMinecraft().thePlayer.getGameProfile().getId().toString())) && entity instanceof EntityPlayer && entity.getDisplayName().getFormattedText().contains(entity.getName());
+                boolean aBoolean = networkPlayerInfo != null && entity instanceof EntityPlayer && EnumChatFormatting.getTextWithoutFormattingCodes(entity.getDisplayName().getUnformattedText()).equals(entity.getName()) && (Apple.CLIENT.getPeopleUsingAppleClient().stream().filter(id -> networkPlayerInfo.getGameProfile().getId().toString().replaceAll("-", "").equals(id)).findFirst().orElse(null) != null);
                 double d0 = entity.getDistanceSqToEntity(this.renderManager.livingPlayer);
                 float f = entity.isSneaking() ? NAME_TAG_RANGE_SNEAK : NAME_TAG_RANGE;
 

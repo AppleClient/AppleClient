@@ -25,6 +25,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.src.Config;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
@@ -369,10 +370,10 @@ public abstract class Render<T extends Entity> implements IEntityRenderer
     protected void renderLivingLabel(T entityIn, String str, double x, double y, double z, int maxDistance)
     {
         NetworkPlayerInfo networkPlayerInfo = entityIn == null || !(entityIn instanceof EntityPlayer) ? null : Minecraft.getMinecraft().getNetHandler().getPlayerInfo(((EntityPlayer) entityIn).getGameProfile().getId());
-        boolean aBoolean = networkPlayerInfo != null && (Apple.CLIENT.getPeopleUsingAppleClient().stream().filter(id -> networkPlayerInfo.getGameProfile().getId().toString().replaceAll("-", "").equals(id)).findFirst().orElse(null) != null || networkPlayerInfo.getGameProfile().getId().toString().equals(Minecraft.getMinecraft().thePlayer.getGameProfile().getId().toString())) && entityIn instanceof EntityPlayer && entityIn.getDisplayName().getFormattedText().contains(entityIn.getName());
+        boolean aBoolean = networkPlayerInfo != null && entityIn instanceof EntityPlayer && EnumChatFormatting.getTextWithoutFormattingCodes(str).equals(entityIn.getName()) && (Apple.CLIENT.getPeopleUsingAppleClient().stream().filter(id -> networkPlayerInfo.getGameProfile().getId().toString().replaceAll("-", "").equals(id)).findFirst().orElse(null) != null);
         float viewX = Minecraft.getMinecraft().gameSettings.thirdPersonView == 2 ? -this.renderManager.playerViewX : this.renderManager.playerViewX;
         double d0 = entityIn.getDistanceSqToEntity(this.renderManager.livingPlayer);
-
+        
         if (d0 <= (double)(maxDistance * maxDistance))
         {
             NameTags nameTags = (NameTags) Apple.CLIENT.getModsManager().getMod("Name Tags");

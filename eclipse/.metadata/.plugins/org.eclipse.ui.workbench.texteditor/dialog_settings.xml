@@ -6,8 +6,9 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="Loading Sett"/>
+		<item key="selection" value="renderNa"/>
 		<list key="findhistory">
+			<item value="renderNa"/>
 			<item value="Loading Sett"/>
 			<item value="input"/>
 			<item value="keyTy"/>
@@ -18,7 +19,6 @@
 			<item value="startGa"/>
 			<item value="startGame"/>
 			<item value="glClear"/>
-			<item value="renderNa"/>
 			<item value="aBoo"/>
 			<item value="clearChatMessages"/>
 			<item value="clearChat"/>
