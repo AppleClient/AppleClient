@@ -1,13 +1,13 @@
-.metadata/
-bin/
-tmp/
+.metadata/**
+bin/**
+tmp/**
 *.tmp
 *.bak
 *.swp
 *~.nib
 *.log
 local.properties
-.settings/
+.settings/**
 .loadpath
 .recommenders
 
