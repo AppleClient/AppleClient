@@ -6,25 +6,26 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="renderNa"/>
+		<item key="selection" value="drawSc"/>
 		<list key="findhistory">
-			<item value="renderNa"/>
-			<item value="Loading Sett"/>
-			<item value="input"/>
-			<item value="keyTy"/>
-			<item value="renderNA"/>
-			<item value="renderNam"/>
-			<item value="this.fullscreen"/>
-			<item value="fullscreen"/>
-			<item value="startGa"/>
-			<item value="startGame"/>
-			<item value="glClear"/>
-			<item value="aBoo"/>
-			<item value="clearChatMessages"/>
-			<item value="clearChat"/>
-			<item value="clearCh"/>
+			<item value="drawSc"/>
+			<item value="runGameLoop"/>
+			<item value="runGameLop"/>
+			<item value="fontrendererobj"/>
+			<item value="FontRenderobj"/>
+			<item value="FontRender"/>
+			<item value="fontRendere"/>
+			<item value="fontRender"/>
+			<item value="UnicodeFontRenderer"/>
+			<item value="drawRec"/>
+			<item value="drawStr"/>
+			<item value="oldBlendState"/>
+			<item value="path"/>
+			<item value="this.path"/>
+			<item value="getStringWidth"/>
 		</list>
 		<list key="replacehistory">
+			<item value="CustomFontRenderer"/>
 			<item value="(height "/>
 			<item value="(width "/>
 			<item value=""/>
@@ -38,7 +39,7 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item key="DIALOG_X_ORIGIN" value="376"/>
-		<item key="DIALOG_Y_ORIGIN" value="192"/>
+		<item key="DIALOG_Y_ORIGIN" value="65"/>
 		<item key="DIALOG_WIDTH" value="318"/>
 		<item key="DIALOG_HEIGHT" value="295"/>
 		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-21|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>

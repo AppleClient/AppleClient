@@ -293,7 +293,7 @@ public class ClickGUI extends GuiScreen
 			this.scissor(0, 69, this.width / this.zoomFactor, this.height / this.zoomFactor, 0.85F + (this.index * 0.15F));
             i += 5;
             
-			for (Mod mod : this.searchingMessage.isEmpty() ? Apple.CLIENT.getModsManager().getMods() : Apple.CLIENT.getModsManager().getMods().stream().filter(mod -> mod.getName().toLowerCase().contains(this.searchingMessage.toLowerCase())).collect(Collectors.toCollection(ArrayList::new)))
+			for (Mod mod : this.searchingMessage.isEmpty() ? Apple.CLIENT.getModsManager().getMods() : this.getMods(this.searchingMessage))
 			{
 	            j = 160;
                 
@@ -911,6 +911,31 @@ public class ClickGUI extends GuiScreen
     {
 		return false;
     }
+	
+	public static ArrayList<Mod> getMods(String searchMessage)
+	{
+	    ArrayList<Mod> mods = new ArrayList<>();
+	    
+	    for (Mod mod : Apple.CLIENT.getModsManager().getMods())
+	    {
+	        boolean temp = true;
+	        
+	        for (char character : searchMessage.toLowerCase().toCharArray())
+	        {
+	            if (!mod.getName().toLowerCase().contains(String.valueOf(character)))
+	            {
+	                temp = false;
+	            }
+	        }
+	        
+	        if (temp)
+	        {
+	            mods.add(mod);
+	        }
+	    }
+	    
+	    return mods;
+	}
 	
 	public boolean isInsideBox(int mouseX, int mouseY, float x, float y, float width, float height)
 	{

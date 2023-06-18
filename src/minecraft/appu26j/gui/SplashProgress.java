@@ -17,12 +17,12 @@ public class SplashProgress {
     private static int PROGRESS = 0;
     private static String CURRENT = "";
     private static ResourceLocation splash;
-    private static UnicodeFontRenderer ufr;
 
     public static void update() {
-        if(Minecraft.getMinecraft() == null || Minecraft.getMinecraft().getLanguageManager() == null) {
+        if (Minecraft.getMinecraft() == null || Minecraft.getMinecraft().getLanguageManager() == null) {
             return;
         }
+        
         drawSplash(Minecraft.getMinecraft().getTextureManager());
     }
     
@@ -30,17 +30,15 @@ public class SplashProgress {
         PROGRESS = givenProgress;
         CURRENT = givenText;
         update();
-        
     }
     
-    public static void drawSplash(TextureManager tm) {
-        
+    public static void drawSplash(TextureManager tm) { 
         ScaledResolution scaledResolution = new ScaledResolution(Minecraft.getMinecraft());
         int scaleFactor = scaledResolution.getScaleFactor();
         
         Framebuffer framebuffer = new Framebuffer(scaledResolution.getScaledWidth() * scaleFactor, scaledResolution.getScaledHeight() * scaleFactor, true);
         framebuffer.bindFramebuffer(false);
-        
+
         GlStateManager.matrixMode(GL11.GL_PROJECTION);
         GlStateManager.loadIdentity();
         GlStateManager.ortho(0.0D, (double)scaledResolution.getScaledWidth(), (double)scaledResolution.getScaledHeight(), 0.0D, 1000.0D, 3000.0D);
@@ -52,16 +50,13 @@ public class SplashProgress {
         GlStateManager.disableDepth();
         GlStateManager.enableTexture2D();
         
-        
-        if(splash == null) {
+        if (splash == null) {
             splash = new ResourceLocation("panorama.png");
         }
         
         tm.bindTexture(splash);
-        
         GlStateManager.resetColor();
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-
         GlStateManager.enableAlpha();
         GlStateManager.enableBlend();
         GlStateManager.alphaFunc(516, 0.1F);
@@ -71,19 +66,12 @@ public class SplashProgress {
         drawProgress();
         framebuffer.unbindFramebuffer();
         framebuffer.framebufferRender(scaledResolution.getScaledWidth() * scaleFactor, scaledResolution.getScaledHeight() * scaleFactor);
-        
-        
         Minecraft.getMinecraft().updateDisplay();
     }
     
     private static void drawProgress() {
-        
-        if(Minecraft.getMinecraft().gameSettings == null || Minecraft.getMinecraft().getTextureManager() == null) {
+        if (Minecraft.getMinecraft().gameSettings == null || Minecraft.getMinecraft().getTextureManager() == null) {
             return;
-        }
-        
-        if(ufr == null) {
-            ufr = UnicodeFontRenderer.getFontOnPC("Segoe UI", 20);
         }
         
         ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft());
@@ -97,10 +85,10 @@ public class SplashProgress {
         resetTextureState();
         
         
-        ufr.drawString(CURRENT, 20, sr.getScaledHeight() - 25, 0xFFFFFFFF);
+        Minecraft.getMinecraft().fontRendererObj.drawString(CURRENT, 15, sr.getScaledHeight() - 22, -1);
         
         String step = PROGRESS + "/" + MAX;
-        ufr.drawString(step, sr.getScaledWidth() - 20 - ufr.getStringWidth(step), sr.getScaledHeight() - 25, 0xe1e1e1FF);
+        Minecraft.getMinecraft().fontRendererObj.drawString(step, sr.getScaledWidth() - 15 - Minecraft.getMinecraft().fontRendererObj.getStringWidth(step), sr.getScaledHeight() - 22, new Color(200, 200, 200).getRGB());
         
         GlStateManager.resetColor();
         resetTextureState();

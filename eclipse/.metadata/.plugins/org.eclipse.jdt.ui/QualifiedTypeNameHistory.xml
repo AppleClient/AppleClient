@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="net.minecraft.client.multiplayer.ServerList"/>
-    <fullyQualifiedTypeName name="appu26j.AppleClientVersionChecker"/>
     <fullyQualifiedTypeName name="appu26j.fontrenderer.FixedFontRenderer"/>
     <fullyQualifiedTypeName name="appu26j.utils.ClockUtil"/>
     <fullyQualifiedTypeName name="appu26j.DiscordRP"/>
@@ -49,7 +47,6 @@
     <fullyQualifiedTypeName name="javafx.application.Application"/>
     <fullyQualifiedTypeName name="java.time.Duration"/>
     <fullyQualifiedTypeName name="net.minecraft.client.resources.ResourcePackRepository.Entry"/>
-    <fullyQualifiedTypeName name="java.awt.Color"/>
     <fullyQualifiedTypeName name="appu26j.mods.Category"/>
     <fullyQualifiedTypeName name="appu26j.mods.visuals.MotionBlur"/>
     <fullyQualifiedTypeName name="appu26j.Apple"/>
@@ -60,4 +57,7 @@
     <fullyQualifiedTypeName name="org.lwjgl.input.Mouse"/>
     <fullyQualifiedTypeName name="java.awt.Desktop"/>
     <fullyQualifiedTypeName name="net.minecraft.util.EnumChatFormatting"/>
+    <fullyQualifiedTypeName name="java.awt.Font"/>
+    <fullyQualifiedTypeName name="java.awt.Color"/>
+    <fullyQualifiedTypeName name="appu26j.MotionBlur"/>
 </qualifiedTypeNameHistroy>

@@ -19,6 +19,7 @@ public class CPS extends Mod
 	
 	public CPS()
 	{
+        this.addSetting(new Setting("Disable CPS Text", this, false));
 		this.addSetting(new Setting("Background", this, false));
 		this.addSetting(new Setting("Background Transparency", this, false));
 		this.addSetting(new Setting("Text Shadow", this, true));
@@ -31,8 +32,9 @@ public class CPS extends Mod
 	public void onRender()
 	{
 		super.onRender();
+		String cps = this.getSetting("Disable CPS Text").getCheckBoxValue() ? "" : "CPS: ";
 		float size = this.getSetting("Size").getSliderValue();
-		this.width = this.getStringWidth("CPS: " + this.getLeftCPS() + " : " + this.getRightCPS()) + 7;
+		this.width = this.getStringWidth(cps + this.getLeftCPS() + " : " + this.getRightCPS()) + 7;
 		int[] colors = this.getSetting("Text Color (RGB)").getColors();
 		int color = new Color(colors[0], colors[1], colors[2]).getRGB();
 		
@@ -79,7 +81,7 @@ public class CPS extends Mod
 		}
 		
 		this.drawRect(this.x, this.y, this.x + (this.width * size), this.y + (this.height * size), this.backgroundColour);
-		this.drawString("CPS: " + this.getLeftCPS() + " : " + this.getRightCPS(), this.x + (4 * size), this.y + (4 * size), 8 * size, color);
+		this.drawString(cps + this.getLeftCPS() + " : " + this.getRightCPS(), this.x + (4 * size), this.y + (4 * size), 8 * size, color);
 	}
 	
 	public int getLeftCPS()
