@@ -1,274 +1,681 @@
-[20:40:03] [Client thread/INFO]: [OptiFine] *** Reflector Forge ***
-[20:40:03] [Client thread/INFO]: [OptiFine] *** Reflector Vanilla ***
-[20:40:03] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.fml.common.eventhandler.Event$Result
-[20:40:03] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraft.launchwrapper.Launch
-[20:40:03] [Client thread/INFO]: LWJGL Version: 2.9.4
-[20:40:03] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: optifine.OptiFineClassTransformer
-[20:40:04] [Client thread/INFO]: [OptiFine] 
-[20:40:04] [Client thread/INFO]: [OptiFine] OptiFine_1.8.9_HD_U_M5
-[20:40:04] [Client thread/INFO]: [OptiFine] Build: null
-[20:40:04] [Client thread/INFO]: [OptiFine] OS: Windows 11 (amd64) version 10.0
-[20:40:04] [Client thread/INFO]: [OptiFine] Java: 1.8.0_361, Oracle Corporation
-[20:40:04] [Client thread/INFO]: [OptiFine] VM: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
-[20:40:04] [Client thread/INFO]: [OptiFine] LWJGL: 2.9.4
-[20:40:04] [Client thread/INFO]: [OptiFine] OpenGL: AMD Radeon(TM) Graphics, version 4.6.14761 Compatibility Profile Context 21.30.14 30.0.13014.8, ATI Technologies Inc.
-[20:40:04] [Client thread/INFO]: [OptiFine] OpenGL Version: 4.6.14761
-[20:40:04] [Client thread/INFO]: [OptiFine] OpenGL Fancy fog: Not available (GL_NV_fog_distance)
-[20:40:04] [Client thread/INFO]: [OptiFine] Maximum texture size: 16384x16384
-[20:40:04] [VersionCheck/INFO]: [OptiFine] Checking for new version
-[20:40:04] [Client thread/INFO]: [Shaders] OpenGL Version: 4.6.14761 Compatibility Profile Context 21.30.14 30.0.13014.8
-[20:40:04] [Client thread/INFO]: [Shaders] Vendor:  ATI Technologies Inc.
-[20:40:04] [Client thread/INFO]: [Shaders] Renderer: AMD Radeon(TM) Graphics
-[20:40:04] [Client thread/INFO]: [Shaders] Capabilities:  2.0  2.1  3.0  3.2  4.0 
-[20:40:04] [Client thread/INFO]: [Shaders] GL_MAX_DRAW_BUFFERS: 8
-[20:40:04] [Client thread/INFO]: [Shaders] GL_MAX_COLOR_ATTACHMENTS_EXT: 8
-[20:40:04] [Client thread/INFO]: [Shaders] GL_MAX_TEXTURE_IMAGE_UNITS: 32
-[20:40:04] [Client thread/INFO]: [Shaders] Load shaders configuration.
-[20:40:04] [Client thread/INFO]: [Shaders] Save shaders configuration.
-[20:40:04] [Client thread/INFO]: [Shaders] Shaders can not be loaded, Fast Render is enabled.
-[20:40:04] [Client thread/INFO]: [Shaders] No shaderpack loaded.
-[20:40:04] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.fml.common.Loader
-[20:40:04] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.fml.client.SplashProgress
-[20:40:04] [Client thread/INFO]: Reloading ResourceManager: Default, 1.14 Textures
-[20:40:04] [Client thread/INFO]: [OptiFine] *** Reloading textures ***
-[20:40:04] [Client thread/INFO]: [OptiFine] Resource packs: 1.14 Textures
-[20:40:04] [VersionCheck/INFO]: [OptiFine] Version found: M5
-[20:40:04] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.model.Attributes
-[20:40:04] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.client.renderer.vertex.VertexFormatElement$EnumUsage.preDraw
-[20:40:04] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.client.renderer.vertex.VertexFormatElement$EnumUsage.postDraw
-[20:40:04] [Sound Library Loader/INFO]: Starting up SoundSystem...
-[20:40:04] [Thread-5/INFO]: Initializing LWJGL OpenAL
-[20:40:04] [Thread-5/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
-[20:40:05] [Thread-5/INFO]: OpenAL initialized.
-[20:40:05] [Sound Library Loader/INFO]: Sound engine started
-[20:40:05] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.ForgeHooksClient
-[20:40:06] [Client thread/INFO]: [OptiFine] Mipmap levels: 4
-[20:40:06] [Client thread/INFO]: [OptiFine] Multitexture: false
-[20:40:06] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/bookshelf/ctm.properties
-[20:40:06] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/diamond_block/ctm.properties
-[20:40:06] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass/ctm.properties
-[20:40:06] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass/ctm_pane.properties
-[20:40:06] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_black/ctm.properties
-[20:40:06] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_black/ctm_pane.properties
-[20:40:06] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_blue/ctm.properties
-[20:40:06] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_blue/ctm_pane.properties
-[20:40:06] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_brown/ctm.properties
-[20:40:06] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_brown/ctm_pane.properties
-[20:40:06] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_cyan/ctm.properties
-[20:40:06] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_cyan/ctm_pane.properties
-[20:40:06] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_gray/ctm.properties
-[20:40:06] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_gray/ctm_pane.properties
-[20:40:06] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_green/ctm.properties
-[20:40:06] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_green/ctm_pane.properties
-[20:40:06] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_light_blue/ctm.properties
-[20:40:06] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_light_blue/ctm_pane.properties
-[20:40:06] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_lime/ctm.properties
-[20:40:06] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_lime/ctm_pane.properties
-[20:40:06] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_magenta/ctm.properties
-[20:40:06] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_magenta/ctm_pane.properties
-[20:40:06] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_orange/ctm.properties
-[20:40:06] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_orange/ctm_pane.properties
-[20:40:06] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_pink/ctm.properties
-[20:40:06] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_pink/ctm_pane.properties
-[20:40:06] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_purple/ctm.properties
-[20:40:06] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_purple/ctm_pane.properties
-[20:40:06] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_red/ctm.properties
-[20:40:06] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_red/ctm_pane.properties
-[20:40:06] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_silver/ctm.properties
-[20:40:06] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_silver/ctm_pane.properties
-[20:40:06] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_white/ctm.properties
-[20:40:06] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_white/ctm_pane.properties
-[20:40:06] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_yellow/ctm.properties
-[20:40:06] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_yellow/ctm_pane.properties
-[20:40:06] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/gold_block/ctm.properties
-[20:40:06] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/iron_block/ctm.properties
-[20:40:06] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/lapis_block/ctm.properties
-[20:40:06] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/quartz_block/ctm_side.properties
-[20:40:06] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/quartz_block/ctm_top.properties
-[20:40:06] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/red_sandstone_side/ctm.properties
-[20:40:06] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/sandstone_side/ctm.properties
-[20:40:06] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/stone_andesite_smooth/ctm.properties
-[20:40:06] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/stone_diorite_smooth/ctm.properties
-[20:40:06] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/stone_granite_smooth/ctm.properties
-[20:40:06] [Client thread/INFO]: [OptiFine] Multipass connected textures: false
-[20:40:06] [Client thread/INFO]: [OptiFine] Multipass connected textures: false
-[20:40:06] [Client thread/INFO]: [OptiFine] BetterGrass: Parsing default configuration optifine/bettergrass.properties
-[20:40:06] [Client thread/INFO]: Created: 1024x512 textures-atlas
-[20:40:07] [Client thread/INFO]: [OptiFine] Animated sprites: 12
-[20:40:07] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.model.ModelLoader
-[20:40:07] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.ItemModelMesherForge
-[20:40:07] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.fml.client.registry.RenderingRegistry
-[20:40:07] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.common.ForgeModContainer
-[20:40:07] [Client thread/INFO]: Reloading ResourceManager: Default, 1.14 Textures
-[20:40:07] [Client thread/INFO]: [OptiFine] *** Reloading textures ***
-[20:40:07] [Client thread/INFO]: [OptiFine] Resource packs: 1.14 Textures
-[20:40:07] [Client thread/INFO]: SoundSystem shutting down...
-[20:40:07] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
-[20:40:07] [Sound Library Loader/INFO]: Starting up SoundSystem...
-[20:40:08] [Thread-7/INFO]: Initializing LWJGL OpenAL
-[20:40:08] [Thread-7/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
-[20:40:08] [Thread-7/INFO]: OpenAL initialized.
-[20:40:08] [Sound Library Loader/INFO]: Sound engine started
-[20:40:09] [Client thread/INFO]: [OptiFine] Mipmap levels: 4
-[20:40:09] [Client thread/INFO]: [OptiFine] Multitexture: false
-[20:40:09] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/bookshelf/ctm.properties
-[20:40:09] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/diamond_block/ctm.properties
-[20:40:09] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass/ctm.properties
-[20:40:09] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass/ctm_pane.properties
-[20:40:09] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_black/ctm.properties
-[20:40:09] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_black/ctm_pane.properties
-[20:40:09] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_blue/ctm.properties
-[20:40:09] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_blue/ctm_pane.properties
-[20:40:09] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_brown/ctm.properties
-[20:40:09] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_brown/ctm_pane.properties
-[20:40:09] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_cyan/ctm.properties
-[20:40:09] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_cyan/ctm_pane.properties
-[20:40:09] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_gray/ctm.properties
-[20:40:09] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_gray/ctm_pane.properties
-[20:40:09] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_green/ctm.properties
-[20:40:09] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_green/ctm_pane.properties
-[20:40:09] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_light_blue/ctm.properties
-[20:40:09] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_light_blue/ctm_pane.properties
-[20:40:09] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_lime/ctm.properties
-[20:40:09] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_lime/ctm_pane.properties
-[20:40:09] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_magenta/ctm.properties
-[20:40:09] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_magenta/ctm_pane.properties
-[20:40:09] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_orange/ctm.properties
-[20:40:09] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_orange/ctm_pane.properties
-[20:40:09] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_pink/ctm.properties
-[20:40:09] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_pink/ctm_pane.properties
-[20:40:09] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_purple/ctm.properties
-[20:40:09] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_purple/ctm_pane.properties
-[20:40:09] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_red/ctm.properties
-[20:40:09] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_red/ctm_pane.properties
-[20:40:09] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_silver/ctm.properties
-[20:40:09] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_silver/ctm_pane.properties
-[20:40:09] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_white/ctm.properties
-[20:40:09] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_white/ctm_pane.properties
-[20:40:09] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_yellow/ctm.properties
-[20:40:09] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_yellow/ctm_pane.properties
-[20:40:09] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/gold_block/ctm.properties
-[20:40:09] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/iron_block/ctm.properties
-[20:40:09] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/lapis_block/ctm.properties
-[20:40:09] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/quartz_block/ctm_side.properties
-[20:40:09] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/quartz_block/ctm_top.properties
-[20:40:09] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/red_sandstone_side/ctm.properties
-[20:40:09] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/sandstone_side/ctm.properties
-[20:40:09] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/stone_andesite_smooth/ctm.properties
-[20:40:09] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/stone_diorite_smooth/ctm.properties
-[20:40:09] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/stone_granite_smooth/ctm.properties
-[20:40:09] [Client thread/INFO]: [OptiFine] Multipass connected textures: false
-[20:40:09] [Client thread/INFO]: [OptiFine] Multipass connected textures: false
-[20:40:09] [Client thread/INFO]: [OptiFine] BetterGrass: Parsing default configuration optifine/bettergrass.properties
-[20:40:09] [Client thread/INFO]: Created: 1024x512 textures-atlas
-[20:40:09] [Client thread/INFO]: [OptiFine] Animated sprites: 12
-[20:40:11] [Client thread/INFO]: Setting user: Appu26j
-[20:40:11] [Client thread/INFO]: (Session ID is token:********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************:cb6b6dd401d345abbbe646670c674b7b)
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.fml.client.GuiModList
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: mods.betterfoliage.client.BetterFoliageClient
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.fml.common.asm.transformers.BlamingTransformer
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.event.world.ChunkWatchEvent$UnWatch
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.fml.relauncher.CoreModManager
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.common.DimensionManager
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.event.GuiScreenEvent$DrawScreenEvent$Pre
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.event.GuiScreenEvent$DrawScreenEvent$Post
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.event.EntityViewRenderEvent$CameraSetup
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.event.EntityViewRenderEvent$FogColors
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.fml.common.eventhandler.Event
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.fml.common.eventhandler.EventBus
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.common.property.ExtendedBlockState
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.fml.client.FMLClientHandler
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.fml.common.FMLCommonHandler
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.world.biome.BiomeGenBase.getWaterColorMultiplier
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.addDestroyEffects
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.addHitEffects
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.canCreatureSpawn
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.canRenderInLayer
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.doesSideBlockRendering
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.getBedDirection
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.getExtendedState
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.getLightOpacity
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.getLightValue
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.hasTileEntity
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.isAir
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.isBed
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.isBedFoot
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.isSideSolid
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.world.ChunkCache.isSideSolid
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.entity.Entity.canRiderInteract
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Field not present: net.minecraft.entity.Entity.captureDrops
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Field not present: net.minecraft.entity.Entity.capturedDrops
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.entity.Entity.shouldRenderInPass
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.entity.Entity.shouldRiderSit
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.event.ForgeEventFactory
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.common.ForgeHooks
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Field not present: net.minecraft.item.Item.delegate
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.item.Item.getDurabilityForDisplay
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.item.Item.getModel
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.item.Item.onEntitySwing
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.item.Item.shouldCauseReequipAnimation
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.item.Item.showDurabilityBar
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.potion.PotionEffect.isCurativeItem
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.tileentity.TileEntity.canRenderBreaking
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.tileentity.TileEntity.getRenderBoundingBox
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.tileentity.TileEntity.hasFastRenderer
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.tileentity.TileEntity.shouldRenderInPass
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.world.World.countEntities
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.world.World.getPerWorldStorage
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.world.WorldProvider.getCloudRenderer
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.world.WorldProvider.getSkyRenderer
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.world.WorldProvider.getWeatherRenderer
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.world.WorldProvider.getSaveFolder
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.model.IColoredBakedQuad
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.common.property.IExtendedBlockState
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.model.IModel
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.IRenderHandler
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.model.pipeline.LightUtil
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.common.MinecraftForge
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.MinecraftForgeClient
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.fml.common.ModContainer
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.model.ModelLoader$VanillaLoader
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.event.RenderBlockOverlayEvent$OverlayType
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.event.RenderItemInFrameEvent
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.event.RenderLivingEvent$Pre
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.event.RenderLivingEvent$Post
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.event.RenderLivingEvent$Specials$Pre
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.event.RenderLivingEvent$Specials$Post
-[20:40:11] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.event.world.WorldEvent$Load
-[20:40:11] [Client thread/INFO]: [OptiFine] *** Reloading custom textures ***
-[20:40:12] [Client thread/INFO]: [OptiFine] Enable face culling: acacia_leaves, birch_leaves, dark_oak_leaves, jungle_leaves, oak_leaves, spruce_leaves
-[20:40:51] [Server thread/INFO]: Starting integrated minecraft server version 1.9
-[20:40:51] [Server thread/INFO]: Generating keypair
-[20:40:51] [Server thread/INFO]: Preparing start region for level 0
-[20:40:51] [Server thread/INFO]: Changing view distance to 8, from 10
-[20:40:51] [Server thread/INFO]: Appu26j[local:E:dea0c252] logged in with entity id 40 at (8894.667956528681, 63.0, 9138.663487095722)
-[20:40:52] [Server thread/INFO]: Appu26j joined the game
-[20:41:09] [Server thread/INFO]: Saving and pausing game...
-[20:41:09] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Overworld
-[20:41:09] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Nether
-[20:41:09] [Server thread/INFO]: Saving chunks for level 'mcpworld'/The End
-[20:41:09] [Server thread/INFO]: Stopping server
-[20:41:09] [Server thread/INFO]: Saving players
-[20:41:09] [Server thread/INFO]: Saving worlds
-[20:41:09] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Overworld
-[20:41:09] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Nether
-[20:41:09] [Server thread/INFO]: Saving chunks for level 'mcpworld'/The End
-[20:41:15] [Server thread/INFO]: Starting integrated minecraft server version 1.9
-[20:41:15] [Server thread/INFO]: Generating keypair
-[20:41:15] [Server thread/INFO]: Preparing start region for level 0
-[20:41:16] [Server thread/INFO]: Changing view distance to 8, from 10
-[20:41:16] [Server thread/INFO]: Appu26j[local:E:df6ce0f5] logged in with entity id 517 at (8898.532725390109, 63.0, 9141.432995817233)
-[20:41:16] [Server thread/INFO]: Appu26j joined the game
-[20:41:40] [Server thread/INFO]: Saving and pausing game...
-[20:41:40] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Overworld
-[20:41:40] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Nether
-[20:41:40] [Server thread/INFO]: Saving chunks for level 'mcpworld'/The End
-[20:41:40] [Server thread/INFO]: Stopping server
-[20:41:40] [Server thread/INFO]: Saving players
-[20:41:40] [Server thread/INFO]: Saving worlds
-[20:41:40] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Overworld
-[20:41:40] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Nether
-[20:41:40] [Server thread/INFO]: Saving chunks for level 'mcpworld'/The End
-[20:41:46] [Client thread/INFO]: AppleClient shutting down...
-[20:41:46] [Client thread/INFO]: SoundSystem shutting down...
-[20:41:47] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
+[14:58:37] [Client thread/INFO]: [OptiFine] *** Reflector Forge ***
+[14:58:37] [Client thread/INFO]: [OptiFine] *** Reflector Vanilla ***
+[14:58:37] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.fml.common.eventhandler.Event$Result
+[14:58:37] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraft.launchwrapper.Launch
+[14:58:37] [Client thread/INFO]: LWJGL Version: 2.9.4
+[14:58:37] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: optifine.OptiFineClassTransformer
+[14:58:37] [Client thread/INFO]: [OptiFine] 
+[14:58:37] [Client thread/INFO]: [OptiFine] OptiFine_1.8.9_HD_U_M5
+[14:58:37] [Client thread/INFO]: [OptiFine] Build: null
+[14:58:37] [Client thread/INFO]: [OptiFine] OS: Windows 11 (amd64) version 10.0
+[14:58:37] [Client thread/INFO]: [OptiFine] Java: 1.8.0_361, Oracle Corporation
+[14:58:37] [Client thread/INFO]: [OptiFine] VM: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+[14:58:37] [Client thread/INFO]: [OptiFine] LWJGL: 2.9.4
+[14:58:37] [Client thread/INFO]: [OptiFine] OpenGL: AMD Radeon(TM) Graphics, version 4.6.14761 Compatibility Profile Context 21.30.14 30.0.13014.8, ATI Technologies Inc.
+[14:58:37] [Client thread/INFO]: [OptiFine] OpenGL Version: 4.6.14761
+[14:58:37] [Client thread/INFO]: [OptiFine] OpenGL Fancy fog: Not available (GL_NV_fog_distance)
+[14:58:37] [Client thread/INFO]: [OptiFine] Maximum texture size: 16384x16384
+[14:58:37] [VersionCheck/INFO]: [OptiFine] Checking for new version
+[14:58:37] [Client thread/INFO]: [Shaders] OpenGL Version: 4.6.14761 Compatibility Profile Context 21.30.14 30.0.13014.8
+[14:58:37] [Client thread/INFO]: [Shaders] Vendor:  ATI Technologies Inc.
+[14:58:37] [Client thread/INFO]: [Shaders] Renderer: AMD Radeon(TM) Graphics
+[14:58:37] [Client thread/INFO]: [Shaders] Capabilities:  2.0  2.1  3.0  3.2  4.0 
+[14:58:37] [Client thread/INFO]: [Shaders] GL_MAX_DRAW_BUFFERS: 8
+[14:58:37] [Client thread/INFO]: [Shaders] GL_MAX_COLOR_ATTACHMENTS_EXT: 8
+[14:58:37] [Client thread/INFO]: [Shaders] GL_MAX_TEXTURE_IMAGE_UNITS: 32
+[14:58:37] [Client thread/INFO]: [Shaders] Load shaders configuration.
+[14:58:37] [Client thread/INFO]: [Shaders] Save shaders configuration.
+[14:58:37] [Client thread/INFO]: [Shaders] Shaders can not be loaded, Fast Render is enabled.
+[14:58:37] [Client thread/INFO]: [Shaders] No shaderpack loaded.
+[14:58:37] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.fml.common.Loader
+[14:58:37] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.fml.client.SplashProgress
+[14:58:37] [VersionCheck/INFO]: [OptiFine] Version found: M5
+[14:58:37] [Client thread/INFO]: Reloading ResourceManager: Default, 1.14 Textures
+[14:58:37] [Client thread/INFO]: [OptiFine] *** Reloading textures ***
+[14:58:37] [Client thread/INFO]: [OptiFine] Resource packs: 1.14 Textures
+[14:58:38] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.model.Attributes
+[14:58:38] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.client.renderer.vertex.VertexFormatElement$EnumUsage.preDraw
+[14:58:38] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.client.renderer.vertex.VertexFormatElement$EnumUsage.postDraw
+[14:58:38] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[14:58:38] [Thread-5/INFO]: Initializing LWJGL OpenAL
+[14:58:38] [Thread-5/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[14:58:38] [Thread-5/INFO]: OpenAL initialized.
+[14:58:38] [Sound Library Loader/INFO]: Sound engine started
+[14:58:39] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.ForgeHooksClient
+[14:58:40] [Client thread/INFO]: [OptiFine] Mipmap levels: 4
+[14:58:40] [Client thread/INFO]: [OptiFine] Multitexture: false
+[14:58:40] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/bookshelf/ctm.properties
+[14:58:40] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/diamond_block/ctm.properties
+[14:58:40] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass/ctm.properties
+[14:58:40] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass/ctm_pane.properties
+[14:58:40] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_black/ctm.properties
+[14:58:40] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_black/ctm_pane.properties
+[14:58:40] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_blue/ctm.properties
+[14:58:40] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_blue/ctm_pane.properties
+[14:58:40] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_brown/ctm.properties
+[14:58:40] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_brown/ctm_pane.properties
+[14:58:40] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_cyan/ctm.properties
+[14:58:40] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_cyan/ctm_pane.properties
+[14:58:40] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_gray/ctm.properties
+[14:58:40] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_gray/ctm_pane.properties
+[14:58:40] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_green/ctm.properties
+[14:58:40] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_green/ctm_pane.properties
+[14:58:40] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_light_blue/ctm.properties
+[14:58:40] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_light_blue/ctm_pane.properties
+[14:58:40] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_lime/ctm.properties
+[14:58:40] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_lime/ctm_pane.properties
+[14:58:40] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_magenta/ctm.properties
+[14:58:40] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_magenta/ctm_pane.properties
+[14:58:40] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_orange/ctm.properties
+[14:58:40] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_orange/ctm_pane.properties
+[14:58:40] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_pink/ctm.properties
+[14:58:40] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_pink/ctm_pane.properties
+[14:58:40] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_purple/ctm.properties
+[14:58:40] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_purple/ctm_pane.properties
+[14:58:40] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_red/ctm.properties
+[14:58:40] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_red/ctm_pane.properties
+[14:58:40] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_silver/ctm.properties
+[14:58:40] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_silver/ctm_pane.properties
+[14:58:40] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_white/ctm.properties
+[14:58:40] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_white/ctm_pane.properties
+[14:58:40] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_yellow/ctm.properties
+[14:58:40] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_yellow/ctm_pane.properties
+[14:58:40] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/gold_block/ctm.properties
+[14:58:40] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/iron_block/ctm.properties
+[14:58:40] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/lapis_block/ctm.properties
+[14:58:40] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/quartz_block/ctm_side.properties
+[14:58:40] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/quartz_block/ctm_top.properties
+[14:58:40] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/red_sandstone_side/ctm.properties
+[14:58:40] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/sandstone_side/ctm.properties
+[14:58:40] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/stone_andesite_smooth/ctm.properties
+[14:58:40] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/stone_diorite_smooth/ctm.properties
+[14:58:40] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/stone_granite_smooth/ctm.properties
+[14:58:40] [Client thread/INFO]: [OptiFine] Multipass connected textures: false
+[14:58:40] [Client thread/INFO]: [OptiFine] Multipass connected textures: false
+[14:58:40] [Client thread/INFO]: [OptiFine] BetterGrass: Parsing default configuration optifine/bettergrass.properties
+[14:58:41] [Client thread/INFO]: Created: 1024x512 textures-atlas
+[14:58:41] [Client thread/INFO]: [OptiFine] Animated sprites: 12
+[14:58:41] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.model.ModelLoader
+[14:58:41] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.ItemModelMesherForge
+[14:58:41] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.fml.client.registry.RenderingRegistry
+[14:58:41] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.common.ForgeModContainer
+[14:58:41] [Client thread/INFO]: Reloading ResourceManager: Default, 1.14 Textures
+[14:58:41] [Client thread/INFO]: [OptiFine] *** Reloading textures ***
+[14:58:41] [Client thread/INFO]: [OptiFine] Resource packs: 1.14 Textures
+[14:58:41] [Client thread/INFO]: SoundSystem shutting down...
+[14:58:41] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
+[14:58:41] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[14:58:42] [Thread-7/INFO]: Initializing LWJGL OpenAL
+[14:58:42] [Thread-7/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[14:58:42] [Thread-7/INFO]: OpenAL initialized.
+[14:58:42] [Sound Library Loader/INFO]: Sound engine started
+[14:58:43] [Client thread/INFO]: [OptiFine] Mipmap levels: 4
+[14:58:43] [Client thread/INFO]: [OptiFine] Multitexture: false
+[14:58:43] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/bookshelf/ctm.properties
+[14:58:43] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/diamond_block/ctm.properties
+[14:58:43] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass/ctm.properties
+[14:58:43] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass/ctm_pane.properties
+[14:58:43] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_black/ctm.properties
+[14:58:43] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_black/ctm_pane.properties
+[14:58:43] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_blue/ctm.properties
+[14:58:43] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_blue/ctm_pane.properties
+[14:58:43] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_brown/ctm.properties
+[14:58:43] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_brown/ctm_pane.properties
+[14:58:43] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_cyan/ctm.properties
+[14:58:43] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_cyan/ctm_pane.properties
+[14:58:43] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_gray/ctm.properties
+[14:58:43] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_gray/ctm_pane.properties
+[14:58:43] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_green/ctm.properties
+[14:58:43] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_green/ctm_pane.properties
+[14:58:43] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_light_blue/ctm.properties
+[14:58:43] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_light_blue/ctm_pane.properties
+[14:58:43] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_lime/ctm.properties
+[14:58:43] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_lime/ctm_pane.properties
+[14:58:43] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_magenta/ctm.properties
+[14:58:43] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_magenta/ctm_pane.properties
+[14:58:43] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_orange/ctm.properties
+[14:58:43] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_orange/ctm_pane.properties
+[14:58:43] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_pink/ctm.properties
+[14:58:43] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_pink/ctm_pane.properties
+[14:58:43] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_purple/ctm.properties
+[14:58:43] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_purple/ctm_pane.properties
+[14:58:43] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_red/ctm.properties
+[14:58:43] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_red/ctm_pane.properties
+[14:58:43] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_silver/ctm.properties
+[14:58:43] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_silver/ctm_pane.properties
+[14:58:43] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_white/ctm.properties
+[14:58:43] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_white/ctm_pane.properties
+[14:58:43] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_yellow/ctm.properties
+[14:58:43] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/glass_yellow/ctm_pane.properties
+[14:58:43] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/gold_block/ctm.properties
+[14:58:43] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/iron_block/ctm.properties
+[14:58:43] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/lapis_block/ctm.properties
+[14:58:43] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/quartz_block/ctm_side.properties
+[14:58:43] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/quartz_block/ctm_top.properties
+[14:58:43] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/red_sandstone_side/ctm.properties
+[14:58:43] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/sandstone_side/ctm.properties
+[14:58:43] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/stone_andesite_smooth/ctm.properties
+[14:58:43] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/stone_diorite_smooth/ctm.properties
+[14:58:43] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/stone_granite_smooth/ctm.properties
+[14:58:43] [Client thread/INFO]: [OptiFine] Multipass connected textures: false
+[14:58:43] [Client thread/INFO]: [OptiFine] Multipass connected textures: false
+[14:58:43] [Client thread/INFO]: [OptiFine] BetterGrass: Parsing default configuration optifine/bettergrass.properties
+[14:58:43] [Client thread/INFO]: Created: 1024x512 textures-atlas
+[14:58:44] [Client thread/INFO]: [OptiFine] Animated sprites: 12
+[14:58:46] [Client thread/INFO]: Setting user: Appu26j
+[14:58:46] [Client thread/INFO]: (Session ID is token:********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************:cb6b6dd401d345abbbe646670c674b7b)
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.fml.client.GuiModList
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: mods.betterfoliage.client.BetterFoliageClient
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.fml.common.asm.transformers.BlamingTransformer
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.event.world.ChunkWatchEvent$UnWatch
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.fml.relauncher.CoreModManager
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.common.DimensionManager
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.event.GuiScreenEvent$DrawScreenEvent$Pre
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.event.GuiScreenEvent$DrawScreenEvent$Post
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.event.EntityViewRenderEvent$CameraSetup
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.event.EntityViewRenderEvent$FogColors
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.fml.common.eventhandler.Event
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.fml.common.eventhandler.EventBus
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.common.property.ExtendedBlockState
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.fml.client.FMLClientHandler
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.fml.common.FMLCommonHandler
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.world.biome.BiomeGenBase.getWaterColorMultiplier
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.addDestroyEffects
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.addHitEffects
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.canCreatureSpawn
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.canRenderInLayer
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.doesSideBlockRendering
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.getBedDirection
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.getExtendedState
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.getLightOpacity
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.getLightValue
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.hasTileEntity
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.isAir
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.isBed
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.isBedFoot
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.isSideSolid
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.world.ChunkCache.isSideSolid
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.entity.Entity.canRiderInteract
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Field not present: net.minecraft.entity.Entity.captureDrops
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Field not present: net.minecraft.entity.Entity.capturedDrops
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.entity.Entity.shouldRenderInPass
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.entity.Entity.shouldRiderSit
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.event.ForgeEventFactory
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.common.ForgeHooks
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Field not present: net.minecraft.item.Item.delegate
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.item.Item.getDurabilityForDisplay
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.item.Item.getModel
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.item.Item.onEntitySwing
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.item.Item.shouldCauseReequipAnimation
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.item.Item.showDurabilityBar
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.potion.PotionEffect.isCurativeItem
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.tileentity.TileEntity.canRenderBreaking
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.tileentity.TileEntity.getRenderBoundingBox
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.tileentity.TileEntity.hasFastRenderer
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.tileentity.TileEntity.shouldRenderInPass
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.world.World.countEntities
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.world.World.getPerWorldStorage
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.world.WorldProvider.getCloudRenderer
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.world.WorldProvider.getSkyRenderer
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.world.WorldProvider.getWeatherRenderer
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.world.WorldProvider.getSaveFolder
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.model.IColoredBakedQuad
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.common.property.IExtendedBlockState
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.model.IModel
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.IRenderHandler
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.model.pipeline.LightUtil
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.common.MinecraftForge
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.MinecraftForgeClient
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.fml.common.ModContainer
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.model.ModelLoader$VanillaLoader
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.event.RenderBlockOverlayEvent$OverlayType
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.event.RenderItemInFrameEvent
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.event.RenderLivingEvent$Pre
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.event.RenderLivingEvent$Post
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.event.RenderLivingEvent$Specials$Pre
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.event.RenderLivingEvent$Specials$Post
+[14:58:46] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.event.world.WorldEvent$Load
+[14:58:46] [Client thread/INFO]: [OptiFine] *** Reloading custom textures ***
+[14:58:47] [Client thread/INFO]: [OptiFine] Enable face culling: acacia_leaves, birch_leaves, dark_oak_leaves, jungle_leaves, oak_leaves, spruce_leaves
+[14:58:53] [Client thread/INFO]: Connecting to mc.hypixel.net., 25565
+[14:58:53] [Client thread/INFO]: [CHAT] Couldn't connect you to that server, so you were put in the Murder Mystery lobby!
+[14:58:54] [Client thread/INFO]: [CHAT]                                      
+[14:58:54] [Client thread/INFO]: [CHAT]                          
+[14:58:54] [Client thread/INFO]: [CHAT]  >>> [MVP++] Appu26j joined the lobby! <<<
+[14:58:55] [Chunk Batcher 1/WARN]: Needed to grow BufferBuilder buffer: Old size 524288 bytes, new size 2621440 bytes.
+[14:58:55] [Chunk Batcher 2/WARN]: Needed to grow BufferBuilder buffer: Old size 524288 bytes, new size 2621440 bytes.
+[14:58:55] [Chunk Batcher 1/WARN]: Needed to grow BufferBuilder buffer: Old size 524288 bytes, new size 2621440 bytes.
+[14:58:56] [Chunk Batcher 4/WARN]: Needed to grow BufferBuilder buffer: Old size 524288 bytes, new size 2621440 bytes.
+[14:58:56] [Chunk Batcher 4/WARN]: Needed to grow BufferBuilder buffer: Old size 524288 bytes, new size 2621440 bytes.
+[14:58:56] [Chunk Batcher 4/WARN]: Needed to grow BufferBuilder buffer: Old size 524288 bytes, new size 2621440 bytes.
+[14:58:56] [Chunk Batcher 1/WARN]: Needed to grow BufferBuilder buffer: Old size 524288 bytes, new size 2621440 bytes.
+[14:58:56] [Chunk Batcher 3/WARN]: Needed to grow BufferBuilder buffer: Old size 524288 bytes, new size 2621440 bytes.
+[14:58:57] [Client thread/INFO]: [CHAT]                                      
+[14:58:57] [Client thread/INFO]: [CHAT]                          
+[14:58:57] [Client thread/INFO]: [CHAT]  >>> [MVP++] Appu26j joined the lobby! <<<
+[14:59:00] [Client thread/INFO]: [CHAT] [MVP+] Knirpsi_ joined the lobby!
+[14:59:00] [Client thread/INFO]: [CHAT]                                      
+[14:59:00] [Client thread/INFO]: [CHAT]                          
+[14:59:00] [Client thread/INFO]: [CHAT]  >>> [MVP++] Appu26j joined the lobby! <<<
+[14:59:02] [Client thread/INFO]: [CHAT] [11?] Every1is_awesome: squidbagT you remind me of that one guy :D
+[14:59:03] [Client thread/INFO]: [CHAT] [588?] [MVP+] EuanKC: :O
+[14:59:04] [Client thread/INFO]: [CHAT] [MVP+] SamusBear joined the lobby!
+[14:59:05] [Client thread/INFO]: [CHAT] [MVP+] Higgex joined the lobby!
+[14:59:05] [Client thread/INFO]: [CHAT] To Every1is_awesome: Hey! I'm currently muted and am unable to message right now.
+[14:59:06] [Client thread/INFO]: [CHAT] [MVP+] Jonahh_ joined the lobby!
+[14:59:08] [Client thread/INFO]: [CHAT]                                      
+[14:59:08] [Client thread/INFO]: [CHAT]                          
+[14:59:08] [Client thread/INFO]: [CHAT]  >>> [MVP++] Appu26j joined the lobby! <<<
+[14:59:08] [Client thread/INFO]: [CHAT] [2?] sq0p: ??????
+[14:59:09] [Client thread/INFO]: [CHAT] [328?] [MVP+] NonSkill1: ahcl
+[14:59:09] [Client thread/INFO]: [CHAT] [223?] [MVP+] oJobo: Elkivy
+[14:59:09] [Client thread/INFO]: [CHAT] [88?] [VIP] Qxat69: ahcl
+[14:59:09] [Client thread/INFO]: [CHAT] [49?] [MVP++] Keegandav: Stfu skyblock people
+[14:59:11] [Client thread/INFO]: [CHAT] [88?] [VIP] cquxm: 2/4 80+
+[14:59:11] [Client thread/INFO]: [CHAT] [45?] [VIP] lmts: Jxlie025
+[14:59:11] [Client thread/INFO]: [CHAT] [387?] [VIP+] okeekee: bhopperhost
+[14:59:11] [Client thread/INFO]: [CHAT] Player visibility enabled!
+[14:59:14] [Client thread/INFO]: [CHAT] You must wait 3s between uses!
+[14:59:14] [Client thread/INFO]: [CHAT] [696?] [MVP+] ElliotJohn368: 1/4 say Potato.
+[14:59:15] [Client thread/INFO]: [CHAT] You cannot message this player.
+[14:59:15] [Client thread/INFO]: [CHAT] Player visibility disabled!
+[14:59:15] [Client thread/INFO]: [CHAT] You cannot message this player.
+[14:59:16] [Client thread/INFO]: [CHAT] You cannot message this player.
+[14:59:16] [Client thread/INFO]: [CHAT] [23?] [VIP] exacters: 2/3
+[14:59:17] [Client thread/INFO]: [CHAT] You cannot message this player.
+[14:59:18] [Client thread/INFO]: [CHAT] To [VIP] exacters: Hey! I'm currently muted and am unable to message right now.
+[14:59:18] [Client thread/INFO]: [CHAT] To [MVP+] Tactical_Idiocy: Hey! I'm currently muted and am unable to message right now.
+[14:59:19] [Client thread/INFO]: [CHAT] [253?] [MVP++] aungnangwang: potato.
+[14:59:19] [Client thread/INFO]: [CHAT] You cannot message this player.
+[14:59:19] [Client thread/INFO]: [CHAT] Friend > Frostweb joined.
+[14:59:19] [Client thread/INFO]: [CHAT] [234?] [MVP+] rirro: Tomato
+[14:59:20] [Client thread/INFO]: [CHAT] To [MVP++] aungnangwang: Hey! I'm currently muted and am unable to message right now.
+[14:59:21] [Client thread/INFO]: [CHAT] You cannot message this player.
+[14:59:21] [Client thread/INFO]: [CHAT]  >>> [MVP++] Bluecoat joined the lobby! <<<
+[14:59:21] [Client thread/INFO]: [CHAT] You cannot message this player.
+[14:59:22] [Client thread/INFO]: [CHAT] From [MVP++] aungnangwang: hello
+[14:59:22] [Client thread/INFO]: [CHAT] You cannot message this player.
+[14:59:23] [Client thread/INFO]: [CHAT] You cannot message this player.
+[14:59:23] [Client thread/INFO]: [CHAT] [304?] [MVP+] Cenial: alguem ai br/pt ?
+[14:59:23] [Client thread/INFO]: [CHAT] [348?] [MVP+] clemzs: potader
+[14:59:23] [Client thread/INFO]: [CHAT] To [MVP+] Frostweb: Hey! I'm currently muted and am unable to message right now.
+[14:59:24] [Client thread/INFO]: [CHAT] You cannot message this player.
+[14:59:24] [Client thread/INFO]: [CHAT] [373?] [MVP++] WOOFWOOF2403: 3/4 VC
+[14:59:24] [Client thread/INFO]: [CHAT] [MVP+] zNotDiamond joined the lobby!
+[14:59:24] [Client thread/INFO]: [CHAT] To [MVP+] _Thunderstorm: Hey! I'm currently muted and am unable to message right now.
+[14:59:24] [Client thread/INFO]: [CHAT] [381?] [MVP++] BHOPPERGHOST: 3/4 vc
+[14:59:25] [Client thread/INFO]: [CHAT] [302?] [MVP+] johnwilksb00th: po]tato
+[14:59:25] [Client thread/INFO]: [CHAT] To [MVP++] OhJan: Hey! I'm currently muted and am unable to message right now.
+[14:59:25] [Client thread/INFO]: [CHAT] [683?] [MVP++] Craying: 2/3 VC
+[14:59:26] [Client thread/INFO]: [CHAT] You cannot message this player.
+[14:59:26] [Client thread/INFO]: [CHAT] From [VIP] exacters: oh ik u from a stream
+[14:59:27] [Client thread/INFO]: [CHAT] To [MVP+] kuves: Hey! I'm currently muted and am unable to message right now.
+[14:59:27] [Client thread/INFO]: [CHAT] [88?] [VIP] cquxm: 3/4
+[14:59:27] [Client thread/INFO]: [CHAT] You cannot message this player.
+[14:59:28] [Client thread/INFO]: [CHAT] You cannot message this player.
+[14:59:28] [Client thread/INFO]: [CHAT] [88?] [VIP] Qxat69: 1/4 say abc 80+
+[14:59:28] [Client thread/INFO]: [CHAT] [46?] [VIP] Adistine: 2/4 doing 4's say 321
+[14:59:29] [Client thread/INFO]: [CHAT] You cannot message this player.
+[14:59:29] [Client thread/INFO]: [CHAT] [22?] [VIP] imrealthick: 2/4 bedwasrs vc
+[14:59:30] [Client thread/INFO]: [CHAT] You cannot message this player.
+[14:59:30] [Client thread/INFO]: [CHAT] [683?] [MVP++] Craying: 2/3 vc (????)
+[14:59:30] [Client thread/INFO]: [CHAT] You cannot message this player.
+[14:59:31] [Client thread/INFO]: [CHAT]  >>> [MVP++] Hexze joined the lobby! <<<
+[14:59:31] [Client thread/INFO]: [CHAT] You cannot message this player.
+[14:59:32] [Client thread/INFO]: [CHAT] To [MVP+] rwapid: Hey! I'm currently muted and am unable to message right now.
+[14:59:32] [Client thread/INFO]: [CHAT] [122?] [VIP] not_not_7qmid: 1/2 100+
+[14:59:32] [Client thread/INFO]: [CHAT] [MVP+] Tgood1 joined the lobby!
+[14:59:33] [Client thread/INFO]: [CHAT] To [MVP++] FreezingPug: Hey! I'm currently muted and am unable to message right now.
+[14:59:33] [Client thread/INFO]: [CHAT] Friend > snow_drift left.
+[14:59:33] [Client thread/INFO]: [CHAT] You cannot message this player.
+[14:59:34] [Client thread/INFO]: [CHAT] [460?] [MVP+] TurqishDerEchte: BHOPPER Imma listen
+[14:59:34] [Client thread/INFO]: [CHAT] [348?] [MVP+] clemzs: BHOPPERGHOST
+[14:59:34] [Client thread/INFO]: [CHAT] You cannot message this player.
+[14:59:34] [Client thread/INFO]: [CHAT] [279?] [MVP+] ahcl: o/
+[14:59:35] [Client thread/INFO]: [CHAT] To [MVP+] RuiningStats: Hey! I'm currently muted and am unable to message right now.
+[14:59:36] [Client thread/INFO]: [CHAT] You cannot message this player.
+[14:59:36] [Client thread/INFO]: [CHAT] To [MVP++] Jxlie025: Hey! I'm currently muted and am unable to message right now.
+[14:59:37] [Client thread/INFO]: [CHAT] [696?] [MVP+] ElliotJohn368: 2/4 say "Rirro sucks".
+[14:59:37] [Client thread/INFO]: [CHAT] To [MVP+] Timewee: Hey! I'm currently muted and am unable to message right now.
+[14:59:38] [Client thread/INFO]: [CHAT] You cannot message this player.
+[14:59:39] [Client thread/INFO]: [CHAT] You cannot message this player.
+[14:59:39] [Client thread/INFO]: [CHAT] [46?] [VIP] Adistine: 2/4 doing 4's say 321 VC
+[14:59:39] [Client thread/INFO]: [CHAT] You cannot message this player.
+[14:59:40] [Client thread/INFO]: [CHAT] From [MVP++] aungnangwang: https://discord.gg/zVxFQV9Y
+[14:59:40] [Client thread/INFO]: [CHAT] To [MVP+] TurqishDerEchte: Hey! I'm currently muted and am unable to message right now.
+[14:59:40] [Client thread/INFO]: [CHAT] [398?] [MVP+] zNotDiamond: 1/2 +5 fkdr +100 stars
+[14:59:41] [Client thread/INFO]: [CHAT] You cannot message this player.
+[14:59:41] [Client thread/INFO]: [CHAT] From [VIP] exacters: r u trying to join send me a p invite
+[14:59:42] [Client thread/INFO]: [CHAT] You cannot message this player.
+[14:59:42] [Client thread/INFO]: [CHAT] [94?] [MVP+] Wezmo: rirro sucks
+[14:59:42] [Client thread/INFO]: [CHAT] [MVP+] H_ed joined the lobby!
+[14:59:42] [Client thread/INFO]: [CHAT] To [MVP+] ILOVEROBLOX45: Hey! I'm currently muted and am unable to message right now.
+[14:59:43] [Client thread/INFO]: [CHAT] From [MVP+] Tactical_Idiocy: what?
+[14:59:43] [Client thread/INFO]: [CHAT] To [MVP++] xTori: Hey! I'm currently muted and am unable to message right now.
+[14:59:44] [Client thread/INFO]: [CHAT] [325?] [MVP+] Adventure6uy: Rirro Sucks
+[14:59:44] [Client thread/INFO]: [CHAT] You cannot message this player.
+[14:59:44] [Client thread/INFO]: [CHAT] [445?] [MVP++] otss: (????)
+[14:59:44] [Client thread/INFO]: [CHAT] [26?] [VIP] intrucid: 1/2 be good def
+[14:59:45] [Client thread/INFO]: [CHAT] You cannot message this player.
+[14:59:45] [Client thread/INFO]: [CHAT] From [MVP+] Timewee: suchs an L
+[14:59:45] [Client thread/INFO]: [CHAT] [22?] [VIP] imrealthick: Craying tryna join us?
+[14:59:45] [Client thread/INFO]: [CHAT] You cannot message this player.
+[14:59:46] [Client thread/INFO]: [CHAT] [77?] [VIP] chrispyft: 2/4 chill
+[14:59:46] [Client thread/INFO]: [CHAT]  >>> [MVP++] LuKeAYY joined the lobby! <<<
+[14:59:46] [Client thread/INFO]: [CHAT] To [MVP++] alilh: Hey! I'm currently muted and am unable to message right now.
+[14:59:46] [Client thread/INFO]: [CHAT] [304?] [MVP+] Cenial: alguem ai br/pt ?????
+[14:59:47] [Client thread/INFO]: [CHAT] From [MVP++] aungnangwang: idk u but u msg me on both of my accounts
+[14:59:47] [Client thread/INFO]: [CHAT] -----------------------------------------------------
+[MVP++] Jxlie025 has invited you to join [VIP] tomatochad's party!
+You have 60 seconds to accept. Click here to join!
+-----------------------------------------------------
+[14:59:47] [Client thread/INFO]: [CHAT] You cannot message this player.
+[14:59:47] [Client thread/INFO]: [CHAT] [322?] [MVP+] Tgood1: 3/4 100+ fkdr
+[14:59:48] [Client thread/INFO]: [CHAT] To [MVP++] bbumbleee: Hey! I'm currently muted and am unable to message right now.
+[14:59:48] [Client thread/INFO]: [CHAT] [304?] [MVP+] Cenial: alguem ai br/pt ??????????
+[14:59:48] [Client thread/INFO]: [CHAT] You cannot message this player.
+[14:59:48] [Client thread/INFO]: [CHAT] [MVP+] vwleriie joined the lobby!
+[14:59:49] [Client thread/INFO]: [CHAT] [373?] [MVP++] WOOFWOOF2403: 3/4 VC VC
+[14:59:49] [Client thread/INFO]: [CHAT] To [MVP+] BassILoveYou: Hey! I'm currently muted and am unable to message right now.
+[14:59:50] [Client thread/INFO]: [CHAT] You cannot message this player.
+[14:59:51] [Client thread/INFO]: [CHAT] You cannot message this player.
+[14:59:51] [Client thread/INFO]: [CHAT] To [MVP++] Craying: Hey! I'm currently muted and am unable to message right now.
+[14:59:52] [Client thread/INFO]: [CHAT] To [MVP+] ahcl: Hey! I'm currently muted and am unable to message right now.
+[14:59:52] [Client thread/INFO]: [CHAT] [216?] [MVP+] kirstcin: WOOFWOOF2403
+[14:59:53] [Client thread/INFO]: [CHAT]  >>> [MVP++] tcha joined the lobby! <<<
+[14:59:53] [Client thread/INFO]: [CHAT] You cannot message this player.
+[14:59:53] [Client thread/INFO]: [CHAT] [46?] [VIP] Adistine: 2/4 VC say 321
+[14:59:54] [Client thread/INFO]: [CHAT] [122?] [VIP] not_not_7qmid: chrispyft
+[14:59:54] [Client thread/INFO]: [CHAT] [696?] [MVP+] ElliotJohn368: 3/4 say "Rirro = Bad".
+[14:59:54] [Client thread/INFO]: [CHAT] To [MVP+] willory: Hey! I'm currently muted and am unable to message right now.
+[14:59:55] [Client thread/INFO]: [CHAT] You cannot message this player.
+[14:59:55] [Client thread/INFO]: [CHAT] [94?] [MVP+] Wezmo: 3/4
+[14:59:55] [Client thread/INFO]: [CHAT] To [VIP] Elkivy: Hey! I'm currently muted and am unable to message right now.
+[14:59:55] [Client thread/INFO]: [CHAT] [234?] [MVP+] rirro: That is harassment
+[14:59:55] [Client thread/INFO]: [CHAT] From [MVP+] TurqishDerEchte: Bansdella_#6757
+[14:59:56] [Client thread/INFO]: [CHAT] You cannot message this player.
+[14:59:56] [Client thread/INFO]: [CHAT] [MVP+] uPaw joined the lobby!
+[14:59:57] [Client thread/INFO]: [CHAT] You cannot message this player.
+[14:59:57] [Client thread/INFO]: [CHAT] [22?] [VIP] imrealthick: 2/4 vc bedwars discord
+[14:59:57] [Client thread/INFO]: [CHAT] [45?] [VIP] lmts: WOOFWOOF2403
+[14:59:57] [Client thread/INFO]: [CHAT] To [MVP+] clickauto: Hey! I'm currently muted and am unable to message right now.
+[14:59:58] [Client thread/INFO]: [CHAT] You cannot message this player.
+[14:59:59] [Client thread/INFO]: [CHAT] You cannot message this player.
+[14:59:59] [Client thread/INFO]: [CHAT]  >>> [MVP++] hqtkey joined the lobby! <<<
+[15:00:00] [Client thread/INFO]: [CHAT] You cannot message this player.
+[15:00:00] [Client thread/INFO]: [CHAT] [242?] [MVP+] H_ed: Rirro = bad
+[15:00:00] [Client thread/INFO]: [CHAT] From [MVP+] BassILoveYou: Hey!
+[15:00:00] [Client thread/INFO]: [CHAT] You cannot message this player.
+[15:00:01] [Client thread/INFO]: [CHAT] You cannot message this player.
+[15:00:01] [Client thread/INFO]: [CHAT] [322?] [MVP+] Tgood1: 3/4
+[15:00:01] [Client thread/INFO]: [CHAT] [431?] [MVP] Elevenish: h
+[15:00:01] [Client thread/INFO]: [CHAT] [683?] [MVP++] Craying: intrucid u and?
+[15:00:02] [Client thread/INFO]: [CHAT] [234?] [MVP+] rirro: I can report u for that
+[15:00:02] [Client thread/INFO]: [CHAT] You cannot message this player.
+[15:00:02] [Client thread/INFO]: [CHAT] [88?] [VIP] cquxm: 3/4 say sweet
+[15:00:03] [Client thread/INFO]: [CHAT] You cannot message this player.
+[15:00:03] [Client thread/INFO]: [CHAT] [90?] [VIP] tomatochad: 3/4 discord german !!!!!!!!!!!!!!!
+[15:00:03] [Client thread/INFO]: [CHAT]  >>> [MVP++] Kaxiku joined the lobby! <<<
+[15:00:03] [Client thread/INFO]: [CHAT] You cannot message this player.
+[15:00:03] [Client thread/INFO]: [CHAT] From [VIP] Elkivy: Boop!
+[15:00:04] [Client thread/INFO]: [CHAT] [23?] [VIP] exacters: 2/3 10+ fkdr
+[15:00:04] [Client thread/INFO]: [CHAT] [234?] [MVP+] rirro: nah jk
+[15:00:05] [Client thread/INFO]: [CHAT] You cannot message this player.
+[15:00:05] [Client thread/INFO]: [CHAT] You cannot message this player.
+[15:00:05] [Client thread/INFO]: [CHAT] [325?] [MVP+] Adventure6uy: Tgood1
+[15:00:05] [Client thread/INFO]: [CHAT] [MVP+] Dolyzz joined the lobby!
+[15:00:06] [Client thread/INFO]: [CHAT] To [MVP++] BHOPPERGHOST: Hey! I'm currently muted and am unable to message right now.
+[15:00:06] [Client thread/INFO]: [CHAT]  >>> [MVP++] Jibin_ joined the lobby! <<<
+[15:00:06] [Client thread/INFO]: [CHAT] [302?] [MVP+] johnwilksb00th: Tgood1
+[15:00:06] [Client thread/INFO]: [CHAT] From [MVP+] clickauto: uhh
+[15:00:06] [Client thread/INFO]: [CHAT] To [MVP+] Waheguru: Hey! I'm currently muted and am unable to message right now.
+[15:00:07] [Client thread/INFO]: [CHAT] [431?] [MVP] Elevenish: 1/2
+[15:00:07] [Client thread/INFO]: [CHAT] You cannot message this player.
+[15:00:07] [Client thread/INFO]: [CHAT] [696?] [MVP+] ElliotJohn368: 3/4 say 123.
+[15:00:08] [Client thread/INFO]: [CHAT] You cannot message this player.
+[15:00:08] [Client thread/INFO]: [CHAT] [22?] [VIP] imrealthick: 2/4 say imrealthick
+[15:00:08] [Client thread/INFO]: [CHAT] [MVP+] WaspGM joined the lobby!
+[15:00:08] [Client thread/INFO]: [CHAT] [49?] [MVP++] Keegandav: :red 2/3 say my ign 40+:
+[15:00:09] [Client thread/INFO]: [CHAT] To [MVP+] 0Extro: Hey! I'm currently muted and am unable to message right now.
+[15:00:09] [Client thread/INFO]: [CHAT] [804?] [MVP++] tcha: tomatochad
+[15:00:09] [Client thread/INFO]: [CHAT] [304?] [MVP+] Cenial: alguem ai br/pt ????????????????'
+[15:00:09] [Client thread/INFO]: [CHAT] [302?] [MVP+] johnwilksb00th: 1223
+[15:00:09] [Client thread/INFO]: [CHAT] You cannot message this player.
+[15:00:10] [Client thread/INFO]: [CHAT] [MVP+] Galacteus joined the lobby!
+[15:00:10] [Client thread/INFO]: [CHAT] To [MVP+] clemzs: Hey! I'm currently muted and am unable to message right now.
+[15:00:10] [Client thread/INFO]: [CHAT] [76?] [MVP+] Tactical_Idiocy: sweet
+[15:00:11] [Client thread/INFO]: [CHAT] [118?] [MVP++] Jxlie025: 3/4 german party say my name with discord
+[15:00:11] [Client thread/INFO]: [CHAT] From [MVP+] BassILoveYou: I may not know you but hello there!
+[15:00:11] [Client thread/INFO]: [CHAT] You cannot message this player.
+[15:00:11] [Client thread/INFO]: [CHAT] [242?] [MVP+] H_ed: 123
+[15:00:11] [Client thread/INFO]: [CHAT] [304?] [MVP+] Cenial: alguem ai br/pt ????????????????'????????
+[15:00:12] [Client thread/INFO]: [CHAT] You cannot message this player.
+[15:00:12] [Client thread/INFO]: [CHAT] [398?] [MVP+] zNotDiamond: 1/2 +5 fkdr +100 stars /////////
+[15:00:12] [Client thread/INFO]: [CHAT] To [MVP++] otss: Hey! I'm currently muted and am unable to message right now.
+[15:00:12] [Client thread/INFO]: [CHAT] [352?] [MVP++] Acqls: 123
+[15:00:13] [Client thread/INFO]: [CHAT] [304?] [MVP+] Cenial: alguem ai br/pt ????????????????'?????????????????
+[15:00:14] [Client thread/INFO]: [CHAT]  >>> [MVP++] BHOPPERGHOST joined the lobby! <<<
+[15:00:14] [Client thread/INFO]: [CHAT] From [MVP+] Waheguru: not again
+[15:00:15] [Client thread/INFO]: [CHAT] [218?] [MVP+] WaspGM: tgood u know we bettah
+[15:00:15] [Client thread/INFO]: [CHAT] [26?] [VIP] intrucid: what do you mean and
+[15:00:16] [Client thread/INFO]: [CHAT] [683?] [MVP++] Craying: imrealthick u and?
+[15:00:16] [Client thread/INFO]: [CHAT] [148?] [VIP] uAkeno: Tgood1 join my party
+[15:00:17] [Client thread/INFO]: [CHAT] [MVP+] ahcl joined the lobby!
+[15:00:17] [Client thread/INFO]: [CHAT] [218?] [MVP+] WaspGM: join up
+[15:00:17] [Client thread/INFO]: [CHAT] [431?] [MVP] Elevenish: 1/2 oooo
+[15:00:18] [Client thread/INFO]: [CHAT] From [MVP+] clickauto: did u mean to send me that?
+[15:00:20] [Client thread/INFO]: [CHAT]  >>> [MVP++] Usually joined the lobby! <<<
+[15:00:21] [Client thread/INFO]: [CHAT] [30?] [VIP] livelavlove: elevenish
+[15:00:21] [Client thread/INFO]: [CHAT] [MVP+] iFront joined the lobby!
+[15:00:21] [Client thread/INFO]: [CHAT] [23?] [VIP] exacters: 2/3 10+ fkdr say 123
+[15:00:22] [Client thread/INFO]: [CHAT] From [VIP] Elkivy: sadly i found last one
+[15:00:22] [Client thread/INFO]: [CHAT] [49?] [MVP++] Keegandav: 2/3 40+ say my ign / / //
+[15:00:23] [Client thread/INFO]: [CHAT] [88?] [VIP] cquxm: 3/4 say F
+[15:00:24] [Client thread/INFO]: [CHAT] [279?] [VIP+] Latter_z: 1/2
+[15:00:25] [Client thread/INFO]: [CHAT] [333?] [MVP+] iFront: BHOPPERGHOST
+[15:00:26] [Client thread/INFO]: [CHAT] [MVP+] PasiveBanjo joined the lobby!
+[15:00:27] [Client thread/INFO]: [CHAT] [76?] [MVP+] Tactical_Idiocy: F
+[15:00:27] [Client thread/INFO]: [CHAT] [26?] [VIP] intrucid: 1/2 be good def //////////
+[15:00:28] [Client thread/INFO]: [CHAT] [304?] [MVP+] Cenial: alguem ai br/pt ????????????????'??????????????????????????
+[15:00:30] [Client thread/INFO]: [CHAT] [MVP+] Doggyskull joined the lobby!
+[15:00:31] [Client thread/INFO]: [CHAT] [414?] [VIP+] lsno: Elevenish bad
+[15:00:32] [Client thread/INFO]: [CHAT] [1?] Metpolarbears: F
+[15:00:32] [Client thread/INFO]: [CHAT] [233?] [MVP++] Bluecoat: Latter_z
+[15:00:33] [Client thread/INFO]: [CHAT] From [MVP+] clickauto: who r u?
+[15:00:33] [Client thread/INFO]: [CHAT] [302?] [MVP+] johnwilksb00th: Keegandav
+[15:00:34] [Client thread/INFO]: [CHAT] [431?] [MVP] Elevenish: ahaha
+[15:00:34] [Client thread/INFO]: [CHAT] [398?] [MVP+] zNotDiamond: 1/2 +5 fkdr
+[15:00:34] [Client thread/INFO]: [CHAT] [77?] [VIP] chrispyft: lol
+[15:00:35] [Client thread/INFO]: [CHAT] [22?] [VIP] imrealthick: me and Adistine Craying
+[15:00:35] [Client thread/INFO]: [CHAT] [46?] [VIP] Adistine: 2/4 VC say 321....
+[15:00:36] [Client thread/INFO]: [CHAT] [431?] [MVP] Elevenish: hey lsno
+[15:00:40] [Client thread/INFO]: [CHAT] [325?] [MVP+] Adventure6uy: xc00kie
+[15:00:40] [Client thread/INFO]: [CHAT] [683?] [MVP++] Craying: invite
+[15:00:40] [Client thread/INFO]: [CHAT] [77?] [VIP] chrispyft: 2/4 chill bw
+[15:00:42] [Client thread/INFO]: [CHAT] [414?] [VIP+] lsno: smh
+[15:00:42] [Client thread/INFO]: [CHAT] [MVP+] Ryzien joined the lobby!
+[15:00:43] [Client thread/INFO]: [CHAT] [23?] [VIP] exacters: 2/3 10+ fkdr say 123 ///
+[15:00:44] [Client thread/INFO]: [CHAT] [22?] [VIP] imrealthick: Craying
+[15:00:45] [Client thread/INFO]: [CHAT]  >>> [MVP++] juceiy joined the lobby! <<<
+[15:00:45] [Client thread/INFO]: [CHAT] [2?] [MVP] Gyomei: .
+[15:00:46] [Client thread/INFO]: [CHAT] [34?] [VIP] rypes: 123
+[15:00:46] [Client thread/INFO]: [CHAT] [349?] [MVP+] PasiveBanjo: chrispyft
+[15:00:47] [Client thread/INFO]: [CHAT]  >>> [MVP++] Acqls joined the lobby! <<<
+[15:00:47] [Client thread/INFO]: [CHAT] -----------------------------------------------------
+[15:00:47] [Client thread/INFO]: [CHAT] The party invite from [MVP++] Jxlie025 has expired.
+[15:00:47] [Client thread/INFO]: [CHAT] -----------------------------------------------------
+[15:00:48] [Client thread/INFO]: [CHAT]  >>> [MVP++] Hvssein joined the lobby! <<<
+[15:00:50] [Client thread/INFO]: [CHAT] [129?] [MVP+] Ryzien: 1/4
+[15:00:50] [Client thread/INFO]: [CHAT] [431?] [MVP] Elevenish: 1/2
+[15:00:51] [Client thread/INFO]: [CHAT] [322?] [MVP+] Tgood1: why uAkeno
+[15:00:52] [Client thread/INFO]: [CHAT]  >>> [MVP++] Himaa joined the lobby! <<<
+[15:00:55] [Client thread/INFO]: [CHAT] 
+[15:00:55] [Client thread/INFO]: [CHAT] [WATCHDOG ANNOUNCEMENT]
+[15:00:55] [Client thread/INFO]: [CHAT] Watchdog has banned 11,237 players in the last 7 days.
+[15:00:55] [Client thread/INFO]: [CHAT] Staff have banned an additional 10,344 in the last 7 days.
+[15:00:55] [Client thread/INFO]: [CHAT] Blacklisted modifications are a bannable offense!
+[15:00:55] [Client thread/INFO]: [CHAT] 
+[15:00:55] [Client thread/INFO]: [CHAT] [161?] [MVP++] LuKeAYY: 3/4 discord
+[15:00:56] [Client thread/INFO]: [CHAT] You tipped 1 player in 1 game!
+[15:00:57] [Client thread/INFO]: [CHAT] From [MVP+] clickauto: um
+[15:00:58] [Client thread/INFO]: [CHAT]  >>> [MVP++] ilyChrista joined the lobby! <<<
+[15:00:59] [Client thread/INFO]: [CHAT] [218?] [MVP+] WaspGM: come to the good side tgood
+[15:01:00] [Client thread/INFO]: [CHAT] [349?] [MVP+] PasiveBanjo: 3/4
+[15:01:00] [Client thread/INFO]: [CHAT] [148?] [VIP] uAkeno: Cuz we are good team
+[15:01:02] [Client thread/INFO]: [CHAT] [128?] [MVP++] alilh: 1/4
+[15:01:02] [Client thread/INFO]: [CHAT] [MVP+] yazub joined the lobby!
+[15:01:02] [Client thread/INFO]: [CHAT] [431?] [MVP] Elevenish: wanna play lsno?
+[15:01:02] [Client thread/INFO]: [CHAT]  >>> [MVP++] Bloopity joined the lobby! <<<
+[15:01:02] [Client thread/INFO]: [CHAT] [MVP+] luhvq joined the lobby!
+[15:01:03] [Client thread/INFO]: [CHAT] [77?] [VIP] chrispyft: 3/4 chill bw////
+[15:01:03] [Client thread/INFO]: [CHAT] [325?] [MVP+] Adventure6uy: PasiveBanjo
+[15:01:03] [Client thread/INFO]: [CHAT] [129?] [MVP+] Ryzien: pasivebanjo
+[15:01:05] [Client thread/INFO]: [CHAT] [MVP+] CanonR10 joined the lobby!
+[15:01:05] [Client thread/INFO]: [CHAT] [398?] [MVP+] zNotDiamond: 1/2 +5 fkdr ...
+[15:01:05] [Client thread/INFO]: [CHAT] [322?] [MVP+] Tgood1: alr
+[15:01:05] [Client thread/INFO]: [CHAT] -----------------------------------------------------
+Friend request from [MVP+] clickauto
+[ACCEPT] - [DENY] - [IGNORE]
+-----------------------------------------------------
+[15:01:05] [Client thread/INFO]: [CHAT] [414?] [VIP+] lsno: idk
+[15:01:05] [Client thread/INFO]: [CHAT] -----------------------------------------------------
+[15:01:05] [Client thread/INFO]: [CHAT] You are now friends with [MVP+] clickauto
+[15:01:05] [Client thread/INFO]: [CHAT] -----------------------------------------------------
+[15:01:05] [Client thread/INFO]: [CHAT]  >>> [MVP++] 77th joined the lobby! <<<
+[15:01:06] [Client thread/INFO]: [CHAT] [431?] [MVP] Elevenish: 1/2 oooooo
+[15:01:06] [Client thread/INFO]: [CHAT] [161?] [MVP++] LuKeAYY: 3/4 disc
+[15:01:07] [Client thread/INFO]: [CHAT] [MVP++] Bloopity launched ilyChrista into the sky in a moment of celebration!
+[15:01:09] [Client thread/INFO]: [CHAT] [1030?] [MVP+] RuiningStats: Lukayy
+[15:01:10] [Client thread/INFO]: [CHAT] [431?] [MVP] Elevenish: oki all good
+[15:01:10] [Client thread/INFO]: [CHAT] [281?] [MVP++] 77th: 2/4 200+
+[15:01:12] [Client thread/INFO]: [CHAT] From [MVP+] BassILoveYou: umm was that an accident?
+[15:01:12] [Client thread/INFO]: [CHAT] 
+[15:01:12] [Client thread/INFO]: [CHAT] ??? [MVP++] ilyChrista gifted 30 Days of MVP++ to ddgf! ???
+[15:01:12] [Client thread/INFO]: [CHAT] They have gifted 142 ranks so far!
+[15:01:12] [Client thread/INFO]: [CHAT] 
+[15:01:14] [Client thread/INFO]: [CHAT] [MVP+] CorbinEW joined the lobby!
+[15:01:14] [Client thread/INFO]: [CHAT] You cannot message this player.
+[15:01:14] [Client thread/INFO]: [CHAT] [1030?] [MVP+] RuiningStats: Lukeayy
+[15:01:14] [Client thread/INFO]: [CHAT] [398?] [MVP+] zNotDiamond: gg
+[15:01:15] [Client thread/INFO]: [CHAT] [306?] [MVP+] luhvq: gg
+[15:01:15] [Client thread/INFO]: [CHAT] [5?] [VIP+] MeninaTrans: ggg
+[15:01:15] [Client thread/INFO]: [CHAT] [MVP+] ETHIEEExd joined the lobby!
+[15:01:16] [Client thread/INFO]: [CHAT] [644?] [MVP+] BassILoveYou: GG
+[15:01:16] [Client thread/INFO]: [CHAT] [325?] [MVP+] Adventure6uy: 77th
+[15:01:16] [Client thread/INFO]: [CHAT] From [MVP+] clickauto: idk
+[15:01:16] [Client thread/INFO]: [CHAT] [223?] [MVP+] oJobo: ggs
+[15:01:17] [Client thread/INFO]: [CHAT] [128?] [MVP++] alilh: ggs
+[15:01:18] [Client thread/INFO]: [CHAT] [419?] [MVP+] vividity: gg
+[15:01:19] [Client thread/INFO]: [CHAT] You have already tried notifying this player of your mute!
+[15:01:20] [Client thread/INFO]: [CHAT] [49?] [MVP++] Keegandav: gg
+[15:01:20] [Client thread/INFO]: [CHAT] [128?] [MVP++] alilh: 1/4 ..
+[15:01:21] [Client thread/INFO]: [CHAT] [314?] [MVP+] CorbinEW: ggs
+[15:01:22] [Client thread/INFO]: [CHAT] You have already tried notifying this player of your mute!
+[15:01:23] [Client thread/INFO]: [CHAT] [431?] [MVP] Elevenish: 1/2 ppp
+[15:01:24] [Client thread/INFO]: [CHAT] [190?] [MVP+] yazub: guys my mom and brother are arguing what should i do
+[15:01:26] [Client thread/INFO]: [CHAT] [325?] [MVP+] Adventure6uy: 77th nevermind
+[15:01:29] [Client thread/INFO]: [CHAT] [281?] [MVP++] 77th: kk LOL
+[15:01:29] [Client thread/INFO]: [CHAT] From [MVP+] clickauto: remove me if u accidentally sent
+[15:01:31] [Client thread/INFO]: [CHAT]  >>> [MVP++] Airkudo joined the lobby! <<<
+[15:01:33] [Client thread/INFO]: [CHAT] [165?] [VIP] SupremeLeaderLeo: 1/2 5+ fkdr
+[15:01:34] [Client thread/INFO]: [CHAT] [20?] [MVP] Xx_Hotkey_xX: ilyChrista me pls
+[15:01:35] [Client thread/INFO]: [CHAT] [644?] [MVP+] BassILoveYou: Veltrah begging won't surely work I promise you lol
+[15:01:36] [Client thread/INFO]: [CHAT] [398?] [MVP+] zNotDiamond: 1/2 +5 fkdr .////
+[15:01:36] [Client thread/INFO]: [CHAT] [129?] [MVP+] Ryzien: xc00kie
+[15:01:37] [Client thread/INFO]: [CHAT]  >>> [MVP++] Avzraen joined the lobby! <<<
+[15:01:38] [Client thread/INFO]: [CHAT] [128?] [MVP++] alilh: xc00kie
+[15:01:39] [Client thread/INFO]: [CHAT] -----------------------------------------------------
+You removed [MVP+] clickauto from your friends list!
+-----------------------------------------------------
+[15:01:40] [Client thread/INFO]: [CHAT] [485?] [MVP++] Airkudo: 1/2 10+ fkdr
+[15:01:40] [Client thread/INFO]: [CHAT] [431?] [MVP] Elevenish: 1/2 aaaaaaaa
+[15:01:40] [Client thread/INFO]: [CHAT] [398?] [MVP+] zNotDiamond: SupremeLeaderLeo
+[15:01:41] [Client thread/INFO]: [CHAT] [118?] [MVP++] Veltrah: I was ******* joking
+[15:01:46] [Client thread/INFO]: [CHAT] [1030?] [MVP+] RuiningStats: Airkudo
+[15:01:47] [Client thread/INFO]: [CHAT] [129?] [MVP+] Ryzien: xc00kie ,,,,
+[15:01:47] [Client thread/INFO]: [CHAT] [89?] [MVP++] Avzraen: Elevenish
+[15:01:51] [Client thread/INFO]: [CHAT]  >>> [MVP++] catgirlcheese joined the lobby! <<<
+[15:01:51] [Client thread/INFO]: [CHAT]  >>> [MVP++] thighlover1337 joined the lobby! <<<
+[15:01:53] [Client thread/INFO]: [CHAT] [162?] [MVP++] thighlover1337: 2/4
+[15:01:55] [Client thread/INFO]: [CHAT]  >>> [MVP++] Douws joined the lobby! <<<
+[15:01:56] [Client thread/INFO]: [CHAT] Player visibility enabled!
+[15:01:56] [Client thread/INFO]: [CHAT]  >>> [MVP++] Hexze joined the lobby! <<<
+[15:01:56] [Client thread/INFO]: [CHAT] [223?] [MVP+] oJobo: 77th
+[15:01:57] [Client thread/INFO]: [CHAT] [89?] [MVP++] Avzraen: thighlovr
+[15:01:57] [Client thread/INFO]: [CHAT] [MVP+] foldcat joined the lobby!
+[15:01:58] [Client thread/INFO]: [CHAT]                                      
+[15:01:58] [Client thread/INFO]: [CHAT]                          
+[15:01:58] [Client thread/INFO]: [CHAT]  >>> [MVP++] Appu26j joined the lobby! <<<
+[15:01:59] [Client thread/INFO]: [CHAT] [MVP+] Ziggyboy1127 joined the lobby!
+[15:02:01] [Client thread/INFO]: [CHAT]                                      
+[15:02:01] [Client thread/INFO]: [CHAT]                          
+[15:02:01] [Client thread/INFO]: [CHAT]  >>> [MVP++] Appu26j joined the lobby! <<<
+[15:02:03] [Client thread/INFO]: [CHAT] To [MVP++] haced: Hey! I'm currently muted and am unable to message right now.
+[15:02:03] [Client thread/INFO]: [CHAT] You cannot message this player.
+[15:02:03] [Client thread/INFO]: [CHAT] Player visibility disabled!
+[15:02:04] [Client thread/INFO]: [CHAT] You cannot message this player.
+[15:02:05] [Client thread/INFO]: [CHAT] To [MVP++] Allsharkboy: Hey! I'm currently muted and am unable to message right now.
+[15:02:06] [Client thread/INFO]: [CHAT] You cannot message this player.
+[15:02:06] [Client thread/INFO]: [CHAT] You cannot message this player. (2)
+[15:02:07] [Client thread/INFO]: [CHAT] To [MVP++] Garbaba: Hey! I'm currently muted and am unable to message right now.
+[15:02:08] [Client thread/INFO]: [CHAT] You cannot message this player.
+[15:02:08] [Client thread/INFO]: [CHAT] ? [VIP] pizzacraft9000 found a ????? Mystery Box!
+[15:02:09] [Client thread/INFO]: [CHAT] You cannot message this player.
+[15:02:09] [Client thread/INFO]: [CHAT] You cannot message this player. (2)
+[15:02:10] [Client thread/INFO]: [CHAT] You cannot message this player. (3)
+[15:02:11] [Client thread/INFO]: [CHAT] To Lashio: Hey! I'm currently muted and am unable to message right now.
+[15:02:12] [Client thread/INFO]: [CHAT] To Kofae: Hey! I'm currently muted and am unable to message right now.
+[15:02:12] [Client thread/INFO]: [CHAT] [MVP+] AdgeTheOriginal joined the lobby!
+[15:02:12] [Client thread/INFO]: [CHAT] [MVP+] ta9i joined the lobby!
+[15:02:12] [Client thread/INFO]: [CHAT] To [MVP+] Aneleos: Hey! I'm currently muted and am unable to message right now.
+[15:02:13] [Client thread/INFO]: [CHAT] You cannot message this player.
+[15:02:13] [Client thread/INFO]: [CHAT] From Lashio: L
+[15:02:14] [Client thread/INFO]: [CHAT] You cannot message this player.
+[15:02:14] [Client thread/INFO]: [CHAT] [MVP+] BeethovenGANGGOD joined the lobby!
+[15:02:15] [Client thread/INFO]: [CHAT] You cannot message this player.
+[15:02:15] [Client thread/INFO]: [CHAT]  >>> [MVP++] fakemail joined the lobby! <<<
+[15:02:15] [Client thread/INFO]: [CHAT] To Grimreaper290: Hey! I'm currently muted and am unable to message right now.
+[15:02:15] [Client thread/INFO]: [CHAT] From [MVP++] haced: Hey! I'm currently muted and am unable to message right now.
+[15:02:16] [Client thread/INFO]: [CHAT] You cannot message this player.
+[15:02:16] [Client thread/INFO]: [CHAT] From Lashio: Who this tho
+[15:02:17] [Client thread/INFO]: [CHAT] You cannot message this player.
+[15:02:17] [Client thread/INFO]: [CHAT] From Kofae: ?
+[15:02:18] [Client thread/INFO]: [CHAT] You cannot message this player.
+[15:02:18] [Client thread/INFO]: [CHAT] You cannot message this player. (2)
+[15:02:19] [Client thread/INFO]: [CHAT] [MVP+] QuirkyToad56 joined the lobby!
+[15:02:19] [Client thread/INFO]: [CHAT] You cannot message this player.
+[15:02:19] [Client thread/INFO]: [CHAT] ? Bridge Diamond [MVP+] JoySticked: noo
+[15:02:20] [Client thread/INFO]: [CHAT] To [MVP+] Ooopi: Hey! I'm currently muted and am unable to message right now.
+[15:02:21] [Client thread/INFO]: [CHAT] You cannot message this player.
+[15:02:21] [Client thread/INFO]: [CHAT] You cannot message this player. (2)
+[15:02:21] [Client thread/INFO]: [CHAT] [MVP+] GadgetGuy_ joined the lobby!
+[15:02:22] [Client thread/INFO]: [CHAT] You cannot message this player.
+[15:02:23] [Client thread/INFO]: [CHAT] You cannot message this player. (2)
+[15:02:24] [Client thread/INFO]: [CHAT] You cannot message this player. (3)
+[15:02:24] [Client thread/INFO]: [CHAT]  >>> [MVP++] Shxt0 joined the lobby! <<<
+[15:02:24] [Client thread/INFO]: [CHAT] You cannot message this player.
+[15:02:25] [Client thread/INFO]: [CHAT] You cannot message this player. (2)
+[15:02:26] [Client thread/INFO]: [CHAT] To [VIP] Kloetzchen2010: Hey! I'm currently muted and am unable to message right now.
+[15:02:26] [Client thread/INFO]: [CHAT] OP [MVP++] Tsumiko_: hii
+[15:02:27] [Client thread/INFO]: [CHAT] That player is not online!
+[15:02:27] [Client thread/INFO]: [CHAT] You cannot message this player.
+[15:02:28] [Client thread/INFO]: [CHAT] You cannot message this player. (2)
+[15:02:29] [Client thread/INFO]: [CHAT] You cannot message this player. (3)
+[15:02:30] [Client thread/INFO]: [CHAT] You cannot message this player. (4)
+[15:02:30] [Client thread/INFO]: [CHAT] [MVP+] Ryzien joined the lobby!
+[15:02:31] [Client thread/INFO]: [CHAT] ? [MVP+] Komodo2012 found a Legendary Jardin Theme (Housing) in a Mystery Box!
+[15:02:32] [Client thread/INFO]: [CHAT] ? Godlike II Lashio: Shxt0 you are so poor.
+[15:02:34] [Client thread/INFO]: [CHAT] ? UHC Master III [VIP+] Hizarion: hi
+[15:02:37] [Client thread/INFO]: [CHAT] [MVP+] Corqii joined the lobby!
+[15:02:40] [Client thread/INFO]: [CHAT] [MVP+] JessQT joined the lobby!
+[15:02:42] [Client thread/INFO]: [CHAT] From [VIP] Kloetzchen2010: uhm what do you want from me?
+[15:02:42] [Client thread/INFO]: [CHAT] [MVP+] successive joined the lobby!
+[15:02:43] [Client thread/INFO]: [CHAT]  >>> [MVP++] Henzer_ joined the lobby! <<<
+[15:02:46] [Client thread/INFO]: Connecting to mc.hypixel.net., 25565
+[15:02:47] [Client thread/INFO]: [CHAT] Couldn't connect you to that server, so you were put in the Murder Mystery lobby!
+[15:02:47] [Client thread/INFO]: [CHAT]                                      
+[15:02:47] [Client thread/INFO]: [CHAT]                          
+[15:02:47] [Client thread/INFO]: [CHAT]  >>> [MVP++] Appu26j joined the lobby! <<<
+[15:02:49] [Client thread/INFO]: AppleClient shutting down...
+[15:02:49] [Client thread/INFO]: SoundSystem shutting down...
+[15:02:49] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com

@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <typeInfoHistroy>
+    <typeInfo handle="=Client/src&lt;appu26j.mods.visuals{CPS.java[CPS" modifiers="1" timestamp="1687047129305"/>
+    <typeInfo handle="=Client/src&lt;appu26j.settings{SettingsManager.java[SettingsManager" modifiers="1" timestamp="1684752090000"/>
+    <typeInfo handle="=Client/src&lt;net.minecraft.client.gui{FontRenderer.java[FontRenderer" modifiers="1" timestamp="1687057796204"/>
+    <typeInfo handle="=Client/src&lt;net.minecraft.client.gui{Gui.java[Gui" modifiers="1" timestamp="1686792589041"/>
+    <typeInfo handle="=Client/src&lt;net.minecraft.client{Minecraft.java[Minecraft" modifiers="1" timestamp="1687113331062"/>
+    <typeInfo handle="=Client/src&lt;appu26j.gui{SplashProgress.java[SplashProgress" modifiers="1" timestamp="1687058934088"/>
+    <typeInfo handle="=Client/src&lt;net.minecraft.client.gui{GuiMultiplayer.java[GuiMultiplayer" modifiers="1" timestamp="1687059598981"/>
+    <typeInfo handle="=Client/src&lt;appu26j.mods{ModsManager.java[ModsManager" modifiers="1" timestamp="1687115049619"/>
+    <typeInfo handle="=Client/src&lt;appu26j.gui{ClickGUI.java[ClickGUI" modifiers="1" timestamp="1687047431906"/>
+    <typeInfo handle="=Client/src&lt;net.minecraft.client.gui{GuiIngame.java[GuiIngame" modifiers="1" timestamp="1686788310888"/>
+    <typeInfo handle="=Client/src&lt;net.minecraft.entity{EntityLiving.java[EntityLiving" modifiers="1025" timestamp="1612248095715"/>
     <typeInfo handle="=Client/src&lt;net.minecraft.client.renderer.entity{RendererLivingEntity.java[RendererLivingEntity" modifiers="1025" timestamp="1687044036101"/>
     <typeInfo handle="=Client/src&lt;net.minecraft.client.renderer.entity{Render.java[Render" modifiers="1025" timestamp="1687044028619"/>
     <typeInfo handle="=Client/C:\/Program Files\/Java\/jdk1.8.0_361\/jre\/lib\/rt.jar=/javadoc_location=/https:\/\/docs.oracle.com\/javase\/8\/docs\/api\/=/=/org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY=/Client\/jars\/versions\/1.8.9\/1.8.9-natives=/&lt;java.lang(Appendable.class[Appendable" modifiers="1537" timestamp="1684471809560"/>
     <typeInfo handle="=Client/src&lt;appu26j{Apple.java[Apple" modifiers="16385" timestamp="1687027504280"/>
-    <typeInfo handle="=Client/src&lt;appu26j.mods.visuals{CPS.java[CPS" modifiers="1" timestamp="1687047129305"/>
-    <typeInfo handle="=Client/src&lt;appu26j.settings{SettingsManager.java[SettingsManager" modifiers="1" timestamp="1684752090000"/>
-    <typeInfo handle="=Client/src&lt;appu26j.gui{ClickGUI.java[ClickGUI" modifiers="1" timestamp="1687047431906"/>
-    <typeInfo handle="=Client/src&lt;net.minecraft.client.gui{FontRenderer.java[FontRenderer" modifiers="1" timestamp="1687057796204"/>
-    <typeInfo handle="=Client/src&lt;net.minecraft.client.gui{Gui.java[Gui" modifiers="1" timestamp="1686792589041"/>
-    <typeInfo handle="=Client/src&lt;net.minecraft.client{Minecraft.java[Minecraft" modifiers="1" timestamp="1687058180370"/>
-    <typeInfo handle="=Client/src&lt;appu26j.gui{SplashProgress.java[SplashProgress" modifiers="1" timestamp="1687058934088"/>
-    <typeInfo handle="=Client/src&lt;net.minecraft.client.gui{GuiMultiplayer.java[GuiMultiplayer" modifiers="1" timestamp="1687059598981"/>
     <typeInfo handle="=Client/src&lt;appu26j.mods.general{ToggleSprint.java[ToggleSprint" modifiers="1" timestamp="1687060073020"/>
 </typeInfoHistroy>

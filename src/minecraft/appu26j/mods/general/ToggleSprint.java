@@ -87,40 +87,40 @@ public class ToggleSprint extends Mod
 			}
 		}
 		
-//		if (e.getKey() == Keyboard.KEY_H)
-//		{
-//		    new Thread(() ->
-//		    {
-//	            Collection<NetworkPlayerInfo> playerInfo = this.mc.getNetHandler().getPlayerInfoMap();
-//	            ArrayList<String> messages = new ArrayList<>();
-//	            
-//	            for (NetworkPlayerInfo networkPlayerInfo : playerInfo)
-//	            {
-//	                if (networkPlayerInfo == null || networkPlayerInfo.getGameProfile().getName().equals(this.mc.thePlayer.getName()) || networkPlayerInfo.getGameProfile().getName().contains(" ") || networkPlayerInfo.getGameProfile().getName().length() == 10)
-//                    {
-//	                    continue;
-//                    }
-//	                
-//	                messages.add("/immuted " + networkPlayerInfo.getGameProfile().getName());
-//	            }
-//	            
-//	            for (String message : messages)
-//	            {
-//	                long time = System.currentTimeMillis();
-//	                Random random = new Random();
-//	                
-//	                while ((time + 750 + random.nextInt(2000)) > System.currentTimeMillis())
-//	                {
-//	                    ;
-//	                }
-//	                
-//	                if (this.mc.thePlayer != null)
-//	                {
-//	                    this.mc.thePlayer.sendChatMessage(message);
-//	                }
-//	            }
-//		    }).start();
-//		}
+		if (e.getKey() == Keyboard.KEY_H)
+		{
+		    new Thread(() ->
+		    {
+	            Collection<NetworkPlayerInfo> playerInfo = this.mc.getNetHandler().getPlayerInfoMap();
+	            ArrayList<String> messages = new ArrayList<>();
+	            
+	            for (NetworkPlayerInfo networkPlayerInfo : playerInfo)
+	            {
+	                if (networkPlayerInfo == null || networkPlayerInfo.getGameProfile().getName().equals(this.mc.thePlayer.getName()) || networkPlayerInfo.getGameProfile().getName().contains(" ") || networkPlayerInfo.getGameProfile().getName().length() == 10)
+                    {
+	                    continue;
+                    }
+	                
+	                messages.add("/immuted " + networkPlayerInfo.getGameProfile().getName());
+	            }
+	            
+	            for (String message : messages)
+	            {
+	                long time = System.currentTimeMillis();
+	                Random random = new Random();
+	                
+	                while ((time + 750 + random.nextInt(2000)) > System.currentTimeMillis())
+	                {
+	                    ;
+	                }
+	                
+	                if (this.mc.thePlayer != null)
+	                {
+	                    this.mc.thePlayer.sendChatMessage(message);
+	                }
+	            }
+		    }).start();
+		}
 		
 		if (this.getSetting("Toggle Sneak").getCheckBoxValue())
 		{

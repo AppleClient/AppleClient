@@ -572,7 +572,7 @@ public class ClickGUI extends GuiScreen
 		{
 			int xOffset = 0, yOffset = this.scrollIndex2 - 1;
 			
-			for (Mod mod : this.searchingMessage.isEmpty() ? Apple.CLIENT.getModsManager().getMods() : Apple.CLIENT.getModsManager().getMods().stream().filter(mod -> mod.getName().toLowerCase().contains(this.searchingMessage.toLowerCase())).collect(Collectors.toCollection(ArrayList::new)))
+			for (Mod mod : this.searchingMessage.isEmpty() ? Apple.CLIENT.getModsManager().getMods() : this.getMods(this.searchingMessage))
 			{
 				if (xOffset != 0 && xOffset % 3 == 0)
 				{

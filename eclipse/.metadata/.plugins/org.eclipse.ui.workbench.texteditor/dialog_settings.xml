@@ -6,23 +6,23 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="drawSc"/>
+		<item key="selection" value="KEY_H"/>
 		<list key="findhistory">
+			<item value="KEY_H"/>
+			<item value="H"/>
+			<item value="initGui"/>
+			<item value="keyTy"/>
+			<item value="damageindic`"/>
+			<item value="damageindic"/>
+			<item value="previous"/>
+			<item value="previousHeal"/>
+			<item value="crosshair"/>
+			<item value="isInsid"/>
+			<item value="isInsi"/>
+			<item value="scissor"/>
+			<item value="mouseRelea"/>
+			<item value="mouseClic"/>
 			<item value="drawSc"/>
-			<item value="runGameLoop"/>
-			<item value="runGameLop"/>
-			<item value="fontrendererobj"/>
-			<item value="FontRenderobj"/>
-			<item value="FontRender"/>
-			<item value="fontRendere"/>
-			<item value="fontRender"/>
-			<item value="UnicodeFontRenderer"/>
-			<item value="drawRec"/>
-			<item value="drawStr"/>
-			<item value="oldBlendState"/>
-			<item value="path"/>
-			<item value="this.path"/>
-			<item value="getStringWidth"/>
 		</list>
 		<list key="replacehistory">
 			<item value="CustomFontRenderer"/>

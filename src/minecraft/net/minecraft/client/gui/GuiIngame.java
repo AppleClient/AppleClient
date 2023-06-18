@@ -11,12 +11,12 @@ import com.google.common.collect.Lists;
 
 import appu26j.Apple;
 import appu26j.gui.DragGUI;
+import appu26j.gui.quickplay.QuickPlayGUI;
 import appu26j.mods.Mod;
 import appu26j.mods.multiplayer.Cooldown;
 import appu26j.mods.visuals.BossBar;
 import appu26j.mods.visuals.CrossHair;
 import appu26j.mods.visuals.NoPumpkin;
-import appu26j.mods.visuals.TimeChanger;
 import club.marshadow.ColorUtil;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
@@ -601,10 +601,11 @@ public class GuiIngame extends Gui
 
     protected boolean showCrosshair()
     {
-        if (this.mc.gameSettings.showDebugInfo && !this.mc.thePlayer.hasReducedDebug() && !this.mc.gameSettings.reducedDebugInfo)
+        if (this.mc.currentScreen instanceof QuickPlayGUI)
         {
             return false;
         }
+        
         else if (this.mc.playerController.isSpectator())
         {
             if (this.mc.pointedEntity != null)

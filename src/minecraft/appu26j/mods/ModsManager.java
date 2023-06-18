@@ -24,6 +24,7 @@ public class ModsManager
 		this.mods.add(new SnipeSafe());
 		this.mods.add(new Cooldown());
 		this.mods.add(new AutoFriend());
+        this.mods.add(new QuickPlay());
 		
 		// Visuals
 		this.mods.add(new Visuals());

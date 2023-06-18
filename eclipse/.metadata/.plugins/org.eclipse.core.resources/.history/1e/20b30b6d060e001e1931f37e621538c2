@@ -1,0 +1,11 @@
+package appu26j.mods.multiplayer;
+
+import appu26j.interfaces.ModInterface;
+import appu26j.mods.Category;
+import appu26j.mods.Mod;
+
+@ModInterface(name = "Quick Play", description = "Allows you to press R and click on a game to play it.", category = Category.MULTIPLAYER)
+public class QuickPlay extends Mod
+{
+    
+}

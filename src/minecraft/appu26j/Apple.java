@@ -17,6 +17,7 @@ import appu26j.events.entity.EventTick;
 import appu26j.events.mc.EventKey;
 import appu26j.gui.DragGUI;
 import appu26j.gui.MusicPlayerGUI;
+import appu26j.gui.quickplay.QuickPlayGUI;
 import appu26j.interfaces.MinecraftInterface;
 import appu26j.mods.ModsManager;
 import appu26j.settings.SettingsManager;
@@ -28,11 +29,12 @@ public enum Apple implements MinecraftInterface
 	
 	public static final File DEFAULT_DIRECTORY = new File(System.getProperty("user.home"), "appleclient"), CONFIG = new File(DEFAULT_DIRECTORY, "config.json"), ACCOUNT = new File(DEFAULT_DIRECTORY, "account.txt");
     private ArrayList<String> usersPlayingAppleClient = new ArrayList<>(), specialPeople = new ArrayList<>();
-	public static final String VERSION = "2.15", TITLE = "Apple Client " + VERSION;
+	public static final String VERSION = "2.16", TITLE = "Apple Client " + VERSION;
 	private AppleClientVersionChecker appleClientVersionChecker;
     private long time = System.currentTimeMillis();
 	private SettingsManager settingsManager;
     private MusicPlayerGUI musicPlayerGUI;
+    private QuickPlayGUI quickPlayGUI;
 	private ModsManager modsManager;
 	private EventBus eventBus;
 	private DragGUI dragGUI;
@@ -53,6 +55,7 @@ public enum Apple implements MinecraftInterface
         this.eventBus = new EventBus("Apple Client Event Bus");
 		this.modsManager = new ModsManager().initialize();
         this.musicPlayerGUI = new MusicPlayerGUI();
+        this.quickPlayGUI = new QuickPlayGUI();
 		this.dragGUI = new DragGUI();
 		this.config = new Config();
 		File musicFolder = new File("music");
@@ -323,4 +326,9 @@ public enum Apple implements MinecraftInterface
             }
         }).start();
     }
+	
+	public QuickPlayGUI getQuickPlayGUI()
+	{
+	    return this.quickPlayGUI;
+	}
 }

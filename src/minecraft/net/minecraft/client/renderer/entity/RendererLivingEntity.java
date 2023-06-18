@@ -733,6 +733,11 @@ public abstract class RendererLivingEntity<T extends EntityLivingBase> extends R
                             float numberOfHearts = Math.min(((EntityLivingBase) entity).getHealth(), maxHearts);
                             Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("textures/gui/icons.png"));
                             
+                            if (entity.previousHealth == -1)
+                            {
+                                entity.previousHealth = numberOfHearts;
+                            }
+                            
                             if (entity.previousHealth != numberOfHearts)
                             {
                                 entity.time = System.currentTimeMillis();

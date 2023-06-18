@@ -59,7 +59,7 @@ public abstract class Entity implements ICommandSender, CullingTargetAccessor
     private static int nextEntityID;
     private int entityId;
     public double renderDistanceWeight;
-    public float previousHealth = 0;
+    public float previousHealth = -1;
     public boolean flag = false;
     public long time;
 
