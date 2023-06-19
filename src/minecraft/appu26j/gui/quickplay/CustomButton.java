@@ -25,15 +25,15 @@ public class CustomButton implements MinecraftInterface
     
     public void drawScreen(int mouseX, int mouseY, float partialTicks)
     {
-        Gui.drawRect(this.x, this.y, this.x + 80, this.y + 20, (this.isInsideBox(mouseX, mouseY, this.x, this.y, this.x + 80, this.y + 20) ? new Color(0, 0, 0, 150) : new Color(0, 0, 0, 128)).getRGB());
+        Gui.drawRect(this.x, this.y, this.x + 80, this.y + 20, (this.isInsideBox(mouseX, mouseY, this.x, this.y, this.x + 80, this.y + 20) ? new Color(25, 25, 40, 150) : new Color(25, 25, 45, 128)).getRGB());
         float temp = 96 / (this.text.length() == 0 ? 1 : this.text.length());
         temp = temp > 8 ? 8 : temp;
-        FixedFontRenderer.drawString(this.text, (this.x + 40) - (FixedFontRenderer.getStringWidth(this.text, temp) / 2), this.y + temp / (temp / 8) - (temp / 3.5F) + 1, temp, -1);
+        FixedFontRenderer.drawStringWithShadow(this.text, (this.x + 40) - (FixedFontRenderer.getStringWidth(this.text, temp) / 2), this.y + temp / (temp / 8) - (temp / 3.5F) + 1, temp, -1);
     }
     
     public void mouseClicked(int mouseX, int mouseY, int mouseButton)
     {
-        if (this.isInsideBox(mouseX, mouseY, this.x, this.y, this.x + 80, this.y + 20))
+        if (this.isInsideBox(mouseX, mouseY, this.x, this.y, this.x + 80, this.y + 20) && mouseButton == 0)
         {
             SoundUtil.playClickSound();
             
@@ -120,6 +120,38 @@ public class CustomButton implements MinecraftInterface
                     customButtons.add(new CustomButton("Combo", f + 85, g - 10));
                     customButtons.add(new CustomButton("UHC Deathmatch", f + 255, g - 10));
                     customButtons.add(new CustomButton("Sumo", f + 340, g - 10));
+                    Apple.CLIENT.getQuickPlayGUI().customButtons.clear();
+                    Apple.CLIENT.getQuickPlayGUI().customButtons.addAll(customButtons);
+                    break;
+                }
+                
+                case "UHC":
+                {
+                    ArrayList<CustomButton> customButtons = new ArrayList<>();
+                    ScaledResolution scaledResolution = new ScaledResolution(this.mc);
+                    float f = scaledResolution.getScaledWidth() / 2;
+                    float g = scaledResolution.getScaledHeight() / 2;
+                    float temp = 2 * 41.75F;
+                    f -= temp;
+                    customButtons.add(new CustomButton("UHC Solo", f, g - 10));
+                    customButtons.add(new CustomButton("UHC Teams", f + 85, g - 10));
+                    Apple.CLIENT.getQuickPlayGUI().customButtons.clear();
+                    Apple.CLIENT.getQuickPlayGUI().customButtons.addAll(customButtons);
+                    break;
+                }
+                
+                case "The Bridge":
+                {
+                    ArrayList<CustomButton> customButtons = new ArrayList<>();
+                    ScaledResolution scaledResolution = new ScaledResolution(this.mc);
+                    float f = scaledResolution.getScaledWidth() / 2;
+                    float g = scaledResolution.getScaledHeight() / 2;
+                    float temp = 4 * 41.75F;
+                    f -= temp;
+                    customButtons.add(new CustomButton("Bridge Solo", f, g - 10));
+                    customButtons.add(new CustomButton("Bridge Duos", f + 85, g - 10));
+                    customButtons.add(new CustomButton("Bridge Trios", f + 170, g - 10));
+                    customButtons.add(new CustomButton("Bridge Quads", f + 255, g - 10));
                     Apple.CLIENT.getQuickPlayGUI().customButtons.clear();
                     Apple.CLIENT.getQuickPlayGUI().customButtons.addAll(customButtons);
                     break;
@@ -256,6 +288,54 @@ public class CustomButton implements MinecraftInterface
                     this.cmd("pit");
                     break;
                 }
+                
+                case "Dropper":
+                {
+                    this.cmd("prototype_dropper");
+                    break;
+                }
+                
+                case "WoolWars":
+                {
+                    this.cmd("wool_wool_wars_two_four");
+                    break;
+                }
+                
+                case "UHC Solo":
+                {
+                    this.cmd("uhc_solo");
+                    break;
+                }
+                
+                case "UHC Teams":
+                {
+                    this.cmd("uhc_teams");
+                    break;
+                }
+                
+                case "Bridge Solo":
+                {
+                    this.cmd("duels_bridge_duel");
+                    break;
+                }
+                
+                case "Bridge Duos":
+                {
+                    this.cmd("duels_bridge_doubles");
+                    break;
+                }
+                
+                case "Bridge Trios":
+                {
+                    this.cmd("duels_bridge_threes");
+                    break;
+                }
+                
+                case "Bridge Quads":
+                {
+                    this.cmd("duels_bridge_four");
+                    break;
+                }
             }
         }
     }
@@ -294,6 +374,26 @@ public class CustomButton implements MinecraftInterface
             }
             
             case "The Pit":
+            {
+                return true;
+            }
+            
+            case "Dropper":
+            {
+                return true;
+            }
+            
+            case "WoolWars":
+            {
+                return true;
+            }
+            
+            case "UHC":
+            {
+                return true;
+            }
+            
+            case "The Bridge":
             {
                 return true;
             }

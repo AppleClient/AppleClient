@@ -23,7 +23,7 @@ chatColors:true
 chatLinks:true
 chatLinksPrompt:true
 chatOpacity:1.0
-fullscreen:false
+fullscreen:true
 enableVsync:false
 useVbo:true
 hideServerAddress:false

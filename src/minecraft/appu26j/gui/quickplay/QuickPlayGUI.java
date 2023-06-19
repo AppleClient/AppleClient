@@ -57,6 +57,10 @@ public class QuickPlayGUI extends GuiScreen
         this.customButtons.add(new CustomButton("Murder Mystery", f + 255, g - 10));
         this.customButtons.add(new CustomButton("Duels", f + 340, g - 10));
         this.customButtons.add(new CustomButton("The Pit", f, g + 15));
+        this.customButtons.add(new CustomButton("Dropper", f + 85, g + 15));
+        this.customButtons.add(new CustomButton("WoolWars", f + 170, g + 15));
+        this.customButtons.add(new CustomButton("UHC", f + 255, g + 15));
+        this.customButtons.add(new CustomButton("The Bridge", f + 340, g + 15));
         this.originalButtons.addAll(this.customButtons);
     }
     

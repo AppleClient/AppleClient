@@ -13,7 +13,7 @@ import net.minecraft.client.gui.ScaledResolution;
 
 public interface GUIInterface
 {
-	public int backgroundColour = new Color(45, 45, 65).getRGB(), backgroundColourDarkened = new Color(25, 25, 45).getRGB(), backgroundColourLightened = new Color(65, 65, 85).getRGB();
+	public int backgroundColour = new Color(45, 45, 60).getRGB(), backgroundColourDarkened = new Color(25, 25, 40).getRGB(), backgroundColourLightened = new Color(65, 65, 80).getRGB();
 	
 	default void scissor(float x, float y, float width, float height)
 	{
