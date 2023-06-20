@@ -55,8 +55,9 @@ public class ModsManager
         this.mods.add(new DamageIndicator());
         this.mods.add(new ItemPhysics());
         this.mods.add(new PotionEffects());
+        this.mods.add(new CustomFont());
 		this.mods.sort(Comparator.comparing(Mod::getName));
-		this.getMods("Score Board", "Boss Bar").forEach(mod -> mod.setEnabled(true));
+		this.getMods("Score Board", "Boss Bar", "Custom Font").forEach(mod -> mod.setEnabled(true));
 		return this;
 	}
 	

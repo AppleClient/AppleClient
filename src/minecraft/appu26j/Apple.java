@@ -331,4 +331,9 @@ public enum Apple implements MinecraftInterface
 	{
 	    return this.quickPlayGUI;
 	}
+	
+	public boolean customFont()
+	{
+	    return this.modsManager != null && this.modsManager.getMod("Custom Font").isEnabled();
+	}
 }

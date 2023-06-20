@@ -23,7 +23,7 @@ chatColors:true
 chatLinks:true
 chatLinksPrompt:true
 chatOpacity:1.0
-fullscreen:true
+fullscreen:false
 enableVsync:false
 useVbo:true
 hideServerAddress:false
@@ -51,7 +51,7 @@ streamChatEnabled:0
 streamChatUserFilter:0
 streamMicToggleBehavior:0
 forceUnicodeFont:false
-allowBlockAlternatives:true
+allowBlockAlternatives:false
 reducedDebugInfo:false
 useNativeTransport:true
 entityShadows:true

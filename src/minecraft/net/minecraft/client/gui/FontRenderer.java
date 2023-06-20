@@ -1,8 +1,5 @@
 package net.minecraft.client.gui;
 
-import com.ibm.icu.text.ArabicShaping;
-import com.ibm.icu.text.ArabicShapingException;
-import com.ibm.icu.text.Bidi;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,6 +8,16 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
 import java.util.Random;
+
+import org.apache.commons.io.IOUtils;
+import org.lwjgl.opengl.GL11;
+
+import com.ibm.icu.text.ArabicShaping;
+import com.ibm.icu.text.ArabicShapingException;
+import com.ibm.icu.text.Bidi;
+
+import appu26j.Apple;
+import appu26j.fontrenderer.CustomFontRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
@@ -26,8 +33,6 @@ import net.minecraft.util.ResourceLocation;
 import net.optifine.CustomColors;
 import net.optifine.render.GlBlendState;
 import net.optifine.util.FontUtils;
-import org.apache.commons.io.IOUtils;
-import org.lwjgl.opengl.GL11;
 
 public class FontRenderer implements IResourceManagerReloadListener
 {
@@ -304,16 +309,31 @@ public class FontRenderer implements IResourceManagerReloadListener
 
     public int drawStringWithShadow(String text, float x, float y, int color)
     {
+        if (Apple.CLIENT.customFont())
+        {
+            return (int) CustomFontRenderer.drawStringWithShadow(text, x, y, color);
+        }
+        
         return this.drawString(text, x, y, color, true);
     }
 
     public int drawString(String text, int x, int y, int color)
     {
+        if (Apple.CLIENT.customFont())
+        {
+            return (int) CustomFontRenderer.drawString(text, x, y, color);
+        }
+        
         return this.drawString(text, (float)x, (float)y, color, false);
     }
 
     public int drawString(String text, float x, float y, int color)
     {
+        if (Apple.CLIENT.customFont())
+        {
+            return (int) CustomFontRenderer.drawString(text, x, y, color);
+        }
+        
         return this.drawString(text, (float)x, (float)y, color, false);
     }
 
@@ -590,6 +610,59 @@ public class FontRenderer implements IResourceManagerReloadListener
     }
 
     public int getStringWidth(String text)
+    {
+        if (Apple.CLIENT.customFont())
+        {
+            return (int) CustomFontRenderer.getStringWidth(text);
+        }
+        
+        if (text == null)
+        {
+            return 0;
+        }
+        else
+        {
+            float f = 0.0F;
+            boolean flag = false;
+
+            for (int i = 0; i < text.length(); ++i)
+            {
+                char c0 = text.charAt(i);
+                float f1 = this.getCharWidthFloat(c0);
+
+                if (f1 < 0.0F && i < text.length() - 1)
+                {
+                    ++i;
+                    c0 = text.charAt(i);
+
+                    if (c0 != 108 && c0 != 76)
+                    {
+                        if (c0 == 114 || c0 == 82)
+                        {
+                            flag = false;
+                        }
+                    }
+                    else
+                    {
+                        flag = true;
+                    }
+
+                    f1 = 0.0F;
+                }
+
+                f += f1;
+
+                if (flag && f1 > 0.0F)
+                {
+                    f += this.unicodeFlag ? 1.0F : this.offsetBold;
+                }
+            }
+
+            return Math.round(f);
+        }
+    }
+
+    public int getStringWidthNoCustomFont(String text)
     {
         if (text == null)
         {

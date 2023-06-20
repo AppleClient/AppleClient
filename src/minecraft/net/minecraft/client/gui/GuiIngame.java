@@ -735,18 +735,18 @@ public class GuiIngame extends Gui
                         
                         else
                         {
-                            this.getFontRenderer().drawStringWithShadow(s1, l1, k, 553648127);
+                            this.getFontRenderer().drawStringWithShadow(s1, l1, k, -1);
                         }
                     }
                     
                     else
                     {
-                        this.getFontRenderer().drawStringWithShadow(s1, l1, k, 553648127);
+                        this.getFontRenderer().drawStringWithShadow(s1, l1, k, -1);
                     }
                     
                     if (!scoreboardMod.getSetting("Hide Numbers").getCheckBoxValue())
                     {
-                        this.getFontRenderer().drawStringWithShadow(s2, l - this.getFontRenderer().getStringWidth(s2), k, 553648127);
+                        this.getFontRenderer().drawStringWithShadow(s2, l - this.getFontRenderer().getStringWidth(s2), k, -1);
                     }
 
                     if (j == collection.size())
@@ -754,7 +754,7 @@ public class GuiIngame extends Gui
                         String s3 = objective.getDisplayName();
                         drawRect(l1 - 2, k - this.getFontRenderer().FONT_HEIGHT - 1, l, k - 1, 1610612736);
                         drawRect(l1 - 2, k - 1, l, k, 1342177280);
-                        this.getFontRenderer().drawStringWithShadow(s3, l1 + i / 2 - this.getFontRenderer().getStringWidth(s3) / 2, k - this.getFontRenderer().FONT_HEIGHT, 553648127);
+                        this.getFontRenderer().drawStringWithShadow(s3, l1 + i / 2 - this.getFontRenderer().getStringWidth(s3) / 2, k - this.getFontRenderer().FONT_HEIGHT, -1);
                     }
                 }
                 
@@ -805,18 +805,18 @@ public class GuiIngame extends Gui
                         
                         else
                         {
-                            this.getFontRenderer().drawString(s1, l1, k, 553648127);
+                            this.getFontRenderer().drawString(s1, l1, k, -1);
                         }
                     }
                     
                     else
                     {
-                        this.getFontRenderer().drawString(s1, l1, k, 553648127);
+                        this.getFontRenderer().drawString(s1, l1, k, -1);
                     }
                     
                     if (!scoreboardMod.getSetting("Hide Numbers").getCheckBoxValue())
                     {
-                        this.getFontRenderer().drawString(s2, l - this.getFontRenderer().getStringWidth(s2), k, 553648127);
+                        this.getFontRenderer().drawString(s2, l - this.getFontRenderer().getStringWidth(s2), k, -1);
                     }
 
                     if (j == collection.size())
@@ -824,7 +824,7 @@ public class GuiIngame extends Gui
                         String s3 = objective.getDisplayName();
                         drawRect(l1 - 2, k - this.getFontRenderer().FONT_HEIGHT - 1, l, k - 1, 1610612736);
                         drawRect(l1 - 2, k - 1, l, k, 1342177280);
-                        this.getFontRenderer().drawString(s3, l1 + i / 2 - this.getFontRenderer().getStringWidth(s3) / 2, k - this.getFontRenderer().FONT_HEIGHT, 553648127);
+                        this.getFontRenderer().drawString(s3, l1 + i / 2 - this.getFontRenderer().getStringWidth(s3) / 2, k - this.getFontRenderer().FONT_HEIGHT, -1);
                     }
                 }
             }
