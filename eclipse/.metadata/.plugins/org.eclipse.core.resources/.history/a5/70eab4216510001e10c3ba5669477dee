@@ -1,0 +1,8 @@
+package appu26j.mods.visuals;
+
+import appu26j.mods.Mod;
+
+public class CatEars extends Mod
+{
+    
+}

@@ -57,11 +57,11 @@ import appu26j.Apple;
 import appu26j.DiscordRP;
 import appu26j.events.mc.EventKey;
 import appu26j.events.mc.EventWorldChange;
-import appu26j.fontrenderer.FixedFontRenderer;
 import appu26j.gui.SplashProgress;
 import appu26j.gui.firstgui.LoginGUI;
 import appu26j.mods.visuals.Visuals;
 import fr.litarvan.openauth.microsoft.MicrosoftAuthResult;
+import fr.litarvan.openauth.microsoft.MicrosoftAuthenticationException;
 import fr.litarvan.openauth.microsoft.MicrosoftAuthenticator;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -225,6 +225,7 @@ public class Minecraft implements IThreadListener
     private boolean fullscreen;
     private boolean enableGLErrorChecking = false;
     private boolean hasCrashed;
+    private ArrayList<String> lines;
 
     /** Instance of CrashReport. */
     private CrashReport crashReporter;
@@ -233,7 +234,7 @@ public class Minecraft implements IThreadListener
 
     /** True if the player is connected to a realms server */
     private boolean connectedToRealms = false;
-    private Timer timer = new Timer(20.0F);
+    public Timer timer = new Timer(20.0F);
     public WorldClient theWorld;
     public RenderGlobal renderGlobal;
     private RenderManager renderManager;
@@ -273,6 +274,7 @@ public class Minecraft implements IThreadListener
 
     /** Skip render world */
     public boolean skipRenderWorld;
+    private long time = System.currentTimeMillis();
 
     /** The ray trace hit that the mouse is over. */
     public MovingObjectPosition objectMouseOver;
@@ -372,6 +374,7 @@ public class Minecraft implements IThreadListener
 
     /** Profiler currently displayed in the debug screen pie chart */
     private String debugProfilerName = "root";
+    boolean noInternet = false;
 
     public Minecraft(GameConfiguration gameConfig)
     {
@@ -670,11 +673,11 @@ public class Minecraft implements IThreadListener
         
         else
         {
-            ArrayList<String> lines = (ArrayList<String>) Files.readAllLines(Apple.ACCOUNT.toPath());
+            this.lines = (ArrayList<String>) Files.readAllLines(Apple.ACCOUNT.toPath());
             
-            if (lines.get(0) != "1")
+            if (this.lines.get(0) != "1")
             {
-                this.session = new Session(lines.get(2), lines.get(1), lines.get(0).equals("0") ? "0" : this.getAccessToken(lines.get(0)), lines.get(0).equals("0") ? "legacy" : "mojang");
+                this.session = new Session(this.lines.get(2), this.lines.get(1), this.lines.get(0).equals("0") ? "0" : this.getAccessToken(this.lines.get(0)), this.lines.get(0).equals("0") ? "legacy" : "mojang");
             }
             
             logger.info("Setting user: " + this.session.getUsername());
@@ -820,9 +823,14 @@ public class Minecraft implements IThreadListener
             return microsoftAuthResult.getAccessToken();
         }
         
-        catch (Exception e)
+        catch (MicrosoftAuthenticationException e)
         {
-            return refreshToken;
+            if (e.getCause().getMessage().equals("login.live.com"))
+            {
+                this.noInternet = true;
+            }
+            
+            return "error";
         }
     }
 
@@ -1280,6 +1288,26 @@ public class Minecraft implements IThreadListener
      */
     private void runGameLoop() throws IOException
     {
+        if (this.noInternet && !this.isIntegratedServerRunning())
+        {
+            if ((this.time + 5000) < System.currentTimeMillis())
+            {
+                new Thread(() ->
+                {
+                    String accessToken = this.getAccessToken(this.lines.get(0));
+                    
+                    if (!accessToken.equals("error"))
+                    {
+                        this.session = new Session(this.lines.get(2), this.lines.get(1), this.lines.get(0).equals("0") ? "0" : accessToken, this.lines.get(0).equals("0") ? "legacy" : "mojang");
+                        Apple.CLIENT.connectToServer();
+                        this.noInternet = false;
+                    }
+                }).start();
+                
+                this.time = System.currentTimeMillis();
+            }
+        }
+        
         long i = System.nanoTime();
         this.mcProfiler.startSection("root");
 

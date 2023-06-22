@@ -16,8 +16,6 @@ import com.ibm.icu.text.ArabicShaping;
 import com.ibm.icu.text.ArabicShapingException;
 import com.ibm.icu.text.Bidi;
 
-import appu26j.Apple;
-import appu26j.fontrenderer.CustomFontRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
@@ -309,31 +307,16 @@ public class FontRenderer implements IResourceManagerReloadListener
 
     public int drawStringWithShadow(String text, float x, float y, int color)
     {
-        if (Apple.CLIENT.customFont())
-        {
-            return (int) CustomFontRenderer.drawStringWithShadow(text, x, y, color);
-        }
-        
         return this.drawString(text, x, y, color, true);
     }
 
     public int drawString(String text, int x, int y, int color)
     {
-        if (Apple.CLIENT.customFont())
-        {
-            return (int) CustomFontRenderer.drawString(text, x, y, color);
-        }
-        
         return this.drawString(text, (float)x, (float)y, color, false);
     }
 
     public int drawString(String text, float x, float y, int color)
     {
-        if (Apple.CLIENT.customFont())
-        {
-            return (int) CustomFontRenderer.drawString(text, x, y, color);
-        }
-        
         return this.drawString(text, (float)x, (float)y, color, false);
     }
 
@@ -574,7 +557,7 @@ public class FontRenderer implements IResourceManagerReloadListener
         return this.renderString(text, (float)x, (float)y, color, dropShadow);
     }
 
-    private int renderString(String text, float x, float y, int color, boolean dropShadow)
+    public int renderString(String text, float x, float y, int color, boolean dropShadow)
     {
         if (text == null)
         {
@@ -611,11 +594,6 @@ public class FontRenderer implements IResourceManagerReloadListener
 
     public int getStringWidth(String text)
     {
-        if (Apple.CLIENT.customFont())
-        {
-            return (int) CustomFontRenderer.getStringWidth(text);
-        }
-        
         if (text == null)
         {
             return 0;

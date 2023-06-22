@@ -1,0 +1,18 @@
+package appu26j.mods.visuals;
+
+import com.google.common.eventbus.Subscribe;
+
+import appu26j.events.render.EventRender3D;
+import appu26j.interfaces.ModInterface;
+import appu26j.mods.Category;
+import appu26j.mods.Mod;
+
+@ModInterface(name = "Cat Ears", description = "A cosmetic which gives you cat ears! Author: DistastefulBannock", category = Category.VISUALS)
+public class CatEars extends Mod
+{
+    @Subscribe
+    public void onRender3D(EventRender3D e)
+    {
+        
+    }
+}

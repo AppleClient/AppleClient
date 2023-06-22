@@ -6,23 +6,23 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="drawString"/>
+		<item key="selection" value="renderName"/>
 		<list key="findhistory">
-			<item value="drawString"/>
-			<item value="scoreboard"/>
-			<item value="drawString("/>
-			<item value="customfont"/>
-			<item value="unicodefont"/>
-			<item value="custom"/>
-			<item value="drawStringWithShadow"/>
-			<item value="italic"/>
-			<item value="randomStyle"/>
-			<item value="obfuscated"/>
-			<item value="getStringWidth"/>
-			<item value="renderString"/>
-			<item value="FontRenderer"/>
-			<item value="KEY_H"/>
-			<item value="H"/>
+			<item value="renderName"/>
+			<item value="runGameLoop"/>
+			<item value="renderWorldPas"/>
+			<item value="if (this.noInte"/>
+			<item value="runGameLop"/>
+			<item value="startGa"/>
+			<item value="startGA"/>
+			<item value="runGameTi"/>
+			<item value="runTi"/>
+			<item value="getAccessToken"/>
+			<item value="getAccessTOKn"/>
+			<item value="startGame()"/>
+			<item value="drawScre"/>
+			<item value="drawSce"/>
+			<item value="== 1"/>
 		</list>
 		<list key="replacehistory">
 			<item value="CustomFontRenderer"/>
@@ -38,7 +38,7 @@
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="376"/>
+		<item key="DIALOG_X_ORIGIN" value="495"/>
 		<item key="DIALOG_Y_ORIGIN" value="6"/>
 		<item key="DIALOG_WIDTH" value="318"/>
 		<item key="DIALOG_HEIGHT" value="295"/>

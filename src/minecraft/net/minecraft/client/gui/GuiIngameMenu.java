@@ -1,11 +1,13 @@
 package net.minecraft.client.gui;
 
 import java.io.IOException;
+
 import net.minecraft.client.gui.achievement.GuiAchievements;
 import net.minecraft.client.gui.achievement.GuiStats;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.realms.RealmsBridge;
+import net.minecraft.util.ResourceLocation;
 
 public class GuiIngameMenu extends GuiScreen
 {
@@ -20,7 +22,7 @@ public class GuiIngameMenu extends GuiScreen
     {
         this.field_146445_a = 0;
         this.buttonList.clear();
-        int i = -16;
+        int i = 26;
         int j = 98;
         this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height / 4 + 120 + i, I18n.format("menu.returnToMenu", new Object[0])));
 
@@ -108,7 +110,8 @@ public class GuiIngameMenu extends GuiScreen
     public void drawScreen(int mouseX, int mouseY, float partialTicks)
     {
         this.drawDefaultBackground();
-        this.drawCenteredString(this.fontRendererObj, I18n.format("menu.game", new Object[0]), this.width / 2, 40, 16777215);
+        this.mc.getTextureManager().bindTexture(new ResourceLocation("icons/icon_16x16.png"));
+        this.drawModalRectWithCustomSizedTexture((this.width / 2) - 64, (this.height / 4 + 48) - 130, 0, 0, 128, 128, 128, 128);
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
 }

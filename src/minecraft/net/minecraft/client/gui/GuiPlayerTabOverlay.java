@@ -156,7 +156,7 @@ public class GuiPlayerTabOverlay extends Gui
 
         if (list1 != null)
         {
-            drawRect(width / 2 - l1 / 2, k1 - 1, width / 2 + l1 / 2 + 1, k1 + list1.size() * this.mc.fontRendererObj.FONT_HEIGHT, Integer.MIN_VALUE);
+            drawRect(width / 2 - l1 / 2 - 1, k1 - 1, width / 2 + l1 / 2 + 1, k1 + list1.size() * this.mc.fontRendererObj.FONT_HEIGHT, Integer.MIN_VALUE);
 
             for (String s3 : list1)
             {

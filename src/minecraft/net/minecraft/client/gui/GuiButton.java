@@ -2,7 +2,6 @@ package net.minecraft.client.gui;
 
 import java.awt.Color;
 
-import appu26j.fontrenderer.CustomFontRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.audio.SoundHandler;

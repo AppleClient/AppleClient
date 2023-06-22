@@ -19,7 +19,6 @@ import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 
 import appu26j.Apple;
-import appu26j.fontrenderer.CustomFontRenderer;
 import appu26j.gui.firstgui.LoginGUI;
 import appu26j.utils.ServerUtil;
 import net.minecraft.client.Minecraft;

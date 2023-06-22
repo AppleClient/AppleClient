@@ -824,6 +824,7 @@ public class GuiIngame extends Gui
                         String s3 = objective.getDisplayName();
                         drawRect(l1 - 2, k - this.getFontRenderer().FONT_HEIGHT - 1, l, k - 1, 1610612736);
                         drawRect(l1 - 2, k - 1, l, k, 1342177280);
+                        
                         this.getFontRenderer().drawString(s3, l1 + i / 2 - this.getFontRenderer().getStringWidth(s3) / 2, k - this.getFontRenderer().FONT_HEIGHT, -1);
                     }
                 }
