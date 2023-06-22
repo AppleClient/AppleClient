@@ -4,6 +4,7 @@ import java.awt.Color;
 
 import org.lwjgl.opengl.GL11;
 
+import appu26j.utils.Fonts;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
@@ -17,6 +18,11 @@ public class SplashProgress {
     private static int PROGRESS = 0;
     private static String CURRENT = "";
     private static ResourceLocation splash;
+    
+    static
+    {
+        Fonts.initialize();
+    }
 
     public static void update() {
         if (Minecraft.getMinecraft() == null || Minecraft.getMinecraft().getLanguageManager() == null) {

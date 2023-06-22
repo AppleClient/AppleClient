@@ -4,4 +4,6 @@
 	<item key="org.eclipse.jdt.debug.ui.jre_preference_page_context.columnWidth1" value="527"/>
 	<item key="org.eclipse.jdt.debug.ui.jre_preference_page_context.columnWidth2" value="68"/>
 	<item key="org.eclipse.jdt.debug.ui.jre_preference_page_context.sortColumn" value="1"/>
+	<section name="expressionHistory">
+	</section>
 </section>

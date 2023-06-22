@@ -21,6 +21,7 @@ import appu26j.gui.quickplay.QuickPlayGUI;
 import appu26j.interfaces.MinecraftInterface;
 import appu26j.mods.ModsManager;
 import appu26j.settings.SettingsManager;
+import appu26j.utils.Fonts;
 import appu26j.utils.UpdateUtil;
 
 public enum Apple implements MinecraftInterface
@@ -330,5 +331,10 @@ public enum Apple implements MinecraftInterface
 	public QuickPlayGUI getQuickPlayGUI()
 	{
 	    return this.quickPlayGUI;
+	}
+	
+	public boolean customFont()
+	{
+	    return this.modsManager != null && this.modsManager.getMod("Custom Font").isEnabled();
 	}
 }

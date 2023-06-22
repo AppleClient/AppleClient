@@ -16,6 +16,8 @@ import com.ibm.icu.text.ArabicShaping;
 import com.ibm.icu.text.ArabicShapingException;
 import com.ibm.icu.text.Bidi;
 
+import appu26j.Apple;
+import appu26j.utils.Fonts;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
@@ -307,16 +309,31 @@ public class FontRenderer implements IResourceManagerReloadListener
 
     public int drawStringWithShadow(String text, float x, float y, int color)
     {
+        if (Apple.CLIENT.customFont())
+        {
+            return Fonts.NORMAL.drawStringWithShadow(text, x, y, color);
+        }
+        
         return this.drawString(text, x, y, color, true);
     }
 
     public int drawString(String text, int x, int y, int color)
     {
+        if (Apple.CLIENT.customFont())
+        {
+            return Fonts.NORMAL.drawString(text, x, y, color);
+        }
+        
         return this.drawString(text, (float)x, (float)y, color, false);
     }
 
     public int drawString(String text, float x, float y, int color)
     {
+        if (Apple.CLIENT.customFont())
+        {
+            return Fonts.NORMAL.drawString(text, x, y, color);
+        }
+        
         return this.drawString(text, (float)x, (float)y, color, false);
     }
 
@@ -594,6 +611,11 @@ public class FontRenderer implements IResourceManagerReloadListener
 
     public int getStringWidth(String text)
     {
+        if (Apple.CLIENT.customFont())
+        {
+            return (int) Fonts.NORMAL.getStringWidth(text);
+        }
+        
         if (text == null)
         {
             return 0;

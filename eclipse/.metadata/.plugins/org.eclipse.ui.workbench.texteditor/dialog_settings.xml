@@ -6,8 +6,11 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="renderName"/>
+		<item key="selection" value="getStringWidth"/>
 		<list key="findhistory">
+			<item value="getStringWidth"/>
+			<item value="8.3f"/>
+			<item value="drawString"/>
 			<item value="renderName"/>
 			<item value="runGameLoop"/>
 			<item value="renderWorldPas"/>
@@ -20,11 +23,9 @@
 			<item value="getAccessToken"/>
 			<item value="getAccessTOKn"/>
 			<item value="startGame()"/>
-			<item value="drawScre"/>
-			<item value="drawSce"/>
-			<item value="== 1"/>
 		</list>
 		<list key="replacehistory">
+			<item value="8.0f"/>
 			<item value="CustomFontRenderer"/>
 			<item value="(height "/>
 			<item value="(width "/>
