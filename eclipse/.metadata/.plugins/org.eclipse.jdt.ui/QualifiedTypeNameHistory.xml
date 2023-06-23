@@ -41,7 +41,6 @@
     <fullyQualifiedTypeName name="net.minecraft.client.resources.ResourcePackRepository.Entry"/>
     <fullyQualifiedTypeName name="appu26j.mods.visuals.MotionBlur"/>
     <fullyQualifiedTypeName name="appu26j.mods.visuals.Chat"/>
-    <fullyQualifiedTypeName name="net.minecraft.client.Minecraft"/>
     <fullyQualifiedTypeName name="net.java.games.input.Mouse"/>
     <fullyQualifiedTypeName name="org.lwjgl.input.Mouse"/>
     <fullyQualifiedTypeName name="java.awt.Desktop"/>
@@ -60,4 +59,5 @@
     <fullyQualifiedTypeName name="appu26j.Apple"/>
     <fullyQualifiedTypeName name="net.minecraft.util.EnumChatFormatting"/>
     <fullyQualifiedTypeName name="java.awt.Color"/>
+    <fullyQualifiedTypeName name="net.minecraft.client.Minecraft"/>
 </qualifiedTypeNameHistroy>
