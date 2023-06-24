@@ -1,0 +1,68 @@
+package appu26j.cosmetics.head;
+
+import org.lwjgl.opengl.GL11;
+
+import appu26j.Apple;
+import appu26j.cosmetics.Cosmetic;
+import appu26j.mods.visuals.DamageIndicator;
+import appu26j.mods.visuals.NameTags;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.AbstractClientPlayer;
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.Gui;
+import net.minecraft.client.network.NetworkPlayerInfo;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.ResourceLocation;
+
+public class GentlemenHat extends Cosmetic
+{
+    public GentlemenHat()
+    {
+        super("Gentlemen Hat");
+    }
+    
+    @Override
+    public void render(AbstractClientPlayer abstractClientPlayer)
+    {
+    }
+    
+    public void drawRect(float left, float right, float top, float bottom, int color)
+    {
+        if (left < right)
+        {
+            float i = left;
+            left = right;
+            right = i;
+        }
+
+        if (top < bottom)
+        {
+            float j = top;
+            top = bottom;
+            bottom = j;
+        }
+        
+        float f3 = (color >> 24 & 255) / 255F;
+        float f = (color >> 16 & 255) / 255F;
+        float f1 = (color >> 8 & 255) / 255F;
+        float f2 = (color & 255) / 255F;
+        Tessellator tessellator = Tessellator.getInstance();
+        WorldRenderer worldrenderer = tessellator.getWorldRenderer();
+        GlStateManager.color(f, f1, f2, f3);
+        worldrenderer.begin(4, DefaultVertexFormats.POSITION);
+        worldrenderer.pos(left, bottom, 0).endVertex();
+        worldrenderer.pos(right, bottom, 0).endVertex();
+        worldrenderer.pos(right, top, 0).endVertex();
+        worldrenderer.pos(right, top, 0).endVertex();
+        worldrenderer.pos(left, top, 0).endVertex();
+        worldrenderer.pos(left, bottom, 0).endVertex();
+        tessellator.draw();
+    }
+}

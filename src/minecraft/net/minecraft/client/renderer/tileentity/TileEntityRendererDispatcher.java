@@ -117,7 +117,9 @@ public class TileEntityRendererDispatcher
 
     public void renderTileEntity(TileEntity tileentityIn, float partialTicks, int destroyStage)
     {
-        if (CullHelper.isCulled(CullHelper.CullType.BLOCK_ENTITY, this.cullFunction.apply(tileentityIn)))
+        boolean needsToRender = !CullHelper.isCulled(CullHelper.CullType.BLOCK_ENTITY, this.cullFunction.apply(tileentityIn)) || Minecraft.getMinecraft().gameSettings.thirdPersonView != 0;
+        
+        if (!needsToRender)
         {
             return;
         }

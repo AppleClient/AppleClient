@@ -597,7 +597,6 @@ public class Minecraft implements IThreadListener
         SplashProgress.drawSplash(this.getTextureManager());
         SplashProgress.setProgress(2, "Client - Loading Renderers");
         SplashProgress.drawSplash(this.getTextureManager());
-        SplashProgress.drawSplash(this.getTextureManager());
         this.entityRenderer = new EntityRenderer(this, this.mcResourceManager);
         SplashProgress.drawSplash(this.getTextureManager());
         this.mcResourceManager.registerReloadListener(this.entityRenderer);

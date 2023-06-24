@@ -1,0 +1,17 @@
+package appu26j.cosmetics;
+
+import java.util.ArrayList;
+
+import appu26j.cosmetics.head.ChinaHat;
+
+public class CosmeticManager
+{
+    private ArrayList<Cosmetic> cosmetics = new ArrayList<>();
+    
+    public CosmeticsManager initialize()
+    {
+        // Head
+        this.cosmetics.add(new ChinaHat());
+        return this;
+    }
+}

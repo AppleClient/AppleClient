@@ -19,7 +19,6 @@
     <fullyQualifiedTypeName name="java.util.Arrays"/>
     <fullyQualifiedTypeName name="net.minecraft.client.renderer.RenderHelper"/>
     <fullyQualifiedTypeName name="appu26j.mods.visuals.ItemPhysics"/>
-    <fullyQualifiedTypeName name="net.minecraft.entity.Entity"/>
     <fullyQualifiedTypeName name="net.minecraft.block.Block"/>
     <fullyQualifiedTypeName name="net.minecraft.init.Blocks"/>
     <fullyQualifiedTypeName name="net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType"/>
@@ -51,13 +50,14 @@
     <fullyQualifiedTypeName name="appu26j.fontrenderer.CustomFontRenderer"/>
     <fullyQualifiedTypeName name="org.lwjgl.opengl.GL11"/>
     <fullyQualifiedTypeName name="net.minecraft.client.renderer.GlStateManager"/>
-    <fullyQualifiedTypeName name="net.minecraft.client.gui.Gui"/>
     <fullyQualifiedTypeName name="appu26j.utils.ServerUtil"/>
     <fullyQualifiedTypeName name="appu26j.events.Event"/>
     <fullyQualifiedTypeName name="appu26j.utils.Fonts"/>
     <fullyQualifiedTypeName name="appu26j.mods.Category"/>
-    <fullyQualifiedTypeName name="appu26j.Apple"/>
     <fullyQualifiedTypeName name="net.minecraft.util.EnumChatFormatting"/>
     <fullyQualifiedTypeName name="java.awt.Color"/>
     <fullyQualifiedTypeName name="net.minecraft.client.Minecraft"/>
+    <fullyQualifiedTypeName name="appu26j.Apple"/>
+    <fullyQualifiedTypeName name="net.minecraft.client.gui.Gui"/>
+    <fullyQualifiedTypeName name="net.minecraft.entity.Entity"/>
 </qualifiedTypeNameHistroy>

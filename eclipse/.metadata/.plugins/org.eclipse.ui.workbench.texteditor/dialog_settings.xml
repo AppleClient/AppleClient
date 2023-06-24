@@ -6,36 +6,40 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="getStringWidth"/>
+		<item key="selection" value="customFont()"/>
 		<list key="findhistory">
+			<item value="customFont()"/>
+			<item value="renderHand("/>
+			<item value="renderHand()"/>
+			<item value="renderHand"/>
+			<item value="Hand"/>
+			<item value="hand"/>
+			<item value="startGame("/>
+			<item value="0.0D"/>
+			<item value="(double)"/>
+			<item value="bottom "/>
+			<item value="right "/>
+			<item value="top "/>
+			<item value="left "/>
+			<item value="name"/>
 			<item value="getStringWidth"/>
-			<item value="8.3f"/>
-			<item value="drawString"/>
-			<item value="renderName"/>
-			<item value="runGameLoop"/>
-			<item value="renderWorldPas"/>
-			<item value="if (this.noInte"/>
-			<item value="runGameLop"/>
-			<item value="startGa"/>
-			<item value="startGA"/>
-			<item value="runGameTi"/>
-			<item value="runTi"/>
-			<item value="getAccessToken"/>
-			<item value="getAccessTOKn"/>
-			<item value="startGame()"/>
 		</list>
 		<list key="replacehistory">
+			<item value="0"/>
+			<item value=""/>
+			<item value="height "/>
+			<item value="width "/>
+			<item value="y "/>
+			<item value="x "/>
 			<item value="8.0f"/>
 			<item value="CustomFontRenderer"/>
 			<item value="(height "/>
 			<item value="(width "/>
-			<item value=""/>
 			<item value="g"/>
 			<item value="f"/>
 			<item value="e"/>
 			<item value="d"/>
 			<item value="y"/>
-			<item value="x"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

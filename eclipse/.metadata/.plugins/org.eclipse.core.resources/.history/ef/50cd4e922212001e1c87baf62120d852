@@ -1,0 +1,216 @@
+package appu26j.cosmetics.head;
+
+import org.lwjgl.opengl.GL11;
+
+import appu26j.Apple;
+import appu26j.cosmetics.Cosmetic;
+import appu26j.mods.visuals.DamageIndicator;
+import appu26j.mods.visuals.NameTags;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.AbstractClientPlayer;
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.Gui;
+import net.minecraft.client.network.NetworkPlayerInfo;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.ResourceLocation;
+
+public class GentlemenHat extends Cosmetic
+{
+    public GentlemenHat()
+    {
+        super("Gentlemen Hat");
+    }
+    
+    @Override
+    public void render(AbstractClientPlayer abstractClientPlayer)
+    {
+        System.out.println(true);
+        Entity entityIn = this.mc.thePlayer;
+        String str = "yo";
+        double x = this.mc.thePlayer.posX;
+        double y = this.mc.thePlayer.posY;
+        double z = this.mc.thePlayer.posZ;
+        int maxDistance = 111111;
+        
+        NetworkPlayerInfo networkPlayerInfo = entityIn == null || !(entityIn instanceof EntityPlayer) ? null : Minecraft.getMinecraft().getNetHandler().getPlayerInfo(((EntityPlayer) entityIn).getGameProfile().getId());
+        boolean aBoolean = false;
+        
+        try
+        {
+            aBoolean = networkPlayerInfo != null && entityIn instanceof EntityPlayer && EnumChatFormatting.getTextWithoutFormattingCodes(str).contains(entityIn.getName()) && (Apple.CLIENT.getPeopleUsingAppleClient().stream().filter(id -> networkPlayerInfo.getGameProfile().getId().toString().replaceAll("-", "").equals(id)).findFirst().orElse(null) != null);
+        }
+        
+        catch (Exception e)
+        {
+            ;
+        }
+        
+        float viewX = Minecraft.getMinecraft().gameSettings.thirdPersonView == 2 ? -this.mc.getRenderManager().playerViewX : this.mc.getRenderManager().playerViewX;
+        double d0 = entityIn.getDistanceSqToEntity(this.mc.getRenderManager().livingPlayer);
+        
+        if (d0 <= (double)(maxDistance * maxDistance))
+        {
+            NameTags nameTags = (NameTags) Apple.CLIENT.getModsManager().getMod("Name Tags");
+            boolean renderWithTextShadow = nameTags.isEnabled() && nameTags.getSetting("Text Shadow").getCheckBoxValue();
+            FontRenderer fontrenderer = this.mc.getRenderManager().getFontRenderer();
+            float f = 1.6F;
+            float f1 = 0.016666668F * f;
+            GlStateManager.pushMatrix();
+            GlStateManager.translate((float)x, (float)y + entityIn.height + 0.5F, (float)z);
+            GL11.glNormal3f(0.0F, 1.0F, 0.0F);
+            GlStateManager.rotate(-this.mc.getRenderManager().playerViewY, 0.0F, 1.0F, 0.0F);
+            GlStateManager.rotate(viewX, 1.0F, 0.0F, 0.0F);
+            GlStateManager.scale(-f1, -f1, f1);
+            GlStateManager.disableLighting();
+            GlStateManager.depthMask(false);
+            GlStateManager.disableDepth();
+            GlStateManager.enableBlend();
+            GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
+            Tessellator tessellator = Tessellator.getInstance();
+            WorldRenderer worldrenderer = tessellator.getWorldRenderer();
+            int i = 0;
+
+            if (str.equals("deadmau5"))
+            {
+                i = -10;
+            }
+
+            int j = fontrenderer.getStringWidth(str) / 2;
+            GlStateManager.disableTexture2D();
+            worldrenderer.begin(7, DefaultVertexFormats.POSITION_COLOR);
+            worldrenderer.pos((double)(-j - 1), (double)(-1 + i), 0.0D).color(0.0F, 0.0F, 0.0F, 0.25F).endVertex();
+            worldrenderer.pos((double)(-j - 1), (double)(8 + i), 0.0D).color(0.0F, 0.0F, 0.0F, 0.25F).endVertex();
+            worldrenderer.pos((double)(j + 1), (double)(8 + i), 0.0D).color(0.0F, 0.0F, 0.0F, 0.25F).endVertex();
+            worldrenderer.pos((double)(j + 1), (double)(-1 + i), 0.0D).color(0.0F, 0.0F, 0.0F, 0.25F).endVertex();
+            tessellator.draw();
+            GlStateManager.enableTexture2D();
+            DamageIndicator damageIndicator = (DamageIndicator) Apple.CLIENT.getModsManager().getMod("Damage Indicator");
+            
+            if (renderWithTextShadow)
+            {
+                fontrenderer.drawStringWithShadow(str, -fontrenderer.getStringWidth(str) / 2, i, 553648127);
+            }
+            
+            else
+            {
+                fontrenderer.drawString(str, -fontrenderer.getStringWidth(str) / 2, i, 553648127);
+            }
+            
+            GlStateManager.enableDepth();
+            GlStateManager.depthMask(true);
+            
+            if (renderWithTextShadow)
+            {
+                fontrenderer.drawStringWithShadow(str, -fontrenderer.getStringWidth(str) / 2, i, -1);
+            }
+            
+            else
+            {
+                fontrenderer.drawString(str, -fontrenderer.getStringWidth(str) / 2, i, -1);
+            }
+            
+            if (aBoolean)
+            {
+                GlStateManager.color(1, 1, 1, 1);
+                Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("icons/icon_16x16.png"));
+                Gui.drawModalRectWithCustomSizedTexture(fontrenderer.getStringWidth(str) / 2, -3, 0, 0, 12, 12, 12, 12);
+            }
+            
+            if (damageIndicator.isEnabled() && entityIn instanceof EntityPlayer && str.contains(entityIn.getName()) && ((EntityLivingBase) entityIn).getMaxHealth() < 1024)
+            {
+                GlStateManager.translate(-0.5F, 0, 0);
+                float maxHearts = ((EntityLivingBase) entityIn).getMaxHealth();
+                float numberOfHearts = Math.min(((EntityLivingBase) entityIn).getHealth(), maxHearts);
+                Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("textures/gui/icons.png"));
+                
+                if (entityIn.previousHealth == -1)
+                {
+                    entityIn.previousHealth = numberOfHearts;
+                }
+                
+                if (entityIn.previousHealth != numberOfHearts)
+                {
+                    entityIn.time = System.currentTimeMillis();
+                    entityIn.previousHealth = numberOfHearts;
+                }
+                
+                if (System.currentTimeMillis() <= (entityIn.time + 500))
+                {
+                    entityIn.flag = Minecraft.getMinecraft().thePlayer.ticksExisted % 5 == 0;
+                }
+                
+                else
+                {
+                    entityIn.flag = false;
+                }
+                
+                for (i = 0; i < maxHearts / 2; i++)
+                {
+                    boolean isEven = i % 2 == 0;
+                    GlStateManager.color(1, 1, 1, 1);
+                    Gui.drawModalRectWithCustomSizedTexture((i * 8) - (maxHearts * 2), -10, entityIn.flag ? 25 : 16, 0, 9, 9, 256, 256);
+                }
+                
+                float temp = -1;
+                boolean isEven = false;
+                
+                for (f = 0; f < numberOfHearts; f++)
+                {
+                    if (f % 2 == 0)
+                    {
+                        temp++;
+                    }
+                    
+                    isEven = !isEven;
+                    GlStateManager.color(1, 1, 1, 1);
+                    Gui.drawModalRectWithCustomSizedTexture((temp * 8) - (maxHearts * 2), -10, 52, 0, isEven ? 5 : 9, 9, 256, 256);
+                }
+            }
+            
+            GlStateManager.enableLighting();
+            GlStateManager.disableBlend();
+            GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+            GlStateManager.popMatrix();
+        }
+    }
+    
+    public void drawRect(float left, float right, float top, float bottom, int color)
+    {
+        if (left < right)
+        {
+            float i = left;
+            left = right;
+            right = i;
+        }
+
+        if (top < bottom)
+        {
+            float j = top;
+            top = bottom;
+            bottom = j;
+        }
+        
+        float f3 = (color >> 24 & 255) / 255F;
+        float f = (color >> 16 & 255) / 255F;
+        float f1 = (color >> 8 & 255) / 255F;
+        float f2 = (color & 255) / 255F;
+        Tessellator tessellator = Tessellator.getInstance();
+        WorldRenderer worldrenderer = tessellator.getWorldRenderer();
+        GlStateManager.color(f, f1, f2, f3);
+        worldrenderer.begin(4, DefaultVertexFormats.POSITION);
+        worldrenderer.pos(left, bottom, 0).endVertex();
+        worldrenderer.pos(right, bottom, 0).endVertex();
+        worldrenderer.pos(right, top, 0).endVertex();
+        worldrenderer.pos(right, top, 0).endVertex();
+        worldrenderer.pos(left, top, 0).endVertex();
+        worldrenderer.pos(left, bottom, 0).endVertex();
+        tessellator.draw();
+    }
+}

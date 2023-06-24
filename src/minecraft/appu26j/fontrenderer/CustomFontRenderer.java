@@ -63,17 +63,17 @@ public class CustomFontRenderer extends CFont implements MinecraftInterface
     }
     
     public float drawString(final String text, double x, double y, int color, final boolean shadow, final float kerning) {
-        ScaledResolution scaledResolution = new ScaledResolution(mc);
+        if (text == null || text.isEmpty())
+        {
+            return 0;
+        }
         
+        ScaledResolution scaledResolution = new ScaledResolution(mc);
+
         if (this.previousScaleFactor != scaledResolution.getScaleFactor())
         {
             this.previousScaleFactor = scaledResolution.getScaleFactor();
             Fonts.initialize();
-            return 0;
-        }
-        
-        if (text == null)
-        {
             return 0;
         }
         
@@ -235,7 +235,7 @@ public class CustomFontRenderer extends CFont implements MinecraftInterface
     }
     
     public int getStringWidth(String text, float kerning) {
-        if (text == null)
+        if (text == null || text.isEmpty())
         {
             return 0;
         }

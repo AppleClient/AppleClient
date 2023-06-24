@@ -1,0 +1,19 @@
+package appu26j.cosmetics.head;
+
+import appu26j.cosmetics.Cosmetic;
+import net.minecraft.client.entity.AbstractClientPlayer;
+
+public class ChinaHat extends Cosmetic
+{
+    public ChinaHat()
+    {
+        super("China Hat");
+    }
+    
+    @Override
+    public void render(AbstractClientPlayer abstractClientPlayer) {
+        // TODO Auto-generated method stub
+        
+    }
+    
+}
