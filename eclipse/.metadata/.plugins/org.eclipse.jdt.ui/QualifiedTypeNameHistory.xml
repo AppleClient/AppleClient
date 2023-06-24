@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="appu26j.DiscordRP"/>
-    <fullyQualifiedTypeName name="appu26j.mods.multiplayer.RankChanger"/>
     <fullyQualifiedTypeName name="java.util.regex.Pattern"/>
     <fullyQualifiedTypeName name="club.marshadow.ColorUtil"/>
     <fullyQualifiedTypeName name="org.lwjgl.opengl.Display"/>
@@ -24,7 +22,6 @@
     <fullyQualifiedTypeName name="net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType"/>
     <fullyQualifiedTypeName name="appu26j.utils.UpdateUtil"/>
     <fullyQualifiedTypeName name="appu26j.utils.FileUtil"/>
-    <fullyQualifiedTypeName name="org.apache.commons.io.FileUtils"/>
     <fullyQualifiedTypeName name="net.minecraft.client.network.NetworkPlayerInfo"/>
     <fullyQualifiedTypeName name="java.net.URL"/>
     <fullyQualifiedTypeName name="java.nio.file.Files"/>
@@ -60,4 +57,7 @@
     <fullyQualifiedTypeName name="appu26j.Apple"/>
     <fullyQualifiedTypeName name="net.minecraft.client.gui.Gui"/>
     <fullyQualifiedTypeName name="net.minecraft.entity.Entity"/>
+    <fullyQualifiedTypeName name="org.apache.commons.io.FileUtils"/>
+    <fullyQualifiedTypeName name="javax.imageio.ImageIO"/>
+    <fullyQualifiedTypeName name="java.awt.image.BufferedImage"/>
 </qualifiedTypeNameHistroy>

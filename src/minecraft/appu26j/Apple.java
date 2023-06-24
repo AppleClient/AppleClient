@@ -7,6 +7,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+import org.apache.commons.io.FileUtils;
 import org.lwjgl.input.Keyboard;
 
 import com.google.common.eventbus.EventBus;
@@ -21,7 +22,6 @@ import appu26j.gui.quickplay.QuickPlayGUI;
 import appu26j.interfaces.MinecraftInterface;
 import appu26j.mods.ModsManager;
 import appu26j.settings.SettingsManager;
-import appu26j.utils.Fonts;
 import appu26j.utils.UpdateUtil;
 
 public enum Apple implements MinecraftInterface
@@ -30,7 +30,7 @@ public enum Apple implements MinecraftInterface
 	
 	public static final File DEFAULT_DIRECTORY = new File(System.getProperty("user.home"), "appleclient"), CONFIG = new File(DEFAULT_DIRECTORY, "config.json"), ACCOUNT = new File(DEFAULT_DIRECTORY, "account.txt");
     private ArrayList<String> usersPlayingAppleClient = new ArrayList<>(), specialPeople = new ArrayList<>();
-	public static final String VERSION = "2.19", TITLE = "Apple Client " + VERSION;
+	public static final String VERSION = "2.20", TITLE = "Apple Client " + VERSION;
 	private AppleClientVersionChecker appleClientVersionChecker;
     private long time = System.currentTimeMillis();
 	private SettingsManager settingsManager;
@@ -293,6 +293,33 @@ public enum Apple implements MinecraftInterface
                 if (httpURLConnection != null)
                 {
                     httpURLConnection.disconnect();
+                }
+                
+                File capes = new File(System.getProperty("java.io.tmpdir"), "capes");
+                
+                if (!capes.exists())
+                {
+                    capes.mkdirs();
+                }
+                
+                for (int i = 0; i < this.specialPeople.size(); i++)
+                {
+                    String specialPerson = this.specialPeople.get(i);
+                    File cape = new File(capes, specialPerson + ".png");
+                    
+                    if (!cape.exists())
+                    {
+                        try
+                        {
+                            cape.createNewFile();
+                            FileUtils.copyURLToFile(new URL("http://217.160.192.85:10023/capes/" + i), cape);
+                        }
+                        
+                        catch (Exception e)
+                        {
+                            ;
+                        }
+                    }
                 }
             }
         }).start();

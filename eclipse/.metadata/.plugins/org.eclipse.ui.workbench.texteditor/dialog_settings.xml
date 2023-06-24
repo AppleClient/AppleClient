@@ -6,8 +6,11 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="customFont()"/>
+		<item key="selection" value="sqrt"/>
 		<list key="findhistory">
+			<item value="sqrt"/>
+			<item value="boundTextureLocation"/>
+			<item value="mapTextureObjects"/>
 			<item value="customFont()"/>
 			<item value="renderHand("/>
 			<item value="renderHand()"/>
@@ -20,9 +23,6 @@
 			<item value="bottom "/>
 			<item value="right "/>
 			<item value="top "/>
-			<item value="left "/>
-			<item value="name"/>
-			<item value="getStringWidth"/>
 		</list>
 		<list key="replacehistory">
 			<item value="0"/>

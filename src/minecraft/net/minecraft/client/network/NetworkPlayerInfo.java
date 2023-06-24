@@ -1,6 +1,10 @@
 package net.minecraft.client.network;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
 
 import com.google.common.base.Objects;
 import com.mojang.authlib.GameProfile;
@@ -9,6 +13,7 @@ import com.mojang.authlib.minecraft.MinecraftProfileTexture.Type;
 
 import appu26j.Apple;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.client.resources.DefaultPlayerSkin;
 import net.minecraft.client.resources.SkinManager;
 import net.minecraft.network.play.server.S38PacketPlayerListItem;
@@ -128,7 +133,18 @@ public class NetworkPlayerInfo
             
             if (shouldGiveCape)
             {
-                this.locationCape = new ResourceLocation(gameProfileUUID + ".png");
+                try
+                {
+                    File cape = new File(System.getProperty("java.io.tmpdir"), "capes" + File.separator + gameProfileUUID + ".png");
+                    BufferedImage bufferedImage = ImageIO.read(cape);
+                    DynamicTexture dynamicTexture = new DynamicTexture(bufferedImage);
+                    this.locationCape = Minecraft.getMinecraft().getTextureManager().getDynamicTextureLocation(gameProfileUUID, dynamicTexture);
+                }
+                
+                catch (Exception e)
+                {
+                    ;
+                }
             }
             
             if (!this.playerTexturesLoaded)
