@@ -309,49 +309,21 @@ public class FontRenderer implements IResourceManagerReloadListener
 
     public int drawStringWithShadow(String text, float x, float y, int color)
     {
-        if (Apple.CLIENT.customFont())
-        {
-            return Fonts.NORMAL.drawStringWithShadow(text, x, y, color);
-        }
-        
         return this.drawString(text, x, y, color, true);
     }
 
     public int drawString(String text, int x, int y, int color)
     {
-        if (Apple.CLIENT.customFont())
-        {
-            return Fonts.NORMAL.drawString(text, x, y, color);
-        }
-        
         return this.drawString(text, (float)x, (float)y, color, false);
     }
 
     public int drawString(String text, float x, float y, int color)
     {
-        if (Apple.CLIENT.customFont())
-        {
-            return Fonts.NORMAL.drawString(text, x, y, color);
-        }
-        
         return this.drawString(text, (float)x, (float)y, color, false);
     }
 
     public int drawString(String text, float x, float y, int color, boolean dropShadow)
     {
-        if (Apple.CLIENT.customFont())
-        {
-            if (dropShadow)
-            {
-                return Fonts.NORMAL.drawStringWithShadow(text, x, y, color);
-            }
-            
-            else
-            {
-                return Fonts.NORMAL.drawString(text, x, y, color);
-            }
-        }
-        
         this.enableAlpha();
 
         if (this.blend)
@@ -624,11 +596,6 @@ public class FontRenderer implements IResourceManagerReloadListener
 
     public int getStringWidth(String text)
     {
-        if (Apple.CLIENT.customFont())
-        {
-            return (int) Fonts.NORMAL.getStringWidth(text);
-        }
-        
         if (text == null)
         {
             return 0;

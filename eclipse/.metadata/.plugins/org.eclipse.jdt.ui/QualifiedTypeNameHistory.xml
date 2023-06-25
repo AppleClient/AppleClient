@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.util.regex.Pattern"/>
     <fullyQualifiedTypeName name="club.marshadow.ColorUtil"/>
-    <fullyQualifiedTypeName name="org.lwjgl.opengl.Display"/>
     <fullyQualifiedTypeName name="net.minecraft.client.gui.GuiMultiplayer"/>
     <fullyQualifiedTypeName name="net.minecraft.client.gui.GuiScreenServerList"/>
     <fullyQualifiedTypeName name="net.minecraft.client.gui.GuiScreenAddServer"/>
@@ -37,8 +35,6 @@
     <fullyQualifiedTypeName name="net.minecraft.client.resources.ResourcePackRepository.Entry"/>
     <fullyQualifiedTypeName name="appu26j.mods.visuals.MotionBlur"/>
     <fullyQualifiedTypeName name="appu26j.mods.visuals.Chat"/>
-    <fullyQualifiedTypeName name="net.java.games.input.Mouse"/>
-    <fullyQualifiedTypeName name="org.lwjgl.input.Mouse"/>
     <fullyQualifiedTypeName name="java.awt.Desktop"/>
     <fullyQualifiedTypeName name="java.awt.Font"/>
     <fullyQualifiedTypeName name="appu26j.MotionBlur"/>
@@ -50,14 +46,18 @@
     <fullyQualifiedTypeName name="appu26j.utils.ServerUtil"/>
     <fullyQualifiedTypeName name="appu26j.events.Event"/>
     <fullyQualifiedTypeName name="appu26j.utils.Fonts"/>
-    <fullyQualifiedTypeName name="appu26j.mods.Category"/>
     <fullyQualifiedTypeName name="net.minecraft.util.EnumChatFormatting"/>
     <fullyQualifiedTypeName name="java.awt.Color"/>
     <fullyQualifiedTypeName name="net.minecraft.client.Minecraft"/>
-    <fullyQualifiedTypeName name="appu26j.Apple"/>
     <fullyQualifiedTypeName name="net.minecraft.client.gui.Gui"/>
     <fullyQualifiedTypeName name="net.minecraft.entity.Entity"/>
     <fullyQualifiedTypeName name="org.apache.commons.io.FileUtils"/>
     <fullyQualifiedTypeName name="javax.imageio.ImageIO"/>
     <fullyQualifiedTypeName name="java.awt.image.BufferedImage"/>
+    <fullyQualifiedTypeName name="appu26j.mods.Category"/>
+    <fullyQualifiedTypeName name="net.java.games.input.Mouse"/>
+    <fullyQualifiedTypeName name="net.java.games.input.Controller"/>
+    <fullyQualifiedTypeName name="appu26j.Apple"/>
+    <fullyQualifiedTypeName name="org.lwjgl.input.Mouse"/>
+    <fullyQualifiedTypeName name="org.lwjgl.opengl.Display"/>
 </qualifiedTypeNameHistroy>

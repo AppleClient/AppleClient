@@ -19,6 +19,7 @@ public class Chat extends Mod
     
 	public Chat()
 	{
+        this.addSetting(new Setting("No Background", this, false));
 		this.addSetting(new Setting("Infinite History", this, false));
 		this.addSetting(new Setting("Text Shadow", this, true));
         this.addSetting(new Setting("Stack Messages", this, false));
