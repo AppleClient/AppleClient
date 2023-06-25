@@ -15,6 +15,7 @@ local.properties
 .recommenders
 .log
 .class
+.index
 
 # External tool builders
 .externalToolBuilders/
