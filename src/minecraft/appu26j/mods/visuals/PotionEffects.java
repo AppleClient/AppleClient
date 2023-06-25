@@ -11,5 +11,6 @@ public class PotionEffects extends Mod
     public PotionEffects()
     {
         this.addSetting(new Setting("Hide own potion effect particles", this, false));
+        this.addSetting(new Setting("Centered inventory", this, false));
     }
 }

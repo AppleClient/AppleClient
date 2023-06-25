@@ -1,6 +1,9 @@
 package net.minecraft.client.renderer;
 
 import java.util.Collection;
+
+import appu26j.Apple;
+import appu26j.mods.visuals.PotionEffects;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.inventory.Container;
@@ -31,7 +34,18 @@ public abstract class InventoryEffectRenderer extends GuiContainer
     {
         if (!this.mc.thePlayer.getActivePotionEffects().isEmpty())
         {
-            this.guiLeft = 160 + (this.width - this.xSize - 200) / 2;
+            PotionEffects potionEffects = (PotionEffects) Apple.CLIENT.getModsManager().getMod("Potion Effects");
+            
+            if (potionEffects.isEnabled() && potionEffects.getSetting("Centered inventory").getCheckBoxValue())
+            {
+                this.guiLeft = (this.width - this.xSize) / 2;
+            }
+            
+            else
+            {
+                this.guiLeft = 160 + (this.width - this.xSize - 200) / 2;
+            }
+            
             this.hasActivePotionEffects = true;
         }
         else
