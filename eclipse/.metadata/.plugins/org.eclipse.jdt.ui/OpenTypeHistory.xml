@@ -26,7 +26,6 @@
     <typeInfo handle="=Client/src&lt;appu26j.gui{ClickGUI.java[ClickGUI" modifiers="1" timestamp="1687552092886"/>
     <typeInfo handle="=Client/src&lt;appu26j.performance{CullHelper.java[CullHelper" modifiers="1" timestamp="1687552092913"/>
     <typeInfo handle="=Client/src&lt;net.minecraft.client.model{ModelBoat.java[ModelBoat" modifiers="1" timestamp="1687552095082"/>
-    <typeInfo handle="=Client/src&lt;net.minecraft.client.renderer.entity{RendererLivingEntity.java[RendererLivingEntity" modifiers="1025" timestamp="1687552095197"/>
     <typeInfo handle="=Client/src&lt;net.minecraft.client.renderer.entity{RenderPlayer.java[RenderPlayer" modifiers="1" timestamp="1687564668734"/>
     <typeInfo handle="=Client/src&lt;net.minecraft.client.renderer{EntityRenderer.java[EntityRenderer" modifiers="1" timestamp="1687565140349"/>
     <typeInfo handle="=Client/src&lt;net.minecraft.client{Minecraft.java[Minecraft" modifiers="1" timestamp="1687564711963"/>
@@ -40,5 +39,7 @@
     <typeInfo handle="=Client/src&lt;net.minecraft.potion{PotionEffect.java[PotionEffect" modifiers="1" timestamp="1687552095584"/>
     <typeInfo handle="=Client/src&lt;appu26j.mods.visuals{PotionEffects.java[PotionEffects" modifiers="1" timestamp="1687714306801"/>
     <typeInfo handle="=Client/src&lt;net.minecraft.client.renderer{InventoryEffectRenderer.java[InventoryEffectRenderer" modifiers="1025" timestamp="1687714362206"/>
-    <typeInfo handle="=Client/src&lt;appu26j{Apple.java[Apple" modifiers="16385" timestamp="1687714382690"/>
+    <typeInfo handle="=Client/src&lt;appu26j{Apple.java[Apple" modifiers="16385" timestamp="1687719585554"/>
+    <typeInfo handle="=Client/src&lt;net.minecraft.client.renderer.entity{RendererLivingEntity.java[RendererLivingEntity" modifiers="1025" timestamp="1687552095197"/>
+    <typeInfo handle="=Client/src&lt;net.minecraft.client.renderer.entity{Render.java[Render" modifiers="1025" timestamp="1687562203438"/>
 </typeInfoHistroy>

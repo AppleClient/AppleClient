@@ -41,7 +41,7 @@ public class DiscordRP
 	
 	public static void update(String line)
 	{
-		Builder builder = new Builder("discord.gg/485Njm9hNG");
+		Builder builder = new Builder("dsc.gg/appleclient");
 		builder.setDetails(line);
 		builder.setBigImage("appleclient", "Apple Client");
 		builder.setStartTimestamps(milliseconds);
