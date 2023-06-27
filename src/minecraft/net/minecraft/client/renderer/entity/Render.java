@@ -387,7 +387,7 @@ public abstract class Render<T extends Entity> implements IEntityRenderer
         
         if (d0 <= (double)(maxDistance * maxDistance))
         {
-            NameTags nameTags = (NameTags) Apple.CLIENT.getModsManager().getMod("Name Tags");
+            NameTags nameTags = (NameTags) Apple.CLIENT.getModsManager().getMod("Nametags");
             boolean renderWithTextShadow = nameTags.isEnabled() && nameTags.getSetting("Text Shadow").getCheckBoxValue();
             FontRenderer fontrenderer = this.getFontRendererFromRenderManager();
             float f = 1.6F;

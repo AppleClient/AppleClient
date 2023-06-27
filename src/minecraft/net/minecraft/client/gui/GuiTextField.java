@@ -599,7 +599,7 @@ public class GuiTextField extends Gui
      */
     public void drawTextBox(boolean chat)
     {
-        Chat chatMod = (Chat) Apple.CLIENT.getModsManager().getMod("MC Chat");
+        Chat chatMod = (Chat) Apple.CLIENT.getModsManager().getMod("Chat");
         
         if (!chatMod.isEnabled())
         {

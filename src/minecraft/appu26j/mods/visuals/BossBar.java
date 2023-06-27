@@ -5,7 +5,7 @@ import appu26j.mods.Category;
 import appu26j.mods.Mod;
 import appu26j.settings.Setting;
 
-@ModInterface(name = "Boss Bar", description = "Shows the boss bar.", category = Category.VISUALS)
+@ModInterface(name = "Bossbar", description = "Shows the bossbar.", category = Category.VISUALS)
 public class BossBar extends Mod
 {
     ;

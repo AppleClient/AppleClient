@@ -16,7 +16,7 @@ import appu26j.gui.quickplay.QuickPlayGUI;
 import appu26j.mods.Mod;
 import appu26j.mods.multiplayer.Cooldown;
 import appu26j.mods.visuals.BossBar;
-import appu26j.mods.visuals.CrossHair;
+import appu26j.mods.visuals.Crosshair;
 import appu26j.mods.visuals.NoPumpkin;
 import club.marshadow.ColorUtil;
 import net.minecraft.block.material.Material;
@@ -202,7 +202,7 @@ public class GuiIngame extends Gui
             cooldown.renderCooldown(scaledresolution.getScaledWidth(), scaledresolution.getScaledHeight(), partialTicks);
         }
 
-        CrossHair crossHair = (CrossHair) Apple.CLIENT.getModsManager().getMod("Cross Hair");
+        Crosshair crossHair = (Crosshair) Apple.CLIENT.getModsManager().getMod("Crosshair");
         
         if (crossHair.isEnabled())
         {
@@ -641,7 +641,7 @@ public class GuiIngame extends Gui
 
     private void renderScoreboard(ScoreObjective objective, ScaledResolution scaledRes)
     {
-        appu26j.mods.visuals.Scoreboard scoreboardMod = (appu26j.mods.visuals.Scoreboard) Apple.CLIENT.getModsManager().getMod("Score Board");
+        appu26j.mods.visuals.Scoreboard scoreboardMod = (appu26j.mods.visuals.Scoreboard) Apple.CLIENT.getModsManager().getMod("Scoreboard");
         
         if (scoreboardMod.isEnabled())
         {
@@ -1127,7 +1127,7 @@ public class GuiIngame extends Gui
      */
     private void renderBossHealth()
     {
-        BossBar bossBar = (BossBar) Apple.CLIENT.getModsManager().getMod("Boss Bar");
+        BossBar bossBar = (BossBar) Apple.CLIENT.getModsManager().getMod("Bossbar");
         
         if (BossStatus.bossName != null && BossStatus.statusBarTime > 0 && bossBar.isEnabled())
         {

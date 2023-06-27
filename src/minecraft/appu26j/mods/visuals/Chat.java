@@ -11,7 +11,7 @@ import net.minecraft.client.gui.GuiNewChat;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IChatComponent;
 
-@ModInterface(name = "MC Chat", description = "Allows you to enable and change the behaviour of the chat.", category = Category.VISUALS)
+@ModInterface(name = "Chat", description = "Allows you to enable and change the behaviour of the chat.", category = Category.VISUALS)
 public class Chat extends Mod
 {
     private int amount = 0, temp = 0;

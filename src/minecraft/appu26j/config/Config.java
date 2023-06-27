@@ -113,7 +113,63 @@ public class Config
 			while (iterator.hasNext())
 			{
 				Entry<String, JsonElement> entry = iterator.next();
-				Mod mod = Apple.CLIENT.getModsManager().getMod(entry.getKey());
+				String modName = entry.getKey();
+				
+				// The below is for legacy Apple Client configs
+				// In the v2.24 update, I have changed a lot of mods'
+				// names, which breaks configs. To prevent that, I
+				// change the mod's name here.
+				if (modName.equals("Key Strokes"))
+				{
+				    modName = "Keystrokes";
+				}
+				
+				else if (modName.equals("Boss Bar"))
+                {
+                    modName = "Bossbar";
+                }
+                
+				else if (modName.equals("MC Chat"))
+                {
+                    modName = "Chat";
+                }
+                
+				else if (modName.equals("Cross Hair"))
+                {
+                    modName = "Crosshair";
+                }
+                
+				else if (modName.equals("Name Tags"))
+                {
+                    modName = "Nametags";
+                }
+                
+				else if (modName.equals("Score Board"))
+				{
+				    modName = "Scoreboard";
+				}
+				
+				else if (modName.equals("Time Clock"))
+                {
+                    modName = "Clock";
+                }
+				
+				else if (modName.equals("Hurt Camera"))
+                {
+                    modName = "No Hurt Cam";
+                }
+				
+				else if (modName.equals("Anti Snipe"))
+                {
+                    modName = "Name Hider";
+                }
+				
+				else if (modName.equals("Clock Timer"))
+				{
+				    modName = "Timer Countdown";
+				}
+				
+				Mod mod = Apple.CLIENT.getModsManager().getMod(modName);
 				
 				if (mod != null)
 				{

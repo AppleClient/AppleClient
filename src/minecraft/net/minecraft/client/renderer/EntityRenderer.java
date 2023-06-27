@@ -703,7 +703,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
 
     private void hurtCameraEffect(float partialTicks)
     {
-        HurtCamera hurtCamera = (HurtCamera) Apple.CLIENT.getModsManager().getMod("Hurt Camera");
+        HurtCamera hurtCamera = (HurtCamera) Apple.CLIENT.getModsManager().getMod("No Hurt Cam");
         
         if (hurtCamera.isEnabled())
         {

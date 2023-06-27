@@ -6,8 +6,15 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="drawString"/>
+		<item key="selection" value="Clouds"/>
 		<list key="findhistory">
+			<item value="clouds"/>
+			<item value="cloud"/>
+			<item value="167"/>
+			<item value="168"/>
+			<item value="16"/>
+			<item value="displayGuiSc"/>
+			<item value="mouseClic"/>
 			<item value="drawString"/>
 			<item value="setFulls"/>
 			<item value="new ScaledResolution(this)"/>
@@ -16,13 +23,6 @@
 			<item value="scaledresolution"/>
 			<item value="Framebuffer"/>
 			<item value="framebuffer"/>
-			<item value="setFramebuffer"/>
-			<item value="set"/>
-			<item value="set("/>
-			<item value="setSiz"/>
-			<item value="setWi"/>
-			<item value="setWindow"/>
-			<item value="setWindopw"/>
 		</list>
 		<list key="replacehistory">
 			<item value="import net.minecraft.client.gui.ScaledResolution; import appu26j.Scale;"/>

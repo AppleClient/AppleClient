@@ -9,7 +9,7 @@ import appu26j.settings.Setting;
 import appu26j.utils.ClockUtil;
 import club.marshadow.ColorUtil;
 
-@ModInterface(name = "Time Clock", description = "Allows you to see the time in-game.", category = Category.VISUALS, width = 44, height = 15)
+@ModInterface(name = "Clock", description = "Allows you to see the time in-game.", category = Category.VISUALS, width = 44, height = 15)
 public class TimeClock extends Mod
 {
 	public TimeClock()

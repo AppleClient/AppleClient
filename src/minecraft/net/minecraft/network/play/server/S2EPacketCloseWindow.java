@@ -28,7 +28,7 @@ public class S2EPacketCloseWindow implements Packet<INetHandlerPlayClient>
      */
     public void processPacket(INetHandlerPlayClient handler)
     {
-        Chat chat = (Chat) Apple.CLIENT.getModsManager().getMod("MC Chat");
+        Chat chat = (Chat) Apple.CLIENT.getModsManager().getMod("Chat");
         
         if (!(chat.isEnabled() && chat.getSetting("No Close My Chat").getCheckBoxValue() && Minecraft.getMinecraft().currentScreen instanceof GuiChat))
         {

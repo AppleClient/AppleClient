@@ -31,7 +31,7 @@ public class ModsManager
 		this.mods.add(new FullBright());
 		this.mods.add(new PingIndicator());
 		this.mods.add(new DamageTilt());
-		this.mods.add(new CrossHair());
+		this.mods.add(new Crosshair());
 		this.mods.add(new TimeChanger());
 		this.mods.add(new Chat());
 		this.mods.add(new Scoreboard());
@@ -58,7 +58,7 @@ public class ModsManager
         this.mods.add(new TNTCountdown());
         this.mods.add(new RawInput());
 		this.mods.sort(Comparator.comparing(Mod::getName));
-		this.getMods("Score Board", "Boss Bar").forEach(mod -> mod.setEnabled(true));
+		this.getMods("Scoreboard", "Bossbar").forEach(mod -> mod.setEnabled(true));
 		return this;
 	}
 	

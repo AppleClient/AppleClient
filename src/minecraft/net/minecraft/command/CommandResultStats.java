@@ -33,7 +33,7 @@ public class CommandResultStats
     /**
      * Set the score on the ScoreBoard
      *  
-     * @param scorePoint The score to set to the score board
+     * @param scorePoint The score to set to the Scoreboard
      */
     public void setCommandStatScore(final ICommandSender sender, CommandResultStats.Type resultTypeIn, int scorePoint)
     {

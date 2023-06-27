@@ -11,11 +11,14 @@ import appu26j.mods.Mod;
 import appu26j.settings.Setting;
 import appu26j.utils.TimeUtil;
 import club.marshadow.ColorUtil;
+import net.minecraft.entity.EntityLivingBase;
 
 @ModInterface(name = "Combo Display", description = "Displays how many combos you have.", category = Category.VISUALS, width = 53, height = 15)
 public class Combo extends Mod
 {
 	private TimeUtil timeUtil = new TimeUtil();
+    private EntityLivingBase prevEntity;
+	private boolean aBoolean = false;
 	private int combos = 0;
 	
 	public Combo()
@@ -28,16 +31,6 @@ public class Combo extends Mod
 		this.addSetting(new Setting("Size", this, 0.5F, 1, 2, 0.25F));
 	}
 	
-	@Subscribe
-	public void onAttack(EventAttack e)
-	{
-		if (this.mc.pointedEntity != null)
-		{
-			this.combos++;
-			this.timeUtil.reset();
-		}
-	}
-	
 	@Override
 	public void onRender()
 	{
@@ -45,6 +38,24 @@ public class Combo extends Mod
 		float size = this.getSetting("Size").getSliderValue();
 		int[] colors = this.getSetting("Text Color (RGB)").getColors();
 		int color = new Color(colors[0], colors[1], colors[2]).getRGB();
+		EntityLivingBase entity = (EntityLivingBase) this.mc.pointedEntity;
+		
+		if (entity != null && entity.hurtResistantTime == entity.maxHurtResistantTime)
+		{
+		    if (this.aBoolean)
+		    {
+	            this.combos++;
+	            this.timeUtil.reset();
+	            this.aBoolean = false;
+		    }
+		    
+		    this.prevEntity = entity;
+		}
+		
+		else
+		{
+		    this.aBoolean = true;
+		}
 		
 		if (this.getSetting("Rainbow Text Color").getCheckBoxValue())
 		{
@@ -56,7 +67,7 @@ public class Combo extends Mod
 			this.combos = 0;
 		}
 		
-		if (this.timeUtil.hasTimePassed(3000))
+		if (this.timeUtil.hasTimePassed(3000) || (this.prevEntity != null && this.prevEntity.isDead))
 		{
 			if (this.combos > 0)
 			{

@@ -9,7 +9,7 @@ import appu26j.settings.Setting;
 import club.marshadow.ColorUtil;
 import net.minecraft.client.renderer.GlStateManager;
 
-@ModInterface(name = "Key Strokes", description = "Displays the keystrokes on your screen.", category = Category.VISUALS, width = 80, height = 80)
+@ModInterface(name = "Keystrokes", description = "Displays the keystrokes on your screen.", category = Category.VISUALS, width = 80, height = 80)
 public class KeyStrokes extends Mod
 {
 	public KeyStrokes()

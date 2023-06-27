@@ -5,7 +5,7 @@ import appu26j.mods.Category;
 import appu26j.mods.Mod;
 import appu26j.settings.Setting;
 
-@ModInterface(name = "Score Board", description = "Allows you to turn on and change the looks of the scoreboard.", category = Category.VISUALS)
+@ModInterface(name = "Scoreboard", description = "Allows you to turn on and change the looks of the scoreboard.", category = Category.VISUALS)
 public class Scoreboard extends Mod
 {
 	public Scoreboard()

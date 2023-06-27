@@ -12,7 +12,7 @@ import appu26j.utils.SoundUtil;
 import appu26j.utils.TimeUtil;
 import net.minecraft.util.ChatComponentText;
 
-@ModInterface(name = "Clock Timer", description = "Allows you to make the timer ring after a specific time.", category = Category.GENERAL)
+@ModInterface(name = "Timer Countdown", description = "Allows you to make the timer ring after a specific time.", category = Category.GENERAL)
 public class ClockTimer extends Mod
 {
 	private TimeUtil timeUtil = new TimeUtil();
@@ -43,7 +43,7 @@ public class ClockTimer extends Mod
 		if (this.timeUtil.hasTimePassed(time))
 		{
 			this.ring();
-			Apple.CLIENT.getModsManager().getMod("Clock Timer").setEnabled(false);
+			Apple.CLIENT.getModsManager().getMod("Timer Countdown").setEnabled(false);
 			this.timeUtil.reset();
 		}
 	}

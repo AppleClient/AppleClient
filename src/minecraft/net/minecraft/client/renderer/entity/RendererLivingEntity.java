@@ -692,7 +692,7 @@ public abstract class RendererLivingEntity<T extends EntityLivingBase> extends R
 
                     if (entity.isSneaking())
                     {
-                        NameTags nameTags = (NameTags) Apple.CLIENT.getModsManager().getMod("Name Tags");
+                        NameTags nameTags = (NameTags) Apple.CLIENT.getModsManager().getMod("Nametags");
                         boolean renderWithTextShadow = nameTags.isEnabled() && nameTags.getSetting("Text Shadow").getCheckBoxValue();
                         FontRenderer fontrenderer = this.getFontRendererFromRenderManager();
                         GlStateManager.pushMatrix();
@@ -809,7 +809,7 @@ public abstract class RendererLivingEntity<T extends EntityLivingBase> extends R
 
     protected boolean canRenderName(T entity)
     {
-        NameTags nameTags = (NameTags) Apple.CLIENT.getModsManager().getMod("Name Tags");
+        NameTags nameTags = (NameTags) Apple.CLIENT.getModsManager().getMod("Nametags");
         EntityPlayerSP entityplayersp = Minecraft.getMinecraft().thePlayer;
 
         if (entity instanceof EntityPlayer && entity != entityplayersp)

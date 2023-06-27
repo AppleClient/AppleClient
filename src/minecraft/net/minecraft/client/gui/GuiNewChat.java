@@ -39,7 +39,7 @@ public class GuiNewChat extends Gui
 
     public void drawChat(int updateCounter)
     {
-        Chat chat = (Chat) Apple.CLIENT.getModsManager().getMod("MC Chat");
+        Chat chat = (Chat) Apple.CLIENT.getModsManager().getMod("Chat");
         
         if (this.mc.gameSettings.chatVisibility != EntityPlayer.EnumChatVisibility.HIDDEN)
         {
@@ -144,7 +144,7 @@ public class GuiNewChat extends Gui
      */
     public void clearChatMessages()
     {
-        Chat chat = (Chat) Apple.CLIENT.getModsManager().getMod("MC Chat");
+        Chat chat = (Chat) Apple.CLIENT.getModsManager().getMod("Chat");
         
         if (!(chat.isEnabled() && chat.getSetting("Don't Clear History").getCheckBoxValue()))
         {
@@ -207,7 +207,7 @@ public class GuiNewChat extends Gui
             this.drawnChatLines.add(0, new ChatLine(updateCounter, ichatcomponent, chatLineId));
         }
 
-        Chat chat = (Chat) Apple.CLIENT.getModsManager().getMod("MC Chat");
+        Chat chat = (Chat) Apple.CLIENT.getModsManager().getMod("Chat");
         int j = (chat.isEnabled() && chat.getSetting("Infinite History").getCheckBoxValue()) ? Integer.MAX_VALUE : 100;
         
         while (this.drawnChatLines.size() > j)
@@ -258,7 +258,7 @@ public class GuiNewChat extends Gui
             this.drawnChatLines.add(0, new ChatLine(updateCounter, ichatcomponent, chatLineId));
         }
 
-        Chat chat = (Chat) Apple.CLIENT.getModsManager().getMod("MC Chat");
+        Chat chat = (Chat) Apple.CLIENT.getModsManager().getMod("Chat");
         int j = (chat.isEnabled() && chat.getSetting("Infinite History").getCheckBoxValue()) ? Integer.MAX_VALUE : 100;
         
         while (this.drawnChatLines.size() > j)

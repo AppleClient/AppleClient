@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
@@ -23,9 +22,9 @@ import net.minecraft.util.ResourceLocation;
 public class ClickGUI extends GuiScreen
 {
 	private boolean searching = false, aBoolean = false, closingGui = false;
+    private int scrollIndex = 10, scrollIndex2 = -10, maxScrollIndex = -1;
 	private String randomModName = "", searchingMessage = "";
 	private Category selectedCategory = Category.ALL;
-	private int scrollIndex = 10, scrollIndex2 = -10;
 	private TimeUtil timeUtil = new TimeUtil();
 	public float zoomFactor = 1, index = 0;
 	private Mod selectedMod;
@@ -137,13 +136,38 @@ public class ClickGUI extends GuiScreen
 			
 			for (Mod mod : this.selectedCategory.equals(Category.ALL) ? Apple.CLIENT.getModsManager().getMods() : Apple.CLIENT.getModsManager().getMods(this.selectedCategory))
 			{
+			    ResourceLocation image = null;
+			    
+			    if (this.eq(mod, "1.9 Cooldown", "Auto Friend", "Auto GG", "Auto Tip", "Better Zoom", "Bossbar", "CPS Display", "Chat", "Clock", "Combo Display", "Crosshair", "Damage Tilt", "Damage Tint"))
+			    {
+			        image = new ResourceLocation("mods/" + mod.getName() + ".png");
+			    }
+			    
+			    else if (mod.getName().equals("1.7 Visuals"))
+			    {
+			        image = new ResourceLocation("textures/items/diamond_sword.png");
+			    }
+			    
+			    else if (mod.getName().equals("Armor Status"))
+                {
+                    image = new ResourceLocation("textures/items/iron_chestplate.png");
+                }
+			    
+			    else if (mod.getName().equals("Block Overlay"))
+                {
+                    image = new ResourceLocation("textures/blocks/stone.png");
+                }
+			    
+			    else if (mod.getName().equals("Damage Indicator"))
+                {
+                    image = new ResourceLocation("textures/gui/heart.png");
+                }
+			    
 				if (xOffset != 0 && xOffset % 3 == 0)
 				{
 					yOffset += 115;
 					xOffset = 0;
 				}
-				
-				String[] names = mod.getName().split(" ");
 				
 				if (!this.searching && this.isInsideBox(mouseX, mouseY, i - 200, j - 70, i + 200, j + 150) && this.isInsideBox(mouseX, mouseY, (i - 170) + xOffset, (j - 80) + yOffset, (i - 170) + xOffset + 100, (j - 80) + yOffset + 100))
 				{
@@ -155,8 +179,54 @@ public class ClickGUI extends GuiScreen
 				    this.drawRect((i - 170) + xOffset, (j - 80) + yOffset, (i - 170) + xOffset + 100, (j - 80) + yOffset + 100, backgroundColourLightened.getRGB());
 				}
 				
-				this.drawStringAlpha(names[0], (i - 120) - (this.getStringWidth(names[0], 12) / 2) + xOffset, (j - 60) + yOffset, 12, -1, (int) (this.index * 255));
-				this.drawStringAlpha(names[1], (i - 120) - (this.getStringWidth(names[1], 12) / 2) + xOffset, (j - 40) + yOffset, 12, -1, (int) (this.index * 255));
+				if (image != null)
+				{
+				    this.mc.getTextureManager().bindTexture(image);
+				    GlStateManager.enableBlend();
+				    GlStateManager.color(1, 1, 1, this.index);
+				    
+				    if (mod.getName().equals("1.7 Visuals"))
+				    {
+	                    this.drawModalRectWithCustomSizedTexture((i - 135) + xOffset, (j - 65) + yOffset, 0, 0, 32, 32, 32, 32);
+				    }
+				    
+				    else if (mod.getName().equals("Armor Status"))
+                    {
+                        this.drawModalRectWithCustomSizedTexture((i - 137.5F) + xOffset, (j - 65) + yOffset, 0, 0, 32, 32, 32, 32);
+                    }
+				    
+				    else if (mod.getName().equals("Block Overlay"))
+                    {
+                        this.drawModalRectWithCustomSizedTexture((i - 137.5F) + xOffset, (j - 65) + yOffset, 0, 0, 32, 32, 32, 32);
+                        this.drawOutlineRect((i - 137.5F) + xOffset, (j - 65) + yOffset, (i - 137.5F) + xOffset + 32, (j - 65) + yOffset + 32, new Color(0, 0, 0, (int) (this.index * 255)).getRGB());
+                        this.drawOutlineRect((i - 136.5F) + xOffset, (j - 64) + yOffset, (i - 138.5F) + xOffset + 32, (j - 66) + yOffset + 32, new Color(0, 0, 0, (int) (this.index * 255)).getRGB());
+                    }
+				    
+				    else if (mod.getName().equals("CPS Display"))
+                    {
+				        this.drawModalRectWithCustomSizedTexture((i - 157.5F) + xOffset, (j - 82.5F) + yOffset, 0, 0, 72, 72, 72, 72);
+                    }
+				    
+				    else if (mod.getName().equals("Combo Display"))
+                    {
+                        this.drawModalRectWithCustomSizedTexture((i - 162.5F) + xOffset, (j - 90) + yOffset, 0, 0, 88, 88, 88, 88);
+                    }
+				    
+				    else if (mod.getName().equals("Damage Indicator"))
+                    {
+				        float temp = (i - 159) + xOffset;
+                        this.drawModalRectWithCustomSizedTexture(temp, (j - 60) + yOffset, 0, 0, 27, 27, 27, 27);
+                        this.drawModalRectWithCustomSizedTexture(temp + 24, (j - 60) + yOffset, 0, 0, 27, 27, 27, 27);
+                        this.drawModalRectWithCustomSizedTexture(temp + 48, (j - 60) + yOffset, 0, 0, 27, 27, 27, 27);
+                    }
+				    
+				    else
+				    {
+	                    this.drawModalRectWithCustomSizedTexture((i - 152.5F) + xOffset, (j - 80) + yOffset, 0, 0, 64, 64, 64, 64);
+				    }
+				}
+				
+				this.drawStringAlpha(mod.getName(), (i - 120) - (this.getStringWidth(mod.getName(), 8) / 2) + xOffset, (j - 25) + yOffset, -1, (int) (this.index * 255));
 				
 				if (!this.searching && this.isInsideBox(mouseX, mouseY, i - 200, j - 70, i + 200, j + 150) && this.isInsideBox(mouseX, mouseY, (i - 170) + xOffset, (j - 80) + yOffset, (i - 170) + xOffset + 100, (j - 80) + yOffset + 100))
 				{
@@ -192,6 +262,30 @@ public class ClickGUI extends GuiScreen
 			j += 20;
             i -= 5;
 			GL11.glDisable(GL11.GL_SCISSOR_TEST);
+			
+			if (this.maxScrollIndex == -1)
+            {
+			    if (this.selectedCategory.equals(Category.ALL))
+			    {
+                    int size = (Apple.CLIENT.getModsManager().getMods().size() - 3) / 3;
+                    this.maxScrollIndex = -(115 * size) + 10;
+			    }
+			    
+			    else
+			    {
+			        int size = (Apple.CLIENT.getModsManager().getMods(this.selectedCategory).size() - 3) / 3;
+			        
+			        if (size == 1)
+			        {
+			            this.maxScrollIndex = 10;
+			        }
+			        
+			        else
+			        {
+			            this.maxScrollIndex = -(115 * size) + 10;
+			        }
+			    }
+            }
 		}
 		
 		else
@@ -316,7 +410,6 @@ public class ClickGUI extends GuiScreen
                 }
                 
                 this.drawStringAlpha(names[0], (i - 120) - (this.getStringWidth(names[0], 12) / 2) + xOffset, (j - 60) + yOffset, 12, -1, (int) (this.index * 255));
-                this.drawStringAlpha(names[1], (i - 120) - (this.getStringWidth(names[1], 12) / 2) + xOffset, (j - 40) + yOffset, 12, -1, (int) (this.index * 255));
                 
                 if (this.isInsideBox(mouseX, mouseY, (i - 170) + xOffset, (j - 80) + yOffset, (i - 170) + xOffset + 100, (j - 80) + yOffset + 100))
                 {
@@ -403,6 +496,11 @@ public class ClickGUI extends GuiScreen
 					else
 					{
 						this.scrollIndex -= 50;
+						
+						if (this.scrollIndex < this.maxScrollIndex)
+                        {
+                            this.scrollIndex = this.maxScrollIndex;
+                        }
 					}
 				}
 			}
@@ -623,6 +721,7 @@ public class ClickGUI extends GuiScreen
 						SoundUtil.playClickSound();
 						this.selectedCategory = category;
 						this.scrollIndex = 10;
+						this.maxScrollIndex = -1;
 					}
 					
 					categoryOffset += this.getStringWidth(category.name(), 8) + 15;
@@ -935,6 +1034,27 @@ public class ClickGUI extends GuiScreen
 	    }
 	    
 	    return mods;
+	}
+	
+	public boolean eq(Mod mod, String... s)
+	{
+	    if (mod == null)
+	    {
+	        return false;
+	    }
+	    
+	    boolean aBoolean = false;
+	    
+	    for (String modName : s)
+	    {
+	        if (mod.getName().equals(modName))
+	        {
+	            aBoolean = true;
+	            break;
+	        }
+	    }
+	    
+	    return aBoolean;
 	}
 	
 	public boolean isInsideBox(int mouseX, int mouseY, float x, float y, float width, float height)

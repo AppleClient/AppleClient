@@ -27,7 +27,7 @@ public class AutoFriend extends Mod
         
         if (this.chat == null)
         {
-            this.chat = (Chat) Apple.CLIENT.getModsManager().getMod("MC Chat");
+            this.chat = (Chat) Apple.CLIENT.getModsManager().getMod("Chat");
         }
     }
     

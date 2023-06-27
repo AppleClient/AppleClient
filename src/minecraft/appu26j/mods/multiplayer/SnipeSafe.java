@@ -12,7 +12,7 @@ import appu26j.mods.Mod;
 import appu26j.settings.Setting;
 import net.minecraft.client.network.NetworkPlayerInfo;
 
-@ModInterface(name = "Anti Snipe", description = "Hides your name on servers.", category = Category.MULTIPLAYER)
+@ModInterface(name = "Name Hider", description = "Hides your name on servers.", category = Category.MULTIPLAYER)
 public class SnipeSafe extends Mod
 {
 	private ArrayList<String> players = new ArrayList<>();

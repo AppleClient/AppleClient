@@ -10,13 +10,13 @@ bobView:true
 anaglyph3d:false
 maxFps:260
 fboEnable:true
-difficulty:3
+difficulty:0
 fancyGraphics:true
 ao:1
 renderClouds:true
 resourcePacks:["1.14 Textures"]
 incompatibleResourcePacks:[]
-lastServer:strawbridge.aternos.me
+lastServer:bedlessmc.apexmc.co
 lang:en_US
 chatVisibility:0
 chatColors:true

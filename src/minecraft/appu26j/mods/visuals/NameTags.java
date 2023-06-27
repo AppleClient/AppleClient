@@ -5,7 +5,7 @@ import appu26j.mods.Category;
 import appu26j.mods.Mod;
 import appu26j.settings.Setting;
 
-@ModInterface(name = "Name Tags", description = "Allows you to change the way how nametags work.", category = Category.VISUALS)
+@ModInterface(name = "Nametags", description = "Allows you to change the way how nametags work.", category = Category.VISUALS)
 public class NameTags extends Mod
 {
 	public NameTags()
