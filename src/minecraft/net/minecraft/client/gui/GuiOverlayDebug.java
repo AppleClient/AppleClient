@@ -10,6 +10,7 @@ import org.lwjgl.opengl.GL11;
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 
+import appu26j.Scale;
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
@@ -328,7 +329,7 @@ public class GuiOverlayDebug extends Gui
     	int i = frametimer.getLastIndex();
     	int j = frametimer.getIndex();
     	long[] along = frametimer.getFrames();
-    	ScaledResolution scaledresolution = new ScaledResolution(this.mc);
+    	ScaledResolution scaledresolution = Scale.getSR();
           
     	int k = i;
     	int l = 0;

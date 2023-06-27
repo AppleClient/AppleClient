@@ -5,11 +5,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import appu26j.Apple;
+import appu26j.Scale;
 import appu26j.fontrenderer.FixedFontRenderer;
 import appu26j.interfaces.MinecraftInterface;
 import appu26j.utils.SoundUtil;
 import net.minecraft.client.gui.Gui;
-import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.gui.ScaledResolution; import appu26j.Scale;
 
 public class CustomButton implements MinecraftInterface
 {
@@ -42,7 +43,7 @@ public class CustomButton implements MinecraftInterface
                 case "BedWars":
                 {
                     ArrayList<CustomButton> customButtons = new ArrayList<>();
-                    ScaledResolution scaledResolution = new ScaledResolution(this.mc);
+                    ScaledResolution scaledResolution = Scale.getSR();
                     float f = scaledResolution.getScaledWidth() / 2;
                     float g = scaledResolution.getScaledHeight() / 2;
                     float temp = 4 * 41.75F;
@@ -59,7 +60,7 @@ public class CustomButton implements MinecraftInterface
                 case "SkyWars":
                 {
                     ArrayList<CustomButton> customButtons = new ArrayList<>();
-                    ScaledResolution scaledResolution = new ScaledResolution(this.mc);
+                    ScaledResolution scaledResolution = Scale.getSR();
                     float f = scaledResolution.getScaledWidth() / 2;
                     float g = scaledResolution.getScaledHeight() / 2;
                     float temp = 4 * 41.75F;
@@ -76,7 +77,7 @@ public class CustomButton implements MinecraftInterface
                 case "TNT Games":
                 {
                     ArrayList<CustomButton> customButtons = new ArrayList<>();
-                    ScaledResolution scaledResolution = new ScaledResolution(this.mc);
+                    ScaledResolution scaledResolution = Scale.getSR();
                     float f = scaledResolution.getScaledWidth() / 2;
                     float g = scaledResolution.getScaledHeight() / 2;
                     float temp = 4 * 41.75F;
@@ -93,7 +94,7 @@ public class CustomButton implements MinecraftInterface
                 case "Murder Mystery":
                 {
                     ArrayList<CustomButton> customButtons = new ArrayList<>();
-                    ScaledResolution scaledResolution = new ScaledResolution(this.mc);
+                    ScaledResolution scaledResolution = Scale.getSR();
                     float f = scaledResolution.getScaledWidth() / 2;
                     float g = scaledResolution.getScaledHeight() / 2;
                     float temp = 4 * 41.75F;
@@ -110,7 +111,7 @@ public class CustomButton implements MinecraftInterface
                 case "Duels":
                 {
                     ArrayList<CustomButton> customButtons = new ArrayList<>();
-                    ScaledResolution scaledResolution = new ScaledResolution(this.mc);
+                    ScaledResolution scaledResolution = Scale.getSR();
                     float f = scaledResolution.getScaledWidth() / 2;
                     float g = scaledResolution.getScaledHeight() / 2;
                     float temp = 5 * 41.75F;
@@ -128,7 +129,7 @@ public class CustomButton implements MinecraftInterface
                 case "UHC":
                 {
                     ArrayList<CustomButton> customButtons = new ArrayList<>();
-                    ScaledResolution scaledResolution = new ScaledResolution(this.mc);
+                    ScaledResolution scaledResolution = Scale.getSR();
                     float f = scaledResolution.getScaledWidth() / 2;
                     float g = scaledResolution.getScaledHeight() / 2;
                     float temp = 2 * 41.75F;
@@ -143,7 +144,7 @@ public class CustomButton implements MinecraftInterface
                 case "The Bridge":
                 {
                     ArrayList<CustomButton> customButtons = new ArrayList<>();
-                    ScaledResolution scaledResolution = new ScaledResolution(this.mc);
+                    ScaledResolution scaledResolution = Scale.getSR();
                     float f = scaledResolution.getScaledWidth() / 2;
                     float g = scaledResolution.getScaledHeight() / 2;
                     float temp = 4 * 41.75F;

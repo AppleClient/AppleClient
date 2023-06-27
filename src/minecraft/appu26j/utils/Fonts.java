@@ -8,7 +8,7 @@ import java.util.Map;
 import appu26j.fontrenderer.CustomFontRenderer;
 import appu26j.interfaces.MinecraftInterface;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.gui.ScaledResolution; import appu26j.Scale;
 import net.minecraft.util.ResourceLocation;
 
 public class Fonts implements MinecraftInterface
@@ -45,7 +45,7 @@ public class Fonts implements MinecraftInterface
         
         new Thread(() -> {
             Map<String, Font> locationMap = new HashMap<>();
-            NORMAL_ = getFont(locationMap, "font.ttf", 9 * (new ScaledResolution(mc)).getScaleFactor());
+            NORMAL_ = getFont(locationMap, "font.ttf", 9 * (Scale.getSR()).getScaleFactor());
             ++completed;
             return;
         }).start();

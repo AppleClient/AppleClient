@@ -1,8 +1,9 @@
 package net.minecraft.client.gui.achievement;
 
+import appu26j.Scale;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
-import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.gui.ScaledResolution; import appu26j.Scale;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderItem;
@@ -56,7 +57,7 @@ public class GuiAchievement extends Gui
         GlStateManager.loadIdentity();
         this.width = this.mc.displayWidth;
         this.height = this.mc.displayHeight;
-        ScaledResolution scaledresolution = new ScaledResolution(this.mc);
+        ScaledResolution scaledresolution = Scale.getSR();
         this.width = scaledresolution.getScaledWidth();
         this.height = scaledresolution.getScaledHeight();
         GlStateManager.clear(256);

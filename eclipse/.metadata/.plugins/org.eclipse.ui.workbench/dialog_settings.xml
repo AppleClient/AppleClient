@@ -6,4 +6,6 @@
 			<item value="org.eclipse.jdt.ui.Java"/>
 		</list>
 	</section>
+	<section name="NewWizardAction">
+	</section>
 </section>

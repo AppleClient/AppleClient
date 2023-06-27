@@ -2,12 +2,12 @@ package appu26j.mods.visuals;
 
 import java.awt.Color;
 
+import appu26j.Scale;
 import appu26j.interfaces.ModInterface;
 import appu26j.mods.Category;
 import appu26j.mods.Mod;
 import appu26j.settings.Setting;
 import club.marshadow.ColorUtil;
-import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.item.ItemStack;
 
@@ -23,7 +23,7 @@ public class ArmorStatus extends Mod
 		this.addSetting(new Setting("Rainbow Text Color", this, false));
 		this.addSetting(new Setting("Hide when no armor is equipped", this, true));
 		this.addSetting(new Setting("Size", this, 0.5F, 1, 2, 0.25F));
-		this.y = ((new ScaledResolution(this.mc)).getScaledHeight() / 2) - 32.5F;
+		this.y = ((Scale.getSR()).getScaledHeight() / 2) - 32.5F;
 	}
 	
 	@Override

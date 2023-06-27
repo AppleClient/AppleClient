@@ -9,7 +9,7 @@ import appu26j.gui.ClickGUI;
 import appu26j.gui.DragGUI;
 import appu26j.gui.MusicPlayerGUI;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.gui.ScaledResolution; import appu26j.Scale;
 
 public interface GUIInterface
 {
@@ -18,7 +18,7 @@ public interface GUIInterface
 	default void scissor(float x, float y, float width, float height)
 	{
 		Minecraft mc = Minecraft.getMinecraft();
-		ScaledResolution scaledResolution = new ScaledResolution(mc);
+		ScaledResolution scaledResolution = Scale.getSR();
 		x *= scaledResolution.getScaleFactor();
 		y *= scaledResolution.getScaleFactor();
 		width *= scaledResolution.getScaleFactor();
@@ -39,7 +39,7 @@ public interface GUIInterface
 	default void scissor(float x, float y, float width, float height, float size)
 	{
 		Minecraft mc = Minecraft.getMinecraft();
-		ScaledResolution scaledResolution = new ScaledResolution(mc);
+		ScaledResolution scaledResolution = Scale.getSR();
 		x *= scaledResolution.getScaleFactor();
 		y *= scaledResolution.getScaleFactor();
 		width *= scaledResolution.getScaleFactor();

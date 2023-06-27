@@ -4,7 +4,7 @@ import java.awt.Color;
 
 import org.lwjgl.opengl.GL11;
 
-import appu26j.utils.Fonts;
+import appu26j.Scale;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
@@ -18,11 +18,6 @@ public class SplashProgress {
     private static int PROGRESS = 0;
     private static String CURRENT = "";
     private static ResourceLocation splash;
-    
-    static
-    {
-        Fonts.initialize();
-    }
 
     public static void update() {
         if (Minecraft.getMinecraft() == null || Minecraft.getMinecraft().getLanguageManager() == null) {
@@ -39,7 +34,7 @@ public class SplashProgress {
     }
     
     public static void drawSplash(TextureManager tm) { 
-        ScaledResolution scaledResolution = new ScaledResolution(Minecraft.getMinecraft());
+        ScaledResolution scaledResolution = Scale.getSR();
         int scaleFactor = scaledResolution.getScaleFactor();
         
         Framebuffer framebuffer = new Framebuffer(scaledResolution.getScaledWidth() * scaleFactor, scaledResolution.getScaledHeight() * scaleFactor, true);
@@ -80,7 +75,7 @@ public class SplashProgress {
             return;
         }
         
-        ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft());
+        ScaledResolution sr = Scale.getSR();
         
         double nProgress = (double)PROGRESS;
         double calc = (nProgress / MAX) * sr.getScaledWidth();

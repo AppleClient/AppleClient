@@ -43,7 +43,7 @@ import org.lwjgl.opengl.PixelFormat;
 
 import net.minecraft.client.LoadingScreenRenderer;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.gui.ScaledResolution; import appu26j.Scale;
 import net.minecraft.client.renderer.GLAllocation;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -2007,7 +2007,7 @@ public class Config
 
                 if (minecraft.currentScreen != null)
                 {
-                    ScaledResolution scaledresolution = new ScaledResolution(minecraft);
+                    ScaledResolution scaledresolution = Scale.getSR();
                     int i = scaledresolution.getScaledWidth();
                     int j = scaledresolution.getScaledHeight();
                     minecraft.currentScreen.setWorldAndResolution(minecraft, i, j);

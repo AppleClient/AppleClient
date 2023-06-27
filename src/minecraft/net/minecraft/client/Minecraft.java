@@ -55,6 +55,7 @@ import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
 
 import appu26j.Apple;
 import appu26j.DiscordRP;
+import appu26j.Scale;
 import appu26j.events.mc.EventKey;
 import appu26j.events.mc.EventWorldChange;
 import appu26j.gui.SplashProgress;
@@ -83,7 +84,7 @@ import net.minecraft.client.gui.GuiScreenServerList;
 import net.minecraft.client.gui.GuiSleepMP;
 import net.minecraft.client.gui.GuiYesNo;
 import net.minecraft.client.gui.GuiYesNoCallback;
-import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.gui.ScaledResolution; import appu26j.Scale;
 import net.minecraft.client.gui.achievement.GuiAchievement;
 import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.client.gui.stream.GuiStreamUnavailable;
@@ -1056,7 +1057,7 @@ public class Minecraft implements IThreadListener
 
     private void drawSplashScreen(TextureManager textureManagerInstance) throws LWJGLException
     {
-        ScaledResolution scaledresolution = new ScaledResolution(this);
+        ScaledResolution scaledresolution = Scale.getSR();
         int i = scaledresolution.getScaleFactor();
         Framebuffer framebuffer = new Framebuffer(scaledresolution.getScaledWidth() * i, scaledresolution.getScaledHeight() * i, true);
         framebuffer.bindFramebuffer(false);
@@ -1214,7 +1215,7 @@ public class Minecraft implements IThreadListener
         {
             Apple.CLIENT.getConfig().saveMods();
             this.setIngameNotInFocus();
-            ScaledResolution scaledresolution = new ScaledResolution(this);
+            ScaledResolution scaledresolution = Scale.getSR();
             int i = scaledresolution.getScaledWidth();
             int j = scaledresolution.getScaledHeight();
             ((GuiScreen)guiScreenIn).setWorldAndResolution(this, i, j);
@@ -1448,6 +1449,7 @@ public class Minecraft implements IThreadListener
                     this.displayHeight = 1;
                 }
 
+                Scale.setSR(new ScaledResolution(this));
                 this.resize(this.displayWidth, this.displayHeight);
             }
         }
@@ -1748,6 +1750,8 @@ public class Minecraft implements IThreadListener
             Display.setFullscreen(this.fullscreen);
             Display.setVSyncEnabled(this.gameSettings.enableVsync);
             this.updateDisplay();
+            Scale.setSR(new ScaledResolution(this));
+            this.displayGuiScreen(this.currentScreen);
         }
         catch (Exception exception)
         {
@@ -1765,7 +1769,7 @@ public class Minecraft implements IThreadListener
 
         if (this.currentScreen != null)
         {
-            ScaledResolution scaledresolution = new ScaledResolution(this);
+            ScaledResolution scaledresolution = Scale.getSR();
             this.currentScreen.onResize(this, scaledresolution.getScaledWidth(), scaledresolution.getScaledHeight());
         }
 

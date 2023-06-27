@@ -10,7 +10,7 @@ public class ScaledResolution
     private int scaledWidth;
     private int scaledHeight;
     private int scaleFactor;
-
+    
     public ScaledResolution(Minecraft p_i46445_1_)
     {
         this.scaledWidth = p_i46445_1_.displayWidth;

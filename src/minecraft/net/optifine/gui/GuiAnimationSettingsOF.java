@@ -1,9 +1,10 @@
 package net.optifine.gui;
 
+import appu26j.Scale;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiOptionButton;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.gui.ScaledResolution; import appu26j.Scale;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.settings.GameSettings;
 import net.optifine.Lang;
@@ -80,7 +81,7 @@ public class GuiAnimationSettingsOF extends GuiScreen
                 this.mc.gameSettings.setAllAnimations(false);
             }
 
-            ScaledResolution scaledresolution = new ScaledResolution(this.mc);
+            ScaledResolution scaledresolution = Scale.getSR();
             this.setWorldAndResolution(this.mc, scaledresolution.getScaledWidth(), scaledresolution.getScaledHeight());
         }
     }

@@ -10,6 +10,7 @@ import org.apache.logging.log4j.Logger;
 import com.google.common.collect.Lists;
 
 import appu26j.Apple;
+import appu26j.Scale;
 import appu26j.events.chat.EventChat;
 import appu26j.events.chat.EventChat2;
 import appu26j.mods.visuals.Chat;
@@ -60,7 +61,7 @@ public class GuiNewChat extends Gui
                 GlStateManager.pushMatrix();
                 GlStateManager.translate(2.0F, 20.0F, 0.0F);
                 GlStateManager.scale(f1, f1, 1.0F);
-
+                
                 for (int i1 = 0; i1 + this.scrollPos < this.drawnChatLines.size() && i1 < i; ++i1)
                 {
                     ChatLine chatline = (ChatLine)this.drawnChatLines.get(i1 + this.scrollPos);
@@ -351,7 +352,7 @@ public class GuiNewChat extends Gui
         }
         else
         {
-            ScaledResolution scaledresolution = new ScaledResolution(this.mc);
+            ScaledResolution scaledresolution = Scale.getSR();
             int i = scaledresolution.getScaleFactor();
             float f = this.getChatScale();
             int j = mouseX / i - 3;

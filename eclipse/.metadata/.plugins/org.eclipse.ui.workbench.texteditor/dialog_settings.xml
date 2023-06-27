@@ -6,25 +6,27 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="sqrt"/>
+		<item key="selection" value="drawString"/>
 		<list key="findhistory">
-			<item value="sqrt"/>
-			<item value="boundTextureLocation"/>
-			<item value="mapTextureObjects"/>
-			<item value="customFont()"/>
-			<item value="renderHand("/>
-			<item value="renderHand()"/>
-			<item value="renderHand"/>
-			<item value="Hand"/>
-			<item value="hand"/>
-			<item value="startGame("/>
-			<item value="0.0D"/>
-			<item value="(double)"/>
-			<item value="bottom "/>
-			<item value="right "/>
-			<item value="top "/>
+			<item value="drawString"/>
+			<item value="setFulls"/>
+			<item value="new ScaledResolution(this)"/>
+			<item value="resize"/>
+			<item value="import net.minecraft.client.gui.ScaledResolution;"/>
+			<item value="scaledresolution"/>
+			<item value="Framebuffer"/>
+			<item value="framebuffer"/>
+			<item value="setFramebuffer"/>
+			<item value="set"/>
+			<item value="set("/>
+			<item value="setSiz"/>
+			<item value="setWi"/>
+			<item value="setWindow"/>
+			<item value="setWindopw"/>
 		</list>
 		<list key="replacehistory">
+			<item value="import net.minecraft.client.gui.ScaledResolution; import appu26j.Scale;"/>
+			<item value="import net.minecraft.client.gui.ScaledResolution;\nimport appu26j.Scale;"/>
 			<item value="0"/>
 			<item value=""/>
 			<item value="height "/>
@@ -38,13 +40,11 @@
 			<item value="g"/>
 			<item value="f"/>
 			<item value="e"/>
-			<item value="d"/>
-			<item value="y"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="495"/>
-		<item key="DIALOG_Y_ORIGIN" value="6"/>
+		<item key="DIALOG_X_ORIGIN" value="590"/>
+		<item key="DIALOG_Y_ORIGIN" value="209"/>
 		<item key="DIALOG_WIDTH" value="318"/>
 		<item key="DIALOG_HEIGHT" value="295"/>
 		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-21|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>

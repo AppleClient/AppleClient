@@ -10,6 +10,7 @@ import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 
 import appu26j.Apple;
+import appu26j.Scale;
 import appu26j.gui.DragGUI;
 import appu26j.gui.quickplay.QuickPlayGUI;
 import appu26j.mods.Mod;
@@ -141,7 +142,7 @@ public class GuiIngame extends Gui
 
     public void renderGameOverlay(float partialTicks)
     {
-        ScaledResolution scaledresolution = new ScaledResolution(this.mc);
+        ScaledResolution scaledresolution = Scale.getSR();
         int i = scaledresolution.getScaledWidth();
         int j = scaledresolution.getScaledHeight();
         this.mc.entityRenderer.setupOverlayRendering();
@@ -1132,7 +1133,7 @@ public class GuiIngame extends Gui
         {
             --BossStatus.statusBarTime;
             FontRenderer fontrenderer = this.mc.fontRendererObj;
-            ScaledResolution scaledresolution = new ScaledResolution(this.mc);
+            ScaledResolution scaledresolution = Scale.getSR();
             int i = scaledresolution.getScaledWidth();
             int j = 182;
             int k = i / 2 - j / 2;

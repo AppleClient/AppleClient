@@ -7,7 +7,7 @@ import org.lwjgl.opengl.GL11;
 
 import appu26j.interfaces.MinecraftInterface;
 import appu26j.utils.Fonts;
-import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.gui.ScaledResolution; import appu26j.Scale;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 
@@ -25,7 +25,7 @@ public class CustomFontRenderer extends CFont implements MinecraftInterface
     
     public CustomFontRenderer(final Font font, final boolean antiAlias, final boolean fractionalMetrics) {
         super(font, antiAlias, fractionalMetrics);
-        ScaledResolution scaledResolution = new ScaledResolution(mc);
+        ScaledResolution scaledResolution = Scale.getSR();
         this.previousScaleFactor = scaledResolution.getScaleFactor();
         this.boldChars = new CharData[256];
         this.italicChars = new CharData[256];
@@ -68,7 +68,7 @@ public class CustomFontRenderer extends CFont implements MinecraftInterface
             return 0;
         }
         
-        ScaledResolution scaledResolution = new ScaledResolution(mc);
+        ScaledResolution scaledResolution = Scale.getSR();
 
         if (this.previousScaleFactor != scaledResolution.getScaleFactor())
         {

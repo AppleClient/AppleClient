@@ -1,12 +1,14 @@
 package net.minecraft.client.gui;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import java.io.IOException;
 import java.util.Map;
 
 import org.lwjgl.opengl.GL11;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+
+import appu26j.Scale;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.resources.Language;
@@ -84,7 +86,7 @@ public class GuiLanguage extends GuiScreen
                     {
                         this.game_settings_3.setOptionValue(((GuiOptionButton)button).returnEnumOptions(), 1);
                         button.displayString = this.game_settings_3.getKeyBinding(GameSettings.Options.FORCE_UNICODE_FONT);
-                        ScaledResolution scaledresolution = new ScaledResolution(this.mc);
+                        ScaledResolution scaledresolution = Scale.getSR();
                         int i = scaledresolution.getScaledWidth();
                         int j = scaledresolution.getScaledHeight();
                         this.setWorldAndResolution(this.mc, i, j);

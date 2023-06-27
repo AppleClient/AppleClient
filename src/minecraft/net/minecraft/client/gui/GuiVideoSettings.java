@@ -3,6 +3,7 @@ package net.minecraft.client.gui;
 import java.io.IOException;
 
 import appu26j.Apple;
+import appu26j.Scale;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.src.Config;
@@ -120,7 +121,7 @@ public class GuiVideoSettings extends GuiScreenOF
 
             if (this.guiGameSettings.guiScale != i)
             {
-                ScaledResolution scaledresolution = new ScaledResolution(this.mc);
+                ScaledResolution scaledresolution = Scale.getSR();
                 int j = scaledresolution.getScaledWidth();
                 int k = scaledresolution.getScaledHeight();
                 this.setWorldAndResolution(this.mc, j, k);

@@ -23,6 +23,7 @@ import com.google.common.base.Predicates;
 import com.google.gson.JsonSyntaxException;
 
 import appu26j.Apple;
+import appu26j.Scale;
 import appu26j.mods.visuals.BetterZoom;
 import appu26j.mods.visuals.HurtCamera;
 import appu26j.mods.visuals.NoBobbing;
@@ -38,7 +39,7 @@ import net.minecraft.client.gui.GuiChat;
 import net.minecraft.client.gui.GuiDownloadTerrain;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.MapItemRenderer;
-import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.gui.ScaledResolution; import appu26j.Scale;
 import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.client.renderer.chunk.RenderChunk;
 import net.minecraft.client.renderer.culling.ClippingHelper;
@@ -1354,7 +1355,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
         if (!this.mc.skipRenderWorld)
         {
             anaglyphEnable = this.mc.gameSettings.anaglyph;
-            final ScaledResolution scaledresolution = new ScaledResolution(this.mc);
+            final ScaledResolution scaledresolution = Scale.getSR();
             int i1 = scaledresolution.getScaledWidth();
             int j1 = scaledresolution.getScaledHeight();
             final int k1 = Mouse.getX() * i1 / this.mc.displayWidth;
@@ -1479,7 +1480,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
     public void renderStreamIndicator(float partialTicks)
     {
         this.setupOverlayRendering();
-        this.mc.ingameGUI.renderStreamIndicator(new ScaledResolution(this.mc));
+        this.mc.ingameGUI.renderStreamIndicator(Scale.getSR());
     }
 
     private boolean isDrawBlockOutline()
@@ -2243,7 +2244,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
      */
     public void setupOverlayRendering()
     {
-        ScaledResolution scaledresolution = new ScaledResolution(this.mc);
+        ScaledResolution scaledresolution = Scale.getSR();
         GlStateManager.clear(256);
         GlStateManager.matrixMode(5889);
         GlStateManager.loadIdentity();
