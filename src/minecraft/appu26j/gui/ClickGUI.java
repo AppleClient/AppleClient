@@ -21,6 +21,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class ClickGUI extends GuiScreen
 {
+    boolean thiff = true;
 	private boolean searching = false, aBoolean = false, closingGui = false;
     private int scrollIndex = 10, scrollIndex2 = -10, maxScrollIndex = -1;
 	private String randomModName = "", searchingMessage = "";
@@ -138,7 +139,7 @@ public class ClickGUI extends GuiScreen
 			{
 			    ResourceLocation image = null;
 			    
-			    if (this.eq(mod, "1.9 Cooldown", "Auto Friend", "Auto GG", "Auto Tip", "Better Zoom", "Bossbar", "CPS Display", "Chat", "Clock", "Combo Display", "Crosshair", "Damage Tilt", "Damage Tint"))
+			    if (this.eq(mod, "1.9 Cooldown", "Auto Friend", "Auto GG", "Auto Tip", "Better Zoom", "Bossbar", "CPS Display", "Chat", "Clock", "Combo Display", "Crosshair", "Damage Tilt", "Damage Tint", "FPS Display", "Full Bright", "Keystrokes", "Name Hider", "No Bobbing", "No Hurt Cam", "No Pumpkin", "Pack Display", "Ping Indicator", "Quick Play"))
 			    {
 			        image = new ResourceLocation("mods/" + mod.getName() + ".png");
 			    }
@@ -162,6 +163,26 @@ public class ClickGUI extends GuiScreen
                 {
                     image = new ResourceLocation("textures/gui/heart.png");
                 }
+			    
+			    else if (mod.getName().equals("Item Physics"))
+                {
+                    image = new ResourceLocation("textures/blocks/grass_top_colored.png");
+                }
+			    
+			    else if (mod.getName().equals("Nametags"))
+                {
+                    image = new ResourceLocation("icons/icon_16x16.png");
+                }
+			    
+			    else if (mod.getName().equals("Potion Effects"))
+                {
+                    image = new ResourceLocation("textures/items/potion_bottle_drinkable.png");
+                }
+			    
+//			    if (thiff && image != null)
+//			    {
+//			        System.out.println("new ResourceLocation(\"" + image.getResourcePath() + "\");");
+//			    }
 			    
 				if (xOffset != 0 && xOffset % 3 == 0)
 				{
@@ -207,9 +228,9 @@ public class ClickGUI extends GuiScreen
 				        this.drawModalRectWithCustomSizedTexture((i - 157.5F) + xOffset, (j - 82.5F) + yOffset, 0, 0, 72, 72, 72, 72);
                     }
 				    
-				    else if (mod.getName().equals("Combo Display"))
+				    else if (mod.getName().equals("Combo Display") || mod.getName().equals("FPS Display") || mod.getName().equals("Keystrokes") || mod.getName().equals("Ping Indicator"))
                     {
-                        this.drawModalRectWithCustomSizedTexture((i - 162.5F) + xOffset, (j - 90) + yOffset, 0, 0, 88, 88, 88, 88);
+                        this.drawModalRectWithCustomSizedTexture((i - 164) + xOffset, (j - 90) + yOffset, 0, 0, 88, 88, 88, 88);
                     }
 				    
 				    else if (mod.getName().equals("Damage Indicator"))
@@ -218,6 +239,50 @@ public class ClickGUI extends GuiScreen
                         this.drawModalRectWithCustomSizedTexture(temp, (j - 60) + yOffset, 0, 0, 27, 27, 27, 27);
                         this.drawModalRectWithCustomSizedTexture(temp + 24, (j - 60) + yOffset, 0, 0, 27, 27, 27, 27);
                         this.drawModalRectWithCustomSizedTexture(temp + 48, (j - 60) + yOffset, 0, 0, 27, 27, 27, 27);
+                    }
+				    
+				    else if (mod.getName().equals("Item Physics"))
+                    {
+				        GlStateManager.color(0.85F, 0.85F, 0.85F, this.index);
+                        this.drawModalRectWithCustomSizedTexture((i - 137) + xOffset, (j - 65) + yOffset, 0, 0, 32, 32, 32, 32);
+                        GlStateManager.color(1, 1, 1, this.index / 3);
+                        this.mc.getTextureManager().bindTexture(new ResourceLocation("textures/misc/shadow.png"));
+                        this.drawModalRectWithCustomSizedTexture((i - 132.5F) + xOffset, (j - 60) + yOffset, 0, 0, 24, 24, 24, 24);
+                        GlStateManager.color(1, 1, 1, this.index);
+                        this.mc.getTextureManager().bindTexture(new ResourceLocation("textures/items/apple.png"));
+                        this.drawModalRectWithCustomSizedTexture((i - 132.5F) + xOffset, (j - 60) + yOffset, 0, 0, 24, 24, 24, 24);
+                    }
+				    
+				    else if (mod.getName().equals("Name Hider"))
+                    {
+				        String name = this.mc.getSession().getUsername();
+				        float size = 12;
+				        this.drawString(name, (i - 120) + xOffset - (this.getStringWidth(name, size) / 2), (j - 57) + yOffset, size, new Color(255, 255, 255, (int) (this.index * 255)).getRGB());
+                        this.mc.getTextureManager().bindTexture(image);
+                        GlStateManager.color(1, 1, 1, this.index);
+                        this.drawModalRectWithCustomSizedTexture((i - 145) + xOffset, (j - 75) + yOffset, 0, 0, 48, 48, 48, 48);
+                    }
+				    
+				    else if (mod.getName().equals("Nametags"))
+                    {
+				        String name = this.mc.getSession().getUsername();
+                        float f = (i - 120) + xOffset, g = (j - 80) + yOffset;
+                        g += 25;
+				        this.drawRect(f - (this.getStringWidth(name) / 2) - 5, g, f + (this.getStringWidth(name) / 2) + 5, g + 18, new Color(0, 0, 0, (int) (this.index * 75)).getRGB());
+				        this.drawStringAlpha(name, f - (this.getStringWidth(name) / 2), g + 5, -1, (int) (this.index * 255));
+                    }
+				    
+				    else if (mod.getName().equals("No Pumpkin"))
+                    {
+				        this.mc.getTextureManager().bindTexture(new ResourceLocation("textures/blocks/pumpkin_face_off.png"));
+                        this.drawModalRectWithCustomSizedTexture((i - 137) + xOffset, (j - 65) + yOffset, 0, 0, 32, 32, 32, 32);
+                        this.mc.getTextureManager().bindTexture(image);
+                        this.drawModalRectWithCustomSizedTexture((i - 145) + xOffset, (j - 73) + yOffset, 0, 0, 48, 48, 48, 48);
+                    }
+				    
+				    else if (mod.getName().equals("Potion Effects"))
+                    {
+                        this.drawModalRectWithCustomSizedTexture((i - 146) + xOffset, (j - 77) + yOffset, 0, 0, 48, 48, 48, 48);
                     }
 				    
 				    else
@@ -262,6 +327,7 @@ public class ClickGUI extends GuiScreen
 			j += 20;
             i -= 5;
 			GL11.glDisable(GL11.GL_SCISSOR_TEST);
+			thiff = false;
 			
 			if (this.maxScrollIndex == -1)
             {

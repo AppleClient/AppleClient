@@ -1,0 +1,78 @@
+---- Minecraft Crash Report ----
+// I bet Cylons wouldn't have this problem.
+
+Time: 6/27/23 5:33 PM
+Description: Rendering screen
+
+java.lang.NullPointerException: Rendering screen
+	at appu26j.gui.ClickGUI.drawScreen(ClickGUI.java:175)
+	at net.minecraft.client.renderer.EntityRenderer.updateCameraAndRender(EntityRenderer.java:1436)
+	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1372)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:438)
+	at net.minecraft.client.main.Main.main(Main.java:124)
+	at Start.main(Start.java:15)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Stacktrace:
+	at appu26j.gui.ClickGUI.drawScreen(ClickGUI.java:175)
+
+-- Screen render details --
+Details:
+	Screen name: appu26j.gui.ClickGUI
+	Mouse location: Scaled: (245, 120). Absolute: (490, 238)
+	Screen size: Scaled: (427, 240). Absolute: (854, 480). Scale factor of 2
+
+-- Affected level --
+Details:
+	Level name: MpServer
+	All players: 1 total; [EntityPlayerSP['Appu26j'/40, l='MpServer', x=8478.64, y=64.00, z=9060.57]]
+	Chunk stats: MultiplayerChunkCache: 289, 289
+	Level seed: 0
+	Level generator: ID 02 - largeBiomes, ver 0. Features enabled: false
+	Level generator options: 
+	Level spawn location: 584.00,64.00,166.00 - World: (584,64,166), Chunk: (at 8,4,6 in 36,10; contains blocks 576,0,160 to 591,255,175), Region: (1,0; contains chunks 32,0 to 63,31, blocks 512,0,0 to 1023,255,511)
+	Level time: 1284526 game time, 3081 day time
+	Level dimension: 0
+	Level storage version: 0x00000 - Unknown?
+	Level weather: Rain time: 0 (now: false), thunder time: 0 (now: false)
+	Level game mode: Game mode: creative (ID 1). Hardcore: false. Cheats: false
+	Forced entities: 51 total; [EntityMinecartChest['container.minecart'/134, l='MpServer', x=8452.50, y=32.06, z=8994.50], EntitySkeleton['Skeleton'/135, l='MpServer', x=8451.50, y=27.00, z=9020.50], EntityRabbit['Rabbit'/136, l='MpServer', x=8458.97, y=69.00, z=9021.84], EntityRabbit['Rabbit'/137, l='MpServer', x=8448.60, y=70.10, z=9025.94], EntityCreeper['Creeper'/138, l='MpServer', x=8450.50, y=52.00, z=9098.50], EntityMinecartChest['container.minecart'/141, l='MpServer', x=8470.50, y=32.06, z=8996.50], EntityRabbit['Rabbit'/142, l='MpServer', x=8466.69, y=67.00, z=9029.59], EntityRabbit['Rabbit'/150, l='MpServer', x=8484.88, y=70.00, z=9027.72], EntityRabbit['Rabbit'/157, l='MpServer', x=8496.00, y=64.00, z=9026.09], EntityRabbit['Rabbit'/158, l='MpServer', x=8510.13, y=65.00, z=9045.63], EntityRabbit['Rabbit'/159, l='MpServer', x=8511.97, y=64.00, z=9080.03], EntityZombie['Zombie'/173, l='MpServer', x=8512.50, y=12.00, z=8996.50], EntitySpider['Spider'/174, l='MpServer', x=8520.50, y=12.00, z=8994.50], EntityRabbit['Rabbit'/175, l='MpServer', x=8525.81, y=65.00, z=9079.88], EntityRabbit['Rabbit'/176, l='MpServer', x=8519.81, y=65.00, z=9077.28], EntityPlayerSP['Appu26j'/40, l='MpServer', x=8478.64, y=64.00, z=9060.57], EntityBat['Bat'/177, l='MpServer', x=8522.03, y=50.72, z=9107.56], EntityRabbit['Rabbit'/178, l='MpServer', x=8527.56, y=69.31, z=9137.31], EntityCreeper['Creeper'/184, l='MpServer', x=8538.41, y=54.00, z=9056.28], EntityRabbit['Rabbit'/185, l='MpServer', x=8527.83, y=68.10, z=9056.39], EntitySkeleton['Skeleton'/186, l='MpServer', x=8536.50, y=56.00, z=9086.50], EntitySkeleton['Skeleton'/187, l='MpServer', x=8532.72, y=55.00, z=9082.34], EntityRabbit['Rabbit'/188, l='MpServer', x=8534.38, y=68.00, z=9123.88], EntityRabbit['Rabbit'/189, l='MpServer', x=8538.50, y=68.00, z=9122.31], EntityRabbit['Rabbit'/194, l='MpServer', x=8553.06, y=68.00, z=9063.13], EntityRabbit['Rabbit'/195, l='MpServer', x=8553.75, y=74.00, z=9064.25], EntityCreeper['Creeper'/196, l='MpServer', x=8543.97, y=67.00, z=9062.56], EntityBat['Bat'/77, l='MpServer', x=8404.81, y=43.53, z=9004.91], EntityMinecartChest['container.minecart'/90, l='MpServer', x=8409.50, y=22.06, z=8999.50], EntityMinecartChest['container.minecart'/91, l='MpServer', x=8415.50, y=28.06, z=8996.09], EntityMinecartChest['container.minecart'/92, l='MpServer', x=8412.50, y=42.06, z=9005.50], EntityBat['Bat'/93, l='MpServer', x=8412.75, y=42.78, z=9003.44], EntityCreeper['Creeper'/94, l='MpServer', x=8410.50, y=68.00, z=9010.50], EntitySpider['Spider'/95, l='MpServer', x=8406.50, y=22.00, z=9028.50], EntityMinecartChest['container.minecart'/96, l='MpServer', x=8402.50, y=38.06, z=9034.50], EntityMinecartChest['container.minecart'/97, l='MpServer', x=8400.50, y=42.06, z=9070.50], EntityZombie['Zombie'/98, l='MpServer', x=8402.50, y=38.00, z=9069.50], EntityCreeper['Creeper'/99, l='MpServer', x=8407.50, y=38.00, z=9064.50], EntityMinecartChest['container.minecart'/100, l='MpServer', x=8413.50, y=38.06, z=9097.50], EntityCreeper['Creeper'/101, l='MpServer', x=8400.50, y=34.00, z=9115.50], EntityRabbit['Rabbit'/102, l='MpServer', x=8401.88, y=72.00, z=9139.44], EntityPig['Pig'/106, l='MpServer', x=8423.84, y=68.00, z=9018.41], EntityMinecartChest['container.minecart'/107, l='MpServer', x=8425.50, y=27.06, z=9027.50], EntityPig['Pig'/108, l='MpServer', x=8419.03, y=63.00, z=9085.75], EntityBat['Bat'/109, l='MpServer', x=8421.84, y=29.53, z=9117.44], EntityRabbit['Rabbit'/118, l='MpServer', x=8442.47, y=67.00, z=9006.94], EntityCreeper['Creeper'/119, l='MpServer', x=8439.50, y=30.00, z=9019.50], EntitySkeleton['Skeleton'/120, l='MpServer', x=8440.50, y=43.00, z=9032.50], EntityCreeper['Creeper'/121, l='MpServer', x=8435.50, y=46.00, z=9045.50], EntityBat['Bat'/122, l='MpServer', x=8432.94, y=32.03, z=9043.72], EntityZombie['Zombie'/123, l='MpServer', x=8447.50, y=52.00, z=9100.50]]
+	Retry entities: 0 total; []
+	Server brand: vanilla
+	Server type: Integrated singleplayer server
+Stacktrace:
+	at net.minecraft.client.multiplayer.WorldClient.addWorldInfoToCrashReport(WorldClient.java:410)
+	at net.minecraft.client.Minecraft.addGraphicsAndWorldToCrashReport(Minecraft.java:2820)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:458)
+	at net.minecraft.client.main.Main.main(Main.java:124)
+	at Start.main(Start.java:15)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.8.9
+	Operating System: Windows 11 (amd64) version 10.0
+	Java Version: 1.8.0_361, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 658135672 bytes (627 MB) / 954728448 bytes (910 MB) up to 954728448 bytes (910 MB)
+	JVM Flags: 2 total; -Xmx1024M -Xms1024M
+	IntCache: cache: 3, tcache: 52, allocated: 13, tallocated: 99
+	Launched Version: appleclient
+	LWJGL: 2.9.4
+	OpenGL: AMD Radeon(TM) Graphics GL version 4.6.14761 Compatibility Profile Context 21.30.14 30.0.13014.8, ATI Technologies Inc.
+	GL Caps: Using GL 1.3 multitexturing.
+Using GL 1.3 texture combiners.
+Using framebuffer objects because OpenGL 3.0 is supported and separate blending is supported.
+Shaders are available because OpenGL 2.1 is supported.
+VBOs are available because OpenGL 1.5 is supported.
+
+	Using VBOs: No
+	Is Modded: Definitely; Client brand changed to 'appleclient'
+	Type: Client (map_client.txt)
+	Resource Packs: 1.14 Textures
+	Current Language: English (US)
+	Profiler Position: N/A (disabled)
+	CPU: 12x AMD Ryzen 5 5500U with Radeon Graphics 
