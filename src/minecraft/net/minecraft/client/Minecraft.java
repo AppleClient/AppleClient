@@ -253,7 +253,7 @@ public class Minecraft implements IThreadListener
     public FontRenderer standardGalacticFontRenderer;
 
     /** The GuiScreen that's being displayed at the moment. */
-    public GuiScreen currentScreen;
+    public volatile GuiScreen currentScreen;
     public LoadingScreenRenderer loadingScreen;
     public EntityRenderer entityRenderer;
 

@@ -16,14 +16,14 @@ ao:1
 renderClouds:true
 resourcePacks:["1.14 Textures"]
 incompatibleResourcePacks:[]
-lastServer:bedlessmc.apexmc.co
+lastServer:localhost
 lang:en_US
 chatVisibility:0
 chatColors:true
 chatLinks:true
 chatLinksPrompt:true
 chatOpacity:1.0
-fullscreen:false
+fullscreen:true
 enableVsync:false
 useVbo:false
 hideServerAddress:false

@@ -30,7 +30,7 @@ public enum Apple implements MinecraftInterface
 	
 	public static final File DEFAULT_DIRECTORY = new File(System.getProperty("user.home"), "appleclient"), CONFIG = new File(DEFAULT_DIRECTORY, "config.json"), ACCOUNT = new File(DEFAULT_DIRECTORY, "account.txt");
     private ArrayList<String> usersPlayingAppleClient = new ArrayList<>(), specialPeople = new ArrayList<>();
-	public static final String VERSION = "2.25", TITLE = "Apple Client " + VERSION;
+	public static final String VERSION = "2.26", TITLE = "Apple Client " + VERSION;
 	private AppleClientVersionChecker appleClientVersionChecker;
     private long time = System.currentTimeMillis();
 	private SettingsManager settingsManager;

@@ -53,8 +53,12 @@ public class RawInput extends Mod
                     if (this.mouse != null)
                     {
                         this.mouse.poll();
-                        this.deltaX += this.mouse.getX().getPollData();
-                        this.deltaY += this.mouse.getY().getPollData();
+                        
+                        if (this.mc.currentScreen == null)
+                        {
+                            this.deltaX += this.mouse.getX().getPollData();
+                            this.deltaY += this.mouse.getY().getPollData();
+                        }
                     }
                     
                     try
@@ -100,8 +104,12 @@ public class RawInput extends Mod
                     if (this.mouse != null)
                     {
                         this.mouse.poll();
-                        this.deltaX += this.mouse.getX().getPollData();
-                        this.deltaY += this.mouse.getY().getPollData();
+                        
+                        if (this.mc.currentScreen == null)
+                        {
+                            this.deltaX += this.mouse.getX().getPollData();
+                            this.deltaY += this.mouse.getY().getPollData();
+                        }
                     }
                     
                     try
