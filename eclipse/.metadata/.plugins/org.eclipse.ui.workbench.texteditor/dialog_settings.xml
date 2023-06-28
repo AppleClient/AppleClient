@@ -6,23 +6,23 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="SnipeSafe"/>
+		<item key="selection" value="renderCloudsFan"/>
 		<list key="findhistory">
-			<item value="snipesafe"/>
-			<item value="add"/>
-			<item value="startGa"/>
+			<item value="renderCloudsFan"/>
+			<item value="render"/>
+			<item value="renderCloudsFanc"/>
+			<item value="fancyClouds"/>
+			<item value="fancyCloud]"/>
+			<item value="fanc"/>
+			<item value="renderFanc"/>
+			<item value="renderFANC"/>
 			<item value="clouds"/>
-			<item value="cloud"/>
-			<item value="167"/>
-			<item value="168"/>
-			<item value="16"/>
-			<item value="displayGuiSc"/>
-			<item value="mouseClic"/>
-			<item value="drawString"/>
-			<item value="setFulls"/>
-			<item value="new ScaledResolution(this)"/>
-			<item value="resize"/>
-			<item value="import net.minecraft.client.gui.ScaledResolution;"/>
+			<item value="fancy"/>
+			<item value="fancyClo"/>
+			<item value="renderFan"/>
+			<item value="getlim"/>
+			<item value="getFram"/>
+			<item value="initGui"/>
 		</list>
 		<list key="replacehistory">
 			<item value="import net.minecraft.client.gui.ScaledResolution; import appu26j.Scale;"/>

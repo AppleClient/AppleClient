@@ -38,7 +38,7 @@ public class TutorialGUI extends GuiScreen
         for (int i = 0; i < items.size(); i++)
         {
             String item = items.get(i);
-            this.drawStringWithShadow(item, width - 190, 40 + (i * 20), new Color(200, 200, 200).getRGB());
+            this.drawStringWithShadow(item, width - 190, 40 + (i * 15), new Color(200, 200, 200).getRGB());
         }
         
         this.drawStringWithShadow("Press ESC to display the main menu", width - (this.getStringWidth("Press ESC to display the main menu", 12) / 2), this.height - 30, 12, -1);

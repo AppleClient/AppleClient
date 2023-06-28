@@ -105,7 +105,8 @@ public class GuiButton extends Gui
             {
                 if (this.index < 1)
                 {
-                    this.index += 0.2F;
+                    float delta = 1F / Minecraft.getMinecraft().getDebugFPS();
+                    this.index += 10 * delta;
                     this.index = this.index > 1 ? 1 : this.index;
                 }
             }
@@ -114,7 +115,8 @@ public class GuiButton extends Gui
             {
                 if (this.index > 0)
                 {
-                    this.index -= 0.2F;
+                    float delta = 1F / Minecraft.getMinecraft().getDebugFPS();
+                    this.index -= 10 * delta;
                     this.index = this.index < 0 ? 0 : this.index;
                 }
             }

@@ -38,7 +38,17 @@ public class Combo extends Mod
 		float size = this.getSetting("Size").getSliderValue();
 		int[] colors = this.getSetting("Text Color (RGB)").getColors();
 		int color = new Color(colors[0], colors[1], colors[2]).getRGB();
-		EntityLivingBase entity = (EntityLivingBase) this.mc.pointedEntity;
+		EntityLivingBase entity = null;
+		
+		try
+		{
+		    entity = (EntityLivingBase) this.mc.pointedEntity;
+		}
+		
+		catch (Exception e)
+		{
+		    ;
+		}
 		
 		if (entity != null && entity.hurtResistantTime == entity.maxHurtResistantTime)
 		{

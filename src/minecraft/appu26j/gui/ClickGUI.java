@@ -22,7 +22,7 @@ import net.minecraft.util.ResourceLocation;
 public class ClickGUI extends GuiScreen
 {
 	private boolean searching = false, aBoolean = false, closingGui = false;
-    private int scrollIndex = 10, scrollIndex2 = -10, maxScrollIndex = -1;
+    private int scrollIndex = 10, scrollIndex2 = -10, maxScrollIndex = -1;  
 	private String randomModName = "", searchingMessage = "";
 	private Category selectedCategory = Category.ALL;
 	private TimeUtil timeUtil = new TimeUtil();
@@ -36,7 +36,8 @@ public class ClickGUI extends GuiScreen
 		{
 			if (this.index > 0)
 			{
-				this.index -= 0.1F;
+                float delta = 1F / this.mc.getDebugFPS();
+                this.index -= 7.5F * delta;
 				
 				if (this.index < 0)
 				{
@@ -56,7 +57,8 @@ public class ClickGUI extends GuiScreen
 		{
 			if (this.index < 1)
 			{
-				this.index += 0.1F;
+                float delta = 1F / this.mc.getDebugFPS();
+                this.index += 7.5F * delta;
 				
 				if (this.index > 1)
 				{
@@ -366,11 +368,11 @@ public class ClickGUI extends GuiScreen
 			{
 				if (setting.getTypeOfSetting().equals("Check Box"))
 				{
-					this.drawRect(i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName()) + 35, (j - 60) + offset, this.isInsideBox(mouseX, mouseY, i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName()) + 25, (j - 60) + offset) ? backgroundColour.getRGB() : backgroundColourLightened.getRGB());
-					this.drawRect((i - 180) + this.getStringWidth(setting.getName()) + 9, (j - 75) + offset, (i - 180) + this.getStringWidth(setting.getName()) + 19, (j - 65) + offset, !setting.getCheckBoxValue() ? new Color(0, 225, 100).getRGB() : this.isInsideBox(mouseX, mouseY, i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName()) + 25, (j - 60) + offset) ? backgroundColourLightened.getRGB() : backgroundColour.getRGB());
-					this.drawRect((i - 170) + this.getStringWidth(setting.getName()) + 9, (j - 75) + offset, (i - 170) + this.getStringWidth(setting.getName()) + 19, (j - 65) + offset, setting.getCheckBoxValue() ? new Color(0, 225, 100).getRGB() : this.isInsideBox(mouseX, mouseY, i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName()) + 25, (j - 60) + offset) ? backgroundColourLightened.getRGB() : backgroundColour.getRGB());
+					this.drawRect(i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName()) + 35, (j - 60) + offset, this.isInsideBox(mouseX, mouseY, i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName()) + 35, (j - 60) + offset) ? backgroundColour.getRGB() : backgroundColourLightened.getRGB());
+					this.drawRect((i - 180) + this.getStringWidth(setting.getName()) + 9, (j - 73) + offset, (i - 180) + this.getStringWidth(setting.getName()) + 29, (j - 67) + offset, this.isInsideBox(mouseX, mouseY, i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName()) + 35, (j - 60) + offset) ? backgroundColourLightened.getRGB() : backgroundColour.getRGB());
+					this.drawRect((i - 170) + this.getStringWidth(setting.getName()) + 9 - (!setting.getCheckBoxValue() ? 10 : 0), (j - 75) + offset, (i - 170) + this.getStringWidth(setting.getName()) + 19 - (!setting.getCheckBoxValue() ? 10 : 0), (j - 65) + offset, new Color(0, 225, 100).getRGB());
                     this.drawStringAlpha(setting.getName(), i - 175, (j - 74) + offset, -1, (int) (this.index * 255));
-					offset += 25;
+                    offset += 25;
 				}
 				
 				if (setting.getTypeOfSetting().equals("Text Box"))
@@ -458,8 +460,7 @@ public class ClickGUI extends GuiScreen
 			for (Mod mod : this.searchingMessage.isEmpty() ? Apple.CLIENT.getModsManager().getMods() : this.getMods(this.searchingMessage))
 			{
 	            j = 160;
-                
-ResourceLocation image = null;
+                ResourceLocation image = null;
                 
                 if (this.eq(mod, "1.9 Cooldown", "Auto Friend", "Auto GG", "Auto Tip", "Better Zoom", "Bossbar", "CPS Display", "Chat", "Clock", "Combo Display", "Crosshair", "Damage Tilt", "Damage Tint", "FPS Display", "Full Bright", "Keystrokes", "Name Hider", "No Bobbing", "No Hurt Cam", "No Pumpkin", "Pack Display", "Ping Indicator", "Quick Play", "Raw Input", "Reach Display", "Scoreboard", "Tab List", "Time Changer", "Timer Countdown", "Toggle Sprint"))
                 {
@@ -975,7 +976,7 @@ ResourceLocation image = null;
 				{
 					if (setting.getTypeOfSetting().equals("Check Box"))
 					{
-						if (this.isInsideBox(mouseX, mouseY, i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName()) + 25, (j - 60) + offset) && mouseButton == 0)
+						if (this.isInsideBox(mouseX, mouseY, i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName()) + 35, (j - 60) + offset) && mouseButton == 0)
 						{
 							SoundUtil.playClickSound();
 							setting.setCheckBoxValue(!setting.getCheckBoxValue());
@@ -1121,23 +1122,36 @@ ResourceLocation image = null;
 			{
 				if (keyCode == 14)
 				{
-					if (this.searchingMessage.length() > 0)
-					{
+					if (!this.searchingMessage.isEmpty())
+					{					    
 						this.searchingMessage = this.searchingMessage.substring(0, this.searchingMessage.length() - 1);
+                        this.scrollIndex2 = -10;
 					}
 				}
 				
 				else if (GuiScreen.isKeyComboCtrlV(keyCode))
 				{
-					this.searchingMessage += GuiScreen.getClipboardString();
+				    String copiedString = GuiScreen.getClipboardString();
+				    
+				    if (!copiedString.isEmpty())
+				    {
+		                this.scrollIndex2 = -10;
+				    }
+				    
+					this.searchingMessage += copiedString;
 				}
 				
 				else
 				{
-					this.searchingMessage += this.getChar(typedChar);
+				    String character = this.getChar(typedChar);
+				    
+				    if (!character.isEmpty())
+				    {		                
+		                this.scrollIndex2 = -10;
+				    }
+				    
+					this.searchingMessage += character;
 				}
-				
-				this.scrollIndex2 = -10;
 			}
 			
 			else
@@ -1244,6 +1258,11 @@ ResourceLocation image = null;
 	    }
 	    
 	    return mods;
+	}
+	
+	public float getIndex()
+	{
+	    return this.index;
 	}
 	
 	public boolean eq(Mod mod, String... s)

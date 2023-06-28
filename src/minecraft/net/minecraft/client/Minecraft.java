@@ -1509,7 +1509,7 @@ public class Minecraft implements IThreadListener
 
     public int getLimitFramerate()
     {
-        return this.currentScreen != null ? 60 : this.gameSettings.limitFramerate;
+        return this.gameSettings.limitFramerate;
     }
 
     public boolean isFramerateLimitBelowMax()

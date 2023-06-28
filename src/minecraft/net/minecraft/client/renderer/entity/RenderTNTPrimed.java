@@ -73,7 +73,7 @@ public class RenderTNTPrimed extends Render<EntityTNTPrimed>
         
         if (tntCountdown.isEnabled())
         {
-            int fuse = ServerUtil.isPlayerOnHypixel() ? entity.fuse - 28 : entity.fuse;
+            int fuse = ServerUtil.tntExplodesEarly() ? entity.fuse - 28 : entity.fuse;
             GlStateManager.pushMatrix();
             GlStateManager.translate((float) x + 0.0F, (float) y + entity.height + 0.5F, (float) z);
             GL11.glNormal3f(0.0F, 1.0F, 0.0F);

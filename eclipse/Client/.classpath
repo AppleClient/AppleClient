@@ -37,6 +37,5 @@
 	<classpathentry kind="lib" path="jars/versions/1.8.9/1.8.9.jar"/>
 	<classpathentry kind="lib" path="lib/discord-rpc.jar"/>
 	<classpathentry kind="lib" path="lib/openauth-1.1.6.jar"/>
-	<classpathentry kind="lib" path="lib/slick.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

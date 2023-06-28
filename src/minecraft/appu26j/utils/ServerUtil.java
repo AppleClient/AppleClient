@@ -17,6 +17,17 @@ public class ServerUtil implements MinecraftInterface
 		return IP.toLowerCase().endsWith("hypixel.net") || IP.toLowerCase().endsWith("hypixel.io");
 	}
 	
+	public static boolean tntExplodesEarly()
+    {
+        if (mc.getCurrentServerData() == null)
+        {
+            return false;
+        }
+        
+        String IP = mc.getCurrentServerData().serverIP;
+        return IP.toLowerCase().endsWith("hypixel.net") || IP.toLowerCase().endsWith("hypixel.io") || IP.toLowerCase().endsWith("bedwarspractice.club") || IP.toLowerCase().endsWith("bedlessmc.apexmc.co");
+    }
+	
 	public static void setFavouriteServer(String favouriteServer)
 	{
 	    ServerUtil.favouriteServer = favouriteServer;

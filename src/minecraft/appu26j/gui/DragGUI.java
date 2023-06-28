@@ -36,7 +36,8 @@ public class DragGUI extends GuiScreen
 		{
 			if (this.index > 0)
 			{
-				this.index -= 0.1F;
+                float delta = 1F / this.mc.getDebugFPS();
+                this.index -= 7.5F * delta;
 				
 				if (this.index < 0)
 				{
@@ -69,7 +70,8 @@ public class DragGUI extends GuiScreen
 		{
 			if (this.index < 1)
 			{
-				this.index += 0.1F;
+			    float delta = 1F / this.mc.getDebugFPS();
+				this.index += 7.5F * delta;
 				
 				if (this.index > 1)
 				{
