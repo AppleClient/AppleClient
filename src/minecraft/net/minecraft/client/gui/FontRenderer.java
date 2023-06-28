@@ -17,7 +17,7 @@ import com.ibm.icu.text.ArabicShapingException;
 import com.ibm.icu.text.Bidi;
 
 import appu26j.Apple;
-import appu26j.utils.Fonts;
+import appu26j.mods.multiplayer.SnipeSafe;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
@@ -379,6 +379,31 @@ public class FontRenderer implements IResourceManagerReloadListener
 
     private void renderStringAtPos(String text, boolean shadow)
     {
+        try
+        {
+            SnipeSafe snipeSafe = (SnipeSafe) Apple.CLIENT.getModsManager().getMod("Name Hider");
+            
+            if (snipeSafe.isEnabled())
+            {
+                String name = Minecraft.getMinecraft().getSession().getUsername();
+                text = text.replaceAll(name, "You");
+                
+                if (snipeSafe.getSetting("Hide all players' name").getCheckBoxValue())
+                {
+                    for (int i = 0; i < snipeSafe.getPlayers().size(); i++)
+                    {
+                        String player = snipeSafe.getPlayers().get(i);
+                        text = text.replaceAll(player, "Player #" + (i + 1));
+                    }
+                }
+            }
+        }
+        
+        catch (Exception e)
+        {
+            ;
+        }
+        
         for (int i = 0; i < text.length(); ++i)
         {
             char c0 = text.charAt(i);
@@ -602,6 +627,31 @@ public class FontRenderer implements IResourceManagerReloadListener
         }
         else
         {
+            try
+            {
+                SnipeSafe snipeSafe = (SnipeSafe) Apple.CLIENT.getModsManager().getMod("Name Hider");
+                
+                if (snipeSafe.isEnabled())
+                {
+                    String name = Minecraft.getMinecraft().getSession().getUsername();
+                    text = text.replaceAll(name, "You");
+                    
+                    if (snipeSafe.getSetting("Hide all players' name").getCheckBoxValue())
+                    {
+                        for (int i = 0; i < snipeSafe.getPlayers().size(); i++)
+                        {
+                            String player = snipeSafe.getPlayers().get(i);
+                            text = text.replaceAll(player, "Player #" + (i + 1));
+                        }
+                    }
+                }
+            }
+            
+            catch (Exception e)
+            {
+                ;
+            }
+            
             float f = 0.0F;
             boolean flag = false;
 

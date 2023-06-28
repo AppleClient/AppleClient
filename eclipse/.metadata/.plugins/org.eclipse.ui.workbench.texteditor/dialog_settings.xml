@@ -6,8 +6,11 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="Clouds"/>
+		<item key="selection" value="SnipeSafe"/>
 		<list key="findhistory">
+			<item value="snipesafe"/>
+			<item value="add"/>
+			<item value="startGa"/>
 			<item value="clouds"/>
 			<item value="cloud"/>
 			<item value="167"/>
@@ -20,9 +23,6 @@
 			<item value="new ScaledResolution(this)"/>
 			<item value="resize"/>
 			<item value="import net.minecraft.client.gui.ScaledResolution;"/>
-			<item value="scaledresolution"/>
-			<item value="Framebuffer"/>
-			<item value="framebuffer"/>
 		</list>
 		<list key="replacehistory">
 			<item value="import net.minecraft.client.gui.ScaledResolution; import appu26j.Scale;"/>

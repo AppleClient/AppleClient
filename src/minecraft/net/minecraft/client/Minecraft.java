@@ -84,7 +84,7 @@ import net.minecraft.client.gui.GuiScreenServerList;
 import net.minecraft.client.gui.GuiSleepMP;
 import net.minecraft.client.gui.GuiYesNo;
 import net.minecraft.client.gui.GuiYesNoCallback;
-import net.minecraft.client.gui.ScaledResolution; import appu26j.Scale;
+import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.gui.achievement.GuiAchievement;
 import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.client.gui.stream.GuiStreamUnavailable;
@@ -624,6 +624,7 @@ public class Minecraft implements IThreadListener
         this.ingameGUI = new GuiIngame(this);
         SplashProgress.drawSplash(this.getTextureManager());
         this.refreshResources();
+        this.preBindClickGuiTextures();
         SplashProgress.drawSplash(this.getTextureManager());
         Apple.CLIENT.initialize();
         SplashProgress.drawSplash(this.getTextureManager());
@@ -694,6 +695,57 @@ public class Minecraft implements IThreadListener
         this.metadataSerializer_.registerMetadataSectionType(new AnimationMetadataSectionSerializer(), AnimationMetadataSection.class);
         this.metadataSerializer_.registerMetadataSectionType(new PackMetadataSectionSerializer(), PackMetadataSection.class);
         this.metadataSerializer_.registerMetadataSectionType(new LanguageMetadataSectionSerializer(), LanguageMetadataSection.class);
+    }
+
+    private void preBindClickGuiTextures()
+    {
+        ArrayList<ResourceLocation> resourceLocations = new ArrayList<>();
+        resourceLocations.add(new ResourceLocation("textures/items/diamond_sword.png"));
+        resourceLocations.add(new ResourceLocation("mods/1.9 Cooldown.png"));
+        resourceLocations.add(new ResourceLocation("textures/items/iron_chestplate.png"));
+        resourceLocations.add(new ResourceLocation("mods/Auto Friend.png"));
+        resourceLocations.add(new ResourceLocation("mods/Auto GG.png"));
+        resourceLocations.add(new ResourceLocation("mods/Auto Tip.png"));
+        resourceLocations.add(new ResourceLocation("mods/Better Zoom.png"));
+        resourceLocations.add(new ResourceLocation("textures/blocks/stone.png"));
+        resourceLocations.add(new ResourceLocation("mods/Bossbar.png"));
+        resourceLocations.add(new ResourceLocation("mods/CPS Display.png"));
+        resourceLocations.add(new ResourceLocation("mods/Chat.png"));
+        resourceLocations.add(new ResourceLocation("mods/Clock.png"));
+        resourceLocations.add(new ResourceLocation("mods/Combo Display.png"));
+        resourceLocations.add(new ResourceLocation("mods/Crosshair.png"));
+        resourceLocations.add(new ResourceLocation("textures/gui/heart.png"));
+        resourceLocations.add(new ResourceLocation("mods/Damage Tilt.png"));
+        resourceLocations.add(new ResourceLocation("mods/Damage Tint.png"));
+        resourceLocations.add(new ResourceLocation("mods/FPS Display.png"));
+        resourceLocations.add(new ResourceLocation("mods/Full Bright.png"));
+        resourceLocations.add(new ResourceLocation("textures/blocks/grass_top_colored.png"));
+        resourceLocations.add(new ResourceLocation("mods/Keystrokes.png"));
+        resourceLocations.add(new ResourceLocation("mods/Name Hider.png"));
+        resourceLocations.add(new ResourceLocation("icons/icon_16x16.png"));
+        resourceLocations.add(new ResourceLocation("mods/No Bobbing.png"));
+        resourceLocations.add(new ResourceLocation("mods/No Hurt Cam.png"));
+        resourceLocations.add(new ResourceLocation("mods/No Pumpkin.png"));
+        resourceLocations.add(new ResourceLocation("mods/Pack Display.png"));
+        resourceLocations.add(new ResourceLocation("mods/Ping Indicator.png"));
+        resourceLocations.add(new ResourceLocation("textures/items/potion_bottle_drinkable.png"));
+        resourceLocations.add(new ResourceLocation("mods/Quick Play.png"));
+        resourceLocations.add(new ResourceLocation("mods/Raw Input.png"));
+        resourceLocations.add(new ResourceLocation("mods/Reach Display.png"));
+        resourceLocations.add(new ResourceLocation("mods/Scoreboard.png"));
+        resourceLocations.add(new ResourceLocation("icons/icon_16x16.png"));
+        resourceLocations.add(new ResourceLocation("mods/Tab List.png"));
+        resourceLocations.add(new ResourceLocation("mods/Time Changer.png"));
+        resourceLocations.add(new ResourceLocation("mods/Timer Countdown.png"));
+        resourceLocations.add(new ResourceLocation("mods/Toggle Sprint.png"));
+        int boundTexture = GlStateManager.getBoundTexture();
+        
+        for (ResourceLocation resourceLocation : resourceLocations)
+        {
+            this.renderEngine.bindTexture(resourceLocation);
+        }
+        
+        GlStateManager.bindTexture(boundTexture);
     }
 
     private void initStream()

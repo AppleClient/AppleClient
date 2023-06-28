@@ -21,7 +21,6 @@ import net.minecraft.util.ResourceLocation;
 
 public class ClickGUI extends GuiScreen
 {
-    boolean thiff = true;
 	private boolean searching = false, aBoolean = false, closingGui = false;
     private int scrollIndex = 10, scrollIndex2 = -10, maxScrollIndex = -1;
 	private String randomModName = "", searchingMessage = "";
@@ -89,9 +88,6 @@ public class ClickGUI extends GuiScreen
         Color backgroundColour = new Color(temp3.getRed(), temp3.getGreen(), temp3.getBlue(), (int) (this.index * 200));
         this.drawBackground(this.width / this.zoomFactor / 0.75F + (this.index * 0.25F), this.height / this.zoomFactor / 0.75F + (this.index * 0.25F));
 		this.drawRect(i - 200, j - 140, i + 200, j + 140, backgroundColourDarkened.getRGB());
-        backgroundColourDarkened = new Color(temp1.getRed(), temp1.getGreen(), temp1.getBlue(), (int) (this.index * 200));
-        backgroundColourLightened = new Color(temp2.getRed(), temp2.getGreen(), temp2.getBlue(), (int) (this.index * 200));
-        backgroundColour = new Color(temp3.getRed(), temp3.getGreen(), temp3.getBlue(), (int) (this.index * 200));
         
 		if (this.selectedMod == null)
 		{
@@ -139,7 +135,7 @@ public class ClickGUI extends GuiScreen
 			{
 			    ResourceLocation image = null;
 			    
-			    if (this.eq(mod, "1.9 Cooldown", "Auto Friend", "Auto GG", "Auto Tip", "Better Zoom", "Bossbar", "CPS Display", "Chat", "Clock", "Combo Display", "Crosshair", "Damage Tilt", "Damage Tint", "FPS Display", "Full Bright", "Keystrokes", "Name Hider", "No Bobbing", "No Hurt Cam", "No Pumpkin", "Pack Display", "Ping Indicator", "Quick Play"))
+			    if (this.eq(mod, "1.9 Cooldown", "Auto Friend", "Auto GG", "Auto Tip", "Better Zoom", "Bossbar", "CPS Display", "Chat", "Clock", "Combo Display", "Crosshair", "Damage Tilt", "Damage Tint", "FPS Display", "Full Bright", "Keystrokes", "Name Hider", "No Bobbing", "No Hurt Cam", "No Pumpkin", "Pack Display", "Ping Indicator", "Quick Play", "Raw Input", "Reach Display", "Scoreboard", "Tab List", "Time Changer", "Timer Countdown", "Toggle Sprint"))
 			    {
 			        image = new ResourceLocation("mods/" + mod.getName() + ".png");
 			    }
@@ -169,7 +165,7 @@ public class ClickGUI extends GuiScreen
                     image = new ResourceLocation("textures/blocks/grass_top_colored.png");
                 }
 			    
-			    else if (mod.getName().equals("Nametags"))
+			    else if (mod.getName().equals("Nametags") || mod.getName().equals("TNT Countdown"))
                 {
                     image = new ResourceLocation("icons/icon_16x16.png");
                 }
@@ -178,11 +174,6 @@ public class ClickGUI extends GuiScreen
                 {
                     image = new ResourceLocation("textures/items/potion_bottle_drinkable.png");
                 }
-			    
-//			    if (thiff && image != null)
-//			    {
-//			        System.out.println("new ResourceLocation(\"" + image.getResourcePath() + "\");");
-//			    }
 			    
 				if (xOffset != 0 && xOffset % 3 == 0)
 				{
@@ -231,6 +222,11 @@ public class ClickGUI extends GuiScreen
 				    else if (mod.getName().equals("Combo Display") || mod.getName().equals("FPS Display") || mod.getName().equals("Keystrokes") || mod.getName().equals("Ping Indicator"))
                     {
                         this.drawModalRectWithCustomSizedTexture((i - 164) + xOffset, (j - 90) + yOffset, 0, 0, 88, 88, 88, 88);
+                    }
+				    
+				    else if (mod.getName().equals("Reach Display") || mod.getName().equals("Scoreboard"))
+                    {
+                        this.drawModalRectWithCustomSizedTexture((i - 166) + xOffset, (j - 92) + yOffset, 0, 0, 92, 92, 92, 92);
                     }
 				    
 				    else if (mod.getName().equals("Damage Indicator"))
@@ -285,6 +281,12 @@ public class ClickGUI extends GuiScreen
                         this.drawModalRectWithCustomSizedTexture((i - 146) + xOffset, (j - 77) + yOffset, 0, 0, 48, 48, 48, 48);
                     }
 				    
+				    else if (mod.getName().equals("TNT Countdown"))
+                    {
+				        this.mc.getTextureManager().bindTexture(new ResourceLocation("textures/blocks/tnt_side.png"));
+                        this.drawModalRectWithCustomSizedTexture((i - 136) + xOffset, (j - 65) + yOffset, 0, 0, 32, 32, 32, 32);
+                    }
+				    
 				    else
 				    {
 	                    this.drawModalRectWithCustomSizedTexture((i - 152.5F) + xOffset, (j - 80) + yOffset, 0, 0, 64, 64, 64, 64);
@@ -327,7 +329,6 @@ public class ClickGUI extends GuiScreen
 			j += 20;
             i -= 5;
 			GL11.glDisable(GL11.GL_SCISSOR_TEST);
-			thiff = false;
 			
 			if (this.maxScrollIndex == -1)
             {
@@ -365,9 +366,10 @@ public class ClickGUI extends GuiScreen
 			{
 				if (setting.getTypeOfSetting().equals("Check Box"))
 				{
-					this.drawRect(i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName()) + 25, (j - 60) + offset, this.isInsideBox(mouseX, mouseY, i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName()) + 25, (j - 60) + offset) ? this.backgroundColour : this.backgroundColourLightened, (int) (this.index * 255));
-					this.drawRect((i - 180) + this.getStringWidth(setting.getName()) + 9, (j - 75) + offset, (i - 180) + this.getStringWidth(setting.getName()) + 19, (j - 65) + offset, setting.getCheckBoxValue() ? new Color(0, 225, 100).getRGB() : this.isInsideBox(mouseX, mouseY, i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName()) + 25, (j - 60) + offset) ? this.backgroundColourLightened : this.backgroundColour, (int) (this.index * 255));
-					this.drawStringAlpha(setting.getName(), i - 175, (j - 74) + offset, -1, (int) (this.index * 255));
+					this.drawRect(i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName()) + 35, (j - 60) + offset, this.isInsideBox(mouseX, mouseY, i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName()) + 25, (j - 60) + offset) ? backgroundColour.getRGB() : backgroundColourLightened.getRGB());
+					this.drawRect((i - 180) + this.getStringWidth(setting.getName()) + 9, (j - 75) + offset, (i - 180) + this.getStringWidth(setting.getName()) + 19, (j - 65) + offset, !setting.getCheckBoxValue() ? new Color(0, 225, 100).getRGB() : this.isInsideBox(mouseX, mouseY, i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName()) + 25, (j - 60) + offset) ? backgroundColourLightened.getRGB() : backgroundColour.getRGB());
+					this.drawRect((i - 170) + this.getStringWidth(setting.getName()) + 9, (j - 75) + offset, (i - 170) + this.getStringWidth(setting.getName()) + 19, (j - 65) + offset, setting.getCheckBoxValue() ? new Color(0, 225, 100).getRGB() : this.isInsideBox(mouseX, mouseY, i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName()) + 25, (j - 60) + offset) ? backgroundColourLightened.getRGB() : backgroundColour.getRGB());
+                    this.drawStringAlpha(setting.getName(), i - 175, (j - 74) + offset, -1, (int) (this.index * 255));
 					offset += 25;
 				}
 				
@@ -387,21 +389,21 @@ public class ClickGUI extends GuiScreen
 						setting.setBoolean(false);
 					}
 					
-					this.drawRect(i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName() + ": " + setting.getTextBoxValue()) + 9, (j - 60) + offset, this.isInsideBox(mouseX, mouseY, i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName() + ": " + setting.getTextBoxValue()) + 9, (j - 60) + offset) ? this.backgroundColour : this.backgroundColourLightened, (int) (this.index * 255));
+					this.drawRect(i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName() + ": " + setting.getTextBoxValue()) + 9, (j - 60) + offset, this.isInsideBox(mouseX, mouseY, i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName() + ": " + setting.getTextBoxValue()) + 9, (j - 60) + offset) ? backgroundColour.getRGB() : backgroundColourLightened.getRGB());
 					this.drawStringAlpha(setting.getName() + ": " + setting.getTextBoxValue() + (setting.getBoolean() ? "|" : ""), i - 175, (j - 74) + offset, -1, (int) (this.index * 255));
 					offset += 25;
 				}
 				
 				if (setting.getTypeOfSetting().equals("Mode"))
 				{
-					this.drawRect(i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName() + ": " + setting.getModeValue()) + 9, (j - 60) + offset, this.isInsideBox(mouseX, mouseY, i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName() + ": " + setting.getModeValue()) + 9, (j - 60) + offset) ? this.backgroundColour : this.backgroundColourLightened, (int) (this.index * 255));
+					this.drawRect(i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName() + ": " + setting.getModeValue()) + 9, (j - 60) + offset, this.isInsideBox(mouseX, mouseY, i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName() + ": " + setting.getModeValue()) + 9, (j - 60) + offset) ? backgroundColour.getRGB() : backgroundColourLightened.getRGB());
 					this.drawStringAlpha(setting.getName() + ": " + setting.getModeValue(), i - 175, (j - 74) + offset, -1, (int) (this.index * 255));
 					offset += 25;
 				}
 				
 				if (setting.getTypeOfSetting().equals("Color Box"))
 				{
-					this.drawRect(i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName() + ":  " + setting.getColors()[0] + ", " + setting.getColors()[1] + ", " + setting.getColors()[2]) + 9, (j - 60) + offset, this.isInsideBox(mouseX, mouseY, i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName() + ":  " + setting.getColors()[0] + ", " + setting.getColors()[1] + ", " + setting.getColors()[2]) + 9, (j - 60) + offset) ? this.backgroundColour : this.backgroundColourLightened, (int) (this.index * 255));
+					this.drawRect(i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName() + ":  " + setting.getColors()[0] + ", " + setting.getColors()[1] + ", " + setting.getColors()[2]) + 9, (j - 60) + offset, this.isInsideBox(mouseX, mouseY, i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName() + ":  " + setting.getColors()[0] + ", " + setting.getColors()[1] + ", " + setting.getColors()[2]) + 9, (j - 60) + offset) ? backgroundColour.getRGB() : backgroundColourLightened.getRGB());
 					this.drawStringAlpha(setting.getName() + ":  " + setting.getColors()[0] + ", " + setting.getColors()[1] + ", " + setting.getColors()[2], i - 175, (j - 74) + offset, -1, (int) (this.index * 255));
 					this.drawRect(i - 180 + this.getStringWidth(setting.getName() + ": ") + 4, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName() + ":  " + setting.getColors()[0] + ", " + setting.getColors()[1] + ", " + setting.getColors()[2]) + 9, (j - 60) + offset, new Color(setting.getColors()[0], setting.getColors()[1], setting.getColors()[2]).getRGB(), (int) (this.index * 255));
 					this.drawStringAlpha(setting.getColors()[0] + ", " + setting.getColors()[1] + ", " + setting.getColors()[2], i - 175 + this.getStringWidth(setting.getName() + ":  "), (j - 74) + offset, new Color(255 - setting.getColors()[0], 255 - setting.getColors()[1], 255 - setting.getColors()[2]).getRGB(), (int) (this.index * 255));
@@ -410,7 +412,7 @@ public class ClickGUI extends GuiScreen
 				
 				if (setting.getTypeOfSetting().equals("Slider"))
 				{
-					this.drawRect(i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName() + ": " + setting.getSliderValue()) + 9, (j - 60) + offset, this.isInsideBox(mouseX, mouseY, i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName() + ": " + setting.getSliderValue()) + 9, (j - 60) + offset) ? this.backgroundColour: this.backgroundColourLightened, (int) (this.index * 255));
+					this.drawRect(i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName() + ": " + setting.getSliderValue()) + 9, (j - 60) + offset, this.isInsideBox(mouseX, mouseY, i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName() + ": " + setting.getSliderValue()) + 9, (j - 60) + offset) ? backgroundColour.getRGB() : backgroundColourLightened.getRGB());
 					this.drawStringAlpha(setting.getName() + ": " + setting.getSliderValue(), i - 175, (j - 74) + offset, -1, (int) (this.index * 255));
 					offset += 25;
 				}
@@ -457,13 +459,53 @@ public class ClickGUI extends GuiScreen
 			{
 	            j = 160;
                 
+ResourceLocation image = null;
+                
+                if (this.eq(mod, "1.9 Cooldown", "Auto Friend", "Auto GG", "Auto Tip", "Better Zoom", "Bossbar", "CPS Display", "Chat", "Clock", "Combo Display", "Crosshair", "Damage Tilt", "Damage Tint", "FPS Display", "Full Bright", "Keystrokes", "Name Hider", "No Bobbing", "No Hurt Cam", "No Pumpkin", "Pack Display", "Ping Indicator", "Quick Play", "Raw Input", "Reach Display", "Scoreboard", "Tab List", "Time Changer", "Timer Countdown", "Toggle Sprint"))
+                {
+                    image = new ResourceLocation("mods/" + mod.getName() + ".png");
+                }
+                
+                else if (mod.getName().equals("1.7 Visuals"))
+                {
+                    image = new ResourceLocation("textures/items/diamond_sword.png");
+                }
+                
+                else if (mod.getName().equals("Armor Status"))
+                {
+                    image = new ResourceLocation("textures/items/iron_chestplate.png");
+                }
+                
+                else if (mod.getName().equals("Block Overlay"))
+                {
+                    image = new ResourceLocation("textures/blocks/stone.png");
+                }
+                
+                else if (mod.getName().equals("Damage Indicator"))
+                {
+                    image = new ResourceLocation("textures/gui/heart.png");
+                }
+                
+                else if (mod.getName().equals("Item Physics"))
+                {
+                    image = new ResourceLocation("textures/blocks/grass_top_colored.png");
+                }
+                
+                else if (mod.getName().equals("Nametags") || mod.getName().equals("TNT Countdown"))
+                {
+                    image = new ResourceLocation("icons/icon_16x16.png");
+                }
+                
+                else if (mod.getName().equals("Potion Effects"))
+                {
+                    image = new ResourceLocation("textures/items/potion_bottle_drinkable.png");
+                }
+                
                 if (xOffset != 0 && xOffset % 3 == 0)
                 {
                     yOffset += 115;
                     xOffset = 0;
                 }
-                
-                String[] names = mod.getName().split(" ");
                 
                 if (this.isInsideBox(mouseX, mouseY, (i - 170) + xOffset, (j - 80) + yOffset, (i - 170) + xOffset + 100, (j - 80) + yOffset + 100))
                 {
@@ -475,7 +517,109 @@ public class ClickGUI extends GuiScreen
                     this.drawRect((i - 170) + xOffset, (j - 80) + yOffset, (i - 170) + xOffset + 100, (j - 80) + yOffset + 100, backgroundColourLightened.getRGB());
                 }
                 
-                this.drawStringAlpha(names[0], (i - 120) - (this.getStringWidth(names[0], 12) / 2) + xOffset, (j - 60) + yOffset, 12, -1, (int) (this.index * 255));
+                if (image != null)
+                {
+                    this.mc.getTextureManager().bindTexture(image);
+                    GlStateManager.enableBlend();
+                    GlStateManager.color(1, 1, 1, this.index);
+                    
+                    if (mod.getName().equals("1.7 Visuals"))
+                    {
+                        this.drawModalRectWithCustomSizedTexture((i - 135) + xOffset, (j - 65) + yOffset, 0, 0, 32, 32, 32, 32);
+                    }
+                    
+                    else if (mod.getName().equals("Armor Status"))
+                    {
+                        this.drawModalRectWithCustomSizedTexture((i - 137.5F) + xOffset, (j - 65) + yOffset, 0, 0, 32, 32, 32, 32);
+                    }
+                    
+                    else if (mod.getName().equals("Block Overlay"))
+                    {
+                        this.drawModalRectWithCustomSizedTexture((i - 137.5F) + xOffset, (j - 65) + yOffset, 0, 0, 32, 32, 32, 32);
+                        this.drawOutlineRect((i - 137.5F) + xOffset, (j - 65) + yOffset, (i - 137.5F) + xOffset + 32, (j - 65) + yOffset + 32, new Color(0, 0, 0, (int) (this.index * 255)).getRGB());
+                        this.drawOutlineRect((i - 136.5F) + xOffset, (j - 64) + yOffset, (i - 138.5F) + xOffset + 32, (j - 66) + yOffset + 32, new Color(0, 0, 0, (int) (this.index * 255)).getRGB());
+                    }
+                    
+                    else if (mod.getName().equals("CPS Display"))
+                    {
+                        this.drawModalRectWithCustomSizedTexture((i - 157.5F) + xOffset, (j - 82.5F) + yOffset, 0, 0, 72, 72, 72, 72);
+                    }
+                    
+                    else if (mod.getName().equals("Combo Display") || mod.getName().equals("FPS Display") || mod.getName().equals("Keystrokes") || mod.getName().equals("Ping Indicator"))
+                    {
+                        this.drawModalRectWithCustomSizedTexture((i - 164) + xOffset, (j - 90) + yOffset, 0, 0, 88, 88, 88, 88);
+                    }
+                    
+                    else if (mod.getName().equals("Reach Display") || mod.getName().equals("Scoreboard"))
+                    {
+                        this.drawModalRectWithCustomSizedTexture((i - 166) + xOffset, (j - 92) + yOffset, 0, 0, 92, 92, 92, 92);
+                    }
+                    
+                    else if (mod.getName().equals("Damage Indicator"))
+                    {
+                        float temp = (i - 159) + xOffset;
+                        this.drawModalRectWithCustomSizedTexture(temp, (j - 60) + yOffset, 0, 0, 27, 27, 27, 27);
+                        this.drawModalRectWithCustomSizedTexture(temp + 24, (j - 60) + yOffset, 0, 0, 27, 27, 27, 27);
+                        this.drawModalRectWithCustomSizedTexture(temp + 48, (j - 60) + yOffset, 0, 0, 27, 27, 27, 27);
+                    }
+                    
+                    else if (mod.getName().equals("Item Physics"))
+                    {
+                        GlStateManager.color(0.85F, 0.85F, 0.85F, this.index);
+                        this.drawModalRectWithCustomSizedTexture((i - 137) + xOffset, (j - 65) + yOffset, 0, 0, 32, 32, 32, 32);
+                        GlStateManager.color(1, 1, 1, this.index / 3);
+                        this.mc.getTextureManager().bindTexture(new ResourceLocation("textures/misc/shadow.png"));
+                        this.drawModalRectWithCustomSizedTexture((i - 132.5F) + xOffset, (j - 60) + yOffset, 0, 0, 24, 24, 24, 24);
+                        GlStateManager.color(1, 1, 1, this.index);
+                        this.mc.getTextureManager().bindTexture(new ResourceLocation("textures/items/apple.png"));
+                        this.drawModalRectWithCustomSizedTexture((i - 132.5F) + xOffset, (j - 60) + yOffset, 0, 0, 24, 24, 24, 24);
+                    }
+                    
+                    else if (mod.getName().equals("Name Hider"))
+                    {
+                        String name = this.mc.getSession().getUsername();
+                        float size = 12;
+                        this.drawString(name, (i - 120) + xOffset - (this.getStringWidth(name, size) / 2), (j - 57) + yOffset, size, new Color(255, 255, 255, (int) (this.index * 255)).getRGB());
+                        this.mc.getTextureManager().bindTexture(image);
+                        GlStateManager.color(1, 1, 1, this.index);
+                        this.drawModalRectWithCustomSizedTexture((i - 145) + xOffset, (j - 75) + yOffset, 0, 0, 48, 48, 48, 48);
+                    }
+                    
+                    else if (mod.getName().equals("Nametags"))
+                    {
+                        String name = this.mc.getSession().getUsername();
+                        float f = (i - 120) + xOffset, g = (j - 80) + yOffset;
+                        g += 25;
+                        this.drawRect(f - (this.getStringWidth(name) / 2) - 5, g, f + (this.getStringWidth(name) / 2) + 5, g + 18, new Color(0, 0, 0, (int) (this.index * 75)).getRGB());
+                        this.drawStringAlpha(name, f - (this.getStringWidth(name) / 2), g + 5, -1, (int) (this.index * 255));
+                    }
+                    
+                    else if (mod.getName().equals("No Pumpkin"))
+                    {
+                        this.mc.getTextureManager().bindTexture(new ResourceLocation("textures/blocks/pumpkin_face_off.png"));
+                        this.drawModalRectWithCustomSizedTexture((i - 137) + xOffset, (j - 65) + yOffset, 0, 0, 32, 32, 32, 32);
+                        this.mc.getTextureManager().bindTexture(image);
+                        this.drawModalRectWithCustomSizedTexture((i - 145) + xOffset, (j - 73) + yOffset, 0, 0, 48, 48, 48, 48);
+                    }
+                    
+                    else if (mod.getName().equals("Potion Effects"))
+                    {
+                        this.drawModalRectWithCustomSizedTexture((i - 146) + xOffset, (j - 77) + yOffset, 0, 0, 48, 48, 48, 48);
+                    }
+                    
+                    else if (mod.getName().equals("TNT Countdown"))
+                    {
+                        this.mc.getTextureManager().bindTexture(new ResourceLocation("textures/blocks/tnt_side.png"));
+                        this.drawModalRectWithCustomSizedTexture((i - 136) + xOffset, (j - 65) + yOffset, 0, 0, 32, 32, 32, 32);
+                    }
+                    
+                    else
+                    {
+                        this.drawModalRectWithCustomSizedTexture((i - 152.5F) + xOffset, (j - 80) + yOffset, 0, 0, 64, 64, 64, 64);
+                    }
+                }
+                
+                this.drawStringAlpha(mod.getName(), (i - 120) - (this.getStringWidth(mod.getName(), 8) / 2) + xOffset, (j - 25) + yOffset, -1, (int) (this.index * 255));
                 
                 if (this.isInsideBox(mouseX, mouseY, (i - 170) + xOffset, (j - 80) + yOffset, (i - 170) + xOffset + 100, (j - 80) + yOffset + 100))
                 {

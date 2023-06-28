@@ -12,10 +12,8 @@
     <typeInfo handle="=Client/src&lt;net.minecraft.client.main{Main.java[Main" modifiers="1" timestamp="1687552095077"/>
     <typeInfo handle="=Client/src&lt;appu26j.gui{SplashProgress.java[SplashProgress" modifiers="1" timestamp="1687827882343"/>
     <typeInfo handle="=Client/src&lt;net.minecraft.client.gui{GuiButton.java[GuiButton" modifiers="1" timestamp="1687552095020"/>
-    <typeInfo handle="=Client/C:\/Program Files\/Java\/jdk1.8.0_361\/jre\/lib\/rt.jar=/javadoc_location=/https:\/\/docs.oracle.com\/javase\/8\/docs\/api\/=/=/org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY=/Client\/jars\/versions\/1.8.9\/1.8.9-natives=/&lt;java.lang(Appendable.class[Appendable" modifiers="1537" timestamp="1684471809560"/>
     <typeInfo handle="=Client/src&lt;appu26j.mods.visuals{Scoreboard.java[Scoreboard" modifiers="1" timestamp="1687886247629"/>
     <typeInfo handle="=Client/src&lt;appu26j.mods.visuals{BossBar.java[BossBar" modifiers="1" timestamp="1687885970548"/>
-    <typeInfo handle="=Client/src&lt;appu26j.mods.general{ToggleSprint.java[ToggleSprint" modifiers="1" timestamp="1687552092896"/>
     <typeInfo handle="=Client/src&lt;net.minecraft.client.gui{GuiPlayerTabOverlay.java[GuiPlayerTabOverlay" modifiers="1" timestamp="1687552095040"/>
     <typeInfo handle="=Client/src&lt;appu26j.fontrenderer{FixedFontRenderer.java[FixedFontRenderer" modifiers="1" timestamp="1687552092885"/>
     <typeInfo handle="=Client/src&lt;net.minecraft.world{World.java[World" modifiers="1025" timestamp="1687552095695"/>
@@ -36,16 +34,20 @@
     <typeInfo handle="=Client/src&lt;net.minecraft.client.gui{ScaledResolution.java[ScaledResolution" modifiers="1" timestamp="1687822751652"/>
     <typeInfo handle="=Client/src&lt;net.minecraft.client.settings{GameSettings.java[GameSettings" modifiers="1" timestamp="1687822278649"/>
     <typeInfo handle="=Client/src&lt;net.minecraft.client.gui{GuiChat.java[GuiChat" modifiers="1" timestamp="1687552095023"/>
-    <typeInfo handle="=Client/src&lt;net.minecraft.client.gui{GuiNewChat.java[GuiNewChat" modifiers="1" timestamp="1687885849866"/>
-    <typeInfo handle="=Client/src&lt;net.minecraft.client.gui{FontRenderer.java[FontRenderer" modifiers="1" timestamp="1687827867895"/>
     <typeInfo handle="=Client/src&lt;appu26j.mods{ModsManager.java[ModsManager" modifiers="1" timestamp="1687886247619"/>
     <typeInfo handle="=Client/src&lt;appu26j.mods.visuals{DamageIndicator.java[DamageIndicator" modifiers="1" timestamp="1687877604217"/>
     <typeInfo handle="=Client/src&lt;appu26j.gui.firstgui{LoginGUI.java[LoginGUI" modifiers="1" timestamp="1687552092887"/>
-    <typeInfo handle="=Client/src&lt;net.minecraft.client{Minecraft.java[Minecraft" modifiers="1" timestamp="1687880783762"/>
-    <typeInfo handle="=Client/src&lt;appu26j{Apple.java[Apple" modifiers="16385" timestamp="1687886226709"/>
     <typeInfo handle="=Client/src&lt;net.minecraft.client.gui{GuiIngame.java[GuiIngame" modifiers="1" timestamp="1687886247634"/>
     <typeInfo handle="=Client/src&lt;net.minecraft.client.renderer{EntityRenderer.java[EntityRenderer" modifiers="1" timestamp="1687891731037"/>
-    <typeInfo handle="=Client/src&lt;appu26j.config{Config.java[Config" modifiers="1" timestamp="1687887790715"/>
-    <typeInfo handle="=Client/src&lt;appu26j.mods.visuals{Combo.java[Combo" modifiers="1" timestamp="1687552092902"/>
-    <typeInfo handle="=Client/src&lt;appu26j.gui{ClickGUI.java[ClickGUI" modifiers="1" timestamp="1687903519763"/>
+    <typeInfo handle="=Client/src&lt;appu26j.mods.visuals{Combo.java[Combo" modifiers="1" timestamp="1687905089339"/>
+    <typeInfo handle="=Client/src&lt;appu26j.config{Config.java[Config" modifiers="1" timestamp="1687903599576"/>
+    <typeInfo handle="=Client/C:\/Program Files\/Java\/jdk1.8.0_361\/jre\/lib\/rt.jar=/javadoc_location=/https:\/\/docs.oracle.com\/javase\/8\/docs\/api\/=/=/org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY=/Client\/jars\/versions\/1.8.9\/1.8.9-natives=/&lt;java.lang(Appendable.class[Appendable" modifiers="1537" timestamp="1684471809560"/>
+    <typeInfo handle="=Client/src&lt;appu26j.gui{ClickGUI.java[ClickGUI" modifiers="1" timestamp="1687925617516"/>
+    <typeInfo handle="=Client/src&lt;appu26j.utils{RawMouseHelper.java[RawMouseHelper" modifiers="1" timestamp="1687665801350"/>
+    <typeInfo handle="=Client/src&lt;net.minecraft.client{Minecraft.java[Minecraft" modifiers="1" timestamp="1687919619542"/>
+    <typeInfo handle="=Client/src&lt;appu26j.mods.multiplayer{SnipeSafe.java[SnipeSafe" modifiers="1" timestamp="1687887737076"/>
+    <typeInfo handle="=Client/src&lt;net.minecraft.client.gui{GuiNewChat.java[GuiNewChat" modifiers="1" timestamp="1687885849866"/>
+    <typeInfo handle="=Client/src&lt;appu26j{Apple.java[Apple" modifiers="16385" timestamp="1687886226709"/>
+    <typeInfo handle="=Client/src&lt;net.minecraft.client.gui{FontRenderer.java[FontRenderer" modifiers="1" timestamp="1687922093914"/>
+    <typeInfo handle="=Client/src&lt;appu26j.mods.general{ToggleSprint.java[ToggleSprint" modifiers="1" timestamp="1687552092896"/>
 </typeInfoHistroy>
