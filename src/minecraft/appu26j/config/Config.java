@@ -194,6 +194,7 @@ public class Config
 						{
 							if (setting.getTypeOfSetting().equals("Check Box"))
 							{
+							    setting.setIndex(jsonMod.get(setting.getName()).getAsBoolean() ? 1 : 0);
 								setting.setCheckBoxValue(jsonMod.get(setting.getName()).getAsBoolean());
 							}
 							

@@ -6,8 +6,9 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="renderCloudsFan"/>
+		<item key="selection" value="drawScre"/>
 		<list key="findhistory">
+			<item value="drawScre"/>
 			<item value="renderCloudsFan"/>
 			<item value="render"/>
 			<item value="renderCloudsFanc"/>
@@ -22,7 +23,6 @@
 			<item value="renderFan"/>
 			<item value="getlim"/>
 			<item value="getFram"/>
-			<item value="initGui"/>
 		</list>
 		<list key="replacehistory">
 			<item value="import net.minecraft.client.gui.ScaledResolution; import appu26j.Scale;"/>

@@ -24,9 +24,9 @@ public class ClickGUI extends GuiScreen
 	private boolean searching = false, aBoolean = false, closingGui = false;
     private int scrollIndex = 10, scrollIndex2 = -10, maxScrollIndex = -1;  
 	private String randomModName = "", searchingMessage = "";
+    public float zoomFactor = 1, index = 0, scrollDelta = 0;
 	private Category selectedCategory = Category.ALL;
 	private TimeUtil timeUtil = new TimeUtil();
-	public float zoomFactor = 1, index = 0;
 	private Mod selectedMod;
 	
 	@Override
@@ -65,6 +65,78 @@ public class ClickGUI extends GuiScreen
 					this.index = 1;
 				}
 			}
+		}
+		
+		if (this.scrollDelta != 0)
+		{
+		    if (this.searching)
+		    {
+		        this.scrollIndex2 -= this.scrollDelta;
+	            
+	            if (this.scrollDelta < 0)
+	            {
+	                float delta = 1F / this.mc.getDebugFPS();
+	                this.scrollDelta += 25 * delta;
+	                
+	                if (this.scrollDelta > 0)
+	                {
+	                    this.scrollDelta = 0;
+	                }
+	                
+	                if (this.scrollIndex2 > -10)
+	                {
+	                    this.scrollIndex2 = -10;
+	                }
+	            }
+	            
+	            else
+	            {
+	                float delta = 1F / this.mc.getDebugFPS();
+	                this.scrollDelta -= 25 * delta;
+	                
+	                if (this.scrollDelta < 0)
+	                {
+	                    this.scrollDelta = 0;
+	                }
+	            }
+		    }
+		    
+		    else
+		    {
+		        this.scrollIndex -= this.scrollDelta;
+	            
+	            if (this.scrollDelta < 0)
+	            {
+	                float delta = 1F / this.mc.getDebugFPS();
+	                this.scrollDelta += 25 * delta;
+	                
+	                if (this.scrollDelta > 0)
+	                {
+	                    this.scrollDelta = 0;
+	                }
+	                
+	                if (this.scrollIndex > 10)
+	                {
+	                    this.scrollIndex = 10;
+	                }
+	            }
+	            
+	            else
+	            {
+	                float delta = 1F / this.mc.getDebugFPS();
+	                this.scrollDelta -= 25 * delta;
+	                
+	                if (this.scrollDelta < 0)
+	                {
+	                    this.scrollDelta = 0;
+	                }
+	                
+	                if (this.scrollIndex < this.maxScrollIndex)
+	                {
+	                    this.scrollIndex = this.maxScrollIndex;
+	                }
+	            }
+		    }
 		}
 		
 		super.drawScreen(mouseX, mouseY, partialTicks);
@@ -689,20 +761,15 @@ public class ClickGUI extends GuiScreen
 		{
 			if (ii != 0)
 			{
-				if (ii < 0)
-				{
-					this.scrollIndex2 += 50;
-					
-					if (this.scrollIndex2 > -10)
-					{
-						this.scrollIndex2 = -10;
-					}
-				}
-				
-				else
-				{
-					this.scrollIndex2 -= 50;
-				}
+			    if (ii < 0)
+                {
+                    this.scrollDelta = -5;
+                }
+                
+                else
+                {
+                    this.scrollDelta = 5;
+                }
 			}
 		}
 		
@@ -714,22 +781,12 @@ public class ClickGUI extends GuiScreen
 				{
 					if (ii < 0)
 					{
-						this.scrollIndex += 50;
-						
-						if (this.scrollIndex > 10)
-						{
-							this.scrollIndex = 10;
-						}
+	                    this.scrollDelta = -5;
 					}
 					
 					else
 					{
-						this.scrollIndex -= 50;
-						
-						if (this.scrollIndex < this.maxScrollIndex)
-                        {
-                            this.scrollIndex = this.maxScrollIndex;
-                        }
+	                    this.scrollDelta = 5;
 					}
 				}
 			}
