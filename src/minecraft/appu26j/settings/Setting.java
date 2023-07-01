@@ -8,7 +8,7 @@ import appu26j.mods.Mod;
 
 public class Setting
 {
-    private float minSliderValue, sliderValue, maxSliderValue, increment;
+    private float minSliderValue, sliderValue, maxSliderValue, increment, index;
     private String name, typeOfSetting, modeValue, textBoxValue;
     private boolean checkBoxValue, focused, aBoolean;
     private ArrayList<String> modes;
@@ -20,6 +20,7 @@ public class Setting
         this.name = name;
         this.parentMod = parentMod;
         this.checkBoxValue = checkBoxValue;
+        this.index = checkBoxValue ? 1 : 0;
         this.typeOfSetting = "Check Box";
     }
     
@@ -174,6 +175,16 @@ public class Setting
     public void setTextBoxValue(String textBoxValue)
     {
     	this.textBoxValue = textBoxValue;
+    }
+    
+    public float getIndex()
+    {
+        return this.index;
+    }
+    
+    public void setIndex(float index)
+    {
+        this.index = index;
     }
 }
 

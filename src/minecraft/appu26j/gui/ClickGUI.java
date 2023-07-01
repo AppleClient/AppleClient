@@ -368,9 +368,27 @@ public class ClickGUI extends GuiScreen
 			{
 				if (setting.getTypeOfSetting().equals("Check Box"))
 				{
+				    if (setting.getCheckBoxValue())
+				    {
+				        if (setting.getIndex() < 1)
+				        {
+			                float delta = 1F / this.mc.getDebugFPS();
+			                setting.setIndex(setting.getIndex() + (10 * delta));
+				        }
+				    }
+				    
+				    else
+				    {
+				        if (setting.getIndex() > 0)
+				        {
+                            float delta = 1F / this.mc.getDebugFPS();
+                            setting.setIndex(setting.getIndex() - (10 * delta));
+				        }
+				    }
+				    
 					this.drawRect(i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName()) + 35, (j - 60) + offset, this.isInsideBox(mouseX, mouseY, i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName()) + 35, (j - 60) + offset) ? backgroundColour.getRGB() : backgroundColourLightened.getRGB());
 					this.drawRect((i - 180) + this.getStringWidth(setting.getName()) + 9, (j - 73) + offset, (i - 180) + this.getStringWidth(setting.getName()) + 29, (j - 67) + offset, this.isInsideBox(mouseX, mouseY, i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName()) + 35, (j - 60) + offset) ? backgroundColourLightened.getRGB() : backgroundColour.getRGB());
-					this.drawRect((i - 170) + this.getStringWidth(setting.getName()) + 9 - (!setting.getCheckBoxValue() ? 10 : 0), (j - 75) + offset, (i - 170) + this.getStringWidth(setting.getName()) + 19 - (!setting.getCheckBoxValue() ? 10 : 0), (j - 65) + offset, new Color(0, 225, 100).getRGB());
+					this.drawRect((i - 170) + this.getStringWidth(setting.getName()) + 9 - (10 * (1 - setting.getIndex())), (j - 75) + offset, (i - 170) + this.getStringWidth(setting.getName()) + 19 - (10 * (1 - setting.getIndex())), (j - 65) + offset, new Color(0, 225, 100).getRGB());
                     this.drawStringAlpha(setting.getName(), i - 175, (j - 74) + offset, -1, (int) (this.index * 255));
                     offset += 25;
 				}
