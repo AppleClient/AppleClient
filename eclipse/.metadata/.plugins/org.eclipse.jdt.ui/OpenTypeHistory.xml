@@ -1,2 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<typeInfoHistroy/>
+<typeInfoHistroy>
+    <typeInfo handle="=Client/src&lt;appu26j.gui{ClickGUI.java[ClickGUI" modifiers="1" timestamp="1688248387577"/>
+    <typeInfo handle="=Client/src&lt;net.minecraft.client.gui{GuiSlot.java[GuiSlot" modifiers="1025" timestamp="1688238978836"/>
+    <typeInfo handle="=Client/src&lt;appu26j.settings{Setting.java[Setting" modifiers="1" timestamp="1688248948520"/>
+    <typeInfo handle="=Client/src&lt;appu26j.config{Config.java[Config" modifiers="1" timestamp="1688249014748"/>
+    <typeInfo handle="=Client/src&lt;appu26j{Apple.java[Apple" modifiers="16385" timestamp="1688249194900"/>
+</typeInfoHistroy>
