@@ -23,16 +23,6 @@ public interface GUIInterface
 		y *= scaledResolution.getScaleFactor();
 		width *= scaledResolution.getScaleFactor();
 		height *= scaledResolution.getScaleFactor();
-		
-		if (Minecraft.getMinecraft().currentScreen instanceof ClickGUI || Minecraft.getMinecraft().currentScreen instanceof DragGUI || Minecraft.getMinecraft().currentScreen instanceof MusicPlayerGUI)
-		{
-			float zoomFactor =  Apple.CLIENT.getDragGUI().clickGUI.zoomFactor;
-			x *= zoomFactor;
-			y *= zoomFactor;
-			width *= zoomFactor;
-			height *= zoomFactor;
-		}
-		
 		GL11.glScissor((int) x, (int) (mc.displayHeight - height), (int) (width - x), (int) (height - y));
 	}
 	
@@ -44,16 +34,6 @@ public interface GUIInterface
 		y *= scaledResolution.getScaleFactor();
 		width *= scaledResolution.getScaleFactor();
 		height *= scaledResolution.getScaleFactor();
-		
-		if (Minecraft.getMinecraft().currentScreen instanceof ClickGUI || Minecraft.getMinecraft().currentScreen instanceof DragGUI || Minecraft.getMinecraft().currentScreen instanceof MusicPlayerGUI)
-		{
-			float zoomFactor =  Apple.CLIENT.getDragGUI().clickGUI.zoomFactor;
-			x *= zoomFactor;
-			y *= zoomFactor;
-			width *= zoomFactor;
-			height *= zoomFactor;
-		}
-		
 		x *= size;
 		y *= size;
 		width *= size;

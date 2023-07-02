@@ -76,8 +76,6 @@ public class Config
 	            }
 	        }
 	        
-	        jsonObject.addProperty("Click GUI Size", Apple.CLIENT.getDragGUI().clickGUI.zoomFactor);
-	        
 	        try
 	        {
 	            printWriter = new PrintWriter(new FileWriter(Apple.CONFIG));
@@ -230,14 +228,6 @@ public class Config
 					if (mod.hasGUI())
 					{
 						mod.setPosition(jsonMod.get("Position X").getAsFloat(), jsonMod.get("Position Y").getAsFloat());
-					}
-				}
-				
-				else
-				{
-					if (entry.getKey().equals("Click GUI Size"))
-					{
-						Apple.CLIENT.getDragGUI().clickGUI.zoomFactor = entry.getValue().getAsFloat();
 					}
 				}
 			}

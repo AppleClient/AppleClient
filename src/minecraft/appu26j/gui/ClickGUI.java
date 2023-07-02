@@ -24,9 +24,9 @@ public class ClickGUI extends GuiScreen
 	private boolean searching = false, aBoolean = false, closingGui = false;
     private int scrollIndex = 10, scrollIndex2 = -10, maxScrollIndex = -1;  
 	private String randomModName = "", searchingMessage = "";
-    public float zoomFactor = 1, index = 0, scrollDelta = 0;
 	private Category selectedCategory = Category.ALL;
 	private TimeUtil timeUtil = new TimeUtil();
+    private float index = 0, scrollDelta = 0;
 	private Mod selectedMod;
 	
 	@Override
@@ -140,14 +140,8 @@ public class ClickGUI extends GuiScreen
 		}
 		
 		super.drawScreen(mouseX, mouseY, partialTicks);
-		GlStateManager.pushMatrix();
-		GlStateManager.scale(this.zoomFactor, this.zoomFactor, this.zoomFactor);
 		float i = this.width / 2;
 		float j = this.height / 2;
-		i /= this.zoomFactor;
-		j /= this.zoomFactor;
-		mouseX /= this.zoomFactor;
-		mouseY /= this.zoomFactor;
 		GlStateManager.pushMatrix();
 		GlStateManager.scale(0.85F + (this.index * 0.15F), 0.85F + (this.index * 0.15F), 0.85F + (this.index * 0.15F));
 		i /= 0.85F + (this.index * 0.15F);
@@ -160,7 +154,7 @@ public class ClickGUI extends GuiScreen
         Color backgroundColourDarkened = new Color(temp1.getRed(), temp1.getGreen(), temp1.getBlue(), (int) (this.index * 200));
         Color backgroundColourLightened = new Color(temp2.getRed(), temp2.getGreen(), temp2.getBlue(), (int) (this.index * 200));
         Color backgroundColour = new Color(temp3.getRed(), temp3.getGreen(), temp3.getBlue(), (int) (this.index * 200));
-        this.drawBackground(this.width / this.zoomFactor / 0.75F + (this.index * 0.25F), this.height / this.zoomFactor / 0.75F + (this.index * 0.25F));
+        this.drawBackground(this.width / (0.75F + (this.index * 0.25F)), this.height / (0.75F + (this.index * 0.25F)));
 		this.drawRect(i - 200, j - 140, i + 200, j + 140, backgroundColourDarkened.getRGB());
         
 		if (this.selectedMod == null)
@@ -203,7 +197,7 @@ public class ClickGUI extends GuiScreen
 			this.mc.getTextureManager().bindTexture(new ResourceLocation("icons/search.png"));
 			this.drawScaledCustomSizeModalRect(i + 140, j - 99, 0, 0, 16, 16, 16, 16, 16, 16);
 			GL11.glEnable(GL11.GL_SCISSOR_TEST);
-			this.scissor(i - 200, j - 70, i + 200, j + 150, 0.85F + (this.index * 0.15F));
+			this.scissor(i - 200, j - 70, i + 200, j + 150, (0.85F + (this.index * 0.15F)));
 			
 			for (Mod mod : this.selectedCategory.equals(Category.ALL) ? Apple.CLIENT.getModsManager().getMods() : Apple.CLIENT.getModsManager().getMods(this.selectedCategory))
 			{
@@ -526,7 +520,7 @@ public class ClickGUI extends GuiScreen
 			}
 			
 			int xOffset = 0, yOffset = this.scrollIndex2 - 1;
-			this.drawRect(0, 0, this.width / this.zoomFactor / (0.75F + (this.index * 0.25F)), this.height / this.zoomFactor / (0.75F + (this.index * 0.25F)), new Color(0, 0, 0, 200).getRGB(), (int) (this.index * 200));
+			this.drawRect(0, 0, this.width / (0.75F + (this.index * 0.25F)), this.height / (0.75F + (this.index * 0.25F)), new Color(0, 0, 0, 200).getRGB(), (int) (this.index * 200));
 			
 			if (this.isInsideBox(mouseX, mouseY, i - 100, 20, i + 100, 50))
 			{
@@ -544,7 +538,7 @@ public class ClickGUI extends GuiScreen
 			this.mc.getTextureManager().bindTexture(new ResourceLocation("icons/search.png"));
 			this.drawScaledCustomSizeModalRect(i + 70, 20, 0, 0, 28, 28, 28, 28, 28, 28);
 			GL11.glEnable(GL11.GL_SCISSOR_TEST);
-			this.scissor(0, 69, this.width / this.zoomFactor, this.height / this.zoomFactor, 0.85F + (this.index * 0.15F));
+			this.scissor(0, 69, this.width, this.height, 0.85F + (this.index * 0.15F));
             i += 5;
             
 			for (Mod mod : this.searchingMessage.isEmpty() ? Apple.CLIENT.getModsManager().getMods() : this.getMods(this.searchingMessage))
@@ -748,7 +742,6 @@ public class ClickGUI extends GuiScreen
 		}
 		
 		GlStateManager.popMatrix();
-		GlStateManager.popMatrix();
     }
 	
 	@Override
@@ -793,14 +786,10 @@ public class ClickGUI extends GuiScreen
 			
 			else
 			{
-				int mouseX = Mouse.getEventX() * this.width / this.mc.displayWidth;
+			    int mouseX = Mouse.getEventX() * this.width / this.mc.displayWidth;
 		        int mouseY = this.height - Mouse.getEventY() * this.height / this.mc.displayHeight - 1;
 				int i = this.width / 2;
 				int j = this.height / 2;
-				i /= this.zoomFactor;
-				j /= this.zoomFactor;
-				mouseX /= this.zoomFactor;
-				mouseY /= this.zoomFactor;
 	            j -= 15;
 				
 				if (ii != 0)
@@ -947,10 +936,6 @@ public class ClickGUI extends GuiScreen
 		super.mouseClicked(mouseX, mouseY, mouseButton);
 		int i = this.width / 2;
 		int j = this.height / 2;
-		i /= this.zoomFactor;
-		j /= this.zoomFactor;
-		mouseX /= this.zoomFactor;
-		mouseY /= this.zoomFactor;
 		
 		if (this.searching)
 		{
@@ -964,7 +949,7 @@ public class ClickGUI extends GuiScreen
 					xOffset = 0;
 				}
                 
-				if (this.isInsideBox(mouseX, mouseY, 0, 69, this.width / this.zoomFactor, this.height / this.zoomFactor) && this.isInsideBox(mouseX, mouseY, (i - 170) + xOffset, (80) + yOffset, (i - 170) + xOffset + 100, (80) + yOffset + 100))
+				if (this.isInsideBox(mouseX, mouseY, 0, 69, this.width, this.height) && this.isInsideBox(mouseX, mouseY, (i - 170) + xOffset, (80) + yOffset, (i - 170) + xOffset + 100, (80) + yOffset + 100))
 				{
 					if (mouseButton == 0)
 					{
@@ -1137,12 +1122,6 @@ public class ClickGUI extends GuiScreen
     }
 	
 	@Override
-	protected void mouseReleased(int mouseX, int mouseY, int state)
-    {
-		super.mouseReleased(mouseX, mouseY, state);
-    }
-	
-	@Override
 	public void initGui()
 	{
 		super.initGui();
@@ -1175,24 +1154,6 @@ public class ClickGUI extends GuiScreen
 		
 		else
 		{
-			if (GuiScreen.isCtrlKeyDown())
-			{
-				if (GuiScreen.isPlusKeyDown())
-				{
-					this.zoomFactor += 0.25F;
-				}
-				
-				else if (GuiScreen.isMinusKeyDown())
-				{
-					this.zoomFactor -= 0.25F;
-				}
-				
-				if (this.zoomFactor < 0.25F)
-				{
-					this.zoomFactor = 0.25F;
-				}
-			}
-			
 			if (this.searching)
 			{
 				if (keyCode == 14)
@@ -1310,7 +1271,7 @@ public class ClickGUI extends GuiScreen
 		return false;
     }
 	
-	public static ArrayList<Mod> getMods(String searchMessage)
+	public ArrayList<Mod> getMods(String searchMessage)
 	{
 	    ArrayList<Mod> mods = new ArrayList<>();
 	    

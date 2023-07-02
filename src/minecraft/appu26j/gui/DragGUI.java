@@ -191,14 +191,8 @@ public class DragGUI extends GuiScreen
 			}
 		}
 		
-		GlStateManager.pushMatrix();
-		GlStateManager.scale(this.clickGUI.zoomFactor, this.clickGUI.zoomFactor, this.clickGUI.zoomFactor);
-		mouseX /= this.clickGUI.zoomFactor;
-		mouseY /= this.clickGUI.zoomFactor;
 		float i = this.width / 2;
 		float j = this.height / 2;
-		i /= this.clickGUI.zoomFactor;
-		j /= this.clickGUI.zoomFactor;
 		GlStateManager.pushMatrix();
 		GlStateManager.scale(0.85F + (this.index * 0.15F), 0.85F + (this.index * 0.15F), 0.85F + (this.index * 0.15F));
 		i /= 0.85F + (this.index * 0.15F);
@@ -226,7 +220,6 @@ public class DragGUI extends GuiScreen
 		GlStateManager.enableBlend();
 		GlStateManager.color(1, 1, 1, this.index);
 		this.drawModalRectWithCustomSizedTexture(i - 40, j - 90, 0, 0, 80, 80, 80, 80);
-		GlStateManager.popMatrix();
 		GlStateManager.popMatrix();
     }
 	
@@ -300,11 +293,6 @@ public class DragGUI extends GuiScreen
 			}
 		}
 		
-		i /= this.clickGUI.zoomFactor;
-		j /= this.clickGUI.zoomFactor;
-		mouseX /= this.clickGUI.zoomFactor;
-		mouseY /= this.clickGUI.zoomFactor;
-		
 		if (this.isInsideBox(mouseX, mouseY, i - 50, j - 12.5F, i + 50, j + 12.5F) && mouseButton == 0)
 		{
 			SoundUtil.playClickSound();
@@ -347,27 +335,6 @@ public class DragGUI extends GuiScreen
 		if (keyCode == 1)
 		{
 			this.closingGui = true;
-		}
-		
-		else
-		{
-			if (GuiScreen.isCtrlKeyDown())
-			{
-				if (GuiScreen.isPlusKeyDown())
-				{
-					this.clickGUI.zoomFactor += 0.25F;
-				}
-				
-				else if (GuiScreen.isMinusKeyDown())
-				{
-					this.clickGUI.zoomFactor -= 0.25F;
-				}
-				
-				if (this.clickGUI.zoomFactor < 0.25F)
-				{
-					this.clickGUI.zoomFactor = 0.25F;
-				}
-			}
 		}
     }
 	

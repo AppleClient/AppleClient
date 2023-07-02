@@ -10,7 +10,6 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
-import appu26j.Apple;
 import appu26j.utils.MusicUtil;
 import appu26j.utils.SoundUtil;
 import javafx.embed.swing.JFXPanel;
@@ -20,10 +19,11 @@ import net.minecraft.util.ResourceLocation;
 
 public class MusicPlayerGUI extends GuiScreen
 {
+    private float index = 0, volume = 25, scrollIndex = 0, maxScrollIndex = -1, scrollDelta = 0;
     private boolean closingGui = false, previousPlaying = false, dragging = false;
-    private float index = 0, volume = 25, scrollIndex = 0;
     private File musicFolder = new File("music");
     private File currentSong = null;
+    private int temp = -1;
     
     public MusicPlayerGUI()
     {
@@ -44,7 +44,8 @@ public class MusicPlayerGUI extends GuiScreen
         {
             if (this.index > 0)
             {
-                this.index -= 0.1F;
+                float delta = 1F / this.mc.getDebugFPS();
+                this.index -= 7.5F * delta;
                 
                 if (this.index < 0)
                 {
@@ -70,7 +71,8 @@ public class MusicPlayerGUI extends GuiScreen
         {
             if (this.index < 1)
             {
-                this.index += 0.1F;
+                float delta = 1F / this.mc.getDebugFPS();
+                this.index += 7.5F * delta;
                 
                 if (this.index > 1)
                 {
@@ -79,15 +81,45 @@ public class MusicPlayerGUI extends GuiScreen
             }
         }
         
-        float zoomFactor = Apple.CLIENT.getDragGUI().clickGUI.zoomFactor;
-        GlStateManager.pushMatrix();
-        GlStateManager.scale(zoomFactor, zoomFactor, zoomFactor);
+        if (this.scrollDelta != 0)
+        {
+            this.scrollIndex -= this.scrollDelta;
+            
+            if (this.scrollDelta < 0)
+            {
+                float delta = 1F / this.mc.getDebugFPS();
+                this.scrollDelta += 25 * delta;
+                
+                if (this.scrollDelta > 0)
+                {
+                    this.scrollDelta = 0;
+                }
+                
+                if (this.scrollIndex > 0)
+                {
+                    this.scrollIndex = 0;
+                }
+            }
+            
+            else
+            {
+                float delta = 1F / this.mc.getDebugFPS();
+                this.scrollDelta -= 25 * delta;
+                
+                if (this.scrollDelta < 0)
+                {
+                    this.scrollDelta = 0;
+                }
+                
+                if (this.scrollIndex < this.maxScrollIndex)
+                {
+                    this.scrollIndex = this.maxScrollIndex;
+                }
+            }
+        }
+        
         float width = this.width / 2;
         float height = this.height / 2;
-        width /= zoomFactor;
-        height /= zoomFactor;
-        mouseX /= zoomFactor;
-        mouseY /= zoomFactor;
         GlStateManager.pushMatrix();
         GlStateManager.scale(0.85F + (this.index * 0.15F), 0.85F + (this.index * 0.15F), 0.85F + (this.index * 0.15F));
         width /= 0.85F + (this.index * 0.15F);
@@ -101,7 +133,7 @@ public class MusicPlayerGUI extends GuiScreen
         Color backgroundColourLightened = new Color(temp2.getRed(), temp2.getGreen(), temp2.getBlue(), (int) (this.index * 200));
         Color backgroundColourDarkened = new Color(temp1.getRed(), temp1.getGreen(), temp1.getBlue(), (int) (this.index * 200));
         Color backgroundColour = new Color(temp3.getRed(), temp3.getGreen(), temp3.getBlue(), (int) (this.index * 200));
-        this.drawRect(0, 0, this.width / (0.85F + (this.index * 0.15F)) / zoomFactor, this.height / (0.85F + (this.index * 0.15F)) / zoomFactor, new Color(0, 0, 0, (int) (this.index * 75)).getRGB());
+        this.drawRect(0, 0, this.width / (0.85F + (this.index * 0.15F)), this.height / (0.85F + (this.index * 0.15F)), new Color(0, 0, 0, (int) (this.index * 75)).getRGB());
         this.drawRect(width - 200, height - 140, width + 200, height + 140, backgroundColourDarkened.getRGB());
         this.drawStringAlpha("Music Player", width - (this.getStringWidth("Music Player", 16) / 2), height - 130, 16, -1, alpha);
         this.drawRect(width + 85, height - 130, width + 190, height - 110, this.isInsideBox(mouseX, mouseY, width + 85, height - 130, width + 190, height - 110) ? new Color(75, 75, 100, (int) (this.index * 75)).getRGB() :  new Color(0, 0, 25, (int) (this.index * 75)).getRGB());
@@ -115,6 +147,12 @@ public class MusicPlayerGUI extends GuiScreen
         
         for (File file : this.musicFolder.listFiles())
         {
+            if (this.temp != this.musicFolder.listFiles().length)
+            {
+                this.maxScrollIndex = -1;
+                this.temp = this.musicFolder.listFiles().length;
+            }
+            
             if (!aBoolean)
             {
                 aBoolean = true;
@@ -165,6 +203,22 @@ public class MusicPlayerGUI extends GuiScreen
         }
         
         GL11.glDisable(GL11.GL_SCISSOR_TEST);
+        
+        if (this.maxScrollIndex == -1)
+        {
+            int size = (this.musicFolder.listFiles().length - 1) / 3;
+            
+            if (size < 2)
+            {
+                this.maxScrollIndex = 0;
+            }
+            
+            else
+            {
+                this.maxScrollIndex = -(115 * (size - 1));
+            }
+        }
+        
         height -= this.scrollIndex;
         width -= 5;
         
@@ -211,7 +265,6 @@ public class MusicPlayerGUI extends GuiScreen
         }
         
         GlStateManager.popMatrix();
-        GlStateManager.popMatrix();
     }
     
     @Override
@@ -224,17 +277,12 @@ public class MusicPlayerGUI extends GuiScreen
         {
             if (i < 0)
             {
-                this.scrollIndex += 50;
-                
-                if (this.scrollIndex > 0)
-                {
-                    this.scrollIndex = 0;
-                }
+                this.scrollDelta = -5;
             }
             
             else
             {
-                this.scrollIndex -= 50;
+                this.scrollDelta = 5;
             }
         }
     }
@@ -245,13 +293,8 @@ public class MusicPlayerGUI extends GuiScreen
     protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException
     {
         super.mouseClicked(mouseX, mouseY, mouseButton);
-        float zoomFactor = Apple.CLIENT.getDragGUI().clickGUI.zoomFactor;
         float width = this.width / 2;
         float height = this.height / 2;
-        width /= zoomFactor;
-        height /= zoomFactor;
-        mouseX /= zoomFactor;
-        mouseY /= zoomFactor;
         
         if (this.isInsideBox(mouseX, mouseY, width + 85, height - 130, width + 190, height - 110))
         {
@@ -332,27 +375,6 @@ public class MusicPlayerGUI extends GuiScreen
         if (keyCode == 1)
         {
             this.closingGui = true;
-        }
-        
-        else
-        {
-            if (GuiScreen.isCtrlKeyDown())
-            {
-                if (GuiScreen.isPlusKeyDown())
-                {
-                    Apple.CLIENT.getDragGUI().clickGUI.zoomFactor += 0.25F;
-                }
-                
-                else if (GuiScreen.isMinusKeyDown())
-                {
-                    Apple.CLIENT.getDragGUI().clickGUI.zoomFactor -= 0.25F;
-                }
-                
-                if (Apple.CLIENT.getDragGUI().clickGUI.zoomFactor < 0.25F)
-                {
-                    Apple.CLIENT.getDragGUI().clickGUI.zoomFactor = 0.25F;
-                }
-            }
         }
     }
     
