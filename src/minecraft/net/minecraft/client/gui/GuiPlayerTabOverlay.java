@@ -85,7 +85,18 @@ public class GuiPlayerTabOverlay extends Gui
 
         for (NetworkPlayerInfo networkplayerinfo : list)
         {
-            boolean aBoolean = Apple.CLIENT.getPeopleUsingAppleClient().stream().filter(id -> networkplayerinfo.getGameProfile().getId().toString().replaceAll("-", "").equals(id)).findFirst().orElse(null) != null || networkplayerinfo.getGameProfile().getId().toString().equals(this.mc.thePlayer.getGameProfile().getId().toString());
+            boolean aBoolean = false;
+            
+            try
+            {
+                aBoolean = Apple.CLIENT.getPeopleUsingAppleClient().stream().filter(id -> networkplayerinfo.getGameProfile().getId().toString().replaceAll("-", "").equals(id)).findFirst().orElse(null) != null || networkplayerinfo.getGameProfile().getId().toString().equals(this.mc.thePlayer.getGameProfile().getId().toString());
+            }
+            
+            catch (Exception e)
+            {
+                ;
+            }
+            
             int k = this.mc.fontRendererObj.getStringWidth(this.getPlayerName(networkplayerinfo)) + (aBoolean ? 8 : 0);
             i = Math.max(i, k);
 
@@ -224,7 +235,17 @@ public class GuiPlayerTabOverlay extends Gui
                     j2 += 9;
                 }
                 
-                boolean aBoolean = Apple.CLIENT.getPeopleUsingAppleClient().stream().filter(id -> networkplayerinfo1.getGameProfile().getId().toString().replaceAll("-", "").equals(id)).findFirst().orElse(null) != null || networkplayerinfo1.getGameProfile().getId().toString().equals(this.mc.thePlayer.getGameProfile().getId().toString());
+                boolean aBoolean = false;
+                
+                try
+                {
+                    aBoolean = Apple.CLIENT.getPeopleUsingAppleClient().stream().filter(id -> networkplayerinfo1.getGameProfile().getId().toString().replaceAll("-", "").equals(id)).findFirst().orElse(null) != null || networkplayerinfo1.getGameProfile().getId().toString().equals(this.mc.thePlayer.getGameProfile().getId().toString());
+                }
+                
+                catch (Exception e)
+                {
+                    ;
+                }
                 
                 if (aBoolean)
                 {

@@ -54,16 +54,6 @@ public class GuiSimpleScrolledSelectionListProxy extends GuiSlot
         return super.width;
     }
 
-    public int getMouseY()
-    {
-        return super.mouseY;
-    }
-
-    public int getMouseX()
-    {
-        return super.mouseX;
-    }
-
     /**
      * Return the height of the content being scrolled
      */
@@ -86,8 +76,6 @@ public class GuiSimpleScrolledSelectionListProxy extends GuiSlot
     {
         if (this.field_178041_q)
         {
-            this.mouseX = mouseXIn;
-            this.mouseY = mouseYIn;
             this.drawBackground();
             int i = this.getScrollBarX();
             int j = i + 6;

@@ -6,25 +6,27 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="ScaledResolution"/>
+		<item key="selection" value="startGa"/>
 		<list key="findhistory">
+			<item value="startGa"/>
+			<item value="st"/>
+			<item value="swingItem"/>
+			<item value="chunk"/>
+			<item value="chunkBord"/>
+			<item value="attack"/>
+			<item value="this.mouseY"/>
+			<item value="this.mouseX"/>
+			<item value="isMouseYWithinSlotBounds"/>
+			<item value="aBoolean"/>
+			<item value="drawWorldBackground"/>
 			<item value="ScaledResolution"/>
 			<item value="drawScre"/>
 			<item value="renderCloudsFan"/>
 			<item value="render"/>
-			<item value="renderCloudsFanc"/>
-			<item value="fancyClouds"/>
-			<item value="fancyCloud]"/>
-			<item value="fanc"/>
-			<item value="renderFanc"/>
-			<item value="renderFANC"/>
-			<item value="clouds"/>
-			<item value="fancy"/>
-			<item value="fancyClo"/>
-			<item value="renderFan"/>
-			<item value="getlim"/>
 		</list>
 		<list key="replacehistory">
+			<item value="mouseY"/>
+			<item value="mouseX"/>
 			<item value="import net.minecraft.client.gui.ScaledResolution; import appu26j.Scale;"/>
 			<item value="import net.minecraft.client.gui.ScaledResolution;\nimport appu26j.Scale;"/>
 			<item value="0"/>
@@ -38,8 +40,6 @@
 			<item value="(height "/>
 			<item value="(width "/>
 			<item value="g"/>
-			<item value="f"/>
-			<item value="e"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

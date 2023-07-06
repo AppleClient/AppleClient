@@ -5,7 +5,7 @@ import org.lwjgl.opengl.GL11;
 
 import com.google.common.eventbus.Subscribe;
 
-import appu26j.events.entity.EventAttack;
+import appu26j.events.entity.EventAttack2;
 import appu26j.events.entity.EventTick;
 import appu26j.interfaces.ModInterface;
 import appu26j.mods.Category;
@@ -37,7 +37,7 @@ public class Cooldown extends Mod
 	}
 	
 	@Subscribe
-	public void onAttack(EventAttack e)
+	public void onAttack(EventAttack2 e)
 	{
 		if (!this.mc.objectMouseOver.typeOfHit.equals(MovingObjectType.BLOCK) || this.mc.playerController.getCurrentGameType().isAdventure())
 		{

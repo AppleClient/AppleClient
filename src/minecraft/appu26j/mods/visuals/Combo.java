@@ -4,7 +4,7 @@ import java.awt.Color;
 
 import com.google.common.eventbus.Subscribe;
 
-import appu26j.events.entity.EventAttack;
+import appu26j.events.entity.EventAttack2;
 import appu26j.interfaces.ModInterface;
 import appu26j.mods.Category;
 import appu26j.mods.Mod;

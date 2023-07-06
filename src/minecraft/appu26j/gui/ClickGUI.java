@@ -203,12 +203,7 @@ public class ClickGUI extends GuiScreen
 			{
 			    ResourceLocation image = null;
 			    
-			    if (this.eq(mod, "1.9 Cooldown", "Auto Friend", "Auto GG", "Auto Tip", "Better Zoom", "Bossbar", "CPS Display", "Chat", "Clock", "Combo Display", "Crosshair", "Damage Tilt", "Damage Tint", "FPS Display", "Full Bright", "Keystrokes", "Name Hider", "No Bobbing", "No Hurt Cam", "No Pumpkin", "Pack Display", "Ping Indicator", "Quick Play", "Raw Input", "Reach Display", "Scoreboard", "Tab List", "Time Changer", "Timer Countdown", "Toggle Sprint"))
-			    {
-			        image = new ResourceLocation("mods/" + mod.getName() + ".png");
-			    }
-			    
-			    else if (mod.getName().equals("1.7 Visuals"))
+			    if (mod.getName().equals("1.7 Visuals"))
 			    {
 			        image = new ResourceLocation("textures/items/diamond_sword.png");
 			    }
@@ -242,6 +237,11 @@ public class ClickGUI extends GuiScreen
                 {
                     image = new ResourceLocation("textures/items/potion_bottle_drinkable.png");
                 }
+			    
+			    else
+			    {
+			        image = new ResourceLocation("mods/" + mod.getName() + ".png");
+			    }
 			    
 				if (xOffset != 0 && xOffset % 3 == 0)
 				{
@@ -287,7 +287,7 @@ public class ClickGUI extends GuiScreen
 				        this.drawModalRectWithCustomSizedTexture((i - 157.5F) + xOffset, (j - 82.5F) + yOffset, 0, 0, 72, 72, 72, 72);
                     }
 				    
-				    else if (mod.getName().equals("Combo Display") || mod.getName().equals("FPS Display") || mod.getName().equals("Keystrokes") || mod.getName().equals("Ping Indicator"))
+				    else if (mod.getName().equals("Combo Display") || mod.getName().equals("FPS Display") || mod.getName().equals("Keystrokes") || mod.getName().equals("Ping Indicator") || mod.getName().equals("Memory Usage") || mod.getName().equals("Coordinates"))
                     {
                         this.drawModalRectWithCustomSizedTexture((i - 164) + xOffset, (j - 90) + yOffset, 0, 0, 88, 88, 88, 88);
                     }
@@ -544,14 +544,9 @@ public class ClickGUI extends GuiScreen
 			for (Mod mod : this.searchingMessage.isEmpty() ? Apple.CLIENT.getModsManager().getMods() : this.getMods(this.searchingMessage))
 			{
 	            j = 160;
-                ResourceLocation image = null;
+	            ResourceLocation image = null;
                 
-                if (this.eq(mod, "1.9 Cooldown", "Auto Friend", "Auto GG", "Auto Tip", "Better Zoom", "Bossbar", "CPS Display", "Chat", "Clock", "Combo Display", "Crosshair", "Damage Tilt", "Damage Tint", "FPS Display", "Full Bright", "Keystrokes", "Name Hider", "No Bobbing", "No Hurt Cam", "No Pumpkin", "Pack Display", "Ping Indicator", "Quick Play", "Raw Input", "Reach Display", "Scoreboard", "Tab List", "Time Changer", "Timer Countdown", "Toggle Sprint"))
-                {
-                    image = new ResourceLocation("mods/" + mod.getName() + ".png");
-                }
-                
-                else if (mod.getName().equals("1.7 Visuals"))
+                if (mod.getName().equals("1.7 Visuals"))
                 {
                     image = new ResourceLocation("textures/items/diamond_sword.png");
                 }
@@ -584,6 +579,11 @@ public class ClickGUI extends GuiScreen
                 else if (mod.getName().equals("Potion Effects"))
                 {
                     image = new ResourceLocation("textures/items/potion_bottle_drinkable.png");
+                }
+                
+                else
+                {
+                    image = new ResourceLocation("mods/" + mod.getName() + ".png");
                 }
                 
                 if (xOffset != 0 && xOffset % 3 == 0)
@@ -630,7 +630,7 @@ public class ClickGUI extends GuiScreen
                         this.drawModalRectWithCustomSizedTexture((i - 157.5F) + xOffset, (j - 82.5F) + yOffset, 0, 0, 72, 72, 72, 72);
                     }
                     
-                    else if (mod.getName().equals("Combo Display") || mod.getName().equals("FPS Display") || mod.getName().equals("Keystrokes") || mod.getName().equals("Ping Indicator"))
+                    else if (mod.getName().equals("Combo Display") || mod.getName().equals("FPS Display") || mod.getName().equals("Keystrokes") || mod.getName().equals("Ping Indicator") || mod.getName().equals("Memory Usage") || mod.getName().equals("Coordinates"))
                     {
                         this.drawModalRectWithCustomSizedTexture((i - 164) + xOffset, (j - 90) + yOffset, 0, 0, 88, 88, 88, 88);
                     }

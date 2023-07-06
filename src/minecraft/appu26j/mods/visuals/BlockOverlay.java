@@ -14,5 +14,6 @@ public class BlockOverlay extends Mod
         this.addSetting(new Setting("Color (RGB)", this, new int[] {0, 0, 0}));
         this.addSetting(new Setting("Rainbow Color", this, false));
         this.addSetting(new Setting("Line Thickness", this, 1, 2, 6, 0.5F));
+        this.addSetting(new Setting("Show Focused Side Only", this, false));
     }
 }

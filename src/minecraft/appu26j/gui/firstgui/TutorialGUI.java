@@ -28,10 +28,9 @@ public class TutorialGUI extends GuiScreen
         items.add("5. To change the slider value of a setting, hover on it and scroll up/down.");
         items.add("6. To change the mode value of a setting, left or right click on the setting.");
         items.add("7. To change the color value of a setting, hover on it and scroll up/down.");
-        items.add("8. To exit the settings screen and the mod menu, press the escape key.");
+        items.add("8. To exit the settings screen and the mod menu, press the ESC key.");
         items.add("9. To search for a mod, left click on the search box and begin typing.");
         items.add("10. To move an enabled mod with a GUI, open the GUI and drag the mod.");
-        items.add("11. To zoom out/in the GUI, press CTRL + MINUS KEY or CTRL + PLUS KEY.");
         items.add("12. To open the music player, press the M key on your keyboard.");
         items.add("12. Have fun!");
         

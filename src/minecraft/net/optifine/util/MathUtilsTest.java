@@ -18,7 +18,6 @@ public class MathUtilsTest
 
     private static void test(MathUtilsTest.OPER oper, boolean fast)
     {
-        MathHelper.fastMath = fast;
         double d0;
         double d1;
 

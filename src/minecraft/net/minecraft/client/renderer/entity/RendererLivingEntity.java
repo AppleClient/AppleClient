@@ -439,7 +439,7 @@ public abstract class RendererLivingEntity<T extends EntityLivingBase> extends R
             }
             else
             {
-                DamageTint damageTint = (DamageTint) Apple.CLIENT.getModsManager().getMod("Damage Tint");
+                DamageTint damageTint = (DamageTint) Apple.CLIENT.getModsManager().getMod("Hit Color");
                 
                 if (damageTint.isEnabled())
                 {

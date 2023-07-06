@@ -57,6 +57,9 @@ public class ModsManager
         this.mods.add(new PotionEffects());
         this.mods.add(new TNTCountdown());
         this.mods.add(new RawInput());
+        this.mods.add(new ParticleMultipler());
+        this.mods.add(new MemoryUsage());
+        this.mods.add(new Coordinates());
 		this.mods.sort(Comparator.comparing(Mod::getName));
 		this.getMods("Scoreboard", "Bossbar").forEach(mod -> mod.setEnabled(true));
 		return this;

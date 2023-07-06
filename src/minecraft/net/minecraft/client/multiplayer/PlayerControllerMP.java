@@ -1,7 +1,7 @@
 package net.minecraft.client.multiplayer;
 
 import appu26j.Apple;
-import appu26j.events.entity.EventAttack;
+import appu26j.events.entity.EventAttack2;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -497,6 +497,7 @@ public class PlayerControllerMP
     public void attackEntity(EntityPlayer playerIn, Entity targetEntity)
     {
         this.syncCurrentPlayItem();
+        Apple.CLIENT.getEventBus().post(new EventAttack2(targetEntity));
         this.netClientHandler.addToSendQueue(new C02PacketUseEntity(targetEntity, C02PacketUseEntity.Action.ATTACK));
 
         if (this.currentGameType != WorldSettings.GameType.SPECTATOR)

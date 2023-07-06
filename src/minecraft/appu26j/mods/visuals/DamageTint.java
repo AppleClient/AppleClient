@@ -5,7 +5,7 @@ import appu26j.mods.Category;
 import appu26j.mods.Mod;
 import appu26j.settings.Setting;
 
-@ModInterface(name = "Damage Tint", description = "Allows you to change the color of when somebody is attacked.", category = Category.VISUALS)
+@ModInterface(name = "Hit Color", description = "Allows you to change the color of when somebody is attacked.", category = Category.VISUALS)
 public class DamageTint extends Mod
 {
 	public DamageTint()

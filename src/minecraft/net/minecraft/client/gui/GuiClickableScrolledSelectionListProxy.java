@@ -51,16 +51,6 @@ public class GuiClickableScrolledSelectionListProxy extends GuiSlot
         return super.width;
     }
 
-    public int func_178042_f()
-    {
-        return super.mouseY;
-    }
-
-    public int func_178045_g()
-    {
-        return super.mouseX;
-    }
-
     /**
      * Return the height of the content being scrolled
      */

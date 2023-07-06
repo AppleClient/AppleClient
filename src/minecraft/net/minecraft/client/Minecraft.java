@@ -23,6 +23,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
 
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.Validate;
@@ -54,6 +55,7 @@ import com.mojang.authlib.properties.PropertyMap;
 import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
 
 import appu26j.Apple;
+import appu26j.BuiltInResourcePackDownloader;
 import appu26j.DiscordRP;
 import appu26j.Scale;
 import appu26j.events.mc.EventKey;
@@ -61,8 +63,8 @@ import appu26j.events.mc.EventWorldChange;
 import appu26j.gui.SplashProgress;
 import appu26j.gui.firstgui.LoginGUI;
 import appu26j.mods.visuals.Visuals;
+import appu26j.utils.UpdateUtil;
 import fr.litarvan.openauth.microsoft.MicrosoftAuthResult;
-import fr.litarvan.openauth.microsoft.MicrosoftAuthenticationException;
 import fr.litarvan.openauth.microsoft.MicrosoftAuthenticator;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -483,6 +485,8 @@ public class Minecraft implements IThreadListener
      */
     private void startGame() throws LWJGLException, IOException
     {
+        UpdateUtil.addHook();
+        BuiltInResourcePackDownloader.downloadPack();
         this.gameSettings = new GameSettings(this, this.mcDataDir);
         this.defaultResourcePacks.add(this.mcDefaultResourcePack);
         this.startTimerHackThread();
@@ -674,17 +678,45 @@ public class Minecraft implements IThreadListener
         
         else
         {
-            this.lines = (ArrayList<String>) Files.readAllLines(Apple.ACCOUNT.toPath());
+            boolean exception = false;
             
-            if (this.lines.get(0) != "1")
+            try
             {
-                this.session = new Session(this.lines.get(2), this.lines.get(1), this.lines.get(0).equals("0") ? "0" : this.getAccessToken(this.lines.get(0)), this.lines.get(0).equals("0") ? "legacy" : "mojang");
+                this.lines = (ArrayList<String>) Files.readAllLines(Apple.ACCOUNT.toPath());
             }
             
-            logger.info("Setting user: " + this.session.getUsername());
-            logger.info("(Session ID is " + this.session.getCensoredSessionID() + ")");
-            this.displayGuiScreen(new GuiMainMenu());
-            Apple.CLIENT.connectToServer();
+            catch (Exception e)
+            {
+                // Try once again
+                try
+                {
+                    this.lines = (ArrayList<String>) Files.readAllLines(Apple.ACCOUNT.toPath());
+                }
+                
+                catch (Exception ex)
+                {
+                    exception = true;
+                }
+            }
+            
+            if (exception)
+            {
+                Apple.ACCOUNT.delete();
+                this.displayGuiScreen(new LoginGUI());
+            }
+            
+            else
+            {
+                if (this.lines.get(0) != "1")
+                {
+                    this.session = new Session(this.lines.get(2), this.lines.get(1), this.lines.get(0).equals("0") ? "0" : this.getAccessToken(this.lines.get(0)), this.lines.get(0).equals("0") ? "legacy" : "mojang");
+                }
+                
+                logger.info("Setting user: " + this.session.getUsername());
+                logger.info("(Session ID is " + this.session.getCensoredSessionID() + ")");
+                this.displayGuiScreen(new GuiMainMenu());
+                Apple.CLIENT.connectToServer();
+            }
         }
     }
 
@@ -716,7 +748,7 @@ public class Minecraft implements IThreadListener
         resourceLocations.add(new ResourceLocation("mods/Crosshair.png"));
         resourceLocations.add(new ResourceLocation("textures/gui/heart.png"));
         resourceLocations.add(new ResourceLocation("mods/Damage Tilt.png"));
-        resourceLocations.add(new ResourceLocation("mods/Damage Tint.png"));
+        resourceLocations.add(new ResourceLocation("mods/Hit Color.png"));
         resourceLocations.add(new ResourceLocation("mods/FPS Display.png"));
         resourceLocations.add(new ResourceLocation("mods/Full Bright.png"));
         resourceLocations.add(new ResourceLocation("textures/blocks/grass_top_colored.png"));
@@ -875,7 +907,7 @@ public class Minecraft implements IThreadListener
             return microsoftAuthResult.getAccessToken();
         }
         
-        catch (MicrosoftAuthenticationException e)
+        catch (Exception e)
         {
             if (e.getCause().getMessage().equals("login.live.com"))
             {

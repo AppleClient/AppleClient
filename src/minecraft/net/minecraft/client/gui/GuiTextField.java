@@ -1,10 +1,14 @@
 package net.minecraft.client.gui;
 
+import java.awt.Color;
+
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 
 import appu26j.Apple;
+import appu26j.fontrenderer.FixedFontRenderer;
 import appu26j.mods.visuals.Chat;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
@@ -59,6 +63,7 @@ public class GuiTextField extends Gui
     private boolean visible = true;
     private GuiPageButtonList.GuiResponder field_175210_x;
     private Predicate<String> validator = Predicates.<String>alwaysTrue();
+    private float index = 0;
 
     public GuiTextField(int componentId, FontRenderer fontrendererObj, int x, int y, int par5Width, int par6Height)
     {
@@ -541,6 +546,35 @@ public class GuiTextField extends Gui
             String s = this.fontRendererInstance.trimStringToWidth(this.text.substring(this.lineScrollOffset), this.getWidth());
             boolean flag = j >= 0 && j <= s.length();
             boolean flag1 = this.isFocused && this.cursorCounter / 6 % 2 == 0 && flag;
+            
+            if (flag1)
+            {
+                if (this.index < 1)
+                {
+                    float delta = 1F / Minecraft.getMinecraft().getDebugFPS();
+                    this.index += 15 * delta;
+                    
+                    if (this.index > 1)
+                    {
+                        this.index = 1;
+                    }
+                }
+            }
+            
+            else
+            {
+                if (this.index > 0)
+                {
+                    float delta = 1F / Minecraft.getMinecraft().getDebugFPS();
+                    this.index -= 15 * delta;
+                    
+                    if (this.index < 0)
+                    {
+                        this.index = 0;
+                    }
+                }
+            }
+            
             int l = this.enableBackgroundDrawing ? this.xPosition + 4 : this.xPosition;
             int i1 = this.enableBackgroundDrawing ? this.yPosition + (this.height - 8) / 2 : this.yPosition;
             int j1 = l;
@@ -574,15 +608,19 @@ public class GuiTextField extends Gui
                 j1 = this.fontRendererInstance.drawStringWithShadow(s.substring(j), (float)j1, (float)i1, i);
             }
 
-            if (flag1)
+            if (this.index != 0)
             {
                 if (flag2)
                 {
-                    Gui.drawRect(k1, i1 - 1, k1 + 1, i1 + 1 + this.fontRendererInstance.FONT_HEIGHT, -3092272);
+                    Color temp = new Color(i, true);
+                    int finalColor = new Color(temp.getRed(), temp.getGreen(), temp.getBlue(), (int) (this.index * 255)).getRGB();
+                    Gui.drawRect(k1, i1 - 1, k1 + 1, i1 + 1 + this.fontRendererInstance.FONT_HEIGHT, finalColor);
                 }
                 else
                 {
-                    this.fontRendererInstance.drawStringWithShadow("_", (float)k1, (float)i1, i);
+                    Color temp = new Color(i, true);
+                    int finalColor = new Color(temp.getRed(), temp.getGreen(), temp.getBlue(), (int) (this.index * 255)).getRGB();
+                    FixedFontRenderer.drawStringWithShadow("_", (float)k1, (float)i1, 8, finalColor);
                 }
             }
 
@@ -621,6 +659,35 @@ public class GuiTextField extends Gui
             String s = this.fontRendererInstance.trimStringToWidth(this.text.substring(this.lineScrollOffset), this.getWidth());
             boolean flag = j >= 0 && j <= s.length();
             boolean flag1 = this.isFocused && this.cursorCounter / 6 % 2 == 0 && flag;
+            
+            if (flag1)
+            {
+                if (this.index < 1)
+                {
+                    float delta = 1F / Minecraft.getMinecraft().getDebugFPS();
+                    this.index += 15 * delta;
+                    
+                    if (this.index > 1)
+                    {
+                        this.index = 1;
+                    }
+                }
+            }
+            
+            else
+            {
+                if (this.index > 0)
+                {
+                    float delta = 1F / Minecraft.getMinecraft().getDebugFPS();
+                    this.index -= 15 * delta;
+                    
+                    if (this.index < 0)
+                    {
+                        this.index = 0;
+                    }
+                }
+            }
+            
             int l = this.enableBackgroundDrawing ? this.xPosition + 4 : this.xPosition;
             int i1 = this.enableBackgroundDrawing ? this.yPosition + (this.height - 8) / 2 : this.yPosition;
             int j1 = l;
@@ -670,23 +737,28 @@ public class GuiTextField extends Gui
                     j1 = this.fontRendererInstance.drawString(s.substring(j), (float)j1 + 1, (float)i1, i);
                 }
             }
-
-            if (flag1)
+            
+            if (this.index != 0)
             {
                 if (flag2)
                 {
-                    Gui.drawRect(k1, i1 - 1, k1 + 1, i1 + 1 + this.fontRendererInstance.FONT_HEIGHT, -3092272);
+                    Color temp = new Color(i, true);
+                    int finalColor = new Color(temp.getRed(), temp.getGreen(), temp.getBlue(), (int) (this.index * 255)).getRGB();
+                    Gui.drawRect(k1, i1 - 1, k1 + 1, i1 + 1 + this.fontRendererInstance.FONT_HEIGHT, finalColor);
                 }
                 else
                 {
+                    Color temp = new Color(i, true);
+                    int finalColor = new Color(temp.getRed(), temp.getGreen(), temp.getBlue(), (int) (this.index * 255)).getRGB();
+                    
                     if (chatMod.getSetting("Text Shadow").getCheckBoxValue())
                     {
-                        this.fontRendererInstance.drawStringWithShadow("_", (float)k1, (float)i1, i);
+                        FixedFontRenderer.drawStringWithShadow("_", (float)k1, (float)i1, 8, finalColor);
                     }
                     
                     else
                     {
-                        this.fontRendererInstance.drawString("_", (float)k1, (float)i1, i);
+                        FixedFontRenderer.drawString("_", (float)k1, (float)i1, 8, finalColor);
                     }
                 }
             }

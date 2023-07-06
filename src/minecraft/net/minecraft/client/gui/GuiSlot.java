@@ -30,12 +30,11 @@ public abstract class GuiSlot
 
     /** The buttonID of the button used to scroll down */
     private int scrollDownButtonID;
-    protected int mouseX;
-    protected int mouseY;
     protected boolean field_148163_i = true;
+    private float scrollDelta = 0;
 
     /** Where the mouse was in the window when you first clicked to scroll */
-    protected int initialClickY = -2;
+    protected float initialClickY = -2;
 
     /**
      * What to multiply the amount you moved your mouse by (used for slowing down scrolling when over the items and not
@@ -185,9 +184,9 @@ public abstract class GuiSlot
         return (int)this.amountScrolled;
     }
 
-    public boolean isMouseYWithinSlotBounds(int p_148141_1_)
+    public boolean isMouseYWithinSlotBounds(int p_148141_1_, int mouseX)
     {
-        return p_148141_1_ >= this.top && p_148141_1_ <= this.bottom && this.mouseX >= this.left && this.mouseX <= this.right;
+        return p_148141_1_ >= this.top && p_148141_1_ <= this.bottom && mouseX >= this.left && mouseX <= this.right;
     }
 
     /**
@@ -221,11 +220,36 @@ public abstract class GuiSlot
 
     public void drawScreen(int mouseXIn, int mouseYIn, float p_148128_3_)
     {
+        if (this.scrollDelta != 0)
+        {
+            this.amountScrolled += this.scrollDelta;
+            
+            if (this.scrollDelta < 0)
+            {
+                float delta = 1F / this.mc.getDebugFPS();
+                this.scrollDelta += 25 * delta;
+                
+                if (this.scrollDelta > 0)
+                {
+                    this.scrollDelta = 0;
+                }
+            }
+            
+            else
+            {
+                float delta = 1F / this.mc.getDebugFPS();
+                this.scrollDelta -= 25 * delta;
+                
+                if (this.scrollDelta < 0)
+                {
+                    this.scrollDelta = 0;
+                }
+            }
+        }
+        
         if (this.field_178041_q)
         {
             boolean aBoolean = this.mc.currentScreen instanceof GuiMultiplayer || this.mc.theWorld != null;
-            this.mouseX = mouseXIn;
-            this.mouseY = mouseYIn;
             
             if (!(this.mc.currentScreen instanceof GuiLanguage))
             {
@@ -328,23 +352,26 @@ public abstract class GuiSlot
 
     public void handleMouseInput()
     {
-        if (this.isMouseYWithinSlotBounds(this.mouseY))
+        int mouseX = Mouse.getEventX() * this.width / this.mc.displayWidth;
+        int mouseY = this.height - Mouse.getEventY() * this.height / this.mc.displayHeight - 1;
+        
+        if (this.isMouseYWithinSlotBounds(mouseY, mouseX))
         {
-            if (Mouse.getEventButton() == 0 && Mouse.getEventButtonState() && this.mouseY >= this.top && this.mouseY <= this.bottom)
+            if (Mouse.getEventButton() == 0 && Mouse.getEventButtonState() && mouseY >= this.top && mouseY <= this.bottom)
             {
                 int i = (this.width - this.getListWidth()) / 2;
                 int j = (this.width + this.getListWidth()) / 2;
-                int k = this.mouseY - this.top - this.headerPadding + (int)this.amountScrolled - 4;
+                int k = mouseY - this.top - this.headerPadding + (int)this.amountScrolled - 4;
                 int l = k / this.slotHeight;
 
-                if (l < this.getSize() && this.mouseX >= i && this.mouseX <= j && l >= 0 && k >= 0)
+                if (l < this.getSize() && mouseX >= i && mouseX <= j && l >= 0 && k >= 0)
                 {
-                    this.elementClicked(l, false, this.mouseX, this.mouseY);
+                    this.elementClicked(l, false, mouseX, mouseY);
                     this.selectedElement = l;
                 }
-                else if (this.mouseX >= i && this.mouseX <= j && k < 0)
+                else if (mouseX >= i && mouseX <= j && k < 0)
                 {
-                    this.func_148132_a(this.mouseX - i, this.mouseY - this.top + (int)this.amountScrolled - 4);
+                    this.func_148132_a(mouseX - i, mouseY - this.top + (int)this.amountScrolled - 4);
                 }
             }
 
@@ -354,38 +381,38 @@ public abstract class GuiSlot
                 {
                     if (this.initialClickY >= 0)
                     {
-                        this.amountScrolled -= (float)(this.mouseY - this.initialClickY) * this.scrollMultiplier;
-                        this.initialClickY = this.mouseY;
+                        this.amountScrolled -= (float)(mouseY - this.initialClickY) * this.scrollMultiplier;
+                        this.initialClickY = mouseY;
                     }
                 }
                 else
                 {
                     boolean flag1 = true;
 
-                    if (this.mouseY >= this.top && this.mouseY <= this.bottom)
+                    if (mouseY >= this.top && mouseY <= this.bottom)
                     {
                         int j2 = (this.width - this.getListWidth()) / 2;
                         int k2 = (this.width + this.getListWidth()) / 2;
-                        int l2 = this.mouseY - this.top - this.headerPadding + (int)this.amountScrolled - 4;
+                        int l2 = mouseY - this.top - this.headerPadding + (int)this.amountScrolled - 4;
                         int i1 = l2 / this.slotHeight;
 
-                        if (i1 < this.getSize() && this.mouseX >= j2 && this.mouseX <= k2 && i1 >= 0 && l2 >= 0)
+                        if (i1 < this.getSize() && mouseX >= j2 && mouseX <= k2 && i1 >= 0 && l2 >= 0)
                         {
                             boolean flag = i1 == this.selectedElement && Minecraft.getSystemTime() - this.lastClicked < 250L;
-                            this.elementClicked(i1, flag, this.mouseX, this.mouseY);
+                            this.elementClicked(i1, flag, mouseX, mouseY);
                             this.selectedElement = i1;
                             this.lastClicked = Minecraft.getSystemTime();
                         }
-                        else if (this.mouseX >= j2 && this.mouseX <= k2 && l2 < 0)
+                        else if (mouseX >= j2 && mouseX <= k2 && l2 < 0)
                         {
-                            this.func_148132_a(this.mouseX - j2, this.mouseY - this.top + (int)this.amountScrolled - 4);
+                            this.func_148132_a(mouseX - j2, mouseY - this.top + (int)this.amountScrolled - 4);
                             flag1 = false;
                         }
 
                         int i3 = this.getScrollBarX();
                         int j1 = i3 + 6;
 
-                        if (this.mouseX >= i3 && this.mouseX <= j1)
+                        if (mouseX >= i3 && mouseX <= j1)
                         {
                             this.scrollMultiplier = -1.0F;
                             int k1 = this.func_148135_f();
@@ -406,7 +433,7 @@ public abstract class GuiSlot
 
                         if (flag1)
                         {
-                            this.initialClickY = this.mouseY;
+                            this.initialClickY = mouseY;
                         }
                         else
                         {
@@ -437,7 +464,7 @@ public abstract class GuiSlot
                     i2 = 1;
                 }
 
-                this.amountScrolled += (float)(i2 * this.slotHeight / 2);
+                this.scrollDelta = (float)(i2 * this.slotHeight / 2) / 5;
             }
         }
     }

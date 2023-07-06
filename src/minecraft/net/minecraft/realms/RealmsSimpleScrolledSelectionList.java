@@ -21,16 +21,6 @@ public class RealmsSimpleScrolledSelectionList
         return this.proxy.getWidth();
     }
 
-    public int ym()
-    {
-        return this.proxy.getMouseY();
-    }
-
-    public int xm()
-    {
-        return this.proxy.getMouseX();
-    }
-
     protected void renderItem(int p_renderItem_1_, int p_renderItem_2_, int p_renderItem_3_, int p_renderItem_4_, Tezzelator p_renderItem_5_, int p_renderItem_6_, int p_renderItem_7_)
     {
     }

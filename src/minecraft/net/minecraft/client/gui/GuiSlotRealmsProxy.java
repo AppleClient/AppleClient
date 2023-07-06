@@ -49,16 +49,6 @@ public class GuiSlotRealmsProxy extends GuiSlot
         return super.width;
     }
 
-    public int getMouseY()
-    {
-        return super.mouseY;
-    }
-
-    public int getMouseX()
-    {
-        return super.mouseX;
-    }
-
     /**
      * Return the height of the content being scrolled
      */

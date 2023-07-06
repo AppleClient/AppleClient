@@ -167,6 +167,11 @@ public class Config
 				    modName = "Timer Countdown";
 				}
 				
+				else if (modName.equals("Damage Tint"))
+                {
+                    modName = "Hit Color";
+                }
+				
 				Mod mod = Apple.CLIENT.getModsManager().getMod(modName);
 				
 				if (mod != null)

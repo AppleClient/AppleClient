@@ -51,7 +51,7 @@ public abstract class LayerArmorBase<T extends ModelBase> implements LayerRender
     public boolean shouldCombineTextures()
     {
         Visuals visuals = (Visuals) Apple.CLIENT.getModsManager().getMod("1.7 Visuals");
-        return visuals.isEnabled() && visuals.getSetting("1.7 Armor Damage Tint").getCheckBoxValue();
+        return visuals.isEnabled() && visuals.getSetting("1.7 Armor Hit Color").getCheckBoxValue();
     }
 
     private void renderLayer(EntityLivingBase entitylivingbaseIn, float p_177182_2_, float p_177182_3_, float partialTicks, float p_177182_5_, float p_177182_6_, float p_177182_7_, float scale, int armorSlot)

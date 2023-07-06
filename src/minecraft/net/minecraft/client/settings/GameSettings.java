@@ -2006,7 +2006,6 @@ public class GameSettings
         if (p_setOptionValueOF_1_ == GameSettings.Options.FAST_MATH)
         {
             this.ofFastMath = !this.ofFastMath;
-            MathHelper.fastMath = this.ofFastMath;
         }
 
         if (p_setOptionValueOF_1_ == GameSettings.Options.FAST_RENDER)
@@ -3017,7 +3016,6 @@ public class GameSettings
                     if (astring[0].equals("ofFastMath") && astring.length >= 2)
                     {
                         this.ofFastMath = Boolean.valueOf(astring[1]).booleanValue();
-                        MathHelper.fastMath = this.ofFastMath;
                     }
 
                     if (astring[0].equals("ofFastRender") && astring.length >= 2)

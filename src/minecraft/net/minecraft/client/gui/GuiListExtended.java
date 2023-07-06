@@ -40,7 +40,7 @@ public abstract class GuiListExtended extends GuiSlot
 
     public boolean mouseClicked(int mouseX, int mouseY, int mouseEvent)
     {
-        if (this.isMouseYWithinSlotBounds(mouseY))
+        if (this.isMouseYWithinSlotBounds(mouseY, mouseX))
         {
             int i = this.getSlotIndexFromScreenCoords(mouseX, mouseY);
 

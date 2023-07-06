@@ -2,6 +2,7 @@ package net.minecraft.util;
 
 import java.util.Random;
 import java.util.UUID;
+
 import net.optifine.util.MathUtils;
 
 public class MathHelper
@@ -16,8 +17,6 @@ public class MathHelper
     public static final float PId2 = MathUtils.roundToFloat((Math.PI / 2D));
     private static final float radToIndex = MathUtils.roundToFloat(651.8986469044033D);
     public static final float deg2Rad = MathUtils.roundToFloat(0.017453292519943295D);
-    private static final float[] SIN_TABLE_FAST = new float[4096];
-    public static boolean fastMath = false;
 
     /**
      * A table of sin values computed from 0 (inclusive) to 2*pi (exclusive), with steps of 2*PI / 65536.
@@ -41,7 +40,7 @@ public class MathHelper
      */
     public static float sin(float p_76126_0_)
     {
-        return fastMath ? SIN_TABLE_FAST[(int)(p_76126_0_ * radToIndex) & 4095] : SIN_TABLE[(int)(p_76126_0_ * 10430.378F) & 65535];
+        return SIN_TABLE[(int)(p_76126_0_ * 10430.378F) & 65535];
     }
 
     /**
@@ -49,7 +48,7 @@ public class MathHelper
      */
     public static float cos(float value)
     {
-        return fastMath ? SIN_TABLE_FAST[(int)(value * radToIndex + 1024.0F) & 4095] : SIN_TABLE[(int)(value * 10430.378F + 16384.0F) & 65535];
+        return SIN_TABLE[(int)(value * 10430.378F + 16384.0F) & 65535];
     }
 
     public static float sqrt_float(float value)
@@ -558,11 +557,6 @@ public class MathHelper
         for (int i = 0; i < 65536; ++i)
         {
             SIN_TABLE[i] = (float)Math.sin((double)i * Math.PI * 2.0D / 65536.0D);
-        }
-
-        for (int j = 0; j < SIN_TABLE_FAST.length; ++j)
-        {
-            SIN_TABLE_FAST[j] = MathUtils.roundToFloat(Math.sin((double)j * Math.PI * 2.0D / 4096.0D));
         }
 
         multiplyDeBruijnBitPosition = new int[] {0, 1, 28, 2, 29, 14, 24, 3, 30, 22, 20, 15, 25, 17, 4, 8, 31, 27, 13, 23, 21, 19, 16, 7, 26, 12, 18, 6, 11, 5, 10, 9};

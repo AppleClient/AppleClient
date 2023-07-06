@@ -2652,8 +2652,16 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
                 {
                     axisalignedbb = BlockModelUtils.getOffsetBoundingBox(axisalignedbb, block$enumoffsettype, blockpos);
                 }
-
-                drawSelectionBoundingBox(axisalignedbb.expand(0.0020000000949949026D, 0.0020000000949949026D, 0.0020000000949949026D).offset(-d0, -d1, -d2));
+                
+                if (blockOverlay.isEnabled() && blockOverlay.getSetting("Show Focused Side Only").getCheckBoxValue())
+                {
+                    drawSelectionBoundingBoxOnlyFocusedSide(axisalignedbb.expand(0.0020000000949949026D, 0.0020000000949949026D, 0.0020000000949949026D).offset(-d0, -d1, -d2));
+                }
+                
+                else
+                {
+                    drawSelectionBoundingBox(axisalignedbb.expand(0.0020000000949949026D, 0.0020000000949949026D, 0.0020000000949949026D).offset(-d0, -d1, -d2));
+                }
             }
 
             GlStateManager.depthMask(true);
@@ -2696,6 +2704,92 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
         worldrenderer.pos(boundingBox.minX, boundingBox.minY, boundingBox.maxZ).endVertex();
         worldrenderer.pos(boundingBox.minX, boundingBox.maxY, boundingBox.maxZ).endVertex();
         tessellator.draw();
+    }
+    
+    public static void drawSelectionBoundingBoxOnlyFocusedSide(AxisAlignedBB boundingBox)
+    {
+        EnumFacing facing = Minecraft.getMinecraft().objectMouseOver == null ? null : Minecraft.getMinecraft().objectMouseOver.sideHit;
+        
+        if (facing != null)
+        {
+            Tessellator tessellator = Tessellator.getInstance();
+            WorldRenderer worldrenderer = tessellator.getWorldRenderer();
+            
+            switch (facing.toString())
+            {
+                case "down":
+                {
+                    worldrenderer.begin(3, DefaultVertexFormats.POSITION);
+                    worldrenderer.pos(boundingBox.minX, boundingBox.minY, boundingBox.minZ).endVertex();
+                    worldrenderer.pos(boundingBox.maxX, boundingBox.minY, boundingBox.minZ).endVertex();
+                    worldrenderer.pos(boundingBox.maxX, boundingBox.minY, boundingBox.maxZ).endVertex();
+                    worldrenderer.pos(boundingBox.minX, boundingBox.minY, boundingBox.maxZ).endVertex();
+                    worldrenderer.pos(boundingBox.minX, boundingBox.minY, boundingBox.minZ).endVertex();
+                    tessellator.draw();
+                    break;
+                }
+                
+                case "up":
+                {
+                    worldrenderer.begin(3, DefaultVertexFormats.POSITION);
+                    worldrenderer.pos(boundingBox.minX, boundingBox.maxY, boundingBox.minZ).endVertex();
+                    worldrenderer.pos(boundingBox.maxX, boundingBox.maxY, boundingBox.minZ).endVertex();
+                    worldrenderer.pos(boundingBox.maxX, boundingBox.maxY, boundingBox.maxZ).endVertex();
+                    worldrenderer.pos(boundingBox.minX, boundingBox.maxY, boundingBox.maxZ).endVertex();
+                    worldrenderer.pos(boundingBox.minX, boundingBox.maxY, boundingBox.minZ).endVertex();
+                    tessellator.draw();
+                    break;
+                }
+                
+                case "south":
+                {
+                    worldrenderer.begin(3, DefaultVertexFormats.POSITION);
+                    worldrenderer.pos(boundingBox.minX, boundingBox.maxY, boundingBox.maxZ).endVertex();
+                    worldrenderer.pos(boundingBox.maxX, boundingBox.maxY, boundingBox.maxZ).endVertex();
+                    worldrenderer.pos(boundingBox.maxX, boundingBox.minY, boundingBox.maxZ).endVertex();
+                    worldrenderer.pos(boundingBox.minX, boundingBox.minY, boundingBox.maxZ).endVertex();
+                    worldrenderer.pos(boundingBox.minX, boundingBox.maxY, boundingBox.maxZ).endVertex();
+                    tessellator.draw();
+                    break;
+                }
+                
+                case "north":
+                {
+                    worldrenderer.begin(3, DefaultVertexFormats.POSITION);
+                    worldrenderer.pos(boundingBox.minX, boundingBox.maxY, boundingBox.minZ).endVertex();
+                    worldrenderer.pos(boundingBox.maxX, boundingBox.maxY, boundingBox.minZ).endVertex();
+                    worldrenderer.pos(boundingBox.maxX, boundingBox.minY, boundingBox.minZ).endVertex();
+                    worldrenderer.pos(boundingBox.minX, boundingBox.minY, boundingBox.minZ).endVertex();
+                    worldrenderer.pos(boundingBox.minX, boundingBox.maxY, boundingBox.minZ).endVertex();
+                    tessellator.draw();
+                    break;
+                }
+                
+                case "west":
+                {
+                    worldrenderer.begin(3, DefaultVertexFormats.POSITION);
+                    worldrenderer.pos(boundingBox.minX, boundingBox.maxY, boundingBox.minZ).endVertex();
+                    worldrenderer.pos(boundingBox.minX, boundingBox.maxY, boundingBox.maxZ).endVertex();
+                    worldrenderer.pos(boundingBox.minX, boundingBox.minY, boundingBox.maxZ).endVertex();
+                    worldrenderer.pos(boundingBox.minX, boundingBox.minY, boundingBox.minZ).endVertex();
+                    worldrenderer.pos(boundingBox.minX, boundingBox.maxY, boundingBox.minZ).endVertex();
+                    tessellator.draw();
+                    break;
+                }
+                
+                case "east":
+                {
+                    worldrenderer.begin(3, DefaultVertexFormats.POSITION);
+                    worldrenderer.pos(boundingBox.maxX, boundingBox.maxY, boundingBox.minZ).endVertex();
+                    worldrenderer.pos(boundingBox.maxX, boundingBox.maxY, boundingBox.maxZ).endVertex();
+                    worldrenderer.pos(boundingBox.maxX, boundingBox.minY, boundingBox.maxZ).endVertex();
+                    worldrenderer.pos(boundingBox.maxX, boundingBox.minY, boundingBox.minZ).endVertex();
+                    worldrenderer.pos(boundingBox.maxX, boundingBox.maxY, boundingBox.minZ).endVertex();
+                    tessellator.draw();
+                    break;
+                }
+            }
+        }
     }
 
     public static void drawOutlinedBoundingBox(AxisAlignedBB boundingBox, int red, int green, int blue, int alpha)
