@@ -1842,6 +1842,69 @@ public class Minecraft implements IThreadListener
             logger.error((String)"Couldn\'t toggle fullscreen", (Throwable)exception);
         }
     }
+    
+    public void toggleBorderlessFullscreen()
+    {
+        try
+        {
+            this.fullscreen = !this.fullscreen;
+            this.gameSettings.fullScreen = this.fullscreen;
+            
+            if (this.fullscreen)
+            {
+                System.setProperty("org.lwjgl.opengl.Window.undecorated", "true");
+                Display.setResizable(false);
+                this.updateDisplayMode();
+                this.displayWidth = Display.getDisplayMode().getWidth();
+                this.displayHeight = Display.getDisplayMode().getHeight();
+
+                if (this.displayWidth <= 0)
+                {
+                    this.displayWidth = 1;
+                }
+
+                if (this.displayHeight <= 0)
+                {
+                    this.displayHeight = 1;
+                }
+            }
+            else
+            {
+                System.setProperty("org.lwjgl.opengl.Window.undecorated", "false");
+                Display.setDisplayMode(new DisplayMode(this.tempDisplayWidth, this.tempDisplayHeight));
+                this.displayWidth = this.tempDisplayWidth;
+                this.displayHeight = this.tempDisplayHeight;
+
+                if (this.displayWidth <= 0)
+                {
+                    this.displayWidth = 1;
+                }
+
+                if (this.displayHeight <= 0)
+                {
+                    this.displayHeight = 1;
+                }
+            }
+
+            if (this.currentScreen != null)
+            {
+                this.resize(this.displayWidth, this.displayHeight);
+            }
+            else
+            {
+                this.updateFramebufferSize();
+            }
+
+            Display.setVSyncEnabled(this.gameSettings.enableVsync);
+            this.updateDisplay();
+            Scale.setSR(new ScaledResolution(this));
+            this.displayGuiScreen(this.currentScreen);
+        }
+        catch (Exception exception)
+        {
+            logger.error((String)"Couldn\'t toggle fullscreen", (Throwable)exception);
+        }
+    }
 
     /**
      * Called to resize the current screen.

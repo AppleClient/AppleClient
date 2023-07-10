@@ -732,7 +732,7 @@ public abstract class RendererLivingEntity<T extends EntityLivingBase> extends R
                         
                         if (aBoolean)
                         {
-                            GlStateManager.color(1, 1, 1, 1);
+                            GlStateManager.color(1, 1, 1, 0.3F);
                             Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("icons/icon_16x16.png"));
                             Gui.drawModalRectWithCustomSizedTexture(fontrenderer.getStringWidth(s) / 2, -3, 0, 0, 12, 12, 12, 12);
                         }

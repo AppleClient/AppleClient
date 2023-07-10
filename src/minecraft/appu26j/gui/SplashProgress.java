@@ -61,7 +61,7 @@ public class SplashProgress {
         GlStateManager.enableAlpha();
         GlStateManager.enableBlend();
         GlStateManager.alphaFunc(516, 0.1F);
-        Gui.drawModalRectWithCustomSizedTexture(0, 0, 0, 0, scaledResolution.getScaledWidth(), scaledResolution.getScaledHeight(), 480, 238);
+        Gui.drawModalRectWithCustomSizedTexture(0, 0, 0, 0, scaledResolution.getScaledWidth(), scaledResolution.getScaledHeight(), scaledResolution.getScaledWidth(), scaledResolution.getScaledHeight());
         tm.bindTexture(new ResourceLocation("icons/icon_32x32.png"));
         Gui.drawModalRectWithCustomSizedTexture((scaledResolution.getScaledWidth() / 2) - 48, (scaledResolution.getScaledHeight() / 2) - 64, 0, 0, 96, 96, 96, 96);
         drawProgress();

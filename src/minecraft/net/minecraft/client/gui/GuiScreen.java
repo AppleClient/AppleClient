@@ -264,14 +264,13 @@ public abstract class GuiScreen extends Gui implements GuiYesNoCallback, GUIInte
             this.zLevel = 0.0F;
             this.itemRender.zLevel = 0.0F;
             
-            if (!(this.mc.currentScreen instanceof GuiMultiplayer))
+            if (this.mc.currentScreen == null)
             {
+                GlStateManager.enableRescaleNormal();
                 GlStateManager.enableLighting();
                 GlStateManager.enableDepth();
                 RenderHelper.enableStandardItemLighting();
             }
-            
-            GlStateManager.enableRescaleNormal();
         }
     }
 

@@ -395,12 +395,7 @@ public class ItemRenderer
     private void doBlockTransformations()
     {
         Visuals visuals = (Visuals) Apple.CLIENT.getModsManager().getMod("1.7 Visuals");
-        
-        if (!visuals.getSetting("Lunar Client 1.7 Sword Block").getCheckBoxValue())
-        {
-            GlStateManager.translate(-0.5F, visuals.isEnabled() && visuals.getSetting("1.7 Sword Block").getCheckBoxValue() ? 0.4F : 0.2F, 0.0F);
-        }
-        
+        GlStateManager.translate(-0.5F, visuals.isEnabled() && visuals.getSetting("1.7 Sword Block").getCheckBoxValue() ? 0.4F : 0.2F, 0.0F);
         GlStateManager.rotate(30.0F, 0.0F, 1.0F, 0.0F);
         GlStateManager.rotate(-80.0F, 1.0F, 0.0F, 0.0F);
         GlStateManager.rotate(60.0F, 0.0F, 1.0F, 0.0F);

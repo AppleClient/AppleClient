@@ -10,7 +10,7 @@ public class Setting
 {
     private float minSliderValue, sliderValue, maxSliderValue, increment, index;
     private String name, typeOfSetting, modeValue, textBoxValue;
-    private boolean checkBoxValue, focused, aBoolean;
+    private boolean checkBoxValue, focused, aBoolean, dragging;
     private ArrayList<String> modes;
     private Mod parentMod;
     private int[] colors;
@@ -185,6 +185,16 @@ public class Setting
     public void setIndex(float index)
     {
         this.index = index;
+    }
+    
+    public boolean isDragging()
+    {
+        return this.dragging;
+    }
+    
+    public void setDragging(boolean dragging)
+    {
+        this.dragging = dragging;
     }
 }
 

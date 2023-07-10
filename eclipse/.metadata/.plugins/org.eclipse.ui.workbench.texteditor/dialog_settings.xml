@@ -6,23 +6,23 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="startGa"/>
+		<item key="selection" value="drawRe"/>
 		<list key="findhistory">
-			<item value="startGa"/>
-			<item value="st"/>
-			<item value="swingItem"/>
-			<item value="chunk"/>
-			<item value="chunkBord"/>
-			<item value="attack"/>
-			<item value="this.mouseY"/>
-			<item value="this.mouseX"/>
-			<item value="isMouseYWithinSlotBounds"/>
-			<item value="aBoolean"/>
-			<item value="drawWorldBackground"/>
-			<item value="ScaledResolution"/>
-			<item value="drawScre"/>
-			<item value="renderCloudsFan"/>
-			<item value="render"/>
+			<item value="drawRe"/>
+			<item value="borderless"/>
+			<item value="toggleFull"/>
+			<item value="setDispl"/>
+			<item value="Framebuffer"/>
+			<item value="framebuffer"/>
+			<item value="frambuffer"/>
+			<item value="drawScree"/>
+			<item value="drawHovering"/>
+			<item value="mouseReleased"/>
+			<item value="mouseRelease"/>
+			<item value="initGui"/>
+			<item value="renderName"/>
+			<item value="index"/>
+			<item value="dragging"/>
 		</list>
 		<list key="replacehistory">
 			<item value="mouseY"/>
@@ -43,8 +43,8 @@
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="590"/>
-		<item key="DIALOG_Y_ORIGIN" value="209"/>
+		<item key="DIALOG_X_ORIGIN" value="380"/>
+		<item key="DIALOG_Y_ORIGIN" value="108"/>
 		<item key="DIALOG_WIDTH" value="318"/>
 		<item key="DIALOG_HEIGHT" value="295"/>
 		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-21|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>

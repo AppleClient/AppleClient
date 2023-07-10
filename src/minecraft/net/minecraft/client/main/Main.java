@@ -18,6 +18,9 @@ import java.net.Proxy;
 import java.net.URL;
 import java.net.Proxy.Type;
 import java.util.List;
+
+import org.lwjgl.opengl.Display;
+
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
 import joptsimple.OptionSpec;

@@ -4,7 +4,7 @@ ofMipmapType:0
 ofOcclusionFancy:false
 ofSmoothFps:false
 ofSmoothWorld:false
-ofAoLevel:0.75352114
+ofAoLevel:0.5070422
 ofClouds:2
 ofCloudsHeight:0.0
 ofTrees:4

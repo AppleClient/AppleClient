@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="net.minecraft.client.gui.GuiScreenAddServer"/>
-    <fullyQualifiedTypeName name="appu26j.events.mc.EventKey"/>
-    <fullyQualifiedTypeName name="net.minecraft.util.Vec3"/>
-    <fullyQualifiedTypeName name="net.minecraft.entity.EntityLivingBase"/>
     <fullyQualifiedTypeName name="appu26j.performance.CullingTargetAccessor"/>
     <fullyQualifiedTypeName name="net.minecraft.util.MathHelper"/>
     <fullyQualifiedTypeName name="net.minecraft.block.state.BlockState"/>
@@ -50,14 +46,18 @@
     <fullyQualifiedTypeName name="net.java.games.input.Mouse"/>
     <fullyQualifiedTypeName name="net.java.games.input.Controller"/>
     <fullyQualifiedTypeName name="org.lwjgl.input.Mouse"/>
-    <fullyQualifiedTypeName name="org.lwjgl.opengl.Display"/>
     <fullyQualifiedTypeName name="appu26j.Apple"/>
     <fullyQualifiedTypeName name="appu26j.fontrenderer.CustomFontRenderer"/>
     <fullyQualifiedTypeName name="appu26j.Scale"/>
     <fullyQualifiedTypeName name="java.awt.Color"/>
     <fullyQualifiedTypeName name="net.minecraft.entity.Entity"/>
-    <fullyQualifiedTypeName name="appu26j.mods.Category"/>
     <fullyQualifiedTypeName name="appu26j.utils.Mathematics"/>
     <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
+    <fullyQualifiedTypeName name="appu26j.gui.firstgui.TutorialGUI"/>
     <fullyQualifiedTypeName name="net.minecraft.client.Minecraft"/>
+    <fullyQualifiedTypeName name="net.minecraft.client.gui.GuiButton"/>
+    <fullyQualifiedTypeName name="appu26j.mods.Category"/>
+    <fullyQualifiedTypeName name="org.lwjgl.opengl.Display"/>
+    <fullyQualifiedTypeName name="java.awt.Toolkit"/>
+    <fullyQualifiedTypeName name="java.awt.Dimension"/>
 </qualifiedTypeNameHistroy>

@@ -60,6 +60,7 @@ public class ModsManager
         this.mods.add(new ParticleMultipler());
         this.mods.add(new MemoryUsage());
         this.mods.add(new Coordinates());
+        this.mods.add(new BorderlessWindow());
 		this.mods.sort(Comparator.comparing(Mod::getName));
 		this.getMods("Scoreboard", "Bossbar").forEach(mod -> mod.setEnabled(true));
 		return this;

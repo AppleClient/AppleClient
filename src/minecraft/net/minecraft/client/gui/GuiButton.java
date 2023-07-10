@@ -2,10 +2,15 @@ package net.minecraft.client.gui;
 
 import java.awt.Color;
 
+import com.mojang.authlib.minecraft.MinecraftProfileTexture;
+import com.mojang.authlib.minecraft.MinecraftProfileTexture.Type;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.audio.SoundHandler;
+import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.resources.SkinManager;
 import net.minecraft.util.ResourceLocation;
 
 public class GuiButton extends Gui
@@ -35,6 +40,8 @@ public class GuiButton extends Gui
     public boolean visible;
     protected boolean hovered;
     private float index = 0;
+    private ResourceLocation texture = null;
+    private boolean temp = true;
 
     public GuiButton(int buttonId, int x, int y, String buttonText)
     {
@@ -150,6 +157,37 @@ public class GuiButton extends Gui
             }
 
             this.drawCenteredString(fontrenderer, this.displayString, this.xPosition + this.width / 2, this.yPosition + (this.height - 8) / 2, j);
+            
+            if (this.id == 2626)
+            {
+                if (this.texture == null && this.temp)
+                {
+                    Minecraft.getMinecraft().getSkinManager().loadProfileTextures(Minecraft.getMinecraft().getSession().getProfile(), new SkinManager.SkinAvailableCallback()
+                    {
+                        public void skinAvailable(Type p_180521_1_, ResourceLocation location, MinecraftProfileTexture profileTexture)
+                        {
+                            if (p_180521_1_.equals(Type.SKIN))
+                            {
+                                GuiButton.this.texture = location;
+                            }
+                        }
+                    }, true);
+                    
+                    this.temp = false;
+                }
+                
+                if (this.texture != null)
+                {
+                    Minecraft.getMinecraft().getTextureManager().bindTexture(this.texture);
+                    this.drawModalRectWithCustomSizedTexture(this.xPosition + 50, this.yPosition + 3, 14, 14, 14, 14, 112, 112);
+                }
+                
+                else
+                {
+                    Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("textures/entity/steve.png"));
+                    this.drawModalRectWithCustomSizedTexture(this.xPosition + 50, this.yPosition + 3, 14, 14, 14, 14, 112, 112);
+                }
+            }
         }
     }
 

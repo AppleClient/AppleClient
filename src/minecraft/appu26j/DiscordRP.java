@@ -13,38 +13,62 @@ public class DiscordRP
 	
 	public static void start()
 	{
-		DiscordEventHandlers discordEventHandlers = new DiscordEventHandlers.Builder().setReadyEventHandler(new ReadyCallback()
+		try
 		{
-			@Override
-			public void apply(DiscordUser discordUser)
-			{
-				update("Launching Apple Client " + Apple.VERSION);
-			}
-		}).build();
+		    DiscordEventHandlers discordEventHandlers = new DiscordEventHandlers.Builder().setReadyEventHandler(new ReadyCallback()
+	        {
+	            @Override
+	            public void apply(DiscordUser discordUser)
+	            {
+	                update("Launching Apple Client " + Apple.VERSION);
+	            }
+	        }).build();
+	        
+	        DiscordRPC.discordInitialize("1096373593597812756", discordEventHandlers, true);
+	        
+	        new Thread(() ->
+	        {
+	            while (running)
+	            {
+	                DiscordRPC.discordRunCallbacks();
+	            }
+	        }).start();
+		}
 		
-		DiscordRPC.discordInitialize("1096373593597812756", discordEventHandlers, true);
-		
-		new Thread(() ->
+		catch (Exception e)
 		{
-			while (running)
-			{
-				DiscordRPC.discordRunCallbacks();
-			}
-		}).start();
+		    ;
+		}
 	}
 	
 	public static void shutdown()
 	{
-		running = false;
-		DiscordRPC.discordShutdown();
+	    try
+	    {
+	        running = false;
+	        DiscordRPC.discordShutdown();
+	    }
+	    
+	    catch (Exception e)
+	    {
+	        ;
+	    }
 	}
 	
 	public static void update(String line)
 	{
-		Builder builder = new Builder("dsc.gg/appleclient");
-		builder.setDetails(line);
-		builder.setBigImage("appleclient", "Apple Client");
-		builder.setStartTimestamps(milliseconds);
-		DiscordRPC.discordUpdatePresence(builder.build());
+		try
+		{
+		    Builder builder = new Builder("dsc.gg/appleclient");
+	        builder.setDetails(line);
+	        builder.setBigImage("appleclient", "Apple Client");
+	        builder.setStartTimestamps(milliseconds);
+	        DiscordRPC.discordUpdatePresence(builder.build());
+		}
+		
+		catch (Exception e)
+		{
+		    ;
+		}
 	}
 }

@@ -3,6 +3,7 @@ package net.minecraft.client.gui;
 import java.awt.Color;
 import java.io.IOException;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -187,7 +188,7 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
 
         this.buttonList.add(new GuiButton(0, this.width / 2 - 100, j + 72 + 12, 98, 20, I18n.format("menu.options", new Object[0])));
         this.buttonList.add(new GuiButton(4, this.width / 2 + 2, j + 72 + 12, 98, 20, I18n.format("menu.quit", new Object[0])));
-        this.buttonList.add(new GuiButton(2626, this.width - 65, 5, 60, 20, "Log Out"));
+        this.buttonList.add(new GuiButton(2626, this.width - 75, 5, 70, 20, "Log Out    "));
         
         if (!this.mc.getSession().getPlayerID().replaceAll("-", "").equals("eaa6e69a966b465da9114cae0bf49440"))
         {
@@ -656,6 +657,15 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
         if (this.modUpdateNotification != null)
         {
             this.modUpdateNotification.drawScreen(mouseX, mouseY, partialTicks);
+        }
+        
+        GuiButton guiButton = this.buttonList.get(5);
+        
+        if (guiButton != null && guiButton.isMouseOver())
+        {
+            ArrayList<String> lines = new ArrayList<>();
+            lines.add(this.mc.getSession().getUsername());
+            this.drawHoveringText(lines, mouseX, mouseY + 20);
         }
     }
 

@@ -498,8 +498,22 @@ public class ClickGUI extends GuiScreen
 				
 				if (setting.getTypeOfSetting().equals("Slider"))
 				{
-					this.drawRect(i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName() + ": " + setting.getSliderValue()) + 9, (j - 60) + offset, this.isInsideBox(mouseX, mouseY, i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName() + ": " + setting.getSliderValue()) + 9, (j - 60) + offset) ? backgroundColour.getRGB() : backgroundColourLightened.getRGB());
-					this.drawStringAlpha(setting.getName() + ": " + setting.getSliderValue(), i - 175, (j - 74) + offset, -1, (int) (this.index * 255));
+				    float index = (setting.getSliderValue() - setting.getMinSliderValue()) / (setting.getMaxSliderValue() - setting.getMinSliderValue());
+				    
+				    if (setting.isDragging())
+				    {
+				        float temp = mouseX - ((i - 180) + this.getStringWidth(setting.getName()) + 6);
+	                    temp = temp > 135 ? 135 : temp;
+	                    temp = temp < 0 ? 0 : temp;
+	                    temp /= 135;
+				        setting.setSliderValue((setting.getMaxSliderValue() - setting.getMinSliderValue()) * (temp + (setting.getMinSliderValue() / (setting.getMaxSliderValue() - setting.getMinSliderValue()))));
+				    }
+				    
+                    this.drawRect(i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName()) + this.getStringWidth(setting.getSliderValue() + "") + 150, (j - 60) + offset, this.isInsideBox(mouseX, mouseY, i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName()) + this.getStringWidth(setting.getSliderValue() + "") + 150, (j - 60) + offset) ? backgroundColour.getRGB() : backgroundColourLightened.getRGB());
+                    this.drawRect((i - 180) + this.getStringWidth(setting.getName()) + 11, (j - 73) + offset, (i - 180) + this.getStringWidth(setting.getName()) + 139, (j - 67) + offset, this.isInsideBox(mouseX, mouseY, i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName()) + this.getStringWidth(setting.getSliderValue() + "") + 150, (j - 60) + offset) ? backgroundColourLightened.getRGB() : backgroundColour.getRGB());
+                    this.drawRect((i - 180) + this.getStringWidth(setting.getName()) + 9 + (122 * index), (j - 75) + offset, (i - 180) + this.getStringWidth(setting.getName()) + 19 + (122 * index), (j - 65) + offset, new Color(0, 225, 100).getRGB());
+					this.drawStringAlpha(setting.getName(), i - 175, (j - 74) + offset, -1, (int) (this.index * 255));
+                    this.drawStringAlpha(setting.getSliderValue() + "", (i - 173) + this.getStringWidth(setting.getName()) + 139, (j - 74) + offset, new Color(175, 175, 175).getRGB(), (int) (this.index * 255));
 					offset += 25;
 				}
 			}
@@ -846,14 +860,6 @@ public class ClickGUI extends GuiScreen
 							
 							if (setting.getTypeOfSetting().equals("Slider"))
 							{
-								if (this.isInsideBox(mouseX, mouseY, i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName() + ": " + setting.getSliderValue()) + 9, (j - 60) + offset))
-								{
-									if (setting.getSliderValue() > setting.getMinSliderValue())
-									{
-										setting.setSliderValue(setting.getSliderValue() - setting.getIncrement());
-									}
-								}
-								
 								offset += 25;
 							}
 						}
@@ -911,14 +917,6 @@ public class ClickGUI extends GuiScreen
 							
 							if (setting.getTypeOfSetting().equals("Slider"))
 							{
-								if (this.isInsideBox(mouseX, mouseY, i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName() + ": " + setting.getSliderValue()) + 9, (j - 60) + offset))
-								{
-									if (setting.getSliderValue() < setting.getMaxSliderValue())
-									{
-										setting.setSliderValue(setting.getSliderValue() + setting.getIncrement());
-									}
-								}
-								
 								offset += 25;
 							}
 						}
@@ -1112,6 +1110,12 @@ public class ClickGUI extends GuiScreen
 					
 					if (setting.getTypeOfSetting().equals("Slider"))
 					{
+					    if (this.isInsideBox(mouseX, mouseY, i - 180, (j - 80) + offset, (i - 180) + this.getStringWidth(setting.getName()) + this.getStringWidth(setting.getSliderValue() + "") + 150, (j - 60) + offset) && mouseButton == 0)
+					    {
+                            SoundUtil.playClickSound();
+					        setting.setDragging(true);
+					    }
+					    
 						offset += 25;
 					}
 				}
@@ -1119,6 +1123,25 @@ public class ClickGUI extends GuiScreen
 				j += 15;
 			}
 		}
+    }
+	
+	/**
+     * Called when a mouse button is released.  Args : mouseX, mouseY, releaseButton
+     */
+    protected void mouseReleased(int mouseX, int mouseY, int state)
+    {
+        super.mouseReleased(mouseX, mouseY, state);
+        
+        if (this.selectedMod != null)
+        {
+            for (Setting setting : this.selectedMod.getSettings())
+            {
+                if (setting.isDragging())
+                {
+                    setting.setDragging(false);
+                }
+            }
+        }
     }
 	
 	@Override
@@ -1137,6 +1160,14 @@ public class ClickGUI extends GuiScreen
         {
 			if (this.selectedMod != null)
 			{
+			    for (Setting setting : this.selectedMod.getSettings())
+		        {
+		            if (setting.isDragging())
+		            {
+		                setting.setDragging(false);
+		            }
+		        }
+			    
 				this.selectedMod = null;
 			}
 			
