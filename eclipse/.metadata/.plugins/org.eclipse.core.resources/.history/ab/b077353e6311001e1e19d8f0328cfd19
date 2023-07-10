@@ -1,9 +1,0 @@
-package appu26j.utils;
-
-public class Fools
-{
-    public static boolean isApril()
-    {
-        return true;
-    }
-}
